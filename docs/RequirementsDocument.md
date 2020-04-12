@@ -50,12 +50,11 @@ Version:
 |       |  |  |
 
 # Stories and personas
-\<A Persona is a realistic impersonation of an actor. Define here a few personas and describe in plain text how a persona interacts with the system>
+Peter is a plumber and travels a lot on his GPL van for work in differend towns, up to hundreds of kilometers a day. He knows all the best gas station on his usual routes but work sometimes takes in other cities he doesnt know very well. Peter pays attention to the price of GPL so he uses EzGaz to find a cheap gas station with GPL in a 5 km range, or further but on his way home. One day he goes a bit out of his way to fill the tank on a very cheap gas atation he found with EzGaz, but when he gets there the actual price is higher than advertised so he reports it on the app and he will recive a discount for his contribution.
 
-\<Persona is-an-instance-of actor>
+Janice works in upper managment of a big company and drives a Porches. On tuesdays after work she has to pick up her son from piano practice, and is usually in a hurry. When shee sees the gas tank almost empty she would uses find the nearest gas station and doesn't care about the price because she is running late.
 
-\<stories will be formalized later as use cases>
-
+Frank just opened a gas station very close to a big interstate but not quite visible from the road, so he registers his business on EzGaz to advertise if very competitive prices. Many people come to him with discount codes on their phones for a small proce reduction on the fuel, which is worth because of the many new clients he gets.
 
 # Functional and non functional requirements
 
@@ -66,9 +65,16 @@ Version:
 \<will match to high level use cases>
 
 | ID        | Description  |
-| ------------- |:-------------:| 
-|  FR1     |  |
-|  FR2     |   |
+| ------------- |:-------------:|  
+|  FR1     | Searching for a nearby gas station(using the GPS position) |
+|  FR2     | Searching for the cheapest gas station(for a certain type of fuel) in a radius set by the user |
+|  FR3     | Showing a map with gas stations and their prices |
+|  FR4     | Navigate the user to a chosen gas station |
+|  FR5     | Authenticatig the users (differenciating the gas station managers) |
+|  FR6     | Adding a gas station to the list |
+|  FR7     | Reporting a wrong or missing information |
+|  FR8     | Keeping track of the users' contributions and rights to discounts |
+|  FR9     | Communicate discounts to gas station managers through QR code |
 
 ## Non Functional Requirements
 
@@ -76,9 +82,9 @@ Version:
 
 | ID        | Type (efficiency, reliability, ..)           | Description  | Refers to |
 | ------------- |:-------------:| :-----:| -----:|
-|  NFR1     |   |  | |
-|  NFR2     | |  | |
-|  NFR3     | | | |
+|  NFR1     |  |  |  |
+|  NFR2     |  |  |  |
+|  NFR3     |  |  |  |
 
 
 # Use case diagram and use cases
