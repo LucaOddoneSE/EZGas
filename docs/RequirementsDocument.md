@@ -50,7 +50,7 @@ Version:
 |       |  |  |
 
 # Stories and personas
-Peter is a plumber and travels a lot on his GPL van for work in differend towns, up to hundreds of kilometers a day. He knows all the best gas station on his usual routes but work sometimes takes in other cities he doesnt know very well. Peter pays attention to the price of GPL so he uses EzGaz to find a cheap gas station with GPL in a 5 km range, or further but on his way home. One day he goes a bit out of his way to fill the tank on a very cheap gas atation he found with EzGaz, but when he gets there the actual price is higher than advertised so he reports it on the app and he will recive a discount for his contribution.
+Peter is a plumber and travels a lot on his LPG van for work in differend towns, up to hundreds of kilometers a day. He knows all the best gas station on his usual routes but work sometimes takes in other cities he doesnt know very well. Peter pays attention to the price of LPG so he uses EzGaz to find a cheap gas station with LPG in a 5 km range, or further but on his way home. One day he goes a bit out of his way to fill the tank on a very cheap gas atation he found with EzGaz, but when he gets there the actual price is higher than advertised so he reports it on the app and he will recive a discount for his contribution. After making a few reports like that Peter becomes a trusted user 
 
 Janice works in upper managment of a big company and drives a Porches. On tuesdays after work she has to pick up her son from piano practice, and is usually in a hurry. When shee sees the gas tank almost empty she would uses find the nearest gas station and doesn't care about the price because she is running late.
 
@@ -70,7 +70,7 @@ Frank just opened a gas station very close to a big interstate but not quite vis
 |  FR2     | Searching for the cheapest gas station(for a certain type of fuel) in a radius set by the user |
 |  FR3     | Showing a map with gas stations and their prices |
 |  FR4     | Navigate the user to a chosen gas station |
-|  FR5     | Authenticatig the users (differenciating the gas station managers) |
+|  FR5     | Authenticatig the users (differenciating the gas station managers and trusted users) |
 |  FR6     | Adding a gas station to the list |
 |  FR7     | Reporting a wrong or missing information |
 |  FR8     | Keeping track of the users' contributions and rights to discounts |
@@ -82,10 +82,11 @@ Frank just opened a gas station very close to a big interstate but not quite vis
 
 | ID        | Type (efficiency, reliability, ..)           | Description  | Refers to |
 | ------------- |:-------------:| :-----:| -----:|
-|  NFR1     |  |  |  |
-|  NFR2     |  |  |  |
-|  NFR3     |  |  |  |
-
+|  NFR1     | Portability | The app should be available for versions of Android > 5.0 and IOS > 4(?) | All FR |
+|  NFR2     | Portability | The web version should work on the latest version of Chrome, Firefox, Safari, Edge and Opera | All FR |
+|  NFR3     | Usability | The app should be intuitive to use and require no more than 5 or 6 help frames for an average smartphone user | All FR |
+|  NFR4     | Usability(domain) | Core functions(rearch for gas station) should be done with 1-2 clicks because its used in a possibly moving car and should not distract too much | FR1, FR2 |
+|  NFR5     | Performance | The search function should take no more that 2-3 seconds to display the first results and other function no more than 0.5 sec | All FR |
 
 # Use case diagram and use cases
 
