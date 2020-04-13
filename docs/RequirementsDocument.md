@@ -60,9 +60,6 @@ Frank just opened a gas station very close to a big interstate but not quite vis
 
 ## Functional Requirements
 
-\<In the form DO SOMETHING, or VERB NOUN, describe high level capabilities of the system>
-
-\<will match to high level use cases>
 
 | ID        | Description  |
 | ------------- |:-------------:|  
@@ -78,7 +75,6 @@ Frank just opened a gas station very close to a big interstate but not quite vis
 
 ## Non Functional Requirements
 
-\<Describe constraints on functional requirements>
 
 | ID        | Type (efficiency, reliability, ..)           | Description  | Refers to |
 | ------------- |:-------------:| :-----:| -----:|
