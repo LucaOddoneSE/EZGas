@@ -290,6 +290,64 @@ g -- FR4
 
 \<concepts are used consistently all over the document, ex in use cases, requirements etc>
 
+@startuml
+class EZGas
+class Driver{
+  +ID
+  + name
+  + email
+  + pasword
+  + location
+  + range
+  + goodInfo
+  + wrongInfo
+  + discount
+}
+
+class GS_Admin{
+  + ID
+  + name
+  + email
+  + pasword
+  + employeeNum
+}
+
+class GasStation{
+  + ID
+  + location
+}
+
+class Fuel{
+  + ID
+  + price
+}
+
+class Request{
+  + fuelPrice
+}
+
+note top of GS_Admin : Can validate the information \n\
+given by the Driver user. \n\
+Also, can benefict or pelize Drivers
+
+note left of Request : Driver requests to update \n\
+fuel price
+
+EZGas -- "*" Driver
+EZGas -- "*" GS_Admin
+EZGas -- "*" GasStation
+
+GS_Admin "1..*" - "0..*" Driver : Benefic/Penalize >
+
+GasStation "1..*" -- "0..*" Fuel
+
+Request"1..*" - "0..*" Fuel : Add/Delete/Update >
+
+Driver "1..*" -- "0..*" Request
+GS_Admin "1..*" -- "0..*" Request : Validate >
+
+@enduml
+
 # System Design
 \<describe here system design>
 
