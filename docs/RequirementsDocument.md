@@ -71,7 +71,7 @@ Frank just opened a gas station very close to a big interstate but not quite vis
 |  FR6     | Adding a gas station to the list |
 |  FR7     | Reporting a wrong or missing information |
 |  FR8     | Keeping track of the users' contributions and rights to discounts |
-|  FR9     | Communicate discounts to gas station managers through QR code |
+|  FR9     | Keeping track of earned discounts and allowing users to claim them at gas stations |
 
 ## Non Functional Requirements
 
