@@ -86,7 +86,43 @@ Version:
 
 ## Use case diagram
 \<define here UML Use case diagram UCD summarizing all use cases, and their relationships>
+@startuml
 
+left to right direction
+actor Driver as d
+actor GasStation_Admin as a
+actor GoogleMaps as g
+
+(Search for a nearby gas station) as FR1
+(Sear for the cheapest gas station in a radius set by the user) as FR2
+(Show a map with gas stations and prices) as FR3
+(Navigate user to a chosen gas station) as FR4
+(Authenticate the users) as FR5
+(Add a gas station to the list) as FR6
+(Report a wrong or missing information) as FR7
+(Keep track of the users contributions and rights to discounts) as FR8
+(Communicate discounts to gas station managers) as FR9
+
+d -- FR1
+d -- FR2
+d -- FR4
+d -- FR5
+d -- FR6
+d -- FR7
+d -- FR8
+
+FR1 .> FR3 : include
+FR2 .> FR3 : include
+
+a -- FR5
+a -- FR7
+a -- FR8
+a -- FR9
+
+g -- FR3
+g -- FR4
+
+@enduml
 
 \<next describe here each use case in the UCD>
 ### Use case 1, UC1
@@ -201,12 +237,13 @@ Version:
 | ------------- |:-------------| 
 | Description | Driver D updates a fuel's price F |
 | Precondition | D.fuelPrice != F.price |
-| Postcondition | D.fuelPrice == F.price |
+| Postcondition | D.fuelPrice == F.price && D.goodInfo ++ |
 | Step#        | Step description |
 |  1     | D logs in the application |  
 |  2     | D selects the wrong fuel and the gas station where it is |
 |  3     | D changes the value and saves it |
-|  4     | Gas Station Administrator checks if it is correct and validate it |
+|  4     | Gas Station Administrator checks if it is correct, validates it and adds one point of D's good information|
+|  5     | If D has iqual or more 10 points of good information, D becomes to be a trusted user |
 
 ### Scenario 3.2
 
@@ -214,19 +251,17 @@ Version:
 | ------------- |:-------------| 
 | Description | Driver D cannot update a fuel's price F |
 | Precondition | D.fuelPrice != F.price |
-| Postcondition | D.fuelPrice != F.price |
+| Postcondition | D.fuelPrice != F.price && D.wrongInfo ++ |
 | Step#        | Step description |
 |  1     | D logs in the application |  
 |  2     | D selects the wrong fuel and the gas station where it is |
 |  3     | D changes the value and saves it |
-|  4     | Gas Station Administrator checks if it is correct and doesn't validate it |
-
+|  4     | Gas Station Administrator checks if it is correct, doesn't validate and adds a point in D's wrong information|
+|  5     | If D has more or equal 5 negative points, Gas Station Administrator can penalize him/her|
 
 ## Scenario 4
 
-### Scenario 4.1
-
-| Scenario ID: SC4.1        | Corresponds to UC5 |
+| Scenario ID: SC4         | Corresponds to UC5 |
 | ------------- |:-------------| 
 | Description | Add a discount in Driver D account |
 | Precondition | D gives right information |
@@ -235,18 +270,6 @@ Version:
 |  1     | Gas Station Administrator validates D's information |  
 |  2     | Gas Station Administrator add a discount in D's account |
 
-### Scenario 4.2
-
-| Scenario ID: SC4.2        | Corresponds to UC5 |
-| ------------- |:-------------| 
-| Description | Not add a discount in Driver D account |
-| Precondition | D gives wrong information |
-| Postcondition | D.wrongInfo ++ |
-| Step#        | Step description |
-|  1     | Gas Station Administrator doesn't validate D's information |  
-|  2     | Gas Station Administrator add a negative point in D's account |
-|  3     | Gas Station Administrator checks how many negative points D has |
-|  4     | If D has more or equal 5 negative points, Gas Station Administrator can ban him/her |
 
 ## Scenario 5
 
