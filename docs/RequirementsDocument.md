@@ -99,7 +99,44 @@ Frank just opened a gas station very close to a big interstate but not quite vis
 
 
 ## Use case diagram
-\<define here UML Use case diagram UCD summarizing all use cases, and their relationships>
+
+@startuml
+
+left to right direction
+actor Driver as d
+actor GasStation_Admin as a
+actor GoogleMaps as g
+
+(Search for a nearby gas station) as FR1
+(Sear for the cheapest gas station in a radius set by the user) as FR2
+(Show a map with gas stations and prices) as FR3
+(Navigate user to a chosen gas station) as FR4
+(Authenticate the users) as FR5
+(Add a gas station to the list) as FR6
+(Report a wrong or missing information) as FR7
+(Keep track of the users contributions and rights to discounts) as FR8
+(Communicate discounts to gas station managers) as FR9
+
+d -- FR1
+d -- FR2
+d -- FR4
+d -- FR5
+d -- FR6
+d -- FR7
+d -- FR8
+
+FR1 .> FR3 : include
+FR2 .> FR3 : include
+
+a -- FR5
+a -- FR7
+a -- FR8
+a -- FR9
+
+g -- FR3
+g -- FR4
+
+@enduml
 
 
 \<next describe here each use case in the UCD>
