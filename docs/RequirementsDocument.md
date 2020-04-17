@@ -141,12 +141,60 @@ g -- FR4
 
 
 ### Use case 1, UC1
-| Actors Involved        |  |
+
+| Actors Involved        | Driver, GoogleMaps |
 | ------------- |:-------------:| 
-|  Precondition     | \<Boolean expression, must evaluate to true before the UC can start> |  
-|  Post condition     | \<Boolean expression, must evaluate to true after UC is finished> |
-|  Nominal Scenario     | \<Textual description of actions executed by the UC> |
-|  Variants     | \<other executions, ex in case of errors> |
+|  Precondition     | Gas Station G exists, Fuel F exists, Driver range location R exists |  
+|  Post condition     | R>= G.location | G.fuel==F |
+|  Nominal Scenario     | Driver selects the most suitable gas station to his/her preferences (location and the cheapest fuel) |
+|  Variants     | There are not enough information about fuels |
+
+### Use Case 2, UC2 - FR4 Navigate the user to a chosen gas station
+
+| Actors Involved        | Driver, GoogleMaps |
+| ------------- |:-------------:| 
+|  Precondition     | Driver Location L exists, Gas Station G exists |  
+|  Post condition     | L== G.location |
+|  Nominal Scenario     | The application gives the directions that the driver has to follow to arrive at the gas station selected | 
+|  Variants     | Driver takes wrong direction |
+
+### Use Case 3, UC3 - FR5 Authenticatig the users 
+
+| Actors Involved        | Driver, Gas Station Administrator |
+| ------------- |:-------------:| 
+|  Precondition     | Driver/ Gas Station Administrator account does not exist |  
+|  Post condition     | Their respective accounts exists |
+|  Nominal Scenario     | User interts valid user name, email, pasword and specify if they are drivers or gas station administrator (in the case of Gas Station Administrator introduced the employee number) | 
+|  Variants     | Email is already used or not valid |
+
+### Use Case 4, UC4 - FR7 Reporting a wrong or missing information
+
+| Actors Involved        | Driver, Gas Station Administrator |
+| ------------- |:-------------:| 
+|  Precondition     | Fuel F exists, Gas Station G exists |  
+|  Post condition     | G.fuel == F | F.oldPrice != F.newPrice |
+|  Nominal Scenario     | Driver selects the wrong fuel and the gas station where the fuel is and updates its value, Gas Station Administrator validate the information | 
+|  Variants     | Wrong information |
+
+### Use Case 5, UC5 - FR8 Keeping track of the users contributions and rights to discounts
+
+| Actors Involved        | Driver, Gas Station Administrator |
+| ------------- |:-------------:| 
+|  Precondition     | Driver's information is correct|  
+|  Post condition     | Add dicounts in their accounts |
+|  Nominal Scenario     | After validating the driver's new information, the Admin adds a discount on Driver's account | 
+|  Variants     | Driver's information is not correct |
+
+### Use Case 6, UC6 - FR9  Communicate discounts to gas station managers through QR code
+
+| Actors Involved        | Driver, Gas Station Administrator |
+| ------------- |:-------------:| 
+|  Precondition     | Driver has dicounts |  
+|  Post condition     | Driver can use the discounts |
+|  Nominal Scenario     | The Gas Station Administrator validate the Driver's discount and minimize the price | 
+|  Variants     | The discount has been used before |
+
+
 
 ##### Scenario 1.1 
 
