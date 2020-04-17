@@ -111,7 +111,7 @@ Frank just opened a gas station very close to a big intersection but not quite v
 
 left to right direction
 actor Driver as d
-actor GasStation_Admin as a
+actor GasStationAdmin as a
 actor GoogleMaps as g
 actor Administrator as h
 
