@@ -196,33 +196,100 @@ g -- FR4
 
 
 
-##### Scenario 1.1 
-
-\<describe here scenarios instances of UC1>
-
-\<a scenario is a sequence of steps that corresponds to a particular execution of one use case>
-
-\<a scenario is a more formal description of a story>
-
-\<only relevant scenarios should be described>
-
-| Scenario 1.1 | |
+##### Scenario 1.1
+ 
+| Scenario 1 | Corresponds to UC1 |
 | ------------- |:-------------:| 
-|  Precondition     | \<Boolean expression, must evaluate to true before the scenario can start> |
-|  Post condition     | \<Boolean expression, must evaluate to true after scenario is finished> |
-| Step#        | Description  |
-|  1     |  |  
-|  2     |  |
-|  ...     |  |
+| Description | Driver D selects the most suitable gas station G |
+|  Precondition     | distance(G, D) <= D.range |
+|  Post condition     | D selects a G |
+| Step#        | Step description |
+|  1     | GoogleMaps shows all the gas station inside the driver's range |  
+|  2     | Driver selects the best gas station choices and compares fuel prices |
+|  3     | Driver select the desired gas station |
 
-##### Scenario 1.2
 
-### Use case 2, UC2
-..
+## Scenario 2
 
-### Use case
-..
+###Scenario 2.1
 
+| Scenario ID: SC2.1        | Corresponds to UC3 |
+| ------------- |:-------------| 
+| Description | User U (Driver or Gas Station Administrator) creates an account|
+| Precondition | U uses for the first time their email |
+| Postcondition | U creates the account |
+| Step#        | Step description |
+|  1     | U goes to EzGas application |  
+|  2     | U registers as an user with an user name, email and pasword |
+|  3     | U's email is validated |
+|  4     | U creates an account |
+
+###Scenario 2.2
+
+| Scenario ID: SC2.2        | Corresponds to UC3 |
+| ------------- |:-------------| 
+| Description | User U (Driver or Gas Station Administrator) cannot create an account |
+| Precondition | U uses the same email twice |
+| Postcondition | U cannot create the account |
+| Step#        | Step description |
+|  1     | U goes to EzGas web page |  
+|  2     | U registers as an user with an user name, email and pasword |
+|  3     | U's email is not validated |
+|  4     | U cannot create an account |
+
+## Scenario 3
+
+### Scenario 3.1
+
+| Scenario ID: SC3.1        | Corresponds to UC4 |
+| ------------- |:-------------| 
+| Description | Driver D updates a fuel's price F |
+| Precondition | D.fuelPrice != F.price |
+| Postcondition | D.fuelPrice == F.price && D.goodInfo ++ |
+| Step#        | Step description |
+|  1     | D logs in the application |  
+|  2     | D selects the wrong fuel and the gas station where it is |
+|  3     | D changes the value and saves it |
+|  4     | Gas Station Administrator checks if it is correct, validates it and adds one point of D's good information|
+|  5     | If D has iqual or more 10 points of good information, D becomes to be a trusted user |
+
+### Scenario 3.2
+
+| Scenario ID: SC3.2        | Corresponds to UC4 |
+| ------------- |:-------------| 
+| Description | Driver D cannot update a fuel's price F |
+| Precondition | D.fuelPrice != F.price |
+| Postcondition | D.fuelPrice != F.price && D.wrongInfo ++ |
+| Step#        | Step description |
+|  1     | D logs in the application |  
+|  2     | D selects the wrong fuel and the gas station where it is |
+|  3     | D changes the value and saves it |
+|  4     | Gas Station Administrator checks if it is correct, doesn't validate and adds a point in D's wrong information|
+|  5     | If D has more or equal 5 negative points, Gas Station Administrator can penalize him/her|
+
+## Scenario 4
+
+| Scenario ID: SC4         | Corresponds to UC5 |
+| ------------- |:-------------| 
+| Description | Add a discount in Driver D account |
+| Precondition | D gives right information |
+| Postcondition | D.discount ++ |
+| Step#        | Step description |
+|  1     | Gas Station Administrator validates D's information |  
+|  2     | Gas Station Administrator add a discount in D's account |
+
+
+## Scenario 5
+
+| Scenario ID: SC5        | Corresponds to UC6 |
+| ------------- |:-------------| 
+| Description | Validate discount |
+| Precondition | D.discount > 0 |
+| Postcondition | D.discount -- |
+| Step#        | Step description |
+|  1     | Driver shows discount's QR code |  
+|  2     | Gas Station Administrator checks if it is valid |
+|  3     | Gas Station Administrator reduces Driver's price and makes the discount disable |
 
 
 # Glossary
