@@ -64,11 +64,11 @@ b -- (Ez Gas Application)
 |    Google Map   | Web Service | Internet connection |
 
 # Stories and personas
-\<A Persona is a realistic impersonation of an actor. Define here a few personas and describe in plain text how a persona interacts with the system>
+Peter is a plumber and travels a lot on his LPG van for work in differend towns, up to hundreds of kilometers a day. He knows all the best gas station on his usual routes but work sometimes takes in other cities he doesnt know very well. Peter pays attention to the price of LPG so he uses EzGaz to find a cheap gas station with LPG in a 5 km range, or further but on his way home. One day he goes a bit out of his way to fill the tank on a very cheap gas atation he found with EzGaz, but when he gets there the actual price is higher than advertised so he reports it on the app and he will recive a discount for his contribution. After making a few reports like that Peter becomes a trusted user
 
-\<Persona is-an-instance-of actor>
+Janice works in upper managment of a big company and drives a Porches. On tuesdays after work she has to pick up her son from piano practice, and is usually in a hurry. When shee sees the gas tank almost empty she would uses find the nearest gas station and doesn't care about the price because she is running late.
 
-\<stories will be formalized later as use cases>
+Frank just opened a gas station very close to a big interstate but not quite visible from the road, so he registers his business on EzGaz to advertise if very competitive prices. Many people come to him with discount codes on their phones for a small proce reduction on the fuel, which is worth because of the many new clients he gets.
 
 
 # Functional and non functional requirements
