@@ -88,6 +88,8 @@ Frank just opened a gas station very close to a big intersection but not quite v
 |  FR7     | Reporting a wrong or missing information |
 |  FR8     | Keeping track of the users' contributions and rights to discounts |
 |  FR9     | Keeping track of earned discounts and allowing users to claim them at gas stations |
+|  FR10     | Manage accounts of the users |
+
 
 ## Non Functional Requirements
 
