@@ -95,10 +95,10 @@ Frank just opened a gas station very close to a big intersection but not quite v
 
 | ID        | Type (efficiency, reliability, ..)           | Description  | Refers to |
 | ------------- |:-------------:| :-----:| -----:|
-|  NFR1     | Portability | The app should be available for versions of Android > 5.0 and IOS > 4(?) | All FR |
+|  NFR1     | Portability | The app should be available for versions of Android > 5.0 and IOS > 4 | All FR |
 |  NFR2     | Portability | The web version should work on the latest version of Chrome, Firefox, Safari, Edge and Opera | All FR |
 |  NFR3     | Usability | The app should be intuitive to use and require no more than 5 or 6 help frames for an average smartphone user | All FR |
-|  NFR4     | Usability(domain) | Core functions(rearch for gas station) should be done with 1-2 clicks because its used in a possibly moving car and should not distract too much | FR1, FR2 |
+|  NFR4     | Usability(domain) | Core functions( search for gas station ) should be done with 1-2 clicks because its used in a possibly moving car and should not distract too much | FR1, FR2 |
 |  NFR5     | Performance | The search function should take no more that 2-3 seconds to display the first results and other function no more than 0.5 sec | All FR |
 
 
