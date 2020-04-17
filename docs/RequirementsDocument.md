@@ -197,7 +197,8 @@ g -- FR4
 
 # Relevant scenarios
 
-##### Scenario 1.1
+## Scenario 1
+
  
 | Scenario 1 | Corresponds to UC1 |
 | ------------- |:-------------:| 
