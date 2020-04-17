@@ -99,7 +99,7 @@ Frank just opened a gas station very close to a big interstate but not quite vis
 
 
 ## Use case diagram
-
+```plantuml
 @startuml
 
 left to right direction
@@ -137,7 +137,7 @@ g -- FR3
 g -- FR4
 
 @enduml
-
+```
 
 \<next describe here each use case in the UCD>
 ### Use case 1, UC1
