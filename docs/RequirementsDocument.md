@@ -43,10 +43,14 @@ Version: 1
 ```plantuml
 left to right direction
 actor Driver as a
-actor GasStation_Admin as b
+actor GasStationAdmin as b
+actor Administrator as c
+
 rectangle System {
 a -- (Ez Gas Application)
 b -- (Ez Gas Application)
+c -- (Ez Gas Application)
+
 }
 ```
 
