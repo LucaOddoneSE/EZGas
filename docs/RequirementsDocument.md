@@ -140,7 +140,7 @@ g -- FR4
 ```
 
 
-### Use case 1, UC1
+### Use case 1, UC1 - FR1,FR2,FR4 Selecting the most suitable gas station (location and the cheapest fuel)
 
 | Actors Involved        | Driver, GoogleMaps |
 | ------------- |:-------------:| 
