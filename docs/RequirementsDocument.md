@@ -337,6 +337,7 @@ class GasStation{
 
 class Fuel{
   + ID
+  + Name
   + price
 }
 
@@ -344,9 +345,9 @@ class Request{
   + fuelPrice
 }
 
-note top of GS_Admin : Can validate the information \n\
-given by the Driver user. \n\
-Also, can benefict or pelize Drivers
+note top of GS_Admin : Can validate the price reported \n\
+by the Driver. \n\
+Also, can offer discount to the users.
 
 note left of Request : Driver requests to update \n\
 fuel price
