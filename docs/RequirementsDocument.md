@@ -30,8 +30,8 @@ Version: 1
 
 | Stakeholder name  | Description | 
 | ----------------- |:-----------:|
-|        Driver           |      Uses the application for checking the prices of fuels in different gas stations | 
-|        Gas station administrator           |      Uses the application for updating the prices of the fuels        |
+|        Driver           |      Uses the application for checking and updating the prices of fuels in different gas stations | 
+|        Gas station administrator           |      Uses the application for updating the prices of the fuels and offers discount       |
 |        Developer           |      Develops the application        |
 |        Administrator	           |      Application administrator, IT administrator, DB administrator     |
 
