@@ -33,6 +33,7 @@ Version: 1
 |        Driver           |      Uses the application for checking the prices of fuels in different gas stations | 
 |        Gas station administrator           |      Uses the application for updating the prices of the fuels        |
 |        Developer           |      Develops the application        |
+|        Administrator	           |      Application administrator, IT administrator, DB administrator     |
 
 
 # Context Diagram and interfaces
