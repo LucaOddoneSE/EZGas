@@ -361,3 +361,34 @@ No need for EZGas application.
 
 # Deployment Diagram 
 
+```plantuml
+@startuml
+
+scale 200 width
+scale 700 height
+
+node Computer {
+ rectangle "Web Client" <<Application>> as ex1
+ rectangle "QR Code Reader" <<Application>> as ex2
+ rectangle "Maps" <<Application>> as ex3
+}
+
+
+node node3 as "EZGas Management Server" {
+ rectangle "Authentication" <<Service>> as ex4
+ rectangle "Storage" <<Service>> as ex5
+ rectangle "Configuration" <<Service>> as ex16
+}
+
+node Smartphone {
+ rectangle "Web Client" <<Application>> as ex7
+ rectangle "QR Code Reader" <<Application>> as ex8
+ rectangle "GPS" <<Service>> as ex9
+ rectangle "Maps" <<Application>> as ex10
+}
+
+Computer -- node3 : HTTP
+Smartphone -- node3 : HTTP
+
+@enduml
+```
