@@ -38,7 +38,6 @@ Version:
 # Context Diagram and interfaces
 
 ## Context Diagram
-\<Define here Context diagram using UML use case diagram>
 
 ```plantuml
 left to right direction
@@ -50,12 +49,10 @@ b -- (Ez Gas Application)
 }
 ```
 
-\<actors are a subset of stakeholders>
+
 
 ## Interfaces
-\<describe here each interface in the context diagram>
 
-\<GUIs will be described graphically in a separate document>
 
 | Actor | Logical Interface | Physical Interface  |
 | ------------- |:-------------:| -----:|
