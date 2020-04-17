@@ -45,11 +45,14 @@ left to right direction
 actor Driver as a
 actor GasStationAdmin as b
 actor Administrator as c
+actor Google map as d
 
 rectangle System {
 a -- (Ez Gas Application)
 b -- (Ez Gas Application)
 c -- (Ez Gas Application)
+d -- (Ez Gas Application)
+
 }
 ```
 
