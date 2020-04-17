@@ -195,6 +195,7 @@ g -- FR4
 |  Variants     | The discount has been used before |
 
 
+# Relevant scenarios
 
 ##### Scenario 1.1
  
