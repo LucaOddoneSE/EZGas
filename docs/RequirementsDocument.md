@@ -113,6 +113,7 @@ left to right direction
 actor Driver as d
 actor GasStation_Admin as a
 actor GoogleMaps as g
+actor Administrator as h
 
 (Search for a nearby gas station) as FR1
 (Sear for the cheapest gas station in a radius set by the user) as FR2
@@ -123,6 +124,7 @@ actor GoogleMaps as g
 (Report a wrong or missing information) as FR7
 (Keep track of the users contributions and rights to discounts) as FR8
 (Communicate discounts to gas station managers) as FR9
+(Managing user accounts) as FR10
 
 d -- FR1
 d -- FR2
@@ -142,6 +144,8 @@ a -- FR9
 
 g -- FR3
 g -- FR4
+
+h -- FR10
 
 @enduml
 ```
