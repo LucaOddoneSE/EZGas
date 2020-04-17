@@ -357,10 +357,7 @@ GS_Admin "1..*" -- "0..*" Request : Validate >
 ```
 
 # System Design
-\<describe here system design>
-
-\<must be consistent with Context diagram>
+No need for EZGas application.
 
 # Deployment Diagram 
 
-\<describe here deployment diagram >
