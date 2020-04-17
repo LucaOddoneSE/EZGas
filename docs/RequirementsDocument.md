@@ -50,7 +50,6 @@ rectangle System {
 a -- (Ez Gas Application)
 b -- (Ez Gas Application)
 c -- (Ez Gas Application)
-
 }
 ```
 
@@ -64,6 +63,7 @@ c -- (Ez Gas Application)
 |    Driver   | GUI | Touch screen |
 |    Gas station administrator   | GUI | Touch screen |
 |    Google Map   | Web Service | Internet connection |
+|    Administrator   | GUI | Mouse and Keyboard |
 
 # Stories and personas
 Peter is a plumber and travels a lot on his LPG van for work in differend towns, up to hundreds of kilometers a day. He knows all the best gas station on his usual routes but work sometimes takes in other cities he doesnt know very well. Peter pays attention to the price of LPG so he uses EzGaz to find a cheap gas station with LPG in a 5 km range, or further but on his way home. One day he goes a bit out of his way to fill the tank on a very cheap gas atation he found with EzGaz, but when he gets there the actual price is higher than advertised so he reports it on the app and he will recive a discount for his contribution. After making a few reports like that Peter becomes a trusted user
