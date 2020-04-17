@@ -139,7 +139,7 @@ g -- FR4
 @enduml
 ```
 
-\<next describe here each use case in the UCD>
+
 ### Use case 1, UC1
 | Actors Involved        |  |
 | ------------- |:-------------:| 
