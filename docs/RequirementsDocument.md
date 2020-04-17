@@ -79,11 +79,11 @@ Frank just opened a gas station very close to a big intersection but not quite v
 
 | ID        | Description  |
 | ------------- |:-------------:|  
-|  FR1     | Searching for a nearby gas station(using the GPS position) |
-|  FR2     | Searching for the cheapest gas station(for a certain type of fuel) in a radius set by the user |
+|  FR1     | Searching for a nearby gas station( using the GPS position ) |
+|  FR2     | Searching for the cheapest gas station( for a certain type of fuel ) in a radius set by the user |
 |  FR3     | Showing a map with gas stations and their prices |
 |  FR4     | Navigate the user to a chosen gas station |
-|  FR5     | Authenticatig the users (differenciating the gas station managers and trusted users) |
+|  FR5     | Authenticatig the users ( differentiating the gas station Admins and trusted users ) |
 |  FR6     | Adding a gas station to the list |
 |  FR7     | Reporting a wrong or missing information |
 |  FR8     | Keeping track of the users' contributions and rights to discounts |
