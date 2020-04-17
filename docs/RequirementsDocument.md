@@ -59,7 +59,9 @@ b -- (Ez Gas Application)
 
 | Actor | Logical Interface | Physical Interface  |
 | ------------- |:-------------:| -----:|
-|       |  |  |
+|    Driver   | GUI | Touch screen |
+|    Gas station administrator   | GUI | Touch screen |
+|    Google Map   | Web Service | Internet connection |
 
 # Stories and personas
 \<A Persona is a realistic impersonation of an actor. Define here a few personas and describe in plain text how a persona interacts with the system>
