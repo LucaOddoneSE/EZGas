@@ -28,10 +28,12 @@ Version:
 
 # Stakeholders
 
-
 | Stakeholder name  | Description | 
 | ----------------- |:-----------:|
-|                   |             | 
+|        Driver           |      Uses the application for checking the prices of fuels in different gas stations | 
+|        Gas station administrator           |      Uses the application for updating the prices of the fuels        |
+|        Developer           |      Develops the application        |
+
 
 # Context Diagram and interfaces
 
