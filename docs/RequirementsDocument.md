@@ -72,14 +72,17 @@ Frank just opened a gas station very close to a big interstate but not quite vis
 
 ## Functional Requirements
 
-\<In the form DO SOMETHING, or VERB NOUN, describe high level capabilities of the system>
-
-\<will match to high level use cases>
-
 | ID        | Description  |
-| ------------- |:-------------:| 
-|  FR1     |  |
-|  FR2     |   |
+| ------------- |:-------------:|  
+|  FR1     | Searching for a nearby gas station(using the GPS position) |
+|  FR2     | Searching for the cheapest gas station(for a certain type of fuel) in a radius set by the user |
+|  FR3     | Showing a map with gas stations and their prices |
+|  FR4     | Navigate the user to a chosen gas station |
+|  FR5     | Authenticatig the users (differenciating the gas station managers and trusted users) |
+|  FR6     | Adding a gas station to the list |
+|  FR7     | Reporting a wrong or missing information |
+|  FR8     | Keeping track of the users' contributions and rights to discounts |
+|  FR9     | Keeping track of earned discounts and allowing users to claim them at gas stations |
 
 ## Non Functional Requirements
 
