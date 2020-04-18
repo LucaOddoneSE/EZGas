@@ -217,8 +217,8 @@ EZGasApp o-- "1..*" Smartphone
 EZGasApp o-- "1..*" PC
 EZGasApp o-- "1" EZGasServer
 EZGasApp -- "1..*" GoogleServer
-Smartphone o-- "1..*" GoogleServer
-PC o-- "1..*" GoogleServer
+Smartphone -- "1..*" GoogleServer
+PC -- "1..*" GoogleServer
 
 @enduml
 ```
