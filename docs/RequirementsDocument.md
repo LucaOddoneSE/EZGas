@@ -137,6 +137,93 @@ Version: 2.0
 
 \<must be consistent with Context diagram>
 
+Since EzGas Application is meant to be a software application, we focus our attention on the software part rather than the hardware part.
+The goal here is to describe in a clear and complete manner the system behavior and all its functionalities performed, through UML Class Diagram notation.
+
+```plantuml
+@startuml
+
+scale 200 width
+scale 700 height
+left to right direction
+
+class Smartphone {
+
++turnGPSon()
++turnGPSoff()
++getPosition()
++readQRCode()
++getSMSauthentication()
+}
+
+class PC {
+
++turnWebClientOn()
++turnWebClientOff()
++getPosition()
+
+}
+
+class EZGasServer {
+
++createSystemAdministrator()
++createNewMemeber()
++updateMemberInformation()
++deleteMember()
++createGasStationAdmin()
++deletGasStatioAdmin()
++getNewFuelStationName()
++getNewFuelStationPrice()
++getNewFuelStationPosition()
++updateExistingFuelStationName()
++updateExistingFuelStationPrice()
++deleteExistingFuelStation()
++createTrustedMember()
++recoverPassword()
++manageQRCode()
++manageUserDiscount()
+
+}
+
+class EZGasApp {
+
++open()
++close()
++signIn()
++signUp()
++deleteAccount()
++getPositionViaGPS()
++getPositionViaGMaps()
++sendPosition()
++getPrice()
++sendPrice()
++searchGasStationForPrice()
++searchGasStationForFuel()
++searchGasStationForRadius()
++getUserDiscount()
++generateQRCode()
++navigateUsertoGasStation()
+
+}
+
+class GoogleServer {
+
++elaborateInformation()
++sendPosition()
+
+}
+
+EZGasApp o-- "1..*" Smartphone
+EZGasApp o-- "1..*" PC
+EZGasApp o-- "1" EZGasServer
+EZGasApp -- "1..*" GoogleServer
+Smartphone o-- "1..*" GoogleServer
+PC o-- "1..*" GoogleServer
+
+@enduml
+```
+
+
 # Deployment Diagram 
 
 \<describe here deployment diagram >
