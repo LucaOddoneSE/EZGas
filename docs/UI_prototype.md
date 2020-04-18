@@ -10,4 +10,4 @@ Version: 1
 
 1- Intro
  
-<img src="https://git-softeng.polito.it/se-2020/group-50/ezgas/-/raw/S274475/docs/GUI/Intro1.png" width="500" alt="" />
+<img src="https://git-softeng.polito.it/se-2020/group-50/ezgas/-/raw/S274475/docs/GUI/Intro1.png" width="300" alt="" />
