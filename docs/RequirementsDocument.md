@@ -406,3 +406,8 @@ Smartphone -- node3 : HTTP
 
 @enduml
 ```
+
+| Node        | Linked to node           | Description  |
+| ------------- |:-------------:| -----:|
+| Computer      |  EZGas Management Server| Connection is established via a HTTP logical link |
+| Smartphone | EZGas Management Server  | Connection is established via a HTTP logical link |
