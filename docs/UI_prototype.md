@@ -90,4 +90,4 @@ Version: 1
 
 17- Managing user accounts by the administrator of the system
 
-<img src="https://git-softeng.polito.it/se-2020/group-50/ezgas/-/raw/S274475/docs/GUI/Managing user accounts.png" width="250" height="500" alt="" />
+<img src="https://git-softeng.polito.it/se-2020/group-50/ezgas/-/raw/S274475/docs/GUI/Managing user accounts.png" width="300" height="250" alt="" />
