@@ -86,22 +86,24 @@ Version:
 
 ## Use case diagram
 \<define here UML Use case diagram UCD summarizing all use cases, and their relationships>
+```plantuml
 @startuml
-
 left to right direction
 actor Driver as d
-actor GasStation_Admin as a
+actor GasStationAdmin as a
 actor GoogleMaps as g
+actor Administrator as h
 
 (Search for a nearby gas station) as FR1
 (Sear for the cheapest gas station in a radius set by the user) as FR2
 (Show a map with gas stations and prices) as FR3
 (Navigate user to a chosen gas station) as FR4
-(Authenticate the users) as FR5
+(Create an account) as FR5
 (Add a gas station to the list) as FR6
 (Report a wrong or missing information) as FR7
-(Keep track of the users contributions and rights to discounts) as FR8
-(Communicate discounts to gas station managers) as FR9
+(Use discounts) as FR8
+(Define discounts) as FR9
+(Managing user accounts) as FR10
 
 d -- FR1
 d -- FR2
@@ -115,17 +117,18 @@ FR1 .> FR3 : include
 FR2 .> FR3 : include
 
 a -- FR5
+a -- FR6
 a -- FR7
-a -- FR8
 a -- FR9
 
 g -- FR3
 g -- FR4
 
+h -- FR10
 @enduml
-
+```
 \<next describe here each use case in the UCD>
-### Use case 1, UC1
+### Use case 1, UC1 - FR1, FR2, FR3 Selecting the most suitable gas station ( location and the cheapest fuel )
 | Actors Involved        | Driver, GoogleMaps |
 | ------------- |:-------------:| 
 |  Precondition     | Gas Station G exists, Fuel F exists, Driver range location R exists |  
@@ -140,7 +143,7 @@ g -- FR4
 |  Precondition     | Driver Location L exists, Gas Station G exists |  
 |  Post condition     | L== G.location |
 |  Nominal Scenario     | The application gives the directions that the driver has to follow to arrive at the gas station selected | 
-|  Variants     | Driver takes wrong direction |
+|  Variants     | There are not good internet connection |
 
 ### Use Case 3, UC3 - FR5 Authenticatig the users 
 
@@ -148,40 +151,58 @@ g -- FR4
 | ------------- |:-------------:| 
 |  Precondition     | Driver/ Gas Station Administrator account does not exist |  
 |  Post condition     | Their respective accounts exists |
-|  Nominal Scenario     | User interts valid user name, email, pasword and specify if they are drivers or gas station administrator (in the case of Gas Station Administrator introduced the employee number) | 
-|  Variants     | Email is already used or not valid |
+|  Nominal Scenario     | User interts valid user name, email, phone number, pasword and specify if they are drivers or gas station administrator | 
+|  Variants     | Email is already used or not valid, forgot the pasword |
 
-### Use Case 4, UC4 - FR7 Reporting a wrong or missing information
+### Use Case 4, UC4 - FR6 Adding a gas station to the list 
+
+| Actors Involved        | Driver, Gas Station Administrator |
+| ------------- |:-------------:| 
+|  Precondition     | Gas Station does not exist |  
+|  Post condition     | Gas Station exists |
+|  Nominal Scenario     | User adds a Gas Station which is not in the application | 
+|  Variants     | Gas Station is already in the application |
+
+### Use Case 5, UC5 - FR7 Reporting a wrong or missing information
 
 | Actors Involved        | Driver, Gas Station Administrator |
 | ------------- |:-------------:| 
 |  Precondition     | Fuel F exists, Gas Station G exists |  
 |  Post condition     | G.fuel == F | F.oldPrice != F.newPrice |
-|  Nominal Scenario     | Driver selects the wrong fuel and the gas station where the fuel is and updates its value, Gas Station Administrator validate the information | 
+|  Nominal Scenario     | Driver selects the wrong fuel and the gas station where the fuel is and updates its value, Users validate the information | 
 |  Variants     | Wrong information |
 
-### Use Case 5, UC5 - FR8 Keeping track of the users contributions and rights to discounts
+### Use Case 6, UC6 - FR8 Keeping track of the users contributions and rights to discounts
 
 | Actors Involved        | Driver, Gas Station Administrator |
 | ------------- |:-------------:| 
 |  Precondition     | Driver's information is correct|  
-|  Post condition     | Add dicounts in their accounts |
-|  Nominal Scenario     | After validating the driver's new information, the Admin adds a discount on Driver's account | 
+|  Post condition     | Gas Station Administrator creates discounts |
+|  Nominal Scenario     | Gas Station Administrator checks if teh information is correcat and creates discounts | 
 |  Variants     | Driver's information is not correct |
 
-### Use Case 6, UC6 - FR9  Communicate discounts to gas station managers through QR code
+### Use Case 7, UC7 - FR9  Communicate discounts to gas station managers through QR code
 
 | Actors Involved        | Driver, Gas Station Administrator |
 | ------------- |:-------------:| 
-|  Precondition     | Driver has dicounts |  
+|  Precondition     | Driver checks out for discounts in the map |  
 |  Post condition     | Driver can use the discounts |
-|  Nominal Scenario     | The Gas Station Administrator validate the Driver's discount and minimize the price | 
-|  Variants     | The discount has been used before |
+|  Nominal Scenario     | The Gas Station Administrator validate discount and minimize the price | 
+|  Variants     | The discount has been used before or discount expired |
+
+### Use Case 8, UC8 - FR10  Manage accounts of the users |
+
+| Actors Involved        | Administrator |
+| ------------- |:-------------:| 
+|  Precondition     | Some information about the users is wrong |  
+|  Post condition     | Correct the wrong information |
+|  Nominal Scenario     | The Administrator of the application checks if there are wrong information and corrects it | 
+|  Variants     | Everything is correct |
 
 
 # Relevant scenarios
 
-## Scenario 1
+## Scenario 1 - Select Gas Station
 
 \<describe here scenarios instances of UC1>
 
@@ -193,17 +214,17 @@ g -- FR4
 
 | Scenario 1 | Corresponds to UC1 |
 | ------------- |:-------------:| 
-| Description | Driver D selects the most suitable gas station G |
+| Description | Driver D selects the most suitable Gas Station G |
 |  Precondition     | distance(G, D) <= D.range |
-|  Post condition     | D selects a G |
+|  Post condition     | Driver selects a Gas Station |
 | Step#        | Step description |
 |  1     | GoogleMaps shows all the gas station inside the driver's range |  
 |  2     | Driver selects the best gas station choices and compares fuel prices |
-|  3     | Driver select the desired gas station |
+|  3     | Driver selects the desired gas station |
 
-## Scenario 2
+## Scenario 2 - Account
 
-###Scenario 2.1
+###Scenario 2.1 - Create account
 
 | Scenario ID: SC2.1        | Corresponds to UC3 |
 | ------------- |:-------------| 
@@ -211,12 +232,12 @@ g -- FR4
 | Precondition | U uses for the first time their email |
 | Postcondition | U creates the account |
 | Step#        | Step description |
-|  1     | U goes to EzGas application |  
-|  2     | U registers as an user with an user name, email and pasword |
-|  3     | U's email is validated |
-|  4     | U creates an account |
+|  1     | User goes to EzGas application |  
+|  2     | User registers as an user with an user name, email, phone number and pasword |
+|  3     | User's email is validated |
+|  4     | User creates an account |
 
-###Scenario 2.2
+###Scenario 2.2 - Not create account
 
 | Scenario ID: SC2.2        | Corresponds to UC3 |
 | ------------- |:-------------| 
@@ -224,60 +245,73 @@ g -- FR4
 | Precondition | U uses the same email twice |
 | Postcondition | U cannot create the account |
 | Step#        | Step description |
-|  1     | U goes to EzGas web page |  
-|  2     | U registers as an user with an user name, email and pasword |
-|  3     | U's email is not validated |
-|  4     | U cannot create an account |
+|  1     | User goes to EzGas web page |  
+|  2     | User registers as an user with an user name, email, phone number and pasword |
+|  3     | User's email is not validated |
+|  4     | User cannot create an account |
 
-## Scenario 3
+## Scenario 3 - Add Gas Station
 
-### Scenario 3.1
+| Scenario 3 | Corresponds to UC4 |
+| ------------- |:-------------:| 
+| Description | Driver D adds a Gas Station G to the list |
+|  Precondition     | Gas Station is not in the map |
+|  Post condition     | Gas Station is not in the map |
+| Step#        | Step description |
+|  1     | Driver sees a Gas Station that is not in the application map |  
+|  2     | Driver logs in the application |
+|  3     | Driver adds the Gas Station |
+|  4     | Driver saves and logs out the application |
 
-| Scenario ID: SC3.1        | Corresponds to UC4 |
+
+## Scenario 4 - Update fuel price
+
+### Scenario 4.1 - Correct information
+
+| Scenario ID: SC4.1        | Corresponds to UC5 |
 | ------------- |:-------------| 
 | Description | Driver D updates a fuel's price F |
 | Precondition | D.fuelPrice != F.price |
 | Postcondition | D.fuelPrice == F.price && D.goodInfo ++ |
 | Step#        | Step description |
-|  1     | D logs in the application |  
-|  2     | D selects the wrong fuel and the gas station where it is |
-|  3     | D changes the value and saves it |
-|  4     | Gas Station Administrator checks if it is correct, validates it and adds one point of D's good information|
-|  5     | If D has iqual or more 10 points of good information, D becomes to be a trusted user |
+|  1     | Driver logs in the application |  
+|  2     | Driver selects the wrong fuel and the gas station where it is |
+|  3     | Driver changes the price and saves it |
+|  4     | Users check if it is correct, validate it and Driver obtains a point of good information |
+|  5     | If Driver has iqual or more 10 points of good information, Driver becomes to be a trusted user |
 
-### Scenario 3.2
+### Scenario 4.2 - Incorrect information
 
-| Scenario ID: SC3.2        | Corresponds to UC4 |
+| Scenario ID: SC4.2        | Corresponds to UC5 |
 | ------------- |:-------------| 
 | Description | Driver D cannot update a fuel's price F |
 | Precondition | D.fuelPrice != F.price |
 | Postcondition | D.fuelPrice != F.price && D.wrongInfo ++ |
 | Step#        | Step description |
-|  1     | D logs in the application |  
-|  2     | D selects the wrong fuel and the gas station where it is |
-|  3     | D changes the value and saves it |
-|  4     | Gas Station Administrator checks if it is correct, doesn't validate and adds a point in D's wrong information|
-|  5     | If D has more or equal 5 negative points, Gas Station Administrator can penalize him/her|
+|  1     | Driver logs in the application |  
+|  2     | Driver selects the wrong fuel and the gas station where it is |
+|  3     | Driver changes the price and saves it |
+|  4     | Users check if it is correct, don't validate it and Diver obtains a point of wrong information|
+|  5     | If Driver has more or equal 5 negative points, it will be baned |
 
-## Scenario 4
+## Scenario 5 - Create discount
 
-| Scenario ID: SC4         | Corresponds to UC5 |
+| Scenario ID: SC5         | Corresponds to UC6 |
 | ------------- |:-------------| 
-| Description | Add a discount in Driver D account |
-| Precondition | D gives right information |
-| Postcondition | D.discount ++ |
+| Description | Create a discount |
+| Precondition | Driver gives right information |
+| Postcondition | Gas Station Administrator creates discounts |
 | Step#        | Step description |
-|  1     | Gas Station Administrator validates D's information |  
-|  2     | Gas Station Administrator add a discount in D's account |
+|  1     | Gas Station Administrator validates Driver's information |  
+|  2     | Gas Station Administrator creates discounts |
 
+## Scenario 6 - Use discount
 
-## Scenario 5
-
-| Scenario ID: SC5        | Corresponds to UC6 |
+| Scenario ID: SC6        | Corresponds to UC7 |
 | ------------- |:-------------| 
 | Description | Validate discount |
-| Precondition | D.discount > 0 |
-| Postcondition | D.discount -- |
+| Precondition | There are discounts in the Gas Station |
+| Postcondition | Driver uses discounts |
 | Step#        | Step description |
 |  1     | Driver shows discount's QR code |  
 |  2     | Gas Station Administrator checks if it is valid |
@@ -290,63 +324,103 @@ g -- FR4
 
 \<concepts are used consistently all over the document, ex in use cases, requirements etc>
 
+```plantuml
 @startuml
 class EZGas
+
+class Administrator{
+  + ID
+}
+
 class Driver{
-  +ID
-  + name
-  + email
-  + pasword
+  + ID
   + location
   + range
   + goodInfo
   + wrongInfo
-  + discount
 }
 
 class GS_Admin{
   + ID
+}
+
+class Account{
   + name
   + email
+  + phoneNum
   + pasword
-  + employeeNum
 }
 
 class GasStation{
   + ID
+  + name
   + location
 }
 
 class Fuel{
   + ID
+  + name
+  + type
   + price
+  + date last update
 }
 
 class Request{
   + fuelPrice
+  + gasStation
 }
 
-note top of GS_Admin : Can validate the information \n\
-given by the Driver user. \n\
-Also, can benefict or pelize Drivers
+class Discount{
+  + RQ code
+  + percentage
+  + expiredDate
+}
 
-note left of Request : Driver requests to update \n\
-fuel price
+class Review{
+  + ID
+  + text
+}
+
+note top of GS_Admin : Owner of a GasStation
+
+note right of Discount : GS_Admin creates dicount and \n\
+offers in the GasStation \n\
+Discount is valid if it is not used and is not expired
+
+note left of Account : Needed for making a request
+
+note bottom of Request : User requests to update \n\
+fuel price \n\
+Add or update only if 10 users report the same price
+
+note left of Review : User feedback
+
+Administrator  - EZGas
 
 EZGas -- "*" Driver
 EZGas -- "*" GS_Admin
 EZGas -- "*" GasStation
 
-GS_Admin "1..*" - "0..*" Driver : Benefic/Penalize >
+Driver "0..*" - "1..*" GS_Admin : Check <
+GS_Admin "1" - "1" GasStation
+
+Driver "1..*" -- "1" Account : Has >
+GS_Admin "1..*" -- "1" Account : Has >
+
+GS_Admin "1..*" -- "0..*" Discount : Create >
+GasStation "1..*" -- "0..*" Discount 
+Fuel "1..*" - "0..*" Discount 
 
 GasStation "1..*" -- "0..*" Fuel
 
-Request"1..*" - "0..*" Fuel : Add/Delete/Update >
+Account "1..*" - "0..*" Request
+Account "1" -- "0..*" Review
 
-Driver "1..*" -- "0..*" Request
-GS_Admin "1..*" -- "0..*" Request : Validate >
-
+Request "1..*" - "0..*" Fuel : Add/Update >
+Request "1..*" - "0..*" GasStation : Add/Update >
 @enduml
+```
+
 
 # System Design
 \<describe here system design>
