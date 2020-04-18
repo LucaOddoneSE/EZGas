@@ -179,3 +179,8 @@ Smartphone -- node3 : HTTP
 | ------------- |:-------------:| -----:|
 | Computer      |  EZGas Management Server| Connection is established via a HTTP logical link |
 | Smartphone | EZGas Management Server  | Connection is established via a HTTP logical link |
+
+| Stereotype (type of entity)    | Description   |
+| ------------- |-------------:|
+| Application   | A group of services visible to end-user |
+| service       | An end-user or middleware service      |
