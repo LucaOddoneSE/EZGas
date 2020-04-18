@@ -389,8 +389,7 @@ Discount is valid if it is not used and is not expired
 
 note left of Account : Needed for making a request
 
-note bottom of Request : User requests to update \n\
-fuel price \n\
+note bottom of Request : User requests to update fuel price \n\
 Add or update only if 10 users report the same price
 
 note left of Review : User feedback
