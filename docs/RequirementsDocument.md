@@ -55,13 +55,13 @@ d -- (Ez Gas Application)
 ```
 
 ## Interfaces
-\<describe here each interface in the context diagram>
-
-\<GUIs will be described graphically in a separate document>
 
 | Actor | Logical Interface | Physical Interface  |
 | ------------- |:-------------:| -----:|
-|       |  |  |
+|    Driver   | GUI | Touch screen |
+|    Gas station administrator   | GUI | Touch screen |
+|    Google Map   | Web Service | Internet connection |
+|    Administrator   | GUI | Screen, Keyboard |
 
 # Stories and personas
 \<A Persona is a realistic impersonation of an actor. Define here a few personas and describe in plain text how a persona interacts with the system>
