@@ -141,7 +141,7 @@ Version: 2.0
 
 \<describe here deployment diagram >
 
-Deployment Diagram aims to show conceptual entities (applications and services) defined before from another point of view, based on UML Deployment Diagram notation.
+Deployment Diagram, represented here, aims to show conceptual entities (applications and services) defined before from another point of view, based on UML Deployment Diagram notation.
 
 ```plantuml
 @startuml
