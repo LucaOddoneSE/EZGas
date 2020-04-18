@@ -50,11 +50,11 @@ Version:
 |       |  |  |
 
 # Stories and personas
-Peter is a plumber and travels a lot on his LPG van for work in differend towns, up to hundreds of kilometers a day. He knows all the best gas station on his usual routes but work sometimes takes in other cities he doesnt know very well. Peter pays attention to the price of LPG so he uses EzGaz to find a cheap gas station with LPG in a 5 km range, or further but on his way home. One day he goes a bit out of his way to fill the tank on a very cheap gas atation he found with EzGaz, but when he gets there the actual price is higher than advertised so he reports it on the app and he will recive a discount for his contribution. After making a few reports like that Peter becomes a trusted user 
+Peter is a plumber and travels a lot on his LPG van for work in differend towns, up to hundreds of kilometers a day. He knows all the best gas station on his usual routes but work sometimes takes in other cities he doesnt know very well. Peter pays attention to the price of LPG so he uses EzGas to find a cheap gas station with LPG in a 5 km range, or further but on his way home. One day he goes a bit out of his way to fill the tank on a very cheap gas station he found with EzGas, but when he gets there the actual price is higher than advertised so he reports it on the app and he will receive a discount for his contribution. After making a few true reports like that Peter becomes a trusted user.
 
-Janice works in upper managment of a big company and drives a Porches. On tuesdays after work she has to pick up her son from piano practice, and is usually in a hurry. When shee sees the gas tank almost empty she would uses find the nearest gas station and doesn't care about the price because she is running late.
+Janice works in upper managment of a big company and drives a Porches. On tuesdays after work she has to pick up her son from piano practice, and is usually in a hurry. When she sees the gas tank almost empty she uses EzGas find the nearest gas station and doesn't care about the price because she is running late.
 
-Frank just opened a gas station very close to a big interstate but not quite visible from the road, so he registers his business on EzGaz to advertise if very competitive prices. Many people come to him with discount codes on their phones for a small proce reduction on the fuel, which is worth because of the many new clients he gets.
+Frank just opened a gas station very close to a big intersection but not quite visible from the road, so he added his gas station in EzGas to advertise with offering discount. Many people come to his gas station with discount codes on their phones for a small reduction on the fuel, which is worth because of the many new clients he gets.
 
 # Functional and non functional requirements
 
@@ -72,13 +72,14 @@ Frank just opened a gas station very close to a big interstate but not quite vis
 |  FR7     | Reporting a wrong or missing information |
 |  FR8     | Keeping track of the users' contributions and rights to discounts |
 |  FR9     | Keeping track of earned discounts and allowing users to claim them at gas stations |
+|  FR10    | Manageing accounts of the users |
 
 ## Non Functional Requirements
 
 
 | ID        | Type (efficiency, reliability, ..)           | Description  | Refers to |
 | ------------- |:-------------:| :-----:| -----:|
-|  NFR1     | Portability | The app should be available for versions of Android > 5.0 and IOS > 4(?) | All FR |
+|  NFR1     | Portability | The app should be available for versions of Android > 5.0 and IOS > 4 | All FR |
 |  NFR2     | Portability | The web version should work on the latest version of Chrome, Firefox, Safari, Edge and Opera | All FR |
 |  NFR3     | Usability | The app should be intuitive to use and require no more than 5 or 6 help frames for an average smartphone user | All FR |
 |  NFR4     | Usability(domain) | Core functions(rearch for gas station) should be done with 1-2 clicks because its used in a possibly moving car and should not distract too much | FR1, FR2 |
