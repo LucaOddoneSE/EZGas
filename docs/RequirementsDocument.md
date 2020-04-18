@@ -39,9 +39,20 @@ Version: 1
 # Context Diagram and interfaces
 
 ## Context Diagram
-\<Define here Context diagram using UML use case diagram>
+```plantuml
+left to right direction
+actor Driver as a
+actor GasStationAdmin as b
+actor Administrator as c
+actor GoogleMap as d
 
-\<actors are a subset of stakeholders>
+rectangle System {
+a -- (Ez Gas Application)
+b -- (Ez Gas Application)
+c -- (Ez Gas Application)
+d -- (Ez Gas Application)
+}
+```
 
 ## Interfaces
 \<describe here each interface in the context diagram>
