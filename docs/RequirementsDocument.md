@@ -233,6 +233,14 @@ h -- FR10
 |  Nominal Scenario     | The Administrator of the application checks if there are wrong information and corrects it | 
 |  Variants     | Everything is correct |
 
+### Use Case 9, UC9 - FR11  Writting Review 
+
+| Actors Involved        | Driver |
+| ------------- |:-------------:| 
+|  Precondition     | User login in the application |  
+|  Post condition     | Select the gas station from Google maps |
+|  Nominal Scenario     | The user write feedback about the gas station and rate its service | 
+|  Variants     | User cannot save because of bad internet connection  |
 
 
 # Relevant scenarios
