@@ -191,6 +191,8 @@ class EZGasApp {
 +close()
 +signIn()
 +signUp()
++logIn()
++logOut()
 +deleteAccount()
 +getPositionViaGPS()
 +getPositionViaGMaps()
