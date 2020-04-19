@@ -60,7 +60,7 @@ d -- (Ez Gas Application)
 | ------------- |:-------------:| -----:|
 |    Driver   | GUI | Touch screen |
 |    Gas station administrator   | GUI | Touch screen |
-|    Google Map   | Web Service | Internet connection |
+|    Google Maps   | Web Service | Internet connection |
 |    Administrator   | GUI | Screen, Keyboard |
 
 # Stories and personas
@@ -183,7 +183,7 @@ h -- FR10
 
 | Actors Involved        | Driver, Gas Station Administrator |
 | ------------- |:-------------:| 
-|  Precondition     | Driver/ Gas Station Administrator account does not exist |  
+|  Precondition     | Driver/Gas Station Administrator account does not exist |  
 |  Post condition     | Their respective accounts exists |
 |  Nominal Scenario     | User interts valid user name, email, phone number, pasword and specify if they are drivers or gas station administrator | 
 |  Variants     | Email is already used or not valid, forgot the pasword |
@@ -219,7 +219,7 @@ h -- FR10
 
 | Actors Involved        | Driver, Gas Station Administrator |
 | ------------- |:-------------:| 
-|  Precondition     | Driver checks out for discounts in the map |  
+|  Precondition     | Driver checks out for discounts in the Google Maps |  
 |  Post condition     | Driver can use the discounts |
 |  Nominal Scenario     | The Gas Station Administrator validate discount and minimize the price | 
 |  Variants     | The discount has been used before or discount expired |
@@ -234,6 +234,7 @@ h -- FR10
 |  Variants     | Everything is correct |
 
 
+
 # Relevant scenarios
 
 ## Scenario 1 - Select Gas Station
@@ -244,7 +245,7 @@ h -- FR10
 |  Precondition     | distance(G, D) <= D.range |
 |  Post condition     | Driver selects a Gas Station |
 | Step#        | Step description |
-|  1     | GoogleMaps shows all the gas station inside the driver's range |  
+|  1     | Google Maps shows all the gas station inside the driver's range |  
 |  2     | Driver selects the best gas station choices and compares fuel prices |
 |  3     | Driver selects the desired gas station |
 
@@ -281,10 +282,10 @@ h -- FR10
 | Scenario 3 | Corresponds to UC4 |
 | ------------- |:-------------:| 
 | Description | Driver D adds a Gas Station G to the list |
-|  Precondition     | Gas Station is not in the map |
-|  Post condition     | Gas Station is not in the map |
+|  Precondition     | Gas Station is not in the Google maps |
+|  Post condition     | Gas Station is not in the Google maps |
 | Step#        | Step description |
-|  1     | Driver sees a Gas Station that is not in the application map |  
+|  1     | Driver sees a Gas Station that is not in the application Google maps |  
 |  2     | Driver logs in the application |
 |  3     | Driver adds the Gas Station |
 |  4     | Driver saves the information |
