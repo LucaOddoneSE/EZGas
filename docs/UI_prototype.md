@@ -10,19 +10,33 @@ Version: 1
 
 
 Use Cases : 
+
 (Search for a nearby gas station) as FR1
+
 (Search for the cheapest gas station in a radius set by the user) as FR2
+
 (Show a map with gas stations and prices) as FR3
+
 (Navigate user to a chosen gas station) as FR4
+
 (Create an account) as FR5
+
 (Add a gas station to the list) as FR6
+
 (Report a wrong or missing information) as FR7
+
 (Use discounts) as FR8
+
 (Define discounts) as FR9
+
 (Managing user accounts) as FR10
+
 (Writting review about gas station) as FR11
+
 (User Login) as FR12
+
 (User Reset Passoword) as FR13
+
 (User Change Passoword) as FR14
 
 
