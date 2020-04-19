@@ -299,7 +299,7 @@ h -- FR10
 |  4     | Driver saves the information |
 
 
-## Scenario 4 - Update fuel price
+## Scenario 4 - Updating the fuel price
 
 ### Scenario 4.1 - Valid price
 

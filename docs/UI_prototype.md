@@ -6,38 +6,24 @@ Date: 18 April
 
 Version: 1
 
-\<Report here the GUI that you propose. You are free to organize it as you prefer. A suggested presentation matches the Use cases and scenarios defined in the Requirement document. The GUI can be shown as a sequence of graphical files (jpg, png)  >
-
 
 Use Cases : 
 
 1- Search for a nearby gas station as FR1
-
 2- Search for the cheapest gas station in a radius set by the user as FR2
-
 3- Show a map with gas stations and prices as FR3
-
 4- Navigate user to a chosen gas station as FR4
-
 5- Create an account as FR5
-
 6- Add a gas station to the list as FR6
-
-7- Report a wrong or missing information as FR7
-
-8- Define discounts as FR8
-
-9- Using discounts as FR9
-
+7- Updating the fuel price as FR7
+8- Use discounts as FR8
+9- Define discounts as FR9
 10- Managing user accounts as FR10
-
 11- Writting review about gas station as FR11
-
 12- User Login as FR12
-
 13- User Reset Passoword as FR13
-
 14- User Change Passoword as FR14
+15- Authenticatig the user as FR15
 
 
 
