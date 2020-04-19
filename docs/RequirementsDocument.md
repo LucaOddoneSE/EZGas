@@ -341,14 +341,13 @@ class EZGas
 
 class Administrator{
   + ID
+  + username
+  + password
 }
 
 class Driver{
   + ID
   + location
-  + range
-  + goodInfo
-  + wrongInfo
 }
 
 class GS_Admin{
@@ -356,10 +355,11 @@ class GS_Admin{
 }
 
 class Account{
-  + name
+  + fullname
   + email
   + phoneNum
-  + pasword
+  + password
+  + NumOfReports
 }
 
 class GasStation{
@@ -373,37 +373,50 @@ class Fuel{
   + name
   + type
   + price
-  + date last update
+  + last date update
+  + numTrueReport
+  + numFalseReport
 }
 
-class Request{
+class Report{
+  + ID
   + fuelPrice
   + gasStation
 }
 
 class Discount{
+  + ID
   + RQ code
   + percentage
   + expiredDate
+  + createdDate
+  + visible {public, private}
+  + used {true,false}
 }
 
 class Review{
   + ID
   + text
+  + postedDate
+  + rateStart
+  + numLike
+  + numDislike
 }
 
 note top of GS_Admin : Owner of a GasStation
+
+note left of Administrator : The administrator of EZGas
 
 note right of Discount : GS_Admin creates dicount and \n\
 offers in the GasStation \n\
 Discount is valid if it is not used and is not expired
 
-note left of Account : Needed for making a request
+note left of Account : All users need account to login and use the application
 
-note bottom of Request : User requests to update fuel price \n\
-Add or update only if 10 users report the same price
+note bottom of Report : User requests to update fuel price \n\
+Add or update only if 10 users report the same price unless is not valid
 
-note left of Review : User feedback
+note left of Review : User put reviews for gas station
 
 Administrator  - EZGas
 
@@ -411,26 +424,27 @@ EZGas -- "*" Driver
 EZGas -- "*" GS_Admin
 EZGas -- "*" GasStation
 
-Driver "0..*" - "1..*" GS_Admin : Check <
+Driver "0.." - "1.." GS_Admin : Check <
 GS_Admin "1" - "1" GasStation
 
 Driver "1..*" -- "1" Account : Has >
 GS_Admin "1..*" -- "1" Account : Has >
 
-GS_Admin "1..*" -- "0..*" Discount : Create >
-GasStation "1..*" -- "0..*" Discount 
-Fuel "1..*" - "0..*" Discount 
+GS_Admin "1.." -- "0.." Discount : Create >
+GasStation "1.." -- "0.." Discount 
+Fuel "1.." - "0.." Discount 
 
-GasStation "1..*" -- "0..*" Fuel
+GasStation "1.." -- "0.." Fuel
 
-Account "1..*" - "0..*" Request
+Account "1.." - "0.." Report
 Account "1" -- "0..*" Review
+Account <|-- Administrator
+Administrator "1.." -"1..*" Account : Edit >
 
-Request "1..*" - "0..*" Fuel : Add/Update >
-Request "1..*" - "0..*" GasStation : Add/Update >
+Report "1.." - "0.." Fuel : Add/Update >
+Report "1.." - "0.." GasStation : Add/Update >
 @enduml
 ```
-
 
 # System Design
 \<describe here system design>
