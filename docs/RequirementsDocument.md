@@ -233,14 +233,6 @@ h -- FR10
 
 ## Scenario 1 - Select Gas Station
 
-\<describe here scenarios instances of UC1>
-
-\<a scenario is a sequence of steps that corresponds to a particular execution of one use case>
-
-\<a scenario is a more formal description of a story>
-
-\<only relevant scenarios should be described>
-
 | Scenario 1 | Corresponds to UC1 |
 | ------------- |:-------------:| 
 | Description | Driver D selects the most suitable Gas Station G |
@@ -349,9 +341,6 @@ h -- FR10
 
 # Glossary
 
-\<use UML class diagram to define important concepts in the domain of the system, and their relationships> 
-
-\<concepts are used consistently all over the document, ex in use cases, requirements etc>
 
 ```plantuml
 @startuml
@@ -465,9 +454,6 @@ Report "1.." - "0.." GasStation : Add/Update >
 ```
 
 # System Design
-\<describe here system design>
-
-\<must be consistent with Context diagram>
 
 Since EzGas Application is meant to be a software application, we focus our attention on the software part rather than the hardware part.
 The goal here is to describe in a clear and complete manner the system behavior and all its functionalities performed, through UML Class Diagram notation.
@@ -559,8 +545,6 @@ PC -- "1..*" GoogleServer
 
 
 # Deployment Diagram 
-
-\<describe here deployment diagram >
 
 Deployment Diagram, represented here, aims to show conceptual entities (applications and services) defined before from another point of view, based on UML Deployment Diagram notation.
 
