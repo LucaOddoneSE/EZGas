@@ -81,7 +81,7 @@ Frank just opened a gas station very close to a big intersection but not quite v
 |  FR2     | Searching for the cheapest gas station(for a certain type of fuel) in a radius set by the user |
 |  FR3     | Showing a map with gas stations and their prices |
 |  FR4     | Navigate the user to a chosen gas station |
-|  FR5     | Authenticatig the users (differenciating the gas station managers and trusted users) |
+|  FR5     | Authenticatig the users (differentiating the gas station managers and trusted users) |
 |  FR6     | Adding a gas station to the list |
 |  FR7     | Reporting a wrong or missing information |
 |  FR8     | Keeping track of the users' contributions and rights to discounts |
@@ -219,7 +219,7 @@ h -- FR10
 |  Nominal Scenario     | The Gas Station Administrator validate discount and minimize the price | 
 |  Variants     | The discount has been used before or discount expired |
 
-### Use Case 8, UC8 - FR10  Manage accounts of the users |
+### Use Case 8, UC8 - FR10  Manage accounts of the users 
 
 | Actors Involved        | Administrator |
 | ------------- |:-------------:| 
