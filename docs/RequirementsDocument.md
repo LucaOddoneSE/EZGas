@@ -95,7 +95,7 @@ actor GoogleMaps as g
 actor Administrator as h
 
 (Search for a nearby gas station) as FR1
-(Sear for the cheapest gas station in a radius set by the user) as FR2
+(Search for the cheapest gas station in a radius set by the user) as FR2
 (Show a map with gas stations and prices) as FR3
 (Navigate user to a chosen gas station) as FR4
 (Create an account) as FR5
@@ -104,6 +104,10 @@ actor Administrator as h
 (Use discounts) as FR8
 (Define discounts) as FR9
 (Managing user accounts) as FR10
+(Writting review about gas station) as FR11
+(User Login) as FR12
+(User Reset Passoword) as FR13
+(User Change Passoword) as FR14
 
 d -- FR1
 d -- FR2
@@ -112,6 +116,10 @@ d -- FR5
 d -- FR6
 d -- FR7
 d -- FR8
+d -- FR11
+d -- FR12
+d -- FR13
+d -- FR14
 
 FR1 .> FR3 : include
 FR2 .> FR3 : include
@@ -120,6 +128,9 @@ a -- FR5
 a -- FR6
 a -- FR7
 a -- FR9
+a -- FR12
+a -- FR13
+a -- FR14
 
 g -- FR3
 g -- FR4
@@ -261,7 +272,7 @@ h -- FR10
 |  1     | Driver sees a Gas Station that is not in the application map |  
 |  2     | Driver logs in the application |
 |  3     | Driver adds the Gas Station |
-|  4     | Driver saves and logs out the application |
+|  4     | Driver saves the information |
 
 
 ## Scenario 4 - Update fuel price
