@@ -77,11 +77,11 @@ Frank just opened a gas station very close to a big intersection but not quite v
 
 | ID        | Description  |
 | ------------- |:-------------:|  
-|  FR1     | Searching for a nearby gas station(using the GPS position) |
-|  FR2     | Searching for the cheapest gas station(for a certain type of fuel) in a radius set by the user |
+|  FR1     | Searching for a nearby gas station( using Google maps ) |
+|  FR2     | Searching for the cheapest gas station ( for a certain type of fuel ) in a radius set by the user |
 |  FR3     | Showing a map with gas stations and their prices |
 |  FR4     | Navigate the user to a chosen gas station |
-|  FR5     | Authenticatig the users (differentiating the gas station managers and trusted users) |
+|  FR5     | Authenticatig the users (differentiating the gas station administrator and users as drivers) |
 |  FR6     | Adding a gas station to the list |
 |  FR7     | Reporting a wrong or missing information |
 |  FR8     | Keeping track of the users' contributions and rights to discounts |
@@ -96,7 +96,7 @@ Frank just opened a gas station very close to a big intersection but not quite v
 |  NFR1     | Portability | The app should be available for versions of Android > 5.0 and IOS > 4 | All FR |
 |  NFR2     | Portability | The web version should work on the latest version of Chrome, Firefox, Safari, Edge and Opera | All FR |
 |  NFR3     | Usability | The app should be intuitive to use and require no more than 5 or 6 help frames for an average smartphone user | All FR |
-|  NFR4     | Usability(domain) | Core functions(rearch for gas station) should be done with 1-2 clicks because its used in a possibly moving car and should not distract too much | FR1, FR2 |
+|  NFR4     | Usability(domain) | Core functions(search for gas station) should be done with 1-2 clicks because its used in a possibly moving car and should not distract too much | FR1, FR2 |
 |  NFR5     | Performance | The search function should take no more that 2-3 seconds to display the first results and other function no more than 0.5 sec | All FR |
 
 # Use case diagram and use cases
