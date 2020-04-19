@@ -77,13 +77,13 @@ Frank just opened a gas station very close to a big intersection but not quite v
 
 | ID        | Description  |
 | ------------- |:-------------:|  
-|  FR1     | Searching for a nearby gas station( using Google maps ) |
+|  FR1     | Searching for a nearby gas station ( using Google maps ) |
 |  FR2     | Searching for the cheapest gas station ( for a certain type of fuel ) in a radius set by the user |
 |  FR3     | Showing a map with gas stations and their prices |
 |  FR4     | Navigate the user to a chosen gas station |
 |  FR5     | Authenticatig the users (differentiating the gas station administrator and users as drivers) |
 |  FR6     | Adding a gas station to the list |
-|  FR7     | Reporting a wrong or missing information |
+|  FR7     | Updating the fuel price |
 |  FR8     | Keeping track of the users' contributions and rights to discounts |
 |  FR9     | Keeping track of earned discounts and allowing users to claim them at gas stations |
 |  FR10    | Manageing accounts of the users |
@@ -118,7 +118,7 @@ actor Administrator as h
 (Navigate user to a chosen gas station) as FR4
 (Create an account) as FR5
 (Add a gas station to the list) as FR6
-(Report a wrong or missing information) as FR7
+(Updating the fuel price) as FR7
 (Use discounts) as FR8
 (Define discounts) as FR9
 (Managing user accounts) as FR10
@@ -176,8 +176,8 @@ h -- FR10
 | ------------- |:-------------:| 
 |  Precondition     | Driver Location L exists, Gas Station G exists |  
 |  Post condition     | L== G.location |
-|  Nominal Scenario     | The application gives the directions that the driver has to follow to arrive at the gas station selected | 
-|  Variants     | There are not good internet connection |
+|  Nominal Scenario     | The GoogleMap gives the directions that the driver has to follow to arrive at the selected gas station | 
+|  Variants     | Internet connection unstable |
 
 ### Use Case 3, UC3 - FR5 Authenticatig the users 
 
@@ -185,26 +185,26 @@ h -- FR10
 | ------------- |:-------------:| 
 |  Precondition     | Driver/Gas Station Administrator account does not exist |  
 |  Post condition     | Their respective accounts exists |
-|  Nominal Scenario     | User interts valid user name, email, phone number, pasword and specify if they are drivers or gas station administrator | 
-|  Variants     | Email is already used or not valid, forgot the pasword |
+|  Nominal Scenario     | User enter valid user name, email, phone number, pasword and application detects if the user is driver or gas station administrator | 
+|  Variants     | Email/Mobile  is not valid, forgot the password |
 
 ### Use Case 4, UC4 - FR6 Adding a gas station to the list 
 
 | Actors Involved        | Driver, Gas Station Administrator |
 | ------------- |:-------------:| 
 |  Precondition     | Gas Station does not exist |  
-|  Post condition     | Gas Station exists |
-|  Nominal Scenario     | User adds a Gas Station which is not in the application | 
-|  Variants     | Gas Station is already in the application |
+|  Post condition     | Gas Station exists in the real world but is not on the GoogleMaps |
+|  Nominal Scenario     | User adds a Gas Station which is not on the GoogleMaps | 
+|  Variants     | Gas Station is already added in the application |
 
-### Use Case 5, UC5 - FR7 Reporting a wrong or missing information
+### Use Case 5, UC5 - FR7 Updating the fuel price
 
 | Actors Involved        | Driver, Gas Station Administrator |
 | ------------- |:-------------:| 
 |  Precondition     | Fuel F exists, Gas Station G exists |  
 |  Post condition     | G.fuel == F | F.oldPrice != F.newPrice |
-|  Nominal Scenario     | Driver selects the wrong fuel and the gas station where the fuel is and updates its value, Users validate the information | 
-|  Variants     | Wrong information |
+|  Nominal Scenario     | Driver selects the gas station and checks if the price is correct or not, If It's not update it | 
+|  Variants     | Selecting the wrong Gas Station |
 
 ### Use Case 6, UC6 - FR8 Keeping track of the users contributions and rights to discounts
 
