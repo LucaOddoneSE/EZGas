@@ -10,19 +10,33 @@ Version: 1
 Use Cases : 
 
 1- Search for a nearby gas station as FR1
+
 2- Search for the cheapest gas station in a radius set by the user as FR2
+
 3- Show a map with gas stations and prices as FR3
+
 4- Navigate user to a chosen gas station as FR4
+
 5- Create an account as FR5
+
 6- Add a gas station to the list as FR6
+
 7- Updating the fuel price as FR7
+
 8- Use discounts as FR8
+
 9- Define discounts as FR9
+
 10- Managing user accounts as FR10
+
 11- Writting review about gas station as FR11
+
 12- User Login as FR12
+
 13- User Reset Passoword as FR13
+
 14- User Change Passoword as FR14
+
 15- Authenticatig the user as FR15
 
 
@@ -62,7 +76,7 @@ Use Cases :
 <img src="https://git-softeng.polito.it/se-2020/group-50/ezgas/-/raw/S274475/docs/GUI/img/Gas stations on the map.png" width="250" height="500" alt="" />
 
 
-8- Update the price of the fuel by users : (Report a wrong or missing information) as FR7
+8- Update the price of the fuel by users : (Updating the fuel price) as FR7
  
 <img src="https://git-softeng.polito.it/se-2020/group-50/ezgas/-/raw/S274475/docs/GUI/img/Rate the price.png" width="250" height="500" alt="" />
 
