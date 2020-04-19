@@ -268,7 +268,7 @@ h -- FR10
 | Postcondition | U creates the account |
 | Step#        | Step description |
 |  1     | User goes to EzGas application |  
-|  2     | User registers as an user with an user name, email, phone number and pasword |
+|  2     | User registers as an user with an user name, email, phone number and password |
 |  3     | User's email is validated |
 |  4     | User creates an account |
 
@@ -301,7 +301,7 @@ h -- FR10
 
 ## Scenario 4 - Update fuel price
 
-### Scenario 4.1 - Correct information
+### Scenario 4.1 - Valid price
 
 | Scenario ID: SC4.1        | Corresponds to UC5 |
 | ------------- |:-------------| 
@@ -309,13 +309,13 @@ h -- FR10
 | Precondition | D.fuelPrice != F.price |
 | Postcondition | D.fuelPrice == F.price && D.goodInfo ++ |
 | Step#        | Step description |
-|  1     | Driver logs in the application |  
+|  1     | Driver login into the application |  
 |  2     | Driver selects the wrong fuel and the gas station where it is |
-|  3     | Driver changes the price and saves it |
-|  4     | Users check if it is correct, validate it and Driver obtains a point of good information |
-|  5     | If Driver has iqual or more 10 points of good information, Driver becomes to be a trusted user |
+|  3     | Driver update the price |
+|  4     | Users check if the price is correct |
+|  5     | If the price reaches to 10 votes then It's valid price |
 
-### Scenario 4.2 - Incorrect information
+### Scenario 4.2 - Invalid price
 
 | Scenario ID: SC4.2        | Corresponds to UC5 |
 | ------------- |:-------------| 
@@ -323,11 +323,11 @@ h -- FR10
 | Precondition | D.fuelPrice != F.price |
 | Postcondition | D.fuelPrice != F.price && D.wrongInfo ++ |
 | Step#        | Step description |
-|  1     | Driver logs in the application |  
+|  1     | Driver login into the application |  
 |  2     | Driver selects the wrong fuel and the gas station where it is |
-|  3     | Driver changes the price and saves it |
-|  4     | Users check if it is correct, don't validate it and Diver obtains a point of wrong information|
-|  5     | If Driver has more or equal 5 negative points, it will be baned |
+|  3     | Driver updates the price |
+|  4     | Users check the fuel price, if It's correct they don't change it, but if it is wrong driver update it|
+|  5     | If the price does not reache to 10 votes then it will not be updated |
 
 ## Scenario 5 - Create discount
 
@@ -335,10 +335,10 @@ h -- FR10
 | ------------- |:-------------| 
 | Description | Create a discount |
 | Precondition | Driver gives right information |
-| Postcondition | Gas Station Administrator creates discounts |
+| Postcondition | Gas Station Administrator creates discounts to all users|
 | Step#        | Step description |
-|  1     | Gas Station Administrator validates Driver's information |  
-|  2     | Gas Station Administrator creates discounts |
+|  1     | Gas Station Administrator defines the percentage of discount, type of fuel and the expired date|  
+|  2     | The discount will be show to all users on the Google maps if they filter|
 
 ## Scenario 6 - Use discount
 
@@ -350,7 +350,7 @@ h -- FR10
 | Step#        | Step description |
 |  1     | Driver shows discount's QR code |  
 |  2     | Gas Station Administrator checks if it is valid |
-|  3     | Gas Station Administrator reduces Driver's price and makes the discount disable |
+|  3     | Gas Station Administrator reduces Driver's price and makes the discount used |
 
 
 # Glossary
