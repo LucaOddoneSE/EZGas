@@ -1,8 +1,8 @@
 # Requirements Document 
 
-Authors: Fereshteh Feizabadi
+Authors: Group 50
 
-Date: 18 April
+Date: 19 April
 
 Version: 1
 
@@ -469,6 +469,139 @@ Report "1.." - "0.." GasStation : Add/Update >
 
 \<must be consistent with Context diagram>
 
+Since EzGas Application is meant to be a software application, we focus our attention on the software part rather than the hardware part.
+The goal here is to describe in a clear and complete manner the system behavior and all its functionalities performed, through UML Class Diagram notation.
+
+```plantuml
+@startuml
+
+scale 200 width
+scale 700 height
+left to right direction
+
+class Smartphone {
+
++turnGPSon()
++turnGPSoff()
++getPosition()
++readQRCode()
++getSMSauthentication()
+}
+
+class PC {
+
++turnWebClientOn()
++turnWebClientOff()
++getPosition()
+
+}
+
+class EZGasServer {
+
++createSystemAdministrator()
++createNewMemeber()
++updateMemberInformation()
++deleteMember()
++createGasStationAdmin()
++deletGasStatioAdmin()
++getNewFuelStationName()
++getNewFuelStationPrice()
++getNewFuelStationPosition()
++updateExistingFuelStationName()
++updateExistingFuelStationPrice()
++deleteExistingFuelStation()
++createTrustedMember()
++recoverPassword()
++manageQRCode()
++manageUserDiscount()
+
+}
+
+class EZGasApp {
+
++open()
++close()
++signIn()
++signUp()
++logIn()
++logOut()
++deleteAccount()
++getPositionViaGPS()
++getPositionViaGMaps()
++sendPosition()
++getPrice()
++sendPrice()
++searchGasStationForPrice()
++searchGasStationForFuel()
++searchGasStationForRadius()
++getUserDiscount()
++generateQRCode()
++navigateUsertoGasStation()
+
+}
+
+class GoogleServer {
+
++elaborateInformation()
++sendPosition()
+
+}
+
+EZGasApp o-- "1..*" Smartphone
+EZGasApp o-- "1..*" PC
+EZGasApp o-- "1" EZGasServer
+EZGasApp -- "1..*" GoogleServer
+Smartphone -- "1..*" GoogleServer
+PC -- "1..*" GoogleServer
+
+@enduml
+```
+
+
 # Deployment Diagram 
 
 \<describe here deployment diagram >
+
+Deployment Diagram, represented here, aims to show conceptual entities (applications and services) defined before from another point of view, based on UML Deployment Diagram notation.
+
+```plantuml
+@startuml
+
+scale 200 width
+scale 700 height
+
+node Computer {
+ rectangle "Web Client" <<Application>> as ex1
+ rectangle "QR Code Reader" <<Application>> as ex2
+ rectangle "Maps" <<Application>> as ex3
+}
+
+
+node node3 as "EZGas Management Server" {
+ rectangle "Authentication" <<Service>> as ex4
+ rectangle "Storage" <<Service>> as ex5
+ rectangle "Configuration" <<Service>> as ex16
+}
+
+node Smartphone {
+ rectangle "Web Client" <<Application>> as ex7
+ rectangle "QR Code Reader" <<Application>> as ex8
+ rectangle "GPS" <<Service>> as ex9
+ rectangle "Maps" <<Application>> as ex10
+}
+
+Computer -- node3 : HTTP
+Smartphone -- node3 : HTTP
+
+@enduml
+```
+
+| Node        | Linked to node           | Description  |
+| ------------- |:-------------:| -----:|
+| Computer      |  EZGas Management Server| Connection is established via a HTTP logical link |
+| Smartphone | EZGas Management Server  | Connection is established via a HTTP logical link |
+
+| Stereotype (type of entity)    | Description   |
+| ------------- |-------------:|
+| Application   | A group of services visible to end-user |
+| service       | An end-user or middleware service      |
