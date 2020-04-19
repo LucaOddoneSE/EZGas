@@ -1,10 +1,10 @@
 # Requirements Document 
 
-Authors:
+Authors: Fereshteh Feizabadi
 
-Date:
+Date: 18 April
 
-Version:
+Version: 1
 
 # Contents
 
@@ -28,26 +28,40 @@ Version:
 
 # Stakeholders
 
-
 | Stakeholder name  | Description | 
 | ----------------- |:-----------:|
-|                   |             | 
+|        Driver           |      Uses the application for checking the prices of fuels in different gas stations | 
+|        Gas station administrator           |      Uses the application for updating the prices of the fuels        |
+|        Developer           |      Develops the application        |
+|        Administrator	           |      Application administrator, IT administrator, DB administrator     |
+
 
 # Context Diagram and interfaces
 
 ## Context Diagram
-\<Define here Context diagram using UML use case diagram>
+```plantuml
+left to right direction
+actor Driver as a
+actor GasStationAdmin as b
+actor Administrator as c
+actor GoogleMap as d
 
-\<actors are a subset of stakeholders>
+rectangle System {
+a -- (Ez Gas Application)
+b -- (Ez Gas Application)
+c -- (Ez Gas Application)
+d -- (Ez Gas Application)
+}
+```
 
 ## Interfaces
-\<describe here each interface in the context diagram>
-
-\<GUIs will be described graphically in a separate document>
 
 | Actor | Logical Interface | Physical Interface  |
 | ------------- |:-------------:| -----:|
-|       |  |  |
+|    Driver   | GUI | Touch screen |
+|    Gas station administrator   | GUI | Touch screen |
+|    Google Map   | Web Service | Internet connection |
+|    Administrator   | GUI | Screen, Keyboard |
 
 # Stories and personas
 \<A Persona is a realistic impersonation of an actor. Define here a few personas and describe in plain text how a persona interacts with the system>
