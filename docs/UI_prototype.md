@@ -25,9 +25,9 @@ Use Cases :
 
 (Report a wrong or missing information) as FR7
 
-(Use discounts) as FR8
+(Define discounts) as FR8
 
-(Define discounts) as FR9
+(Using discounts) as FR9
 
 (Managing user accounts) as FR10
 
@@ -96,12 +96,12 @@ Use Cases :
 <img src="https://git-softeng.polito.it/se-2020/group-50/ezgas/-/raw/S274475/docs/GUI/Gas station admin.png" width="250" height="500" alt="" />
 
 
-12- Creating discount offer by Gas station admin : (Define discounts) as FR9
+12- Creating discount offer by Gas station admin : (Define discounts) as FR8
  
 <img src="https://git-softeng.polito.it/se-2020/group-50/ezgas/-/raw/S274475/docs/GUI/Creating offer.png" width="250" height="500" alt="" />
 
 
-13- Using discount by driver : (Define discounts) as FR9
+13- Using discount by driver : (Using discounts) as FR9
  
 <img src="https://git-softeng.polito.it/se-2020/group-50/ezgas/-/raw/S274475/docs/GUI/Discount for user.png" width="250" height="500" alt="" />
 
