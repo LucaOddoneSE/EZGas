@@ -126,6 +126,7 @@ actor Administrator as h
 (User Login) as FR12
 (User Reset Passoword) as FR13
 (User Change Passoword) as FR14
+(Authenticatig the user) as FR15
 
 d -- FR1
 d -- FR2
@@ -138,6 +139,8 @@ d -- FR11
 d -- FR12
 d -- FR13
 d -- FR14
+d -- FR15
+
 
 FR1 .> FR3 : include
 FR2 .> FR3 : include
@@ -149,6 +152,8 @@ a -- FR9
 a -- FR12
 a -- FR13
 a -- FR14
+a -- FR15
+
 
 g -- FR3
 g -- FR4
