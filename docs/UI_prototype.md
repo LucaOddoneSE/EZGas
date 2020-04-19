@@ -8,6 +8,25 @@ Version: 1
 
 \<Report here the GUI that you propose. You are free to organize it as you prefer. A suggested presentation matches the Use cases and scenarios defined in the Requirement document. The GUI can be shown as a sequence of graphical files (jpg, png)  >
 
+
+Use Cases : 
+(Search for a nearby gas station) as FR1
+(Search for the cheapest gas station in a radius set by the user) as FR2
+(Show a map with gas stations and prices) as FR3
+(Navigate user to a chosen gas station) as FR4
+(Create an account) as FR5
+(Add a gas station to the list) as FR6
+(Report a wrong or missing information) as FR7
+(Use discounts) as FR8
+(Define discounts) as FR9
+(Managing user accounts) as FR10
+(Writting review about gas station) as FR11
+(User Login) as FR12
+(User Reset Passoword) as FR13
+(User Change Passoword) as FR14
+
+
+
 1- Intro 1
  
 <img src="https://git-softeng.polito.it/se-2020/group-50/ezgas/-/raw/S274475/docs/GUI/Intro1.png" width="250" height="500" alt="" />
@@ -19,36 +38,36 @@ Version: 1
 
 
 
-3- Create account for user
+3- Create account for user : (Create an account) as FR5
  
 <img src="https://git-softeng.polito.it/se-2020/group-50/ezgas/-/raw/S274475/docs/GUI/Create account for user.png" width="250" height="500" alt="" />
 
 
-4- Create account for gas station admin
+4- Create account for gas station admin : (Create an account) as FR5
  
 <img src="https://git-softeng.polito.it/se-2020/group-50/ezgas/-/raw/S274475/docs/GUI/Create account for gas station admin.png" width="250" height="500" alt="" />
 
 
-5- User Login
+5- User Login : (User Login) as FR12
  
 <img src="https://git-softeng.polito.it/se-2020/group-50/ezgas/-/raw/S274475/docs/GUI/Login.png" width="250" height="500" alt="" />
 
 
-6- Filters for Gas stations 
+6- Filters for Gas stations : (Search for the cheapest gas station in a radius set by the user) as FR2
  
 <img src="https://git-softeng.polito.it/se-2020/group-50/ezgas/-/raw/S274475/docs/GUI/Filters and Gas stations result.png" width="250" height="500" alt="" />
 
-7- Gas stations on the Google maps 
+7- Gas stations on the Google maps : (Show a map with gas stations and prices) as FR3 
  
 <img src="https://git-softeng.polito.it/se-2020/group-50/ezgas/-/raw/S274475/docs/GUI/Gas stations on the map.png" width="250" height="500" alt="" />
 
 
-8- Update the price of the fuel by users 
+8- Update the price of the fuel by users : (Report a wrong or missing information) as FR7
  
 <img src="https://git-softeng.polito.it/se-2020/group-50/ezgas/-/raw/S274475/docs/GUI/Rate the price.png" width="250" height="500" alt="" />
 
 
-9- Write review for the Gas station by users 
+9- Write review for the Gas station by users : (Writting review about gas station) as FR11
  
 <img src="https://git-softeng.polito.it/se-2020/group-50/ezgas/-/raw/S274475/docs/GUI/Write review.png" width="250" height="500" alt="" />
 
@@ -63,31 +82,33 @@ Version: 1
 <img src="https://git-softeng.polito.it/se-2020/group-50/ezgas/-/raw/S274475/docs/GUI/Gas station admin.png" width="250" height="500" alt="" />
 
 
-12- Creating discount offer by Gas station admin
+12- Creating discount offer by Gas station admin : (Define discounts) as FR9
  
 <img src="https://git-softeng.polito.it/se-2020/group-50/ezgas/-/raw/S274475/docs/GUI/Creating offer.png" width="250" height="500" alt="" />
 
 
-13- Using discount by driver
+13- Using discount by driver : (Define discounts) as FR9
  
 <img src="https://git-softeng.polito.it/se-2020/group-50/ezgas/-/raw/S274475/docs/GUI/Discount for user.png" width="250" height="500" alt="" />
 
 
-14- User change password
+14- User change password : (User Change Passoword) as FR14
+
  
 <img src="https://git-softeng.polito.it/se-2020/group-50/ezgas/-/raw/S274475/docs/GUI/Change Password.png" width="250" height="500" alt="" />
 
 
-15- User reset password
+15- User reset password : (User Reset Passoword) as FR13
+
  
 <img src="https://git-softeng.polito.it/se-2020/group-50/ezgas/-/raw/S274475/docs/GUI/Reset Passoword.png" width="250" height="500" alt="" />
 
 
-16- Adding New Gas station by users
+16- Adding New Gas station by users : (Add a gas station to the list) as FR6
  
 <img src="https://git-softeng.polito.it/se-2020/group-50/ezgas/-/raw/S274475/docs/GUI/Add gas station.png" width="250" height="500" alt="" />
 
 
-17- Managing user accounts by the administrator of the system
+17- Managing user accounts by the administrator of the system : (Managing user accounts) as FR10
 
 <img src="https://git-softeng.polito.it/se-2020/group-50/ezgas/-/raw/S274475/docs/GUI/Managing user accounts.png" width="400" height="300" alt="" />
