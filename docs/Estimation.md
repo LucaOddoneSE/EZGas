@@ -44,10 +44,15 @@ Version:
 |         Activity name    | Estimated effort (person hours)   |             
 | ----------- | ------------------------------- | 
 | Review similar systems|3|
-| Perform work analysis|5|
-| Identify user requirements|5|
-| Identify performance requirements|5|
-| System implementation |10|
+| Perform workflow analysis|10|
+| Perform work analysis|8|
+| Identify user requirements|48|
+| Identify performance requirements|10|
+| Identify interface requirements|24|
+| Design GUI|10|
+| Application UI/UX|24|
+| Application back-end implementation |72|
+| Application Test |24|
 
 
 ###
