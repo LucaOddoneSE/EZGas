@@ -59,4 +59,4 @@ Version:
 ###
 Insert here Gantt chart with above activities
 
-<a href="https://ibb.co/7r90F7G"><img src="https://i.ibb.co/j3pjF7L/Gantt.jpg" alt="Gantt" border="0"></a>
+<img src="https://i.ibb.co/9yMdjRq/Gantt.jpg" alt="Gantt" border="0">
