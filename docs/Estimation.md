@@ -44,7 +44,7 @@ Version:
 |         Activity name    | Estimated effort (person hours)   |             
 | ----------- | ------------------------------- | 
 | Review similar systems|3|
-| Perform workflow analysis|10|
+| Perform workflow analysis|8|
 | Perform work analysis|8|
 | Identify user requirements|48|
 | Identify performance requirements|10|
@@ -59,3 +59,4 @@ Version:
 ###
 Insert here Gantt chart with above activities
 
+<a href="https://ibb.co/7r90F7G"><img src="https://i.ibb.co/j3pjF7L/Gantt.jpg" alt="Gantt" border="0"></a>
