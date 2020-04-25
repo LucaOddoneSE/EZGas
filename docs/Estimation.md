@@ -53,6 +53,7 @@ Version:
 | Application UI/UX|24|
 | Application back-end implementation |72|
 | Application Test |24|
+| Total |233|
 
 
 ###
