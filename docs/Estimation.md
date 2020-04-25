@@ -43,7 +43,11 @@ Version:
 
 |         Activity name    | Estimated effort (person hours)   |             
 | ----------- | ------------------------------- | 
-| | |
+| Review similar systems|3|
+| Perform work analysis|5|
+| Identify user requirements|5|
+| Identify performance requirements|5|
+| System implementation |10|
 
 
 ###
