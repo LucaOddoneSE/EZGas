@@ -330,6 +330,51 @@ package "it.polito.ezgas.entity" {
 }
 
 package "it.polito.ezgas.dto" {
+   class UserDto {
+    String firstName
+    String lastName
+    String account_name
+    String account_pwd
+    String email
+    int trust_level
+  }
+  class GasStationDto {
+    int ID
+    String name
+    String address
+    String brand
+    boolean hasDiesel
+    boolean hasGasoline
+    boolean hasPremiumDiesel
+    boolean hasPremiumGasoline
+    boolean hasLPG
+    booelan hasMethane
+  }
+  class AdministratorDto {
+  }
+  class PriceListDto {
+    Date time_tag
+    double dieselPrice
+    double gasolinePrice
+    double premiumDieselPrice
+    double premiumGasolinePrice
+    double LPGPrice
+    double methanePrice
+    int trust_level
+    GasStation gasStation
+    User user
+  }
+  class GeoPointDto {
+    double latitude
+    double longitude
+  }
+  class CarSharingCompanyDto {
+    String name
+  }
+  class EZGasDto {
+  }
+  class AnonymousUserDto {
+  }
 }
 
 package "it.polito.ezgas.controller" {
