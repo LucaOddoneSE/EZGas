@@ -1,11 +1,11 @@
 # Design Document 
 
 
-Authors: 
+Authors: Luca Oddone 
 
-Date:
+Date: 04/26/2020
 
-Version:
+Version: 1.0
 
 
 # Contents
@@ -224,12 +224,33 @@ Contains Service classes that implement the Service Interfaces in the Service pa
 
 
 
+```plantuml
 
+@startuml
+scale 200 width
+scale 700 height
+left to right direction
 
+package "it.polito.ezgas.entity" {
+}
 
+package "it.polito.ezgas.dto" {
+}
 
+package "it.polito.ezgas.controller" {
+}
 
+package "it.polito.ezgas.service" {
+}
 
+package "it.polito.ezgas.serviceImpl" {
+}
+
+package "it.polito.ezgas.converter" {
+}
+
+@enduml
+```
 
 
 
