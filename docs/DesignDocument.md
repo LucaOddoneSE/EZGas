@@ -227,6 +227,9 @@ Contains Service classes that implement the Service Interfaces in the Service pa
 ```plantuml
 
 @startuml
+
+scale 100 width
+scale 1350 height
 left to right direction
 
 package "it.polito.ezgas.entity" {
