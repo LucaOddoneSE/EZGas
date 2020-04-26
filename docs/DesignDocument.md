@@ -227,11 +227,106 @@ Contains Service classes that implement the Service Interfaces in the Service pa
 ```plantuml
 
 @startuml
-scale 200 width
-scale 700 height
 left to right direction
 
 package "it.polito.ezgas.entity" {
+   class User {
+    String firstName
+    String lastName
+    String account_name
+    String account_pwd
+    String email
+    int trust_level
+    __
+    +void setFirstName(String)
+    +void setLastName(String)
+    +void setEmail(String)
+    +void setAccount_Name(String)
+    +void setAccount_Pwd(String)
+    +String getFirstName()
+    +String getLastname()
+    +String getAccount_Name()
+    +String getAccount_Pwd()
+    +String getEmail()
+    +int  getTrust_Level()
+  }
+  class GasStation {
+    int ID
+    String name
+    String address
+    String brand
+    boolean hasDiesel
+    boolean hasGasoline
+    boolean hasPremiumDiesel
+    boolean hasPremiumGasoline
+    boolean hasLPG
+    booelan hasMethane
+    __
+    +void setName(String)
+    +void setAddress(String)
+    +void setBrand(String)
+    +String getName()
+    +String getAddress()
+    +boolean getHasDiesel()
+    +boolean getHasGasoline()
+    +boolean getHasPremiumDiesel()
+    +boolean getHasPremiumGasoline()
+    +booelan getHasLPG()
+    +booelan getHasMethane()
+  }
+  class Administrator {
+    
+  }
+  class PriceList {
+    Date time_tag
+    double dieselPrice
+    double gasolinePrice
+    double premiumDieselPrice
+    double premiumGasolinePrice
+    double LPGPrice
+    double methanePrice
+    int trust_level
+    GasStation gasStation
+    User user
+    __
+    +void setTime_tag(Date)
+    +void setDieselPrice(double)
+    +void setGasolinePrice(double)
+    +void setPremiumDieselPrice(double)
+    +void setPremiumGasolinePrice(double)
+    +void setLPGPrice(double)
+    +void setMethanePrice(double)
+    void setTrust_Level(int)
+    +Date getTime_tag()
+    +double getDieselPrice()
+    +double getGasolinePrice()
+    +double getPremiumDieselPrice()
+    +double getPremiumGasolinePrice()
+    +double getLPGPrice()
+    +double getMethanePrice()
+    +int getTrust_Level()
+  }
+  class GeoPoint {
+    double latitude
+    double longitude
+    __
+    +void setLatitude(double)
+    +void setLongitude(double)
+    +double getLatitude()
+    +double getLongitude()
+  }
+  class CarSharingCompany {
+    String name
+    __
+    void setName(String)
+    String getName()
+  }
+  class EZGas {
+    +run()
+    +notRun()
+  }
+  class AnonymousUser {
+  }
 }
 
 package "it.polito.ezgas.dto" {
