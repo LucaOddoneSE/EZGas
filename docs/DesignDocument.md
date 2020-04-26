@@ -224,12 +224,10 @@ Contains Service classes that implement the Service Interfaces in the Service pa
 
 
 
-```plantuml
+```plantuml, format=sgv, width=512px 
 
 @startuml
 
-scale 100 width
-scale 1350 height
 left to right direction
 
 package "it.polito.ezgas.entity" {
@@ -381,6 +379,30 @@ package "it.polito.ezgas.dto" {
 }
 
 package "it.polito.ezgas.controller" {
+   interface UserService {
+     +UserDto getUserById(int)
+     +UserDto saveUser(UserDto)
+     +List<UserDto> getAllUsers()
+     +boolean deleteUser(int)
+     +LoginDto login(IdPw)
+     +int increaseUserReputation(int)
+     +int decreaseUserReputation(int)
+   }
+   note right: This interface just contains the methods related to User entity.\nThe implementation of these methods will be done in the "UserServiceImpl" class
+  
+   interface GasStationService {
+     +GasStationDto getGasStationById(int)
+     +GasStationDto saveGasStation(GasStationDto)
+     +List<GasStationDto> getAllGasStations()
+     +boolean deleteGasStation(int)
+     +List<GasStationDto> getGasStationsByGasolineType(String)
+     +List<GasStationDto> getGasStationsByProximity(double,double)
+     +List<GasStationDto> getGasStationsWithCoordinates(double,double,String,String)
+     +List<GasStationDto> getGasStationsWithoutCoordinates(String,String)
+     +void setReport(int,double,double,double,double,double,int)
+     +List<GasStationDto> getGasStationByCarSharing(String)
+   }
+  note right: This interface just contains the methods related to GasStation entity.\nThe implementation of these methods will be done in the "GasStationServiceImpl" class 
 }
 
 package "it.polito.ezgas.service" {
