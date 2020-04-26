@@ -387,6 +387,30 @@ package "it.polito.ezgas.serviceImpl" {
 }
 
 package "it.polito.ezgas.converter" {
+   class UserConverter {
+    +UserDto toUserDto(User)
+  }
+  class GasStationConverter {
+    +GasStationDto toGasStationDto(GasStation)
+  }
+  class AdministratorConverter {
+    +AdministratorDto toAdministratorDto(Administrator)
+  }
+  class PriceListConverter {
+    +PriceListDto toPriceListDto(PriceList)
+  }
+  class GeoPointConverter {
+    +GeoPointDto toGeoPointDto(GeoPoint)
+  }
+  class CarSharingCompanyConverter {
+    +CarSharingCompanyDto toCarSharingCompanyDto(CarSharingCompany)
+  }
+  class EZGasConverter {
+    +EZGasDto toEZGasDto(EZGas)
+  }
+  class AnonymousUserConverter {
+    +AnonymousUserDto toAnonymousUserDto(AnonymousUser)
+  }
 }
 
 @enduml
