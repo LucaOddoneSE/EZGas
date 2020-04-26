@@ -224,10 +224,11 @@ Contains Service classes that implement the Service Interfaces in the Service pa
 
 
 
-```plantuml, format=sgv, width=512px 
+```plantuml 
 
 @startuml
 
+scale 0.8
 left to right direction
 
 package "it.polito.ezgas.entity" {
@@ -297,7 +298,7 @@ package "it.polito.ezgas.entity" {
     +void setPremiumGasolinePrice(double)
     +void setLPGPrice(double)
     +void setMethanePrice(double)
-    void setTrust_Level(int)
+    +void setTrust_Level(int)
     +Date getTime_tag()
     +double getDieselPrice()
     +double getGasolinePrice()
@@ -379,6 +380,9 @@ package "it.polito.ezgas.dto" {
 }
 
 package "it.polito.ezgas.controller" {
+}
+
+package "it.polito.ezgas.service" {
    interface UserService {
      +UserDto getUserById(int)
      +UserDto saveUser(UserDto)
@@ -402,10 +406,7 @@ package "it.polito.ezgas.controller" {
      +void setReport(int,double,double,double,double,double,int)
      +List<GasStationDto> getGasStationByCarSharing(String)
    }
-  note right: This interface just contains the methods related to GasStation entity.\nThe implementation of these methods will be done in the "GasStationServiceImpl" class 
-}
-
-package "it.polito.ezgas.service" {
+  note right: This interface just contains the methods related to GasStation entity.\nThe implementation of these methods will be done in the "GasStationServiceImpl" class
 }
 
 package "it.polito.ezgas.serviceImpl" {
@@ -437,6 +438,9 @@ package "it.polito.ezgas.converter" {
     +AnonymousUserDto toAnonymousUserDto(AnonymousUser)
   }
 }
+
+it.polito.ezgas.converter -right[hidden]-> it.polito.ezgas.serviceImpl
+it.polito.ezgas.converter -right[hidden]-> it.polito.ezgas.service
 
 @enduml
 ```
