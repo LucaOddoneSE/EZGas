@@ -228,7 +228,7 @@ Contains Service classes that implement the Service Interfaces in the Service pa
 
 @startuml
 
-scale 8192*2016 
+scale 8192*2002 
 left to right direction
 
 package "it.polito.ezgas.entity" {
@@ -514,6 +514,81 @@ package "it.polito.ezgas.converter" {
     +AnonymousUserDto toAnonymousUserDto(AnonymousUser)
   }
 }
+
+User "1" -- "1" UserDto
+User "1" -- "1" UserConverter
+UserController "1" -- "1..*" UserDto
+UserController "1" -- "0..*" GasStationDto
+UserController "1" -- "1" UserServiceImpl
+UserController "1" -- "0..*" GeoPointDto
+UserController "1" -- "1" GasStationServiceImpl
+UserService <|-- UserServiceImpl
+GasStation "1" -- "1" GasStationDto
+GasStation "1" -- "1" GasStationConverter
+GasStationController "1" -- "1..*" GasStationDto
+GasStationController "1" -- "1" GasStationServiceImpl
+GasStationService <|-- GasStationServiceImpl
+Administrator "1" -- "1" AdministratorDto
+Administrator "1" -- "1" AdministratorConverter
+AdministratorController "1" -- "1..*" AdministratorDto
+AdministratorController "1" -- "1" UserServiceImpl
+AdministratorController "1" -- "1" GasStationServiceImpl
+AdministratorController "1" -- "0..*" GasStationDto
+AdministratorController "1" -- "0..*" UserDto
+AdministratorController "1" -- "0..*" PriceListDto
+AdministratorController "1" -- "0..*" GeoPointDto
+User <|-- Administrator
+UserDto <|-- AdministratorDto
+PriceList "1" -- "1" PriceListDto
+PriceList "1" -- "1" PriceListConverter
+PriceListDto "1..*" -- "1" PriceListController
+PriceListController "1" -- "1..*" GasStationDto
+PriceListController "1" -- "1..*" UserDto
+GeoPoint "1" -- "1" GeoPointDto
+GeoPoint "0..*" -- "1" GeoPointConverter
+GeoPointController "1" -- "1..*" GeoPointDto
+GeoPointController "1" -- "0..*" UserDto
+GeoPointController "1" -- "1..*" AdministratorDto
+GeoPointController "1" -- "0..*" AnonymousUserDto
+GeoPointController "1" -- "0..*" GasStationDto
+GeoPointController "1" -- "1" UserServiceImpl
+GeoPointController "1" -- "1" GasStationServiceImpl
+CarSharingCompany "1" -- "1" CarSharingCompanyDto
+CarSharingCompany "1" -- "1" CarSharingCompanyConverter
+CarSharingCompanyDto "1..*" -- "1" CarSharingCompanyController
+CarSharingCompanyController "1" -- "0..*" GasStationDto
+CarSharingCompanyController "1" -- "0..*" UserDto
+CarSharingCompanyController "1" -- "1..*" AdministratorDto
+CarSharingCompanyController "1" -- "0..*" AnonymousUserDto
+EZGas "1" -- "1" EZGasDto
+EZGas "1" -- "1" EZGasConverter
+EZGasDto "1" -- "1" EZGasController
+EZGasDto "1" -- "0..*" UserDto
+EZGasDto "1" -- "0..*" GasStationDto
+EZGasDto "1" -- "0..*" AdministratorDto
+AnonymousUser "1" -- "1" AnonymousUserDto
+AnonymousUser "1" -- "1" AnonymousUserConverter
+AnonymousUserController "1" -- "0..*" AnonymousUserDto
+AnonymousUserController "1" -- "1" UserServiceImpl
+AnonymousUserController "1" -- "1" GasStationServiceImpl
+User "0..*" -- "1" EZGas
+User "0..*" -- "0..*" GeoPoint
+User "1" -- "0..*" PriceList
+AnonymousUser "0..*" -- "1" EZGas
+AnonymousUser "0..*" -- "0..*" GeoPoint
+GasStation "0..*" -- "1" EZGas
+GasStation "1" -- "1" GeoPoint
+GasStation "1" -- "0..1" PriceList
+GasStation "0..*" -- "0..1" CarSharingCompany
+UserDto "0..*" -- "1" EZGasDto
+UserDto "0..*" -- "0..*" GeoPointDto
+AnonymousUserDto "0..*" -- "1" EZGasDto
+AnonymousUserDto "0..*" -- "0..*" GeoPointDto
+UserDto "1" -- "0..*" PriceListDto
+GasStationDto "0..*" -- "1" EZGasDto
+GasStationDto "1" -- "1" GeoPointDto
+GasStationDto "1" -- "0..1" PriceListDto
+GasStationDto "0..*" -- "0..1" CarSharingCompanyDto
 
 it.polito.ezgas.converter -right[hidden]-> it.polito.ezgas.serviceImpl
 it.polito.ezgas.converter -right[hidden]-> it.polito.ezgas.service
