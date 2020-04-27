@@ -228,7 +228,7 @@ Contains Service classes that implement the Service Interfaces in the Service pa
 
 @startuml
 
-scale 0.8
+scale 8192*1158 
 left to right direction
 
 package "it.polito.ezgas.entity" {
@@ -410,6 +410,27 @@ package "it.polito.ezgas.service" {
 }
 
 package "it.polito.ezgas.serviceImpl" {
+   class UserServiceImpl {
+    +UserDto getUserById(int)
+    +UserDto saveUser(UserDto)
+    +List<UserDto> getAllUsers()
+    +boolean deleteUser(int)
+    +LoginDto login(IdPw)
+    +int increaseUserReputation(int)
+    +int decreaseUserReputation(int)
+  }
+  class GasStationServiceImpl {
+    +GasStationDto getGasStationById(int)
+    +GasStationDto saveGasStation(GasStationDto)
+    +List<GasStationDto> getAllGasStations()
+    +boolean deleteGasStation(int)
+    +List<GasStationDto> getGasStationsByGasolineType(String)
+    +List<GasStationDto> getGasStationsByProximity(double,double)
+    +List<GasStationDto> getGasStationsWithCoordinates(double,double,String,String)
+    +List<GasStationDto> getGasStationsWithoutCoordinates(String,String)
+    +void setReport(int,double,double,double,double,double,int)
+    +List<GasStationDto> getGasStationByCarSharing(String)
+  } 
 }
 
 package "it.polito.ezgas.converter" {
