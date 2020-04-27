@@ -3,7 +3,7 @@
 
 Authors: Luca Oddone 
 
-Date: 04/26/2020
+Date: 04/27/2020
 
 Version: 1.0
 
@@ -228,7 +228,7 @@ Contains Service classes that implement the Service Interfaces in the Service pa
 
 @startuml
 
-scale 8192*1158 
+scale 8192*2016 
 left to right direction
 
 package "it.polito.ezgas.entity" {
@@ -380,6 +380,61 @@ package "it.polito.ezgas.dto" {
 }
 
 package "it.polito.ezgas.controller" {
+   class UserController {
+    +Response createAccount(UserDto)
+    +Respose login(UserDto)
+    +Response deleteUser(UserDto)
+    +Response modifyUser(UserDto)
+    +Response searchGasStationWithRadiusAddress(String)
+    +Response showGasStationsAndFuelsOnMap(double,double)
+    +Response getGasStationsByFuelType(String)
+    +Response sortGasStationsByFuelPrice(double,double,String)
+    +Response sortGasStationByDistance(double,double,String)
+  }
+  class GasStationController {
+    +Response createGasStation(GasStationDto)
+    +Response modifyGasStation(GasStationDto)
+    +Response DeleteGasStation(GasStationDto)
+  }
+  class AdministratorController {
+    +Response createAccount(UserDto)
+    +Respose login(UserDto)
+    +Response deleteUser(UserDto)
+    +Response listAllUsers()
+    +Response searchUser(UserDto)
+    +Response modifyUser(UserDto)
+    +Response createGasStation(GasStationDto)
+    +Response modifyGasStation(GasStationDto)
+    +Response deleteGasStation(GasStationDto)
+    +Response getAllGasStations()
+    +Response searchGasStationWithRadiusAddress(String)
+    +Response showGasStationsAndFuelsOnMap(double,double)
+    +Response getGasStationsByFuelType(String)
+    +Response sortGasStationsByFuelPrice(double,double,String)
+    +Response sortGasStationByDistance(double,double,String)
+  }
+  class PriceListController {
+    +Response createPriceList(<UserDto>,<GasStation>)
+    +Response updateTrustLevel(<UserDto>,<GasStatio>)
+    +Response evaluatePriceList(<UserDto>,<GasStation>)
+  }
+  class GeoPointController {
+    +Response searchGasStationWithRadiusGeoPoint(double,double)
+  }
+  class CarSharingCompanyController {
+    +Response getGasStationByCarSharing(String)
+  }
+  class EZGasController {
+    +Response startApplication()
+    +Response stopApplication()
+  }
+  class AnonymousUserController {
+    +Response searchGasStationWithRadiusAddress(String)
+    +Response showGasStationsAndFuelsOnMap(double,double)
+    +Response getGasStationsByFuelType(String)
+    +Response sortGasStationsByFuelPrice(double,double,String)
+    +Response sortGasStationByDistance(double,double,String)
+  }
 }
 
 package "it.polito.ezgas.service" {
