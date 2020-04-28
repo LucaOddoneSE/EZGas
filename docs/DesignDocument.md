@@ -235,9 +235,26 @@ Contains Service classes that implement the Service Interfaces in the Service pa
 
 # Verification traceability matrix
 
-\<for each functional requirement from the requirement document, list which classes concur to implement it>
+|       | GasStationServiceImpl | UserServiceImpl | EzGas | Administrator | User | AnonymousUser | CarSharingCompany | GasStation | GeoPoint |
+|-------|:---------------------:|:---------------:|:-----:|:-------------:|:----:|:-------------:|:-----------------:|:----------:|:--------:|
+| FR1.1 |                       |        X        |       |       X       |   X  |               |                   |            |          |
+| FR1.2 |                       |        X        |       |       X       |   X  |               |                   |            |          |
+| FR1.3 |                       |        X        |       |       X       |   X  |               |                   |            |          |
+| FR1.4 |                       |        X        |       |       X       |   X  |               |                   |            |          |
+| FR2   |                       |        X        |       |       X       |   X  |               |                   |            |          |
+| FR3.1 |           X           |                 |       |               |      |               |                   |      X     |          |
+| FR3.2 |           X           |                 |       |               |      |               |                   |      X     |          |
+| FR3.3 |           X           |                 |       |               |      |               |                   |      X     |          |
+| FR4.1 |           X           |                 |       |               |      |               |                   |      X     |     X    |
+| FR4.2 |           X           |                 |       |               |      |               |                   |      X     |     X    |
+| FR4.3 |           X           |                 |       |               |      |               |                   |      X     |     X    |
+| FR4.4 |           X           |                 |       |               |      |               |                   |      X     |          |
+| FR4.5 |           X           |                 |       |               |      |               |         X         |      X     |          |
+| FR5.1 |           X           |                 |       |               |   X  |               |                   |      X     |          |
+| FR5.2 |                       |                 |       |               |      |               |                   |      X     |          |
+| FR5.3 |           X           |                 |       |               |   X  |               |                   |      X     |          |
 
-
+The involvment of a class in the it.polito.ezgas.entity package implies the use of the respective class in the converter, dto, repository and controller packages.
 
 
 
