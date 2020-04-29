@@ -251,6 +251,7 @@ package "it.polito.ezgas.entity" {
     +String getAccount_Pwd()
     +String getEmail()
     +int  getTrust_Level()
+    +boolean isCorrect(double)
   }
   class GasStation {
     int ID
