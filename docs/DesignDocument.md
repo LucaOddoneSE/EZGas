@@ -250,7 +250,53 @@ Contains Service classes that implement the Service Interfaces in the Service pa
 # Verification sequence diagrams 
 \<select key scenarios from the requirement document. For each of them define a sequence diagram showing that the scenario can be implemented by the classes and methods in the design>
 
+Scennario 10.1:
 
+```plantuml
+@startuml
+GUI -> User : 1: setEmail(U_email)
+GUI -> User : 2: setAccountPwd(U_pwd)
+
+User -> Geopoint : 3: setLatitud(lat)
+User -> Geopoint : 4: setLongitude(long)
+
+Geopoint -> GasStation : 5: getAddress()
+
+User -> GasStation : 6: getHasDiesel()
+
+User <- PriceList : 7: getDieselPrice()
+
+User -> PriceList : 8: isCorrect(price)
+
+Administrator -> PriceListController: 9: getLastUserUpdate() (U2)
+
+PriceList <- Administrator : 10: setTrustLevel(+1) (U2)
+@enduml
+```
+
+Scennario 10.2:
+
+```plantuml
+@startuml
+GUI -> User : 1: setEmail(U_email)
+GUI -> User : 2: setAccountPwd(U_pwd)
+
+User -> Geopoint : 3: setLatitud(lat)
+User -> Geopoint : 4: setLongitude(long)
+
+Geopoint -> GasStation : 5: getAddress()
+
+User -> GasStation : 6: getHasDiesel()
+
+User <- PriceList : 7: getDieselPrice()
+
+User -> PriceList : 8: isCorrect(price)
+
+Administrator -> PriceListController: 9: getLastUserUpdate() (U2)
+
+PriceList <- Administrator : 10: setTrustLevel(-1) (U2)
+@enduml
+```
 
 
 
