@@ -418,6 +418,7 @@ package "it.polito.ezgas.controller" {
     +Response createPriceList(<UserDto>,<GasStation>)
     +Response updateTrustLevel(<UserDto>,<GasStatio>)
     +Response evaluatePriceList(<UserDto>,<GasStation>)
+    +Response getLastUserUpdate(UserDto)
   }
   class GeoPointController {
     +Response searchGasStationWithRadiusGeoPoint(double,double)
