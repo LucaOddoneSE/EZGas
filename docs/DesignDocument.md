@@ -251,7 +251,6 @@ package "it.polito.ezgas.entity" {
     +String getAccount_Pwd()
     +String getEmail()
     +int  getTrust_Level()
-    +boolean isCorrect(double)
   }
   class GasStation {
     int ID
@@ -391,6 +390,7 @@ package "it.polito.ezgas.controller" {
     +Response getGasStationsByFuelType(String)
     +Response sortGasStationsByFuelPrice(double,double,String)
     +Response sortGasStationByDistance(double,double,String)
+    +Response isCorrect(double)
   }
   class GasStationController {
     +Response createGasStation(GasStationDto)
