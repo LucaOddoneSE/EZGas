@@ -250,7 +250,7 @@ package "it.polito.ezgas.entity" {
     +String getAccount_Name()
     +String getAccount_Pwd()
     +String getEmail()
-    +int  getTrust_Level()
+    +int getTrust_Level()
   }
   class GasStation {
     int ID
@@ -320,8 +320,8 @@ package "it.polito.ezgas.entity" {
   class CarSharingCompany {
     String name
     __
-    void setName(String)
-    String getName()
+    +void setName(String)
+    +String getName()
   }
   class EZGas {
     +boolean run()
@@ -339,6 +339,18 @@ package "it.polito.ezgas.dto" {
     String account_pwd
     String email
     int trust_level
+    __
+    +void setFirstName(String)
+    +void setLastName(String)
+    +void setEmail(String)
+    +void setAccount_Name(String)
+    +void setAccount_Pwd(String)
+    +String getFirstName()
+    +String getLastname()
+    +String getAccount_Name()
+    +String getAccount_Pwd()
+    +String getEmail()
+    +int getTrust_Level()
   }
   class GasStationDto {
     int ID
@@ -351,6 +363,18 @@ package "it.polito.ezgas.dto" {
     boolean hasPremiumGasoline
     boolean hasLPG
     booelan hasMethane
+    __
+    +void setName(String)
+    +void setAddress(String)
+    +void setBrand(String)
+    +String getName()
+    +String getAddress()
+    +boolean getHasDiesel()
+    +boolean getHasGasoline()
+    +boolean getHasPremiumDiesel()
+    +boolean getHasPremiumGasoline()
+    +booelan getHasLPG()
+    +booelan getHasMethane()
   }
   class AdministratorDto {
   }
@@ -365,13 +389,38 @@ package "it.polito.ezgas.dto" {
     int trust_level
     GasStation gasStation
     User user
+    __
+    +void setTime_tag(Date)
+    +void setDieselPrice(double)
+    +void setGasolinePrice(double)
+    +void setPremiumDieselPrice(double)
+    +void setPremiumGasolinePrice(double)
+    +void setLPGPrice(double)
+    +void setMethanePrice(double)
+    +void setTrust_Level(int)
+    +Date getTime_tag()
+    +double getDieselPrice()
+    +double getGasolinePrice()
+    +double getPremiumDieselPrice()
+    +double getPremiumGasolinePrice()
+    +double getLPGPrice()
+    +double getMethanePrice()
+    +int getTrust_Level()
   }
   class GeoPointDto {
     double latitude
     double longitude
+    __
+    +void setLatitude(double)
+    +void setLongitude(double)
+    +double getLatitude()
+    +double getLongitude()
   }
   class CarSharingCompanyDto {
     String name
+    __
+    +void setName(String)
+    +String getName()
   }
   class EZGasDto {
   }
