@@ -324,8 +324,8 @@ package "it.polito.ezgas.entity" {
     String getName()
   }
   class EZGas {
-    +run()
-    +notRun()
+    +boolean run()
+    +boolean notRun()
   }
   class AnonymousUser {
   }
@@ -381,61 +381,61 @@ package "it.polito.ezgas.dto" {
 
 package "it.polito.ezgas.controller" {
    class UserController {
-    +Response createAccount(UserDto)
-    +Respose login(UserDto)
-    +Response deleteUser(UserDto)
-    +Response modifyUser(UserDto)
-    +Response searchGasStationWithRadiusAddress(String)
-    +Response showGasStationsAndFuelsOnMap(double,double)
-    +Response getGasStationsByFuelType(String)
-    +Response sortGasStationsByFuelPrice(double,double,String)
-    +Response sortGasStationByDistance(double,double,String)
-    +Response isCorrect(double)
+    +UserDto createAccount(UserDto)
+    +UserDto login(UserDto)
+    +UserDto deleteUser(UserDto)
+    +UserDto modifyUser(UserDto)
+    +List<GasStationDto> searchGasStationWithRadiusAddress(String)
+    +List<GasStationDto> showGasStationsAndFuelsOnMap(double,double)
+    +List<GasStationDto> getGasStationsByFuelType(String)
+    +List<GasStationDto> sortGasStationsByFuelPrice(double,double,String)
+    +List<GasStationDto> sortGasStationByDistance(double,double,String)
+    +boolean isCorrect(double)
   }
   class GasStationController {
-    +Response createGasStation(GasStationDto)
-    +Response modifyGasStation(GasStationDto)
-    +Response DeleteGasStation(GasStationDto)
+    +GasStationDto createGasStation(GasStationDto)
+    +GasStationDto modifyGasStation(GasStationDto)
+    +GasStationDto DeleteGasStation(GasStationDto)
   }
   class AdministratorController {
-    +Response createAccount(UserDto)
-    +Respose login(UserDto)
-    +Response deleteUser(UserDto)
-    +Response listAllUsers()
-    +Response searchUser(UserDto)
-    +Response modifyUser(UserDto)
-    +Response createGasStation(GasStationDto)
-    +Response modifyGasStation(GasStationDto)
-    +Response deleteGasStation(GasStationDto)
-    +Response getAllGasStations()
-    +Response searchGasStationWithRadiusAddress(String)
-    +Response showGasStationsAndFuelsOnMap(double,double)
-    +Response getGasStationsByFuelType(String)
-    +Response sortGasStationsByFuelPrice(double,double,String)
-    +Response sortGasStationByDistance(double,double,String)
+    +UserDto createAccount(UserDto)
+    +UserDto login(UserDto)
+    +UserDto deleteUser(UserDto)
+    +List<UserDto> listAllUsers()
+    +UserDto searchUser(UserDto)
+    +UserDto modifyUser(UserDto)
+    +GasStationDto createGasStation(GasStationDto)
+    +GasStationDto modifyGasStation(GasStationDto)
+    +GasStationDto deleteGasStation(GasStationDto)
+    +List<GasStationDto> getAllGasStations()
+    +List<GasStationDto> searchGasStationWithRadiusAddress(String)
+    +List<GasStationDto> showGasStationsAndFuelsOnMap(double,double)
+    +List<GasStationDto> getGasStationsByFuelType(String)
+    +List<GasStationDto> sortGasStationsByFuelPrice(double,double,String)
+    +List<GasStationDto> sortGasStationByDistance(double,double,String)
   }
   class PriceListController {
-    +Response createPriceList(<UserDto>,<GasStation>)
-    +Response updateTrustLevel(<UserDto>,<GasStatio>)
-    +Response evaluatePriceList(<UserDto>,<GasStation>)
-    +Response getLastUserUpdate(UserDto)
+    +PriceListDto createPriceList(<UserDto>,<GasStation>)
+    +PriceListDto updateTrustLevel(<UserDto>,<GasStatio>)
+    +PriceListDto evaluatePriceList(<UserDto>,<GasStation>)
+    +UserDto getLastUserUpdate(UserDto)
   }
   class GeoPointController {
-    +Response searchGasStationWithRadiusGeoPoint(double,double)
+    +List<GasStationDto> searchGasStationWithRadiusGeoPoint(double,double)
   }
   class CarSharingCompanyController {
-    +Response getGasStationByCarSharing(String)
+    +List<GasStationDto> getGasStationByCarSharing(String)
   }
   class EZGasController {
-    +Response startApplication()
-    +Response stopApplication()
+    +boolean startApplication()
+    +boolean stopApplication()
   }
   class AnonymousUserController {
-    +Response searchGasStationWithRadiusAddress(String)
-    +Response showGasStationsAndFuelsOnMap(double,double)
-    +Response getGasStationsByFuelType(String)
-    +Response sortGasStationsByFuelPrice(double,double,String)
-    +Response sortGasStationByDistance(double,double,String)
+    +List<GasStationDto> searchGasStationWithRadiusAddress(String)
+    +List<GasStationDto> showGasStationsAndFuelsOnMap(double,double)
+    +List<GasStationDto> getGasStationsByFuelType(String)
+    +List<GasStationDto> sortGasStationsByFuelPrice(double,double,String)
+    +List<GasStationDto> sortGasStationByDistance(double,double,String) 
   }
 }
 
