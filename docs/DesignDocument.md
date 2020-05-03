@@ -1,6 +1,8 @@
 # Design Document 
 
 
+
+
 Authors:
 
 Date:
@@ -223,6 +225,72 @@ Contains Service classes that implement the Service Interfaces in the Service pa
 <Based on the official requirements and on the Spring Boot design guidelines, define the required classes (UML class diagram) of the back-end in the proper packages described in the high-level design section.>
 
 
+
+
+# Verification traceability matrix
+
+\<for each functional requirement from the requirement document, list which classes concur to implement it>
+
+
+
+
+
+
+
+
+
+
+
+# Verification sequence diagrams 
+\<select key scenarios from the requirement document. For each of them define a sequence diagram showing that the scenario can be implemented by the classes and methods in the design>
+
+Scennario 10.1:
+
+```plantuml
+@startuml
+GUI -> User : 1: setEmail(U_email)
+GUI -> User : 2: setAccountPwd(U_pwd)
+
+User -> Geopoint : 3: setLatitud(lat)
+User -> Geopoint : 4: setLongitude(long)
+
+Geopoint -> GasStation : 5: getAddress()
+
+User -> GasStation : 6: getHasDiesel()
+
+User <- PriceList : 7: getDieselPrice()
+
+User -> PriceList : 8: isCorrect(price)
+
+Administrator -> PriceListController: 9: getLastUserUpdate() (U2)
+
+PriceList <- Administrator : 10: setTrustLevel(+1) (U2)
+@enduml
+```
+
+Scennario 10.2:
+
+```plantuml
+@startuml
+GUI -> User : 1: setEmail(U_email)
+GUI -> User : 2: setAccountPwd(U_pwd)
+
+User -> Geopoint : 3: setLatitud(lat)
+User -> Geopoint : 4: setLongitude(long)
+
+Geopoint -> GasStation : 5: getAddress()
+
+User -> GasStation : 6: getHasDiesel()
+
+User <- PriceList : 7: getDieselPrice()
+
+User -> PriceList : 8: isCorrect(price)
+
+Administrator -> PriceListController: 9: getLastUserUpdate() (U2)
+
+PriceList <- Administrator : 10: setTrustLevel(-1) (U2)
+@enduml
+```
 
 ```plantuml 
 
@@ -649,22 +717,9 @@ it.polito.ezgas.converter -right[hidden]-> it.polito.ezgas.service
 
 
 
-# Verification traceability matrix
-
-\<for each functional requirement from the requirement document, list which classes concur to implement it>
 
 
 
-
-
-
-
-
-
-
-
-# Verification sequence diagrams 
-\<select key scenarios from the requirement document. For each of them define a sequence diagram showing that the scenario can be implemented by the classes and methods in the design>
 
 
 
