@@ -43,17 +43,23 @@ Version:
 
 |         Activity name    | Estimated effort (person hours)   |             
 | ----------- | ------------------------------- | 
-| Review similar systems|3|
-| Perform workflow analysis|8|
-| Perform work analysis|8|
-| Identify user requirements|48|
-| Identify performance requirements|10|
-| Identify interface requirements|24|
-| Design GUI|10|
-| Application UI/UX|24|
-| Application back-end implementation |72|
-| Application Test |24|
-| Total |233|
+| Review existing systems|8|
+| Perform workflow analysis|4|
+| Model process|4|
+| Identify user requirements|8|
+| Identify performance requirements|8|
+| Identify interface requirements|8|
+| Identify software requirements|8|
+| Test data|8|
+| Documentation|8|
+| Design GUI|8|
+| Application UI/UX|8|
+| Application back-end implementation |16|
+| Test Plan |4|
+| Unit Test |4|
+| System Test |4|
+| Total Person Hours |108 hours = 55 Days|
+
 
 
 ###
