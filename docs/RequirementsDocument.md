@@ -1,10 +1,10 @@
 # Requirements Document 
 
-Authors:
+Authors: Group 50
 
-Date:
+Date: 19 April
 
-Version:
+Version: 1
 
 # Contents
 
@@ -28,64 +28,82 @@ Version:
 
 # Stakeholders
 
-
 | Stakeholder name  | Description | 
 | ----------------- |:-----------:|
-|                   |             | 
+|        Driver           |      Uses the application for checking the prices of fuels in different gas stations | 
+|        Gas station administrator           |      Uses the application for updating the prices of the fuels        |
+|        Developer           |      Develops the application        |
+|        Administrator	           |      Application administrator, IT administrator, DB administrator     |
+
 
 # Context Diagram and interfaces
 
 ## Context Diagram
-\<Define here Context diagram using UML use case diagram>
+```plantuml
+left to right direction
+actor Driver as a
+actor GasStationAdmin as b
+actor Administrator as c
+actor GoogleMap as d
 
-\<actors are a subset of stakeholders>
+rectangle System {
+a -- (Ez Gas Application)
+b -- (Ez Gas Application)
+c -- (Ez Gas Application)
+d -- (Ez Gas Application)
+}
+```
 
 ## Interfaces
-\<describe here each interface in the context diagram>
-
-\<GUIs will be described graphically in a separate document>
 
 | Actor | Logical Interface | Physical Interface  |
 | ------------- |:-------------:| -----:|
-|       |  |  |
+|    Driver   | GUI | Touch screen |
+|    Gas station administrator   | GUI | Touch screen |
+|    Google Maps   | Web Service | Internet connection |
+|    Administrator   | GUI | Screen, Keyboard |
 
 # Stories and personas
-\<A Persona is a realistic impersonation of an actor. Define here a few personas and describe in plain text how a persona interacts with the system>
+Peter is a plumber and travels a lot on his LPG van for work in differend towns, up to hundreds of kilometers a day. He knows all the best gas station on his usual routes but work sometimes takes in other cities he doesnt know very well. Peter pays attention to the price of LPG so he uses EzGas to find a cheap gas station with LPG in a 5 km range, or further but on his way home. One day he goes a bit out of his way to fill the tank on a very cheap gas station he found with EzGas, but when he gets there the actual price is higher than advertised so he reports it on the app and he will receive a discount for his contribution. After making a few true reports like that Peter becomes a trusted user.
 
-\<Persona is-an-instance-of actor>
+Janice works in upper managment of a big company and drives a Porches. On tuesdays after work she has to pick up her son from piano practice, and is usually in a hurry. When she sees the gas tank almost empty she uses EzGas find the nearest gas station and doesn't care about the price because she is running late.
 
-\<stories will be formalized later as use cases>
-
+Frank just opened a gas station very close to a big intersection but not quite visible from the road, so he added his gas station in EzGas to advertise with offering discount. Many people come to his gas station with discount codes on their phones for a small reduction on the fuel, which is worth because of the many new clients he gets.
 
 # Functional and non functional requirements
 
 ## Functional Requirements
 
-\<In the form DO SOMETHING, or VERB NOUN, describe high level capabilities of the system>
-
-\<will match to high level use cases>
 
 | ID        | Description  |
-| ------------- |:-------------:| 
-|  FR1     |  |
-|  FR2     |   |
+| ------------- |:-------------:|  
+|  FR1     | Searching for a nearby gas station ( using Google maps ) |
+|  FR2     | Searching for the cheapest gas station ( for a certain type of fuel ) in a radius set by the user |
+|  FR3     | Showing a map with gas stations and their prices |
+|  FR4     | Navigate the user to a chosen gas station |
+|  FR5     | Authenticatig the users (differentiating the gas station administrator and users as drivers) |
+|  FR6     | Adding a gas station to the list |
+|  FR7     | Updating the fuel price |
+|  FR8     | Keeping track of the users' contributions and rights to discounts |
+|  FR9     | Keeping track of earned discounts and allowing users to claim them at gas stations |
+|  FR10    | Manageing accounts of the users |
 
 ## Non Functional Requirements
 
-\<Describe constraints on functional requirements>
 
 | ID        | Type (efficiency, reliability, ..)           | Description  | Refers to |
 | ------------- |:-------------:| :-----:| -----:|
-|  NFR1     |   |  | |
-|  NFR2     | |  | |
-|  NFR3     | | | |
-
+|  NFR1     | Portability | The app should be available for versions of Android > 5.0 and IOS > 4 | All FR |
+|  NFR2     | Portability | The web version should work on the latest version of Chrome, Firefox, Safari, Edge and Opera | All FR |
+|  NFR3     | Usability | The app should be intuitive to use and require no more than 5 or 6 help frames for an average smartphone user | All FR |
+|  NFR4     | Usability(domain) | Core functions(search for gas station) should be done with 1-2 clicks because its used in a possibly moving car and should not distract too much | FR1, FR2 |
+|  NFR5     | Performance | The search function should take no more that 2-3 seconds to display the first results and other function no more than 0.5 sec | All FR |
 
 # Use case diagram and use cases
 
 
 ## Use case diagram
-\<define here UML Use case diagram UCD summarizing all use cases, and their relationships>
+
 ```plantuml
 @startuml
 left to right direction
@@ -100,7 +118,7 @@ actor Administrator as h
 (Navigate user to a chosen gas station) as FR4
 (Create an account) as FR5
 (Add a gas station to the list) as FR6
-(Report a wrong or missing information) as FR7
+(Updating the fuel price) as FR7
 (Use discounts) as FR8
 (Define discounts) as FR9
 (Managing user accounts) as FR10
@@ -108,6 +126,7 @@ actor Administrator as h
 (User Login) as FR12
 (User Reset Passoword) as FR13
 (User Change Passoword) as FR14
+(Authenticatig the user) as FR15
 
 d -- FR1
 d -- FR2
@@ -120,6 +139,8 @@ d -- FR11
 d -- FR12
 d -- FR13
 d -- FR14
+d -- FR15
+
 
 FR1 .> FR3 : include
 FR2 .> FR3 : include
@@ -131,6 +152,8 @@ a -- FR9
 a -- FR12
 a -- FR13
 a -- FR14
+a -- FR15
+
 
 g -- FR3
 g -- FR4
@@ -138,7 +161,7 @@ g -- FR4
 h -- FR10
 @enduml
 ```
-\<next describe here each use case in the UCD>
+
 ### Use case 1, UC1 - FR1, FR2, FR3 Selecting the most suitable gas station ( location and the cheapest fuel )
 | Actors Involved        | Driver, GoogleMaps |
 | ------------- |:-------------:| 
@@ -153,35 +176,35 @@ h -- FR10
 | ------------- |:-------------:| 
 |  Precondition     | Driver Location L exists, Gas Station G exists |  
 |  Post condition     | L== G.location |
-|  Nominal Scenario     | The application gives the directions that the driver has to follow to arrive at the gas station selected | 
-|  Variants     | There are not good internet connection |
+|  Nominal Scenario     | The GoogleMap gives the directions that the driver has to follow to arrive at the selected gas station | 
+|  Variants     | Internet connection unstable |
 
 ### Use Case 3, UC3 - FR5 Authenticatig the users 
 
 | Actors Involved        | Driver, Gas Station Administrator |
 | ------------- |:-------------:| 
-|  Precondition     | Driver/ Gas Station Administrator account does not exist |  
+|  Precondition     | Driver/Gas Station Administrator account does not exist |  
 |  Post condition     | Their respective accounts exists |
-|  Nominal Scenario     | User interts valid user name, email, phone number, pasword and specify if they are drivers or gas station administrator | 
-|  Variants     | Email is already used or not valid, forgot the pasword |
+|  Nominal Scenario     | User enter valid user name, email, phone number, pasword and application detects if the user is driver or gas station administrator | 
+|  Variants     | Email/Mobile  is not valid, forgot the password |
 
 ### Use Case 4, UC4 - FR6 Adding a gas station to the list 
 
 | Actors Involved        | Driver, Gas Station Administrator |
 | ------------- |:-------------:| 
 |  Precondition     | Gas Station does not exist |  
-|  Post condition     | Gas Station exists |
-|  Nominal Scenario     | User adds a Gas Station which is not in the application | 
-|  Variants     | Gas Station is already in the application |
+|  Post condition     | Gas Station exists in the real world but is not on the GoogleMaps |
+|  Nominal Scenario     | User adds a Gas Station which is not on the GoogleMaps | 
+|  Variants     | Gas Station is already added in the application |
 
-### Use Case 5, UC5 - FR7 Reporting a wrong or missing information
+### Use Case 5, UC5 - FR7 Updating the fuel price
 
 | Actors Involved        | Driver, Gas Station Administrator |
 | ------------- |:-------------:| 
 |  Precondition     | Fuel F exists, Gas Station G exists |  
 |  Post condition     | G.fuel == F | F.oldPrice != F.newPrice |
-|  Nominal Scenario     | Driver selects the wrong fuel and the gas station where the fuel is and updates its value, Users validate the information | 
-|  Variants     | Wrong information |
+|  Nominal Scenario     | Driver selects the gas station and checks if the price is correct or not, If It's not update it | 
+|  Variants     | Selecting the wrong Gas Station |
 
 ### Use Case 6, UC6 - FR8 Keeping track of the users contributions and rights to discounts
 
@@ -196,12 +219,12 @@ h -- FR10
 
 | Actors Involved        | Driver, Gas Station Administrator |
 | ------------- |:-------------:| 
-|  Precondition     | Driver checks out for discounts in the map |  
+|  Precondition     | Driver checks out for discounts in the Google Maps |  
 |  Post condition     | Driver can use the discounts |
 |  Nominal Scenario     | The Gas Station Administrator validate discount and minimize the price | 
 |  Variants     | The discount has been used before or discount expired |
 
-### Use Case 8, UC8 - FR10  Manage accounts of the users |
+### Use Case 8, UC8 - FR10  Manage accounts of the users 
 
 | Actors Involved        | Administrator |
 | ------------- |:-------------:| 
@@ -210,18 +233,19 @@ h -- FR10
 |  Nominal Scenario     | The Administrator of the application checks if there are wrong information and corrects it | 
 |  Variants     | Everything is correct |
 
+### Use Case 9, UC9 - FR11  Writting Review 
+
+| Actors Involved        | Driver |
+| ------------- |:-------------:| 
+|  Precondition     | User login in the application |  
+|  Post condition     | Select the gas station from Google maps |
+|  Nominal Scenario     | The user write feedback about the gas station and rate its service | 
+|  Variants     | User cannot save because of bad internet connection  |
+
 
 # Relevant scenarios
 
 ## Scenario 1 - Select Gas Station
-
-\<describe here scenarios instances of UC1>
-
-\<a scenario is a sequence of steps that corresponds to a particular execution of one use case>
-
-\<a scenario is a more formal description of a story>
-
-\<only relevant scenarios should be described>
 
 | Scenario 1 | Corresponds to UC1 |
 | ------------- |:-------------:| 
@@ -229,7 +253,7 @@ h -- FR10
 |  Precondition     | distance(G, D) <= D.range |
 |  Post condition     | Driver selects a Gas Station |
 | Step#        | Step description |
-|  1     | GoogleMaps shows all the gas station inside the driver's range |  
+|  1     | Google Maps shows all the gas station inside the driver's range |  
 |  2     | Driver selects the best gas station choices and compares fuel prices |
 |  3     | Driver selects the desired gas station |
 
@@ -244,7 +268,7 @@ h -- FR10
 | Postcondition | U creates the account |
 | Step#        | Step description |
 |  1     | User goes to EzGas application |  
-|  2     | User registers as an user with an user name, email, phone number and pasword |
+|  2     | User registers as an user with an user name, email, phone number and password |
 |  3     | User's email is validated |
 |  4     | User creates an account |
 
@@ -266,18 +290,18 @@ h -- FR10
 | Scenario 3 | Corresponds to UC4 |
 | ------------- |:-------------:| 
 | Description | Driver D adds a Gas Station G to the list |
-|  Precondition     | Gas Station is not in the map |
-|  Post condition     | Gas Station is not in the map |
+|  Precondition     | Gas Station is not in the Google maps |
+|  Post condition     | Gas Station is not in the Google maps |
 | Step#        | Step description |
-|  1     | Driver sees a Gas Station that is not in the application map |  
+|  1     | Driver sees a Gas Station that is not in the application Google maps |  
 |  2     | Driver logs in the application |
 |  3     | Driver adds the Gas Station |
 |  4     | Driver saves the information |
 
 
-## Scenario 4 - Update fuel price
+## Scenario 4 - Updating the fuel price
 
-### Scenario 4.1 - Correct information
+### Scenario 4.1 - Valid price
 
 | Scenario ID: SC4.1        | Corresponds to UC5 |
 | ------------- |:-------------| 
@@ -285,13 +309,13 @@ h -- FR10
 | Precondition | D.fuelPrice != F.price |
 | Postcondition | D.fuelPrice == F.price && D.goodInfo ++ |
 | Step#        | Step description |
-|  1     | Driver logs in the application |  
+|  1     | Driver login into the application |  
 |  2     | Driver selects the wrong fuel and the gas station where it is |
-|  3     | Driver changes the price and saves it |
-|  4     | Users check if it is correct, validate it and Driver obtains a point of good information |
-|  5     | If Driver has iqual or more 10 points of good information, Driver becomes to be a trusted user |
+|  3     | Driver update the price |
+|  4     | Users check if the price is correct |
+|  5     | If the price reaches to 10 votes then It's valid price |
 
-### Scenario 4.2 - Incorrect information
+### Scenario 4.2 - Invalid price
 
 | Scenario ID: SC4.2        | Corresponds to UC5 |
 | ------------- |:-------------| 
@@ -299,11 +323,11 @@ h -- FR10
 | Precondition | D.fuelPrice != F.price |
 | Postcondition | D.fuelPrice != F.price && D.wrongInfo ++ |
 | Step#        | Step description |
-|  1     | Driver logs in the application |  
+|  1     | Driver login into the application |  
 |  2     | Driver selects the wrong fuel and the gas station where it is |
-|  3     | Driver changes the price and saves it |
-|  4     | Users check if it is correct, don't validate it and Diver obtains a point of wrong information|
-|  5     | If Driver has more or equal 5 negative points, it will be baned |
+|  3     | Driver updates the price |
+|  4     | Users check the fuel price, if It's correct they don't change it, but if it is wrong driver update it|
+|  5     | If the price does not reache to 10 votes then it will not be updated |
 
 ## Scenario 5 - Create discount
 
@@ -311,10 +335,10 @@ h -- FR10
 | ------------- |:-------------| 
 | Description | Create a discount |
 | Precondition | Driver gives right information |
-| Postcondition | Gas Station Administrator creates discounts |
+| Postcondition | Gas Station Administrator creates discounts to all users|
 | Step#        | Step description |
-|  1     | Gas Station Administrator validates Driver's information |  
-|  2     | Gas Station Administrator creates discounts |
+|  1     | Gas Station Administrator defines the percentage of discount, type of fuel and the expired date|  
+|  2     | The discount will be show to all users on the Google maps if they filter|
 
 ## Scenario 6 - Use discount
 
@@ -326,14 +350,11 @@ h -- FR10
 | Step#        | Step description |
 |  1     | Driver shows discount's QR code |  
 |  2     | Gas Station Administrator checks if it is valid |
-|  3     | Gas Station Administrator reduces Driver's price and makes the discount disable |
+|  3     | Gas Station Administrator reduces Driver's price and makes the discount used |
 
 
 # Glossary
 
-\<use UML class diagram to define important concepts in the domain of the system, and their relationships> 
-
-\<concepts are used consistently all over the document, ex in use cases, requirements etc>
 
 ```plantuml
 @startuml
@@ -447,10 +468,138 @@ Report "1.." - "0.." GasStation : Add/Update >
 ```
 
 # System Design
-\<describe here system design>
 
-\<must be consistent with Context diagram>
+Since EzGas Application is meant to be a software application, we focus our attention on the software part rather than the hardware part.
+The goal here is to describe in a clear and complete manner the system behavior and all its functionalities performed, through UML Class Diagram notation.
+
+```plantuml
+@startuml
+
+scale 200 width
+scale 700 height
+left to right direction
+
+class Smartphone {
+
++turnGPSon()
++turnGPSoff()
++getPosition()
++readQRCode()
++getSMSauthentication()
+}
+
+class PC {
+
++turnWebClientOn()
++turnWebClientOff()
++getPosition()
+
+}
+
+class EZGasServer {
+
++createSystemAdministrator()
++createNewMemeber()
++updateMemberInformation()
++deleteMember()
++createGasStationAdmin()
++deletGasStatioAdmin()
++getNewFuelStationName()
++getNewFuelStationPrice()
++getNewFuelStationPosition()
++updateExistingFuelStationName()
++updateExistingFuelStationPrice()
++deleteExistingFuelStation()
++createTrustedMember()
++recoverPassword()
++manageQRCode()
++manageUserDiscount()
+
+}
+
+class EZGasApp {
+
++open()
++close()
++signIn()
++signUp()
++logIn()
++logOut()
++deleteAccount()
++getPositionViaGPS()
++getPositionViaGMaps()
++sendPosition()
++getPrice()
++sendPrice()
++searchGasStationForPrice()
++searchGasStationForFuel()
++searchGasStationForRadius()
++getUserDiscount()
++generateQRCode()
++navigateUsertoGasStation()
+
+}
+
+class GoogleServer {
+
++elaborateInformation()
++sendPosition()
+
+}
+
+EZGasApp o-- "1..*" Smartphone
+EZGasApp o-- "1..*" PC
+EZGasApp o-- "1" EZGasServer
+EZGasApp -- "1..*" GoogleServer
+Smartphone -- "1..*" GoogleServer
+PC -- "1..*" GoogleServer
+
+@enduml
+```
+
 
 # Deployment Diagram 
 
-\<describe here deployment diagram >
+Deployment Diagram, represented here, aims to show conceptual entities (applications and services) defined before from another point of view, based on UML Deployment Diagram notation.
+
+```plantuml
+@startuml
+
+scale 200 width
+scale 700 height
+
+node Computer {
+ rectangle "Web Client" <<Application>> as ex1
+ rectangle "QR Code Reader" <<Application>> as ex2
+ rectangle "Maps" <<Application>> as ex3
+}
+
+
+node node3 as "EZGas Management Server" {
+ rectangle "Authentication" <<Service>> as ex4
+ rectangle "Storage" <<Service>> as ex5
+ rectangle "Configuration" <<Service>> as ex16
+}
+
+node Smartphone {
+ rectangle "Web Client" <<Application>> as ex7
+ rectangle "QR Code Reader" <<Application>> as ex8
+ rectangle "GPS" <<Service>> as ex9
+ rectangle "Maps" <<Application>> as ex10
+}
+
+Computer -- node3 : HTTP
+Smartphone -- node3 : HTTP
+
+@enduml
+```
+
+| Node        | Linked to node           | Description  |
+| ------------- |:-------------:| -----:|
+| Computer      |  EZGas Management Server| Connection is established via a HTTP logical link |
+| Smartphone | EZGas Management Server  | Connection is established via a HTTP logical link |
+
+| Stereotype (type of entity)    | Description   |
+| ------------- |-------------:|
+| Application   | A group of services visible to end-user |
+| service       | An end-user or middleware service      |
