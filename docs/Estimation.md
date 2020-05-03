@@ -27,8 +27,8 @@ Version:
 
 |             | Estimate                        |             
 | ----------- | ------------------------------- |  
-| NC =  Estimated number of classes to be developed   |        10                     |             
-|  A = Estimated average size per class, in LOC       |              25              | 
+| NC =  Estimated number of classes to be developed   |        15                     |             
+|  A = Estimated average size per class, in LOC       |              50              | 
 | S = Estimated size of project, in LOC (= NC * A) |250 |
 | E = Estimated effort, in person hours (here use productivity 10 LOC per person hour)  |                  960 hours : each person 24 hours, 4 persons in the team, 240*4 = 960                    |   
 | C = Estimated cost, in euro (here use 1 person hour cost = 30 euro) |2880 euro| 
