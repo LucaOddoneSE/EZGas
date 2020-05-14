@@ -110,6 +110,8 @@ public class UserServiceimpl implements UserService {
 			if(user.getEmail().equals(email)) {
 				System.out.println("Found User! Going to logIn!");
 				loginDto = new LoginDto(user.getUserId(),user.getUserName(),"token",user.getEmail(),user.getReputation());
+				if(user.getAdmin())
+					loginDto.setAdmin(true);
 			}
 		}
 		else
