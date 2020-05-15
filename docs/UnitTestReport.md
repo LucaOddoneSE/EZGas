@@ -140,8 +140,8 @@ Version: 1
 |  Number of Input parameters        |    0 to 1       |
 |          |     2 and above      |
 |     Type of parameters passed to method     |     Integer     |
-|          |     All other types      |
-
+|    sign of parameters passed      |     Positive      |
+|          |     Negative      |
 
 **Boundaries**:
 
@@ -327,6 +327,110 @@ Version: 1
 |0|GasStationDto|I|saveGasStation() --> Error!||
 |>1|GasStationDto|I|saveGasStation(GasStationDto gasStationDto1, GasStationDto gasStationDto2) --> Exception||
 |1|All other types|I|saveUser(Integer gasStationDto) --> Exception||
+
+
+### **Class *UserServiceimpl* - method *deleteGasStation(Integer gasStationId)***
+
+**Criteria for method *deleteGasStation(Integer gasStationId)*:**
+	
+
+ - Number of Input parameters 
+ - Type of parameters passed to method
+ - sign of parameters passed 
+
+**Predicates for method *deleteGasStation(Integer gasStationId)*:**
+
+| Criteria | Predicate |
+| -------- | --------- |
+|  Number of Input parameters        |    0 to 1       |
+|          |     2 and above      |
+|     Type of parameters passed to method     |     Integer     |
+|          |     All other types      |
+|    sign of parameters passed      |     Positive      |
+|         |     Negative      |
+
+
+**Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | --------------- |
+|     Number of Input parameters     |         1        |
+|      Type of parameters passed to method    |        Integer         |
+|sign of gasStationId|Positive|
+
+
+**Combination of predicates**:
+
+
+| Number of Input parameters | Type of parameters passed to method | sign of userId | Valid / Invalid | Description of the test case | JUnit test case |
+|-------|-------|-------|-------|-------|-------|
+|1|Int|Positive|V|deleteGasStation(23) --> Deletes the GasStation with the given Id from the database||
+|1|Int|Negative|I|deleteGasStation(-23) --> Exception||
+|1|char|-|I|deleteGasStation('A') --> Exception||
+|1|float|-|I|deleteGasStation(1.2) --> Exception||
+|1|All other types|-|I|deleteGasStation("1.2") --> Exception||
+|0|-|-|I|deleteGasStation() --> Exception||
+|1<|-|-|I|deleteGasStation(23, 65) --> Exception||
+
+
+
+### **Class *UserServiceimpl* - method *getGasStationsByGasolineType(String gasolinetype)***
+
+**Criteria for method *getGasStationsByGasolineType(String gasolinetype)*:**
+	
+
+ - Number of Input parameters 
+ - Type of parameter passed to method
+ - Correct format 
+ 
+ **Predicates for method *getGasStationsByGasolineType(String gasolinetype)*:**
+
+| Criteria | Predicate |
+| -------- | --------- |
+|  Number of Input parameters        |    0 to 1       |
+|          |     2 and above      |
+|     Type of parameters passed to method     |     String     |
+|          |     All other types      |
+
+
+**Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | --------------- |
+|     Number of Input parameters     |         1        |
+|      Type of parameters passed to method    |        String         |
+
+
+
+**Combination of predicates**:
+
+
+| Number of Input parameters | Type of parameters passed to method | Valid / Invalid | Description of the test case | JUnit test case |
+|-------|-------|-------|-------|-------|-------|
+|1|String|V|getGasStationsByGasolineType("Diesel") --> Returns all gas stations that provide this gasoline type||
+|0|-|V|getGasStationsByGasolineType() --> Return Empty ArrayList||
+|1|String|I|getGasStationsByGasolineType(23) --> Exception||
+|1|Int||I|getGasStationsByGasolineType(-23) --> Exception||
+|1|float|I|getGasStationsByGasolineType(1.2) --> Exception||
+|1|All other types|I|getGasStationsByGasolineType("1.2") --> Exception||
+|1<|-|I|getGasStationsByGasolineType(23, 65) --> Exception||
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # White Box Unit Tests
