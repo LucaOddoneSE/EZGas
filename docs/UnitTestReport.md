@@ -199,15 +199,15 @@ Version: 1
 |1|All other types|I|login(Integer credentials) --> Exception||
 
 
- ### **Class *UserServiceimpl* - method *increaseUserReputation(Integer userId)***
+ ### **Class *UserServiceimpl* - method *increaseUserReputation(Integer userId) , decreaseUserReputation(Integer userId)***
 
-**Criteria for method *increaseUserReputation(Integer userId)*:**
+**Criteria for method *increaseUserReputation(Integer userId) , decreaseUserReputation(Integer userId)*:**
 
  - Number of Input parameters 
  - Type of parameters passed to method
  - sign of parameters passed 
 
-**Predicates for method *increaseUserReputation(Integer userId)*:**
+**Predicates for method *increaseUserReputation(Integer userId) , decreaseUserReputation(Integer userId)*:**
 
 | Criteria | Predicate |
 | -------- | --------- |
