@@ -10,7 +10,7 @@ Version: 1
 
 - [Black Box Unit Tests](#black-box-unit-tests)
 
-
+- [UserServiceimpl](#UserServiceimpl)
 
 
 - [White Box Unit Tests](#white-box-unit-tests)
@@ -26,15 +26,15 @@ Version: 1
     the set up of all Spring components
     >
 
- ### **Class *class_name* - method *name***
+ ### **Class *UserServiceimpl* - method *getUserById***
 
 
 
-**Criteria for method *name*:**
+**Criteria for method *getUserById*:**
 	
 
- - 
- - 
+ - Number of Input parameters
+ - Type of parameters passed to method
 
 
 
