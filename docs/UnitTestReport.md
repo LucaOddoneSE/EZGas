@@ -525,6 +525,55 @@ Version: 1
 |2|Double|(lat > -90 || lat < 90) || (lon > -180 || lon < 180)|Mix|Null|Null|I|getGasStationsWithCoordinates(double lat, double lon) --> Exception ||
 
 
+
+### **Class *UserServiceimpl* - method *getGasStationsWithCoordinates(double lat, double lon, String gasolinetype,String carsharing)***
+
+**Criteria for method *getGasStationsWithCoordinates(double lat, double lon, String gasolinetype,String carsharing)*:**
+	
+
+ - Number of Input parameters 
+ - Type of parameter passed to method
+ - Gasolinetype
+ 
+
+
+ **Predicates for method *getGasStationsWithoutCoordinates(String gasolinetype,String carsharing)*:**
+
+| Criteria | Predicate |
+| -------- | --------- |
+|  Number of Input parameters        |    0 to 2       |
+|          |     3 and above      |
+|     Type of parameters passed to method     |      String    |
+|          |     All other types      |
+|    Gasolinetype      |   one of these:  diesel,methane,gas,super,superplus      |
+|          |    Not supported     |
+|          |    Null     |
+|          |  <>  Null     |
+|    carsharing     |     <> Null      |
+|         |      Null      |
+
+**Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | --------------- |
+|     Number of Input parameters     |         2        |
+|      Type of parameters passed to method    |       String         |
+|    Gasolinetype      |     diesel,methane,gas,super,superplus      |
+|    carsharing     |     <> Null      |
+
+
+**Combination of predicates**:
+
+
+| Number of Input parameters | Type of parameters passed to method | Gasolinetype|carsharing| Valid / Invalid | Description of the test case | JUnit test case |
+|-------|-------|-------|-------|-------|-------|
+|2|String|One of supported types|<>Null|V|getGasStationsWithoutCoordinates(String gasolinetype,String carsharing) --> Valid ||
+|2|String|<> One of supported types|<>Null|I|getGasStationsWithoutCoordinates(String gasolinetype,String carsharing) --> Exception, Gas Type not supported! ||
+|1|String|One of supported types|Null|I|getGasStationsWithoutCoordinates(String gasolinetype,Null) --> Exception ||
+|1|String|Null|<>Null|I|getGasStationsWithoutCoordinates(Null,String carsharing) --> Exception ||
+|0|String|Null|Null|I|getGasStationsWithoutCoordinates() --> Exception ||
+|>2|String|One of supported types|<>Null|I|getGasStationsWithoutCoordinates(String gasolinetype,String carsharing,String X) --> Exception ||
+
 # White Box Unit Tests
 
 ### Test cases definition
