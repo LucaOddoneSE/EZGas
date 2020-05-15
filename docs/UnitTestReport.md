@@ -10,8 +10,8 @@ Version: 1
 
 - [Black Box Unit Tests](#black-box-unit-tests)
 
-- [UserServiceimpl](#UserServiceimpl)
-
+- [UserServiceimpl Class](#UserServiceimpl-Class)
+- [GasStationServiceimpl Class](#GasStationServiceimpl-Class)
 
 - [White Box Unit Tests](#white-box-unit-tests)
 
@@ -25,6 +25,8 @@ Version: 1
     <JUnit test classes must be in src/test/java/it/polito/ezgas   You find here, and you can use,  class EZGasApplicationTests.java that is executed before 
     the set up of all Spring components
     >
+
+ ## UserServiceimpl Class
 
  ### **Class *UserServiceimpl* - method *getUserById(Integer userId)***
 
@@ -71,13 +73,13 @@ Version: 1
 
 | Number of Input parameters | Type of parameters passed to method | sign of userId | Valid / Invalid | Description of the test case | JUnit test case |
 |-------|-------|-------|-------|-------|-------|
-|1|Int|Positive|V|getUserById(Integer 23) --> valid userId||
-|1|Int|Negative|I|getUserById(Integer -23) --> Exception||
-|1|char|-|I|getUserById(Char 'A') --> Exception||
-|1|float|-|I|getUserById(Char 1.2) --> Exception||
-|1|All other types|-|I|getUserById(Char "1.2") --> Exception||
+|1|Int|Positive|V|getUserById(23) --> valid userId||
+|1|Int|Negative|I|getUserById(-23) --> Exception||
+|1|char|-|I|getUserById('A') --> Exception||
+|1|float|-|I|getUserById(1.2) --> Exception||
+|1|All other types|-|I|getUserById("1.2") --> Exception||
 |0|-|-|I|getUserById() --> Exception||
-|1<|-|-|I|getUserById(Integer 23, Integer 65) --> Exception||
+|1<|-|-|I|getUserById(23, 65) --> Exception||
 
 
 
@@ -155,13 +157,13 @@ Version: 1
 
 | Number of Input parameters | Type of parameters passed to method | sign of userId | Valid / Invalid | Description of the test case | JUnit test case |
 |-------|-------|-------|-------|-------|-------|
-|1|Int|Positive|V|deleteUser(Integer 23) --> Deletes the user with the given Id from the database||
-|1|Int|Negative|I|deleteUser(Integer -23) --> Exception||
-|1|char|-|I|deleteUser(Char 'A') --> Exception||
-|1|float|-|I|deleteUser(Char 1.2) --> Exception||
-|1|All other types|-|I|deleteUser(Char "1.2") --> Exception||
+|1|Int|Positive|V|deleteUser(23) --> Deletes the user with the given Id from the database||
+|1|Int|Negative|I|deleteUser(-23) --> Exception||
+|1|char|-|I|deleteUser('A') --> Exception||
+|1|float|-|I|deleteUser(1.2) --> Exception||
+|1|All other types|-|I|deleteUser("1.2") --> Exception||
 |0|-|-|I|deleteUser() --> Exception||
-|1<|-|-|I|deleteUser(Integer 23, Integer 65) --> Exception||
+|1<|-|-|I|deleteUser(23, 65) --> Exception||
 
 
  ### **Class *UserServiceimpl* - method *login(IdPw credentials)***
@@ -229,13 +231,69 @@ Version: 1
 
 | Number of Input parameters | Type of parameters passed to method | sign of userId | Valid / Invalid | Description of the test case | JUnit test case |
 |-------|-------|-------|-------|-------|-------|
-|1|Int|Positive|V|increaseUserReputation(Integer 23) --> Increases by 1 the user Reputation||
-|1|Int|Negative|I|increaseUserReputation(Integer -23) --> Exception||
-|1|char|-|I|increaseUserReputation(Char 'A') --> Exception||
-|1|float|-|I|increaseUserReputation(Char 1.2) --> Exception||
-|1|All other types|-|I|increaseUserReputation(Char "1.2") --> Exception||
+|1|Int|Positive|V|increaseUserReputation(23) --> Increases by 1 the user Reputation||
+|1|Int|Negative|I|increaseUserReputation(-23) --> Exception||
+|1|char|-|I|increaseUserReputation('A') --> Exception||
+|1|float|-|I|increaseUserReputation(1.2) --> Exception||
+|1|All other types|-|I|increaseUserReputation("1.2") --> Exception||
 |0|-|-|I|increaseUserReputation() --> Exception||
-|1<|-|-|I|increaseUserReputation(Integer 23, Integer 65) --> Exception||
+|1<|-|-|I|increaseUserReputation(23, 65) --> Exception||
+
+
+ ## GasStationServiceimpl Class
+
+ ### **Class *GasStationServiceimpl* - method *getGasStationById(Integer gasStationId)***
+
+
+ - Number of Input parameters for getGasStationById(Integer gasStationId)
+ - Type of parameters passed to getGasStationById(Integer gasStationId)
+ - sign of gasStationId
+
+
+
+
+
+**Predicates for method *getGasStationById(Integer gasStationId)*:**
+
+| Criteria | Predicate |
+| -------- | --------- |
+|  Number of Input parameters        |    0 to 1       |
+|          |     2 and above      |
+|     Type of parameters passed to method     |     Integer      |
+|          |     All other types      |
+|     sign of userId     |   Positive        |
+|          |     Negative      |
+|          |     Mixed      |
+
+
+
+
+
+**Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | --------------- |
+|     Number of Input parameters     |         1        |
+|      Type of parameters passed to method    |        Integer         |
+|sign of GasStationId|Positive|
+
+
+**Combination of predicates**:
+
+
+| Number of Input parameters | Type of parameters passed to method | sign of userId | Valid / Invalid | Description of the test case | JUnit test case |
+|-------|-------|-------|-------|-------|-------|
+|1|Int|Positive|V|getGasStationById(23) --> valid GasStationId||
+|1|Int|Positive|V|getGasStationById(455) --> Null, Not found GasStaion with this Id||
+|1|Int|Negative|I|getGasStationById(-23) --> Exception||
+|1|char|-|I|getGasStationById('A') --> Exception||
+|1|float|-|I|getGasStationById(1.2) --> Exception||
+|1|All other types|-|I|getGasStationById("1.2") --> Exception||
+|0|-|-|I|getGasStationById() --> Exception||
+|1<|-|-|I|getGasStationById(23,65) --> Exception||
+
+
+
 
 
 # White Box Unit Tests
