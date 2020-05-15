@@ -112,7 +112,7 @@ public class UserServiceimpl implements UserService {
 				counter--;
 			}
 			user = iter.next();
-			if(user.getEmail().equals(email)) {
+			if(user.getEmail().equals(email) && user.getPassword().equals(password)) {
 				System.out.println("Found User! Going to logIn!");
 				loginDto = new LoginDto(user.getUserId(),user.getUserName(),"token",user.getEmail(),user.getReputation());
 				if(user.getAdmin())
