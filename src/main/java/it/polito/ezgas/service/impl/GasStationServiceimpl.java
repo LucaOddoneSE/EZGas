@@ -57,7 +57,7 @@ public class GasStationServiceimpl implements GasStationService {
 		  case "diesel":
 			  gs = gs.stream()
 				.filter( (g) -> g.getHasDiesel())
-				//.sorted( (g1,g2) -> g1.getDieselPrice() - g2.getDieselPrice() )
+				.sorted( (g1,g2) -> Double.compare(g1.getDieselPrice(), g2.getDieselPrice()) )
 				.collect(Collectors.toList());
 		    break;
 		  case "methane":
