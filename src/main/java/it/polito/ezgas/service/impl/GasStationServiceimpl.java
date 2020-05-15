@@ -89,53 +89,60 @@ public class GasStationServiceimpl implements GasStationService {
 
 	@Override
 	public List<GasStationDto> getGasStationsByProximity(double lat, double lon) throws GPSDataException {
-		return getAllGasStations().stream()
-			.filter( (g) -> Haversine.distance(lat, lon, g.getLat(), g.getLon() ) < 1)
-			.collect(Collectors.toList());
+		if((lat < -90 || lat > 90) || (lon < -90 || lon > 90)) {
+			throw new GPSDataException("coordinates out of bounds");
+		}else {
+			return getAllGasStations().stream()
+				.filter( (g) -> Haversine.distance(lat, lon, g.getLat(), g.getLon() ) < 1)
+				.collect(Collectors.toList());
 			}
-
+		}
 	@Override
 	public List<GasStationDto> getGasStationsWithCoordinates(double lat, double lon, String gasolinetype,
 			String carsharing) throws InvalidGasTypeException, GPSDataException {
-		List<GasStationDto> gs = getAllGasStations().stream()
-				.filter( (g) -> Haversine.distance(lat, lon, g.getLat(), g.getLon() ) < 1)
-				.collect(Collectors.toList());
-		if(carsharing != null) {
-			gs = gs.stream()
-					.filter( (g) -> g.getCarSharing().equals(carsharing))
+		if((lat < -90 || lat > 90) || (lon < -90 || lon > 90)) {
+			throw new GPSDataException("coordinates out of bounds");
+		}else {
+			List<GasStationDto> gs = getAllGasStations().stream()
+					.filter( (g) -> Haversine.distance(lat, lon, g.getLat(), g.getLon() ) < 1)
 					.collect(Collectors.toList());
+			if(carsharing != null) {
+				gs = gs.stream()
+						.filter( (g) -> g.getCarSharing().equals(carsharing))
+						.collect(Collectors.toList());
+			}
+			switch(gasolinetype) {
+			  case "diesel":
+				  gs = gs.stream()
+					.filter( (g) -> g.getHasDiesel())
+					.collect(Collectors.toList());
+			    break;
+			  case "methane":
+				  gs = gs.stream()
+					.filter( (g) -> g.getHasMethane())
+					.collect(Collectors.toList());
+			    break;
+			  case "gas":
+				  gs = gs.stream()
+					.filter( (g) -> g.getHasGas())
+					.collect(Collectors.toList());
+			    break;
+			  case "super":
+				  gs = gs.stream()
+					.filter( (g) -> g.getHasSuper())
+					.collect(Collectors.toList());
+			    break;
+			  case "superplus":
+				  gs = gs.stream()
+					.filter( (g) -> g.getHasSuperPlus())
+					.collect(Collectors.toList());
+			    break;
+			  default:
+				  if(gasolinetype != null)
+				  throw new InvalidGasTypeException("Gas Type not supported");
+			}
+			return gs;
 		}
-		switch(gasolinetype) {
-		  case "diesel":
-			  gs = gs.stream()
-				.filter( (g) -> g.getHasDiesel())
-				.collect(Collectors.toList());
-		    break;
-		  case "methane":
-			  gs = gs.stream()
-				.filter( (g) -> g.getHasMethane())
-				.collect(Collectors.toList());
-		    break;
-		  case "gas":
-			  gs = gs.stream()
-				.filter( (g) -> g.getHasGas())
-				.collect(Collectors.toList());
-		    break;
-		  case "super":
-			  gs = gs.stream()
-				.filter( (g) -> g.getHasSuper())
-				.collect(Collectors.toList());
-		    break;
-		  case "superplus":
-			  gs = gs.stream()
-				.filter( (g) -> g.getHasSuperPlus())
-				.collect(Collectors.toList());
-		    break;
-		  default:
-			  if(gasolinetype != null)
-			  throw new InvalidGasTypeException("Gas Type not supported");
-		}
-		return gs;
 	}
 
 	@Override
