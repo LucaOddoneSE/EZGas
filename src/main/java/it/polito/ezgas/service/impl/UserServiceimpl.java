@@ -88,16 +88,21 @@ public class UserServiceimpl implements UserService {
 	public LoginDto login(IdPw credentials) throws InvalidLoginDataException {
 		int counter = 0;
 		String email;
+		String password;
 		User user;
 		Iterator<User> iter;
 		LoginDto loginDto = null;
 		if(credentials == null)
 			throw new InvalidLoginDataException("Error! Passed null credentials to login() method");
+		if(credentials.getUser() == null || credentials.getPw() == null)
+			throw new InvalidLoginDataException("Error! Passed null credentials to login() method");
 		email = credentials.getUser();
+		password = credentials.getPw();
 		if( userRepository.findAll().size() != 0) {
 			iter = userRepository.findAll().iterator();
 			while( iter.hasNext() ) {
-				if(iter.next().getEmail().equals(email))
+				user = iter.next();
+				if(user.getEmail().equals(email) && user.getPassword().equals(password))
 					break;
 				counter++;
 			}
