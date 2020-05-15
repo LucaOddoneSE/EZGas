@@ -63,21 +63,25 @@ public class GasStationServiceimpl implements GasStationService {
 		  case "methane":
 			  gs = gs.stream()
 				.filter( (g) -> g.getHasMethane())
+				.sorted( (g1,g2) -> Double.compare(g1.getMethanePrice(), g2.getMethanePrice()) )
 				.collect(Collectors.toList());
 		    break;
 		  case "gas":
 			  gs = gs.stream()
 				.filter( (g) -> g.getHasGas())
+				.sorted( (g1,g2) -> Double.compare(g1.getGasPrice(), g2.getGasPrice()) )
 				.collect(Collectors.toList());
 		    break;
 		  case "super":
 			  gs = gs.stream()
 				.filter( (g) -> g.getHasSuper())
+				.sorted( (g1,g2) -> Double.compare(g1.getSuperPrice(), g2.getSuperPrice()) )
 				.collect(Collectors.toList());
 		    break;
 		  case "superplus":
 			  gs = gs.stream()
 				.filter( (g) -> g.getHasSuperPlus())
+				.sorted( (g1,g2) -> Double.compare(g1.getSuperPlusPrice(), g2.getSuperPlusPrice()) )
 				.collect(Collectors.toList());
 		    break;
 		  default:
