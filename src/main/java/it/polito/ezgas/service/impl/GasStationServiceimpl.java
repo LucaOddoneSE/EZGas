@@ -93,7 +93,7 @@ public class GasStationServiceimpl implements GasStationService {
 
 	@Override
 	public List<GasStationDto> getGasStationsByProximity(double lat, double lon) throws GPSDataException {
-		if((lat < -90 || lat > 90) || (lon < -90 || lon > 90)) {
+		if((lat < -90 || lat > 90) || (lon < -180 || lon > 180)) {
 			throw new GPSDataException("coordinates out of bounds");
 		}else {
 			return getAllGasStations().stream()
@@ -104,7 +104,7 @@ public class GasStationServiceimpl implements GasStationService {
 	@Override
 	public List<GasStationDto> getGasStationsWithCoordinates(double lat, double lon, String gasolinetype,
 			String carsharing) throws InvalidGasTypeException, GPSDataException {
-		if((lat < -90 || lat > 90) || (lon < -90 || lon > 90)) {
+		if((lat < -90 || lat > 90) || (lon < -180 || lon > 180)) {
 			throw new GPSDataException("coordinates out of bounds");
 		}else {
 			List<GasStationDto> gs = getAllGasStations().stream()
