@@ -1,8 +1,11 @@
 package it.polito.ezgas.converter;
 
+import org.springframework.stereotype.Component;
+
 import it.polito.ezgas.dto.UserDto;
 import it.polito.ezgas.entity.User;
 
+@Component
 public class UserConverter {
 	
 	private User user;

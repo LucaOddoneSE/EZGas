@@ -25,7 +25,8 @@ public class UserServiceimpl implements UserService {
 	
 	@Autowired
 	private UserRepository userRepository;
-	private UserConverter userConverter = new UserConverter();
+	@Autowired
+	private UserConverter userConverter;
 
 	@Override
 	public UserDto getUserById(Integer userId) throws InvalidUserException {
@@ -43,6 +44,14 @@ public class UserServiceimpl implements UserService {
 
 	@Override
 	public UserDto saveUser(UserDto userDto) {
+		if(userDto == null) {
+			System.out.println("Error! you want to save in the database a null object User");
+			return null;
+		}
+		if(userDto.getReputation() == null)
+			userDto.setReputation(0);
+		if(userDto.getAdmin() == null || userDto.getAdmin() == false)
+			userDto.setAdmin(false);
 		userRepository.save(userConverter.toUser(userDto));
 		System.out.println("User Correctly saved!");
 		return userDto;
@@ -50,25 +59,24 @@ public class UserServiceimpl implements UserService {
 
 	@Override
 	public List<UserDto> getAllUsers() {
+		User user;
 		Iterator<User> iter;
-		List<User> listUsers = new ArrayList<>();
 		List<UserDto> listUsersDto = new ArrayList<>();
 		if(userRepository.findAll().size() == 0)
 			return listUsersDto;
-		userRepository.findAll().forEach(listUsers::add);
-		iter = listUsers.iterator();
+		iter = userRepository.findAll().iterator();
 		while(iter.hasNext()) {
 			listUsersDto.add(userConverter.toUserDto(iter.next()));
 		}
 		System.out.println("List of all Users:");
-		iter = listUsers.iterator();
+		iter = userRepository.findAll().iterator();
 		while(iter.hasNext()) {
-			
-			System.out.println( iter.next().getUserId().toString() + " " +
-					            iter.next().getUserName().toString() + " " +
-					            iter.next().getPassword().toString() + " " +
-					            iter.next().getEmail().toString() + " " +
-					            iter.next().getReputation().toString() );
+			user = iter.next();
+			System.out.println( user.getUserId().toString() + " " +
+					            user.getUserName().toString() + " " +
+					            user.getPassword().toString() + " " +
+					            user.getEmail().toString() + " " +
+					            user.getReputation().toString() );
 		}
 		return listUsersDto;
 	}
@@ -81,12 +89,13 @@ public class UserServiceimpl implements UserService {
 			System.out.println("User successfully deleted!");
 			return true;
 		}
-		return false;
+		return null;
 	}
 
 	@Override
 	public LoginDto login(IdPw credentials) throws InvalidLoginDataException {
-
+		
+		/*
 		String email;
 		LoginDto loginDto = null;
 		if(credentials == null)
@@ -110,6 +119,52 @@ public class UserServiceimpl implements UserService {
 		else
 			throw new InvalidLoginDataException("Error! No User exists yet");
 		return loginDto;
+		*/
+        
+		
+		int counter = 0;
+		String email;
+		String password;
+		User user;
+		Iterator<User> iter;
+		LoginDto loginDto = null;
+		if(credentials == null)
+			throw new InvalidLoginDataException("Error! Passed null credentials to login() method");
+		if(credentials.getUser() == null || credentials.getPw() == null)
+			throw new InvalidLoginDataException("Error! Passed null credentials to login() method");
+		email = credentials.getUser();
+		password = credentials.getPw();
+		if( userRepository.findAll().size() != 0) {
+			iter = userRepository.findAll().iterator();
+			while( iter.hasNext() ) {
+				user = iter.next();
+				System.out.println(user.getEmail() + " " + user.getPassword());
+				if(user.getEmail().equals(email) && user.getPassword().equals(password)) {
+					break;
+				}
+				counter++;
+			}
+			if(counter == userRepository.findAll().size())
+				throw new InvalidLoginDataException("Error! Such user with those credentials does not exist!");
+			iter = userRepository.findAll().iterator();
+			while( counter != 0 ) {
+				iter.next();
+				counter--;
+			}
+			user = iter.next();
+			if(user.getEmail().equals(email) && user.getPassword().equals(password)) {
+				System.out.println("Found User! Going to logIn!");
+				loginDto = new LoginDto(user.getUserId(),user.getUserName(),"token",user.getEmail(),user.getReputation());
+				if(user.getAdmin())
+					loginDto.setAdmin(true);
+			}
+		}
+		else
+			throw new InvalidLoginDataException("Error! No one User still exists");
+		return loginDto;
+	
+
+		
 	}
 
 	@Override

@@ -1,8 +1,11 @@
 package it.polito.ezgas.converter;
 
+import org.springframework.stereotype.Component;
+
 import it.polito.ezgas.dto.GasStationDto;
 import it.polito.ezgas.entity.GasStation;
 
+@Component
 public class GasStationConverter {
 	
 	private GasStation gasStation;

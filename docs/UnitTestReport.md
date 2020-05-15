@@ -1,17 +1,17 @@
 # Unit Testing Documentation
 
-Authors:
+Authors: Group 50 
 
-Date:
+Date: 15 May
 
-Version:
+Version: 1
 
 # Contents
 
 - [Black Box Unit Tests](#black-box-unit-tests)
 
-
-
+- [UserServiceimpl Class](##UserServiceimpl-Class)
+- [GasStationServiceimpl Class](##GasStationServiceimpl-Class)
 
 - [White Box Unit Tests](#white-box-unit-tests)
 
@@ -26,28 +26,34 @@ Version:
     the set up of all Spring components
     >
 
- ### **Class *class_name* - method *name***
+ ## UserServiceimpl Class
+
+ ### **Class *UserServiceimpl* - method *getUserById(Integer userId)***
 
 
 
-**Criteria for method *name*:**
+**Criteria for method *getUserById(Integer userId)*:**
 	
 
- - 
- - 
+ - Number of Input parameters for getUserById(Integer userId)
+ - Type of parameters passed to getUserById(Integer userId)
+ - sign of userId
 
 
 
 
 
-**Predicates for method *name*:**
+**Predicates for method *getUserById(Integer userId)*:**
 
 | Criteria | Predicate |
 | -------- | --------- |
-|          |           |
-|          |           |
-|          |           |
-|          |           |
+|  Number of Input parameters        |    0 to 1       |
+|          |     2 and above      |
+|     Type of parameters passed to method     |     Integer      |
+|          |     All other types      |
+|     sign of userId     |   Positive        |
+|          |     Negative      |
+|          |     Mixed      |
 
 
 
@@ -57,23 +63,270 @@ Version:
 
 | Criteria | Boundary values |
 | -------- | --------------- |
-|          |                 |
-|          |                 |
+|     Number of Input parameters     |         1        |
+|      Type of parameters passed to method    |        Integer         |
+|sign of userId|Positive|
+
+
+**Combination of predicates**:
+
+
+| Number of Input parameters | Type of parameters passed to method | sign of userId | Valid / Invalid | Description of the test case | JUnit test case |
+|-------|-------|-------|-------|-------|-------|
+|1|Int|Positive|V|getUserById(23) --> valid userId||
+|1|Int|Negative|I|getUserById(-23) --> Exception||
+|1|char|-|I|getUserById('A') --> Exception||
+|1|float|-|I|getUserById(1.2) --> Exception||
+|1|All other types|-|I|getUserById("1.2") --> Exception||
+|0|-|-|I|getUserById() --> Exception||
+|1<|-|-|I|getUserById(23, 65) --> Exception||
+
+
+
+ ### **Class *UserServiceimpl* - method *saveUser(UserDto userDto)***
+
+**Criteria for method *saveUser(UserDto userDto)*:**
+	
+
+ - Number of Input parameters 
+ - Type of parameters passed 
+
+
+
+**Predicates for method *saveUser(UserDto userDto)*:**
+
+| Criteria | Predicate |
+| -------- | --------- |
+|  Number of Input parameters        |    0 to 1       |
+|          |     2 and above      |
+|     Type of parameters passed to method     |     UserDto      |
+|          |     All other types      |
+
+
+**Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | --------------- |
+|     Number of Input parameters     |         1        |
+|          |         <> Null      |
+|      Type of parameters passed to method    |        UserDto         |
 
 
 
 **Combination of predicates**:
 
 
-| Criteria 1 | Criteria 2 | ... | Valid / Invalid | Description of the test case | JUnit test case |
+| Number of Input parameters | Type of parameters passed to method | Valid / Invalid | Description of the test case | JUnit test case |
+|-------|-------|-------|-------|-------|
+|1|UserDto|V|saveUser(UserDto userDto) --> User Correctly saved!||
+|0|UserDto|I|saveUser() --> Exception||
+|>1|UserDto|I|saveUser(UserDto userDto1, UserDto userDto2) --> Exception||
+|1|All other types|I|saveUser(Integer userDto) --> Exception||
+
+
+ ### **Class *UserServiceimpl* - method *deleteUser(Integer userId)***
+
+**Criteria for method *deleteUser(Integer userId)*:**
+	
+
+ - Number of Input parameters 
+ - Type of parameters passed to method
+ - sign of parameters passed 
+
+**Predicates for method *deleteUser(Integer userId)*:**
+
+| Criteria | Predicate |
+| -------- | --------- |
+|  Number of Input parameters        |    0 to 1       |
+|          |     2 and above      |
+|     Type of parameters passed to method     |     Integer     |
+|          |     All other types      |
+
+
+**Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | --------------- |
+|     Number of Input parameters     |         1        |
+|      Type of parameters passed to method    |        Integer         |
+|sign of userId|Positive|
+
+
+**Combination of predicates**:
+
+
+| Number of Input parameters | Type of parameters passed to method | sign of userId | Valid / Invalid | Description of the test case | JUnit test case |
 |-------|-------|-------|-------|-------|-------|
-|||||||
-|||||||
-|||||||
-|||||||
-|||||||
+|1|Int|Positive|V|deleteUser(23) --> Deletes the user with the given Id from the database||
+|1|Int|Negative|I|deleteUser(-23) --> Exception||
+|1|char|-|I|deleteUser('A') --> Exception||
+|1|float|-|I|deleteUser(1.2) --> Exception||
+|1|All other types|-|I|deleteUser("1.2") --> Exception||
+|0|-|-|I|deleteUser() --> Exception||
+|1<|-|-|I|deleteUser(23, 65) --> Exception||
 
 
+ ### **Class *UserServiceimpl* - method *login(IdPw credentials)***
+
+**Criteria for method *login(IdPw credentials)*:**
+
+ - Number of Input parameters 
+ - Type of parameters passed to method
+
+**Predicates for method *login(IdPw credentials)*:**
+
+| Criteria | Predicate |
+| -------- | --------- |
+|  Number of Input parameters        |    0 to 1       |
+|          |     2 and above      |
+|     Type of parameters passed to method     |     String     |
+|          |     All other types      |
+
+**Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | --------------- |
+|     Number of Input parameters     |         1        |
+|          |         <> Null      |
+|      Type of parameters passed to method    |        IdPw         |
+
+
+**Combination of predicates**:
+
+| Number of Input parameters | Type of parameters passed to method | Valid / Invalid | Description of the test case | JUnit test case |
+|-------|-------|-------|-------|-------|
+|1|IdPw|V|login(IdPw credentials) --> Valid||
+|0|IdPw|I|login() --> Exception||
+|>1|IdPw|I|login(IdPw credential1,IdPw credential2) --> Exception||
+|1|All other types|I|login(Integer credentials) --> Exception||
+
+
+ ### **Class *UserServiceimpl* - method *increaseUserReputation(Integer userId) , decreaseUserReputation(Integer userId)***
+
+**Criteria for method *increaseUserReputation(Integer userId) , decreaseUserReputation(Integer userId)*:**
+
+ - Number of Input parameters 
+ - Type of parameters passed to method
+ - sign of parameters passed 
+
+**Predicates for method *increaseUserReputation(Integer userId) , decreaseUserReputation(Integer userId)*:**
+
+| Criteria | Predicate |
+| -------- | --------- |
+|  Number of Input parameters        |    0 to 1       |
+|          |     2 and above      |
+|     Type of parameters passed to method     |     Integer     |
+|          |     All other types      |
+
+
+**Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | --------------- |
+|     Number of Input parameters     |         1        |
+|      Type of parameters passed to method    |        Integer         |
+|sign of userId|Positive|
+
+**Combination of predicates**:
+
+| Number of Input parameters | Type of parameters passed to method | sign of userId | Valid / Invalid | Description of the test case | JUnit test case |
+|-------|-------|-------|-------|-------|-------|
+|1|Int|Positive|V|increaseUserReputation(23) --> Increases by 1 the user Reputation||
+|1|Int|Negative|I|increaseUserReputation(-23) --> Exception||
+|1|char|-|I|increaseUserReputation('A') --> Exception||
+|1|float|-|I|increaseUserReputation(1.2) --> Exception||
+|1|All other types|-|I|increaseUserReputation("1.2") --> Exception||
+|0|-|-|I|increaseUserReputation() --> Exception||
+|1<|-|-|I|increaseUserReputation(23, 65) --> Exception||
+
+
+ ## GasStationServiceimpl Class
+
+ ### **Class *GasStationServiceimpl* - method *getGasStationById(Integer gasStationId)***
+
+
+ - Number of Input parameters for getGasStationById(Integer gasStationId)
+ - Type of parameters passed to getGasStationById(Integer gasStationId)
+ - sign of gasStationId
+
+
+
+
+
+**Predicates for method *getGasStationById(Integer gasStationId)*:**
+
+| Criteria | Predicate |
+| -------- | --------- |
+|  Number of Input parameters        |    0 to 1       |
+|          |     2 and above      |
+|     Type of parameters passed to method     |     Integer      |
+|          |     All other types      |
+|     sign of userId     |   Positive        |
+|          |     Negative      |
+|          |     Mixed      |
+
+
+
+
+
+**Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | --------------- |
+|     Number of Input parameters     |         1        |
+|      Type of parameters passed to method    |        Integer         |
+|sign of GasStationId|Positive|
+
+
+**Combination of predicates**:
+
+
+| Number of Input parameters | Type of parameters passed to method | sign of userId | Valid / Invalid | Description of the test case | JUnit test case |
+|-------|-------|-------|-------|-------|-------|
+|1|Int|Positive|V|getGasStationById(23) --> valid GasStationId, GasStation found with this Id||
+|1|Int|Positive|V|getGasStationById(455) --> Null, Not found GasStaion with this Id||
+|1|Int|Negative|I|getGasStationById(-23) --> Exception||
+|1|char|-|I|getGasStationById('A') --> Exception||
+|1|float|-|I|getGasStationById(1.2) --> Exception||
+|1|All other types|-|I|getGasStationById("1.2") --> Exception||
+|0|-|-|I|getGasStationById() --> Exception||
+|1<|-|-|I|getGasStationById(23,65) --> Exception||
+
+
+ ### **Class *GasStationServiceimpl* - method *saveGasStation(GasStationDto gasStationDto)***
+ - Number of Input parameters for saveGasStation(GasStationDto gasStationDto)
+ - Type of parameter passed to saveGasStation(GasStationDto gasStationDto)
+
+
+**Predicates for method *saveGasStation(GasStationDto gasStationDto)*:**
+
+| Criteria | Predicate |
+| -------- | --------- |
+|  Number of Input parameters        |    0 to 1       |
+|          |     2 and above      |
+|     Type of parameters passed to method     |     GasStationDto      |
+|          |     All other types      |
+
+
+**Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | --------------- |
+|     Number of Input parameters     |         1        |
+|          |         <> Null      |
+|      Type of parameters passed to method    |        GasStationDto         |
+
+
+
+**Combination of predicates**:
+
+
+| Number of Input parameters | Type of parameters passed to method | Valid / Invalid | Description of the test case | JUnit test case |
+|-------|-------|-------|-------|-------|
+|1|GasStationDto|V|saveGasStation(GasStationDto gasStationDto) --> GasStationDto stored in the DB||
+|0|GasStationDto|I|saveGasStation() --> Error!||
+|>1|GasStationDto|I|saveGasStation(GasStationDto gasStationDto1, GasStationDto gasStationDto2) --> Exception||
+|1|All other types|I|saveUser(Integer gasStationDto) --> Exception||
 
 
 # White Box Unit Tests
