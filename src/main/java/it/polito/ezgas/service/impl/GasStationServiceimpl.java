@@ -51,8 +51,40 @@ public class GasStationServiceimpl implements GasStationService {
 
 	@Override
 	public List<GasStationDto> getGasStationsByGasolineType(String gasolinetype) throws InvalidGasTypeException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		List<GasStationDto> gs = getAllGasStations();
+		switch(gasolinetype) {
+		  case "diesel":
+			  gs = gs.stream()
+				.filter( (g) -> g.getHasDiesel())
+				//.sorted( (g1,g2) -> g1.getDieselPrice() - g2.getDieselPrice() )
+				.collect(Collectors.toList());
+		    break;
+		  case "methane":
+			  gs = gs.stream()
+				.filter( (g) -> g.getHasMethane())
+				.collect(Collectors.toList());
+		    break;
+		  case "gas":
+			  gs = gs.stream()
+				.filter( (g) -> g.getHasGas())
+				.collect(Collectors.toList());
+		    break;
+		  case "super":
+			  gs = gs.stream()
+				.filter( (g) -> g.getHasSuper())
+				.collect(Collectors.toList());
+		    break;
+		  case "superplus":
+			  gs = gs.stream()
+				.filter( (g) -> g.getHasSuperPlus())
+				.collect(Collectors.toList());
+		    break;
+		  default:
+			  if(gasolinetype != null)
+			  throw new InvalidGasTypeException("Gas Type not supported");
+		}
+		return gs;
 	}
 
 	@Override
