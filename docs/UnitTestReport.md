@@ -185,6 +185,7 @@ Version: 1
 | Criteria | Boundary values |
 | -------- | --------------- |
 |     Number of Input parameters     |         1        |
+|          |         <> Null      |
 |      Type of parameters passed to method    |        IdPw         |
 
 
@@ -198,13 +199,43 @@ Version: 1
 |1|All other types|I|login(Integer credentials) --> Exception||
 
 
- ### **Class *UserServiceimpl* - method *getAllUsers()***
+ ### **Class *UserServiceimpl* - method *increaseUserReputation(Integer userId)***
 
-**Criteria for method *getAllUsers()*:**
-**Predicates for method *getAllUsers()*:**
+**Criteria for method *increaseUserReputation(Integer userId)*:**
+
+ - Number of Input parameters 
+ - Type of parameters passed to method
+ - sign of parameters passed 
+
+**Predicates for method *increaseUserReputation(Integer userId)*:**
+
+| Criteria | Predicate |
+| -------- | --------- |
+|  Number of Input parameters        |    0 to 1       |
+|          |     2 and above      |
+|     Type of parameters passed to method     |     Integer     |
+|          |     All other types      |
+
+
 **Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | --------------- |
+|     Number of Input parameters     |         1        |
+|      Type of parameters passed to method    |        Integer         |
+|sign of userId|Positive|
+
 **Combination of predicates**:
 
+| Number of Input parameters | Type of parameters passed to method | sign of userId | Valid / Invalid | Description of the test case | JUnit test case |
+|-------|-------|-------|-------|-------|-------|
+|1|Int|Positive|V|increaseUserReputation(Integer 23) --> Increases by 1 the user Reputation||
+|1|Int|Negative|I|increaseUserReputation(Integer -23) --> Exception||
+|1|char|-|I|increaseUserReputation(Char 'A') --> Exception||
+|1|float|-|I|increaseUserReputation(Char 1.2) --> Exception||
+|1|All other types|-|I|increaseUserReputation(Char "1.2") --> Exception||
+|0|-|-|I|increaseUserReputation() --> Exception||
+|1<|-|-|I|increaseUserReputation(Integer 23, Integer 65) --> Exception||
 
 
 # White Box Unit Tests
