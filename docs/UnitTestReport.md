@@ -164,6 +164,40 @@ Version: 1
 |1<|-|-|I|deleteUser(Integer 23, Integer 65) --> Exception||
 
 
+ ### **Class *UserServiceimpl* - method *login(IdPw credentials)***
+
+**Criteria for method *login(IdPw credentials)*:**
+
+ - Number of Input parameters 
+ - Type of parameters passed to method
+
+**Predicates for method *login(IdPw credentials)*:**
+
+| Criteria | Predicate |
+| -------- | --------- |
+|  Number of Input parameters        |    0 to 1       |
+|          |     2 and above      |
+|     Type of parameters passed to method     |     String     |
+|          |     All other types      |
+
+**Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | --------------- |
+|     Number of Input parameters     |         1        |
+|      Type of parameters passed to method    |        IdPw         |
+
+
+**Combination of predicates**:
+
+| Number of Input parameters | Type of parameters passed to method | Valid / Invalid | Description of the test case | JUnit test case |
+|-------|-------|-------|-------|-------|
+|1|IdPw|V|login(IdPw credentials) --> Valid||
+|0|IdPw|I|login() --> Exception||
+|>1|IdPw|I|login(IdPw credential1,IdPw credential2) --> Exception||
+|1|All other types|I|login(Integer credentials) --> Exception||
+
+
  ### **Class *UserServiceimpl* - method *getAllUsers()***
 
 **Criteria for method *getAllUsers()*:**
