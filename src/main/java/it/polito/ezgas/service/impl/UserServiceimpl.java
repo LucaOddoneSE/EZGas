@@ -43,6 +43,10 @@ public class UserServiceimpl implements UserService {
 
 	@Override
 	public UserDto saveUser(UserDto userDto) {
+		if(userDto == null) {
+			System.out.println("Error! you want to save in the database a null object User");
+			return null;
+		}
 		userRepository.save(userConverter.toUser(userDto));
 		System.out.println("User Correctly saved!");
 		return userDto;
@@ -50,25 +54,24 @@ public class UserServiceimpl implements UserService {
 
 	@Override
 	public List<UserDto> getAllUsers() {
+		User user;
 		Iterator<User> iter;
-		List<User> listUsers = new ArrayList<>();
 		List<UserDto> listUsersDto = new ArrayList<>();
 		if(userRepository.findAll().size() == 0)
 			return listUsersDto;
-		userRepository.findAll().forEach(listUsers::add);
-		iter = listUsers.iterator();
+		iter = userRepository.findAll().iterator();
 		while(iter.hasNext()) {
 			listUsersDto.add(userConverter.toUserDto(iter.next()));
 		}
 		System.out.println("List of all Users:");
-		iter = listUsers.iterator();
+		iter = userRepository.findAll().iterator();
 		while(iter.hasNext()) {
-			
-			System.out.println( iter.next().getUserId().toString() + " " +
-					            iter.next().getUserName().toString() + " " +
-					            iter.next().getPassword().toString() + " " +
-					            iter.next().getEmail().toString() + " " +
-					            iter.next().getReputation().toString() );
+			user = iter.next();
+			System.out.println( user.getUserId().toString() + " " +
+					            user.getUserName().toString() + " " +
+					            user.getPassword().toString() + " " +
+					            user.getEmail().toString() + " " +
+					            user.getReputation().toString() );
 		}
 		return listUsersDto;
 	}
@@ -106,6 +109,8 @@ public class UserServiceimpl implements UserService {
 					break;
 				counter++;
 			}
+			if(counter == userRepository.findAll().size())
+				throw new InvalidLoginDataException("Error! Such user does not exist!");
 			iter = userRepository.findAll().iterator();
 			while( counter != 0 ) {
 				iter.next();
