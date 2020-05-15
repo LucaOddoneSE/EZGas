@@ -160,11 +160,11 @@ public class GasStationServiceimpl implements GasStationService {
 
 	@Override
 	public List<GasStationDto> getGasStationsByProximity(double lat, double lon) throws GPSDataException {
-		if((lat < -90 || lat > 90) || (lon < -180 || lon > 180)) {
+		if((lat < -90 || lat >= 90) || (lon < -180 || lon >= 180)) {
 			throw new GPSDataException("coordinates out of bounds");
 		}else {
 			return getAllGasStations().stream()
-				.filter( (g) -> Haversine.distance(lat, lon, g.getLat(), g.getLon() ) < 1)
+				.filter( (g) -> Haversine.distance(lat, lon, g.getLat(), g.getLon() ) <= 1)
 				.sorted( (g1,g2) -> Double.compare(Haversine.distance(lat, lon, g1.getLat(), g1.getLon() ), Haversine.distance(lat, lon, g2.getLat(), g2.getLon() ) ) )
 				.collect(Collectors.toList());
 			}
