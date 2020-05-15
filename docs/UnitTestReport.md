@@ -10,8 +10,8 @@ Version: 1
 
 - [Black Box Unit Tests](#black-box-unit-tests)
 
-- [UserServiceimpl Class](#UserServiceimpl-Class)
-- [GasStationServiceimpl Class](#GasStationServiceimpl-Class)
+- [UserServiceimpl Class](##UserServiceimpl-Class)
+- [GasStationServiceimpl Class](##GasStationServiceimpl-Class)
 
 - [White Box Unit Tests](#white-box-unit-tests)
 
@@ -283,7 +283,7 @@ Version: 1
 
 | Number of Input parameters | Type of parameters passed to method | sign of userId | Valid / Invalid | Description of the test case | JUnit test case |
 |-------|-------|-------|-------|-------|-------|
-|1|Int|Positive|V|getGasStationById(23) --> valid GasStationId||
+|1|Int|Positive|V|getGasStationById(23) --> valid GasStationId, GasStation found with this Id||
 |1|Int|Positive|V|getGasStationById(455) --> Null, Not found GasStaion with this Id||
 |1|Int|Negative|I|getGasStationById(-23) --> Exception||
 |1|char|-|I|getGasStationById('A') --> Exception||
@@ -293,7 +293,40 @@ Version: 1
 |1<|-|-|I|getGasStationById(23,65) --> Exception||
 
 
+ ### **Class *GasStationServiceimpl* - method *saveGasStation(GasStationDto gasStationDto)***
+ - Number of Input parameters for saveGasStation(GasStationDto gasStationDto)
+ - Type of parameter passed to saveGasStation(GasStationDto gasStationDto)
 
+
+**Predicates for method *saveGasStation(GasStationDto gasStationDto)*:**
+
+| Criteria | Predicate |
+| -------- | --------- |
+|  Number of Input parameters        |    0 to 1       |
+|          |     2 and above      |
+|     Type of parameters passed to method     |     GasStationDto      |
+|          |     All other types      |
+
+
+**Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | --------------- |
+|     Number of Input parameters     |         1        |
+|          |         <> Null      |
+|      Type of parameters passed to method    |        GasStationDto         |
+
+
+
+**Combination of predicates**:
+
+
+| Number of Input parameters | Type of parameters passed to method | Valid / Invalid | Description of the test case | JUnit test case |
+|-------|-------|-------|-------|-------|
+|1|GasStationDto|V|saveGasStation(GasStationDto gasStationDto) --> GasStationDto stored in the DB||
+|0|GasStationDto|I|saveGasStation() --> Error!||
+|>1|GasStationDto|I|saveGasStation(GasStationDto gasStationDto1, GasStationDto gasStationDto2) --> Exception||
+|1|All other types|I|saveUser(Integer gasStationDto) --> Exception||
 
 
 # White Box Unit Tests
