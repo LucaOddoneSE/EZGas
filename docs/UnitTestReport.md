@@ -115,11 +115,11 @@ Version: 1
 
 
 | Number of Input parameters | Type of parameters passed to method | Valid / Invalid | Description of the test case | JUnit test case |
-|-------|-------|-------|-------|-------|-------|
-|1|UserDto|V|saveUser(UserDto userDto) --> User Correctly saved!|
-|0|UserDto|I|saveUser() --> Exception|
-|>1|UserDto|I|saveUser(UserDto userDto1, UserDto userDto2) --> Exception|
-|1|All other types|I|saveUser(Integer userDto) --> Exception|
+|-------|-------|-------|-------|-------|
+|1|UserDto|V|saveUser(UserDto userDto) --> User Correctly saved!||
+|0|UserDto|I|saveUser() --> Exception||
+|>1|UserDto|I|saveUser(UserDto userDto1, UserDto userDto2) --> Exception||
+|1|All other types|I|saveUser(Integer userDto) --> Exception||
 
 # White Box Unit Tests
 
