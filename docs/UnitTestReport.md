@@ -10,7 +10,7 @@ Version: 1
 
 - [Black Box Unit Tests](#black-box-unit-tests)
 
-
+- [UserServiceimpl](#UserServiceimpl)
 
 
 - [White Box Unit Tests](#white-box-unit-tests)
@@ -26,28 +26,32 @@ Version: 1
     the set up of all Spring components
     >
 
- ### **Class *class_name* - method *name***
+ ### **Class *UserServiceimpl* - method *getUserById(Integer userId)***
 
 
 
-**Criteria for method *name*:**
+**Criteria for method *getUserById(Integer userId)*:**
 	
 
- - 
- - 
+ - Number of Input parameters for getUserById(Integer userId)
+ - Type of parameters passed to getUserById(Integer userId)
+ - sign of userId
 
 
 
 
 
-**Predicates for method *name*:**
+**Predicates for method *getUserById(Integer userId)*:**
 
 | Criteria | Predicate |
 | -------- | --------- |
-|          |           |
-|          |           |
-|          |           |
-|          |           |
+|  Number of Input parameters        |    0 to 1       |
+|          |     2 and above      |
+|     Type of parameters passed to method     |     Integer      |
+|          |     All other types      |
+|     sign of userId     |   Positive        |
+|          |     Negative      |
+|          |     Mixed      |
 
 
 
@@ -57,23 +61,181 @@ Version: 1
 
 | Criteria | Boundary values |
 | -------- | --------------- |
-|          |                 |
-|          |                 |
+|     Number of Input parameters     |         1        |
+|      Type of parameters passed to method    |        Integer         |
+|sign of userId|Positive|
+
+
+**Combination of predicates**:
+
+
+| Number of Input parameters | Type of parameters passed to method | sign of userId | Valid / Invalid | Description of the test case | JUnit test case |
+|-------|-------|-------|-------|-------|-------|
+|1|Int|Positive|V|getUserById(Integer 23) --> valid userId||
+|1|Int|Negative|I|getUserById(Integer -23) --> Exception||
+|1|char|-|I|getUserById(Char 'A') --> Exception||
+|1|float|-|I|getUserById(Char 1.2) --> Exception||
+|1|All other types|-|I|getUserById(Char "1.2") --> Exception||
+|0|-|-|I|getUserById() --> Exception||
+|1<|-|-|I|getUserById(Integer 23, Integer 65) --> Exception||
+
+
+
+ ### **Class *UserServiceimpl* - method *saveUser(UserDto userDto)***
+
+**Criteria for method *saveUser(UserDto userDto)*:**
+	
+
+ - Number of Input parameters 
+ - Type of parameters passed 
+
+
+
+**Predicates for method *saveUser(UserDto userDto)*:**
+
+| Criteria | Predicate |
+| -------- | --------- |
+|  Number of Input parameters        |    0 to 1       |
+|          |     2 and above      |
+|     Type of parameters passed to method     |     UserDto      |
+|          |     All other types      |
+
+
+**Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | --------------- |
+|     Number of Input parameters     |         1        |
+|          |         <> Null      |
+|      Type of parameters passed to method    |        UserDto         |
 
 
 
 **Combination of predicates**:
 
 
-| Criteria 1 | Criteria 2 | ... | Valid / Invalid | Description of the test case | JUnit test case |
+| Number of Input parameters | Type of parameters passed to method | Valid / Invalid | Description of the test case | JUnit test case |
+|-------|-------|-------|-------|-------|
+|1|UserDto|V|saveUser(UserDto userDto) --> User Correctly saved!||
+|0|UserDto|I|saveUser() --> Exception||
+|>1|UserDto|I|saveUser(UserDto userDto1, UserDto userDto2) --> Exception||
+|1|All other types|I|saveUser(Integer userDto) --> Exception||
+
+
+ ### **Class *UserServiceimpl* - method *deleteUser(Integer userId)***
+
+**Criteria for method *deleteUser(Integer userId)*:**
+	
+
+ - Number of Input parameters 
+ - Type of parameters passed to method
+ - sign of parameters passed 
+
+**Predicates for method *deleteUser(Integer userId)*:**
+
+| Criteria | Predicate |
+| -------- | --------- |
+|  Number of Input parameters        |    0 to 1       |
+|          |     2 and above      |
+|     Type of parameters passed to method     |     Integer     |
+|          |     All other types      |
+
+
+**Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | --------------- |
+|     Number of Input parameters     |         1        |
+|      Type of parameters passed to method    |        Integer         |
+|sign of userId|Positive|
+
+
+**Combination of predicates**:
+
+
+| Number of Input parameters | Type of parameters passed to method | sign of userId | Valid / Invalid | Description of the test case | JUnit test case |
 |-------|-------|-------|-------|-------|-------|
-|||||||
-|||||||
-|||||||
-|||||||
-|||||||
+|1|Int|Positive|V|deleteUser(Integer 23) --> Deletes the user with the given Id from the database||
+|1|Int|Negative|I|deleteUser(Integer -23) --> Exception||
+|1|char|-|I|deleteUser(Char 'A') --> Exception||
+|1|float|-|I|deleteUser(Char 1.2) --> Exception||
+|1|All other types|-|I|deleteUser(Char "1.2") --> Exception||
+|0|-|-|I|deleteUser() --> Exception||
+|1<|-|-|I|deleteUser(Integer 23, Integer 65) --> Exception||
 
 
+ ### **Class *UserServiceimpl* - method *login(IdPw credentials)***
+
+**Criteria for method *login(IdPw credentials)*:**
+
+ - Number of Input parameters 
+ - Type of parameters passed to method
+
+**Predicates for method *login(IdPw credentials)*:**
+
+| Criteria | Predicate |
+| -------- | --------- |
+|  Number of Input parameters        |    0 to 1       |
+|          |     2 and above      |
+|     Type of parameters passed to method     |     String     |
+|          |     All other types      |
+
+**Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | --------------- |
+|     Number of Input parameters     |         1        |
+|          |         <> Null      |
+|      Type of parameters passed to method    |        IdPw         |
+
+
+**Combination of predicates**:
+
+| Number of Input parameters | Type of parameters passed to method | Valid / Invalid | Description of the test case | JUnit test case |
+|-------|-------|-------|-------|-------|
+|1|IdPw|V|login(IdPw credentials) --> Valid||
+|0|IdPw|I|login() --> Exception||
+|>1|IdPw|I|login(IdPw credential1,IdPw credential2) --> Exception||
+|1|All other types|I|login(Integer credentials) --> Exception||
+
+
+ ### **Class *UserServiceimpl* - method *increaseUserReputation(Integer userId) , decreaseUserReputation(Integer userId)***
+
+**Criteria for method *increaseUserReputation(Integer userId) , decreaseUserReputation(Integer userId)*:**
+
+ - Number of Input parameters 
+ - Type of parameters passed to method
+ - sign of parameters passed 
+
+**Predicates for method *increaseUserReputation(Integer userId) , decreaseUserReputation(Integer userId)*:**
+
+| Criteria | Predicate |
+| -------- | --------- |
+|  Number of Input parameters        |    0 to 1       |
+|          |     2 and above      |
+|     Type of parameters passed to method     |     Integer     |
+|          |     All other types      |
+
+
+**Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | --------------- |
+|     Number of Input parameters     |         1        |
+|      Type of parameters passed to method    |        Integer         |
+|sign of userId|Positive|
+
+**Combination of predicates**:
+
+| Number of Input parameters | Type of parameters passed to method | sign of userId | Valid / Invalid | Description of the test case | JUnit test case |
+|-------|-------|-------|-------|-------|-------|
+|1|Int|Positive|V|increaseUserReputation(Integer 23) --> Increases by 1 the user Reputation||
+|1|Int|Negative|I|increaseUserReputation(Integer -23) --> Exception||
+|1|char|-|I|increaseUserReputation(Char 'A') --> Exception||
+|1|float|-|I|increaseUserReputation(Char 1.2) --> Exception||
+|1|All other types|-|I|increaseUserReputation(Char "1.2") --> Exception||
+|0|-|-|I|increaseUserReputation() --> Exception||
+|1<|-|-|I|increaseUserReputation(Integer 23, Integer 65) --> Exception||
 
 
 # White Box Unit Tests
