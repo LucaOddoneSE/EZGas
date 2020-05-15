@@ -172,11 +172,11 @@ public class GasStationServiceimpl implements GasStationService {
 	@Override
 	public List<GasStationDto> getGasStationsWithCoordinates(double lat, double lon, String gasolinetype,
 			String carsharing) throws InvalidGasTypeException, GPSDataException {
-		if((lat < -90 || lat > 90) || (lon < -180 || lon > 180)) {
+		if((lat < -90 || lat >= 90) || (lon < -180 || lon >= 180)) {
 			throw new GPSDataException("coordinates out of bounds");
 		}else {
 			List<GasStationDto> gs = getAllGasStations().stream()
-					.filter( (g) -> Haversine.distance(lat, lon, g.getLat(), g.getLon() ) < 1)
+					.filter( (g) -> Haversine.distance(lat, lon, g.getLat(), g.getLon() ) <= 1)
 					.collect(Collectors.toList());
 			if(carsharing != null) {
 				gs = gs.stream()
@@ -184,34 +184,36 @@ public class GasStationServiceimpl implements GasStationService {
 						.collect(Collectors.toList());
 			}
 			switch(gasolinetype) {
-			  case "diesel":
+			  case "Diesel":
 				  gs = gs.stream()
 					.filter( (g) -> g.getHasDiesel())
 					.collect(Collectors.toList());
 			    break;
-			  case "methane":
+			  case "Methane":
 				  gs = gs.stream()
 					.filter( (g) -> g.getHasMethane())
 					.collect(Collectors.toList());
 			    break;
-			  case "gas":
+			  case "Gas":
 				  gs = gs.stream()
 					.filter( (g) -> g.getHasGas())
 					.collect(Collectors.toList());
 			    break;
-			  case "super":
+			  case "Super":
 				  gs = gs.stream()
 					.filter( (g) -> g.getHasSuper())
 					.collect(Collectors.toList());
 			    break;
-			  case "superplus":
+			  case "SuperPlus":
 				  gs = gs.stream()
 					.filter( (g) -> g.getHasSuperPlus())
 					.collect(Collectors.toList());
 			    break;
 			  default:
 				  if(gasolinetype != null)
-				  throw new InvalidGasTypeException("Gas Type not supported");
+					  throw new InvalidGasTypeException("Gas Type not supported");
+				  else
+					  throw new InvalidGasTypeException("Error! You have passed a null gasolinetype as parameter");
 			}
 			return gs;
 		}
