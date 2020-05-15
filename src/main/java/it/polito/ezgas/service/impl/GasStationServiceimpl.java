@@ -152,6 +152,7 @@ public class GasStationServiceimpl implements GasStationService {
 		}else {
 			return getAllGasStations().stream()
 				.filter( (g) -> Haversine.distance(lat, lon, g.getLat(), g.getLon() ) < 1)
+				.sorted( (g1,g2) -> Double.compare(Haversine.distance(lat, lon, g1.getLat(), g1.getLon() ), Haversine.distance(lat, lon, g2.getLat(), g2.getLon() ) ) )
 				.collect(Collectors.toList());
 			}
 		}
