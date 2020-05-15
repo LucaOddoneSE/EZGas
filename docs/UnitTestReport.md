@@ -418,17 +418,54 @@ Version: 1
 
 
 
+### **Class *UserServiceimpl* - method *getGasStationsByProximity(double lat, double lon)***
+
+**Criteria for method *getGasStationsByProximity(double lat, double lon)*:**
+	
+
+ - Number of Input parameters 
+ - Type of parameter passed to method
+ - Range 
+ - Sign of the number 
+
+
+ **Predicates for method *getGasStationsByProximity(double lat, double lon)*:**
+
+| Criteria | Predicate |
+| -------- | --------- |
+|  Number of Input parameters        |    0 to 2       |
+|          |     3 and above      |
+|     Type of parameters passed to method     |     Double    |
+|          |     All other types      |
+|     Range     |    (lat > -90 || lat < 90) || (lon > -180 || lon < 180)     |
+|          |    (lat > -90 || lat < 90) || (lon > -180 || lon < 180)     |
+|     Sign of the number     |     Positive      |
+|          |     Negative      |
+|          |     Mix      |
+
+**Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | --------------- |
+|     Number of Input parameters     |         2        |
+|      Type of parameters passed to method    |        Double         |
+|     Range     |   (lat > -90 || lat < 90) || (lon > -180 || lon < 180)     |
+|     Sign of the number     |     Positive, Negative, Mix      |
 
 
 
+**Combination of predicates**:
 
 
-
-
-
-
-
-
+| Number of Input parameters | Type of parameters passed to method | Range |Sign of the number| Valid / Invalid | Description of the test case | JUnit test case |
+|-------|-------|-------|-------|-------|-------|
+|2|Double|(lat > -90 || lat < 90) || (lon > -180 || lon < 180)|Positive|V|getGasStationsByProximity(double lat, double lon) --> Returns all gas stations within 1km from the GeoPoint||
+|2|Double|(lat > -90 || lat < 90) || (lon > -180 || lon < 180)|Negative|V|getGasStationsByProximity(double lat, double lon) --> Returns all gas stations within 1km from the GeoPoint||
+|2|Double|(lat < -90 || lat > 90) || (lon < -180 || lon > 180)|Positive|V|getGasStationsByProximity(double lat, double lon) --> Exception, coordinates out of bounds!||
+|2|All other types|-|-|I|getGasStationsByProximity(Int lat, Int lon) --> Exception||
+|1|Double|-|-|I|getGasStationsByProximity(Int lat) --> Exception||
+|0|Double|-|-|I|getGasStationsByProximity() --> Exception||
+|>2|Double|-|-|I|getGasStationsByProximity(double lat, double lon,double x) --> Exception||
 
 
 
