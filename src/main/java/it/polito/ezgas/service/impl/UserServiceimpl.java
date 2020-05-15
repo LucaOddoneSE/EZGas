@@ -25,7 +25,8 @@ public class UserServiceimpl implements UserService {
 	
 	@Autowired
 	private UserRepository userRepository;
-	private UserConverter userConverter = new UserConverter();
+	@Autowired
+	private UserConverter userConverter;
 
 	@Override
 	public UserDto getUserById(Integer userId) throws InvalidUserException {
@@ -47,6 +48,10 @@ public class UserServiceimpl implements UserService {
 			System.out.println("Error! you want to save in the database a null object User");
 			return null;
 		}
+		if(userDto.getReputation() == null)
+			userDto.setReputation(0);
+		if(userDto.getAdmin() == null || userDto.getAdmin() == false)
+			userDto.setAdmin(false);
 		userRepository.save(userConverter.toUser(userDto));
 		System.out.println("User Correctly saved!");
 		return userDto;
@@ -84,7 +89,7 @@ public class UserServiceimpl implements UserService {
 			System.out.println("User successfully deleted!");
 			return true;
 		}
-		return false;
+		return null;
 	}
 
 	@Override
@@ -105,12 +110,14 @@ public class UserServiceimpl implements UserService {
 			iter = userRepository.findAll().iterator();
 			while( iter.hasNext() ) {
 				user = iter.next();
-				if(user.getEmail().equals(email) && user.getPassword().equals(password))
+				System.out.println(user.getEmail() + " " + user.getPassword());
+				if(user.getEmail().equals(email) && user.getPassword().equals(password)) {
 					break;
+				}
 				counter++;
 			}
 			if(counter == userRepository.findAll().size())
-				throw new InvalidLoginDataException("Error! Such user does not exist!");
+				throw new InvalidLoginDataException("Error! Such user with those credentials does not exist!");
 			iter = userRepository.findAll().iterator();
 			while( counter != 0 ) {
 				iter.next();
