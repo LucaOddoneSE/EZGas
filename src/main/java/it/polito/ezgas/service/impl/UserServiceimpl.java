@@ -86,36 +86,29 @@ public class UserServiceimpl implements UserService {
 
 	@Override
 	public LoginDto login(IdPw credentials) throws InvalidLoginDataException {
-		int counter = 0;
+
 		String email;
-		User user;
-		Iterator<User> iter;
 		LoginDto loginDto = null;
 		if(credentials == null)
 			throw new InvalidLoginDataException("Error! Passed null credentials to login() method");
 		email = credentials.getUser();
 		if( userRepository.findAll().size() != 0) {
-			iter = userRepository.findAll().iterator();
-			while( iter.hasNext() ) {
-				if(iter.next().getEmail().equals(email))
-					break;
-				counter++;
+			for(User u : userRepository.findAll() ) {
+				if(u.getEmail().equals(email)) {
+					System.out.println("User found");
+					if(credentials.getPw().equals(u.getPassword())) {
+						System.out.println("PW match, Going to logIn!");
+						loginDto = new LoginDto(u.getUserId(),u.getUserName(),"token",u.getEmail(),u.getReputation());
+						loginDto.setAdmin(u.getAdmin());
+					}else {
+						System.out.println("PW doesnt match match");
+					}
+				}
 			}
-			iter = userRepository.findAll().iterator();
-			while( counter != 0 ) {
-				iter.next();
-				counter--;
-			}
-			user = iter.next();
-			if(user.getEmail().equals(email)) {
-				System.out.println("Found User! Going to logIn!");
-				loginDto = new LoginDto(user.getUserId(),user.getUserName(),"token",user.getEmail(),user.getReputation());
-				if(user.getAdmin())
-					loginDto.setAdmin(true);
-			}
+			
 		}
 		else
-			throw new InvalidLoginDataException("Error! No one User still exists");
+			throw new InvalidLoginDataException("Error! No User exists yet");
 		return loginDto;
 	}
 
