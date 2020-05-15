@@ -66,6 +66,17 @@ public class GasStationServiceimpl implements GasStationService {
 			(gasStationDto.getLat() < -90 || gasStationDto.getLat() >= 90) )
 			throw new GPSDataException("Error! GasStation containes wrong coordinates values");
 		
+		if(gasStationDto.getHasDiesel() && gasStationDto.getDieselPrice()<= 0)
+			gasStationDto.setDieselPrice(0);
+		if(gasStationDto.getHasGas() && gasStationDto.getGasPrice() <=0)
+			gasStationDto.setGasPrice(0);
+		if(gasStationDto.getHasSuperPlus() && gasStationDto.getSuperPlusPrice() <=0)
+			gasStationDto.setSuperPlusPrice(0);
+		if(gasStationDto.getHasSuper() && gasStationDto.getSuperPrice() <=0)
+			gasStationDto.setSuperPrice(0);
+		if(gasStationDto.getHasMethane() && gasStationDto.getMethanePrice() <=0)
+			gasStationDto.setMethanePrice(0);
+		
 		gasStationRepository.save(gasStationConverter.toGasStation(gasStationDto));
 		System.out.println("Tha GasStation passed is successfully saved!");
 		return gasStationDto;
