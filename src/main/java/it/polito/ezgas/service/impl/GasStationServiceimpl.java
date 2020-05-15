@@ -119,31 +119,31 @@ public class GasStationServiceimpl implements GasStationService {
 		
 		List<GasStationDto> gs = getAllGasStations();
 		switch(gasolinetype) {
-		  case "diesel":
+		  case "Diesel":
 			  gs = gs.stream()
 				.filter( (g) -> g.getHasDiesel())
 				.sorted( (g1,g2) -> Double.compare(g1.getDieselPrice(), g2.getDieselPrice()) )
 				.collect(Collectors.toList());
 		    break;
-		  case "methane":
+		  case "Methane":
 			  gs = gs.stream()
 				.filter( (g) -> g.getHasMethane())
 				.sorted( (g1,g2) -> Double.compare(g1.getMethanePrice(), g2.getMethanePrice()) )
 				.collect(Collectors.toList());
 		    break;
-		  case "gas":
+		  case "Gas":
 			  gs = gs.stream()
 				.filter( (g) -> g.getHasGas())
 				.sorted( (g1,g2) -> Double.compare(g1.getGasPrice(), g2.getGasPrice()) )
 				.collect(Collectors.toList());
 		    break;
-		  case "super":
+		  case "Super":
 			  gs = gs.stream()
 				.filter( (g) -> g.getHasSuper())
 				.sorted( (g1,g2) -> Double.compare(g1.getSuperPrice(), g2.getSuperPrice()) )
 				.collect(Collectors.toList());
 		    break;
-		  case "superplus":
+		  case "SuperPlus":
 			  gs = gs.stream()
 				.filter( (g) -> g.getHasSuperPlus())
 				.sorted( (g1,g2) -> Double.compare(g1.getSuperPlusPrice(), g2.getSuperPlusPrice()) )
@@ -151,7 +151,9 @@ public class GasStationServiceimpl implements GasStationService {
 		    break;
 		  default:
 			  if(gasolinetype != null)
-			  throw new InvalidGasTypeException("Gas Type not supported");
+				  throw new InvalidGasTypeException("Gas Type not supported");
+			  else
+				  throw new InvalidGasTypeException("Error! You have passed a null gasolinetype as parameter");
 		}
 		return gs;
 	}
