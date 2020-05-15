@@ -66,6 +66,17 @@ public class GasStationServiceimpl implements GasStationService {
 			(gasStationDto.getLat() < -90 || gasStationDto.getLat() >= 90) )
 			throw new GPSDataException("Error! GasStation containes wrong coordinates values");
 		
+		if(gasStationDto.getHasDiesel() && gasStationDto.getDieselPrice()<= 0)
+			gasStationDto.setDieselPrice(0);
+		if(gasStationDto.getHasGas() && gasStationDto.getGasPrice() <=0)
+			gasStationDto.setGasPrice(0);
+		if(gasStationDto.getHasSuperPlus() && gasStationDto.getSuperPlusPrice() <=0)
+			gasStationDto.setSuperPlusPrice(0);
+		if(gasStationDto.getHasSuper() && gasStationDto.getSuperPrice() <=0)
+			gasStationDto.setSuperPrice(0);
+		if(gasStationDto.getHasMethane() && gasStationDto.getMethanePrice() <=0)
+			gasStationDto.setMethanePrice(0);
+		
 		gasStationRepository.save(gasStationConverter.toGasStation(gasStationDto));
 		System.out.println("Tha GasStation passed is successfully saved!");
 		return gasStationDto;
@@ -108,31 +119,31 @@ public class GasStationServiceimpl implements GasStationService {
 		
 		List<GasStationDto> gs = getAllGasStations();
 		switch(gasolinetype) {
-		  case "diesel":
+		  case "Diesel":
 			  gs = gs.stream()
 				.filter( (g) -> g.getHasDiesel())
 				.sorted( (g1,g2) -> Double.compare(g1.getDieselPrice(), g2.getDieselPrice()) )
 				.collect(Collectors.toList());
 		    break;
-		  case "methane":
+		  case "Methane":
 			  gs = gs.stream()
 				.filter( (g) -> g.getHasMethane())
 				.sorted( (g1,g2) -> Double.compare(g1.getMethanePrice(), g2.getMethanePrice()) )
 				.collect(Collectors.toList());
 		    break;
-		  case "gas":
+		  case "Gas":
 			  gs = gs.stream()
 				.filter( (g) -> g.getHasGas())
 				.sorted( (g1,g2) -> Double.compare(g1.getGasPrice(), g2.getGasPrice()) )
 				.collect(Collectors.toList());
 		    break;
-		  case "super":
+		  case "Super":
 			  gs = gs.stream()
 				.filter( (g) -> g.getHasSuper())
 				.sorted( (g1,g2) -> Double.compare(g1.getSuperPrice(), g2.getSuperPrice()) )
 				.collect(Collectors.toList());
 		    break;
-		  case "superplus":
+		  case "SuperPlus":
 			  gs = gs.stream()
 				.filter( (g) -> g.getHasSuperPlus())
 				.sorted( (g1,g2) -> Double.compare(g1.getSuperPlusPrice(), g2.getSuperPlusPrice()) )
@@ -140,18 +151,20 @@ public class GasStationServiceimpl implements GasStationService {
 		    break;
 		  default:
 			  if(gasolinetype != null)
-			  throw new InvalidGasTypeException("Gas Type not supported");
+				  throw new InvalidGasTypeException("Gas Type not supported");
+			  else
+				  throw new InvalidGasTypeException("Error! You have passed a null gasolinetype as parameter");
 		}
 		return gs;
 	}
 
 	@Override
 	public List<GasStationDto> getGasStationsByProximity(double lat, double lon) throws GPSDataException {
-		if((lat < -90 || lat > 90) || (lon < -180 || lon > 180)) {
+		if((lat < -90 || lat >= 90) || (lon < -180 || lon >= 180)) {
 			throw new GPSDataException("coordinates out of bounds");
 		}else {
 			return getAllGasStations().stream()
-				.filter( (g) -> Haversine.distance(lat, lon, g.getLat(), g.getLon() ) < 1)
+				.filter( (g) -> Haversine.distance(lat, lon, g.getLat(), g.getLon() ) <= 1)
 				.sorted( (g1,g2) -> Double.compare(Haversine.distance(lat, lon, g1.getLat(), g1.getLon() ), Haversine.distance(lat, lon, g2.getLat(), g2.getLon() ) ) )
 				.collect(Collectors.toList());
 			}
