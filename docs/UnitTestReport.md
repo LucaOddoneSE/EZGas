@@ -35,6 +35,7 @@ Version: 1
 
  - Number of Input parameters
  - Type of parameters passed to method
+ - sign of userId
 
 
 
@@ -44,10 +45,13 @@ Version: 1
 
 | Criteria | Predicate |
 | -------- | --------- |
-|          |           |
-|          |           |
-|          |           |
-|          |           |
+|  Number of Input parameters        |    0 to 1       |
+|          |     2 and above      |
+|     Type of parameters passed to method     |     Integer      |
+|          |     All other types      |
+|     sign of userId     |   Positive        |
+|          |     Negative      |
+|          |     Mixed      |
 
 
 
@@ -57,21 +61,25 @@ Version: 1
 
 | Criteria | Boundary values |
 | -------- | --------------- |
-|          |                 |
-|          |                 |
-
+|     Number of Input parameters     |         1        |
+|      Type of parameters passed to method    |        Integer         |
+|sign of userId|Positive|
 
 
 **Combination of predicates**:
 
 
-| Criteria 1 | Criteria 2 | ... | Valid / Invalid | Description of the test case | JUnit test case |
+| Number of Input parameters | Type of parameters passed to method | sign of userId | Valid / Invalid | Description of the test case | JUnit test case |
 |-------|-------|-------|-------|-------|-------|
+|1|Int|Positive|V|getUserById(Integer 23) --> valid userId||
+|1|Int|Negative|I|getUserById(Integer -23) --> Exception||
+|1|char|-|I|getUserById(Char 'A') --> Exception||
+|1|float|-|I|getUserById(Char 1.2) --> Exception||
+|1|All other types|-|I|getUserById(Char "1.2") --> Exception||
+|0|-|-|I|getUserById() --> Exception||
+|1<|-|-|I|getUserById(Integer 23, Integer 65) --> Exception||
 |||||||
-|||||||
-|||||||
-|||||||
-|||||||
+
 
 
 
