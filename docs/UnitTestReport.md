@@ -78,7 +78,7 @@ Version: 1
 |1|All other types|-|I|getUserById(Char "1.2") --> Exception||
 |0|-|-|I|getUserById() --> Exception||
 |1<|-|-|I|getUserById(Integer 23, Integer 65) --> Exception||
-|||||||
+
 
 
 
