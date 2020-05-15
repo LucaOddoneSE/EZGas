@@ -459,15 +459,70 @@ Version: 1
 
 | Number of Input parameters | Type of parameters passed to method | Range |Sign of the number| Valid / Invalid | Description of the test case | JUnit test case |
 |-------|-------|-------|-------|-------|-------|
-|2|Double|(lat > -90 || lat < 90) || (lon > -180 || lon < 180)|Positive|V|getGasStationsByProximity(double lat, double lon) --> Returns all gas stations within 1km from the GeoPoint||
-|2|Double|(lat > -90 || lat < 90) || (lon > -180 || lon < 180)|Negative|V|getGasStationsByProximity(double lat, double lon) --> Returns all gas stations within 1km from the GeoPoint||
-|2|Double|(lat < -90 || lat > 90) || (lon < -180 || lon > 180)|Positive|V|getGasStationsByProximity(double lat, double lon) --> Exception, coordinates out of bounds!||
+|2|Double|(lat > -90 || lat < 90) || (lon > -180 || lon < 180)|Mix|V|getGasStationsByProximity(double lat, double lon) --> Returns all gas stations within 1km from the GeoPoint||
+|2|Double|(lat < -90 || lat > 90) || (lon < -180 || lon > 180)|Mix|V|getGasStationsByProximity(double lat, double lon) --> Exception, coordinates out of bounds!||
 |2|All other types|-|-|I|getGasStationsByProximity(Int lat, Int lon) --> Exception||
 |1|Double|-|-|I|getGasStationsByProximity(Int lat) --> Exception||
 |0|Double|-|-|I|getGasStationsByProximity() --> Exception||
 |>2|Double|-|-|I|getGasStationsByProximity(double lat, double lon,double x) --> Exception||
 
 
+### **Class *UserServiceimpl* - method *getGasStationsWithCoordinates(double lat, double lon, String gasolinetype,String carsharing)***
+
+**Criteria for method *getGasStationsWithCoordinates(double lat, double lon, String gasolinetype,String carsharing)*:**
+	
+
+ - Number of Input parameters 
+ - Type of parameter passed to method
+ - Range 
+ - Sign of the number 
+ - Gasolinetype
+ 
+
+
+ **Predicates for method *getGasStationsWithCoordinates(double lat, double lon, String gasolinetype,String carsharing)*:**
+
+| Criteria | Predicate |
+| -------- | --------- |
+|  Number of Input parameters        |    0 to 4       |
+|          |     5 and above      |
+|     Type of parameters passed to method     |     Double and String    |
+|          |     All other types      |
+|     Range  Lat,Lon   |    (lat > -90 || lat < 90) || (lon > -180 || lon < 180)     |
+|          |    (lat > -90 || lat < 90) || (lon > -180 || lon < 180)     |
+|     Sign of the Lat,Lon     |     Positive      |
+|          |     Negative      |
+|          |     Mix      |
+|    Gasolinetype      |   one of these:  diesel,methane,gas,super,superplus      |
+|          |    Not supported     |
+|          |    Null     |
+|          |  <>  Null     |
+|    carsharing     |     <> Null      |
+|         |      Null      |
+
+**Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | --------------- |
+|     Number of Input parameters     |         4        |
+|      Type of parameters passed to method    |        Double and String         |
+|     Range Lat,Lon     |   (lat > -90 || lat < 90) || (lon > -180 || lon < 180)     |
+|     Sign of the Lat,Lon     |     Positive, Negative, Mix      |
+|    Gasolinetype      |     diesel,methane,gas,super,superplus      |
+|    carsharing     |     <> Null      |
+
+
+**Combination of predicates**:
+
+
+| Number of Input parameters | Type of parameters passed to method | Range |Sign of the number|Gasolinetype|carsharing| Valid / Invalid | Description of the test case | JUnit test case |
+|-------|-------|-------|-------|-------|-------|
+|4|Double,String|(lat > -90 || lat < 90) || (lon > -180 || lon < 180)|Mix|One of supported types|<>Null|V|getGasStationsWithCoordinates(double lat, double lon, String gasolinetype,String carsharing) --> Returns all gas stations within 1km from the GeoPoint, with gasolinetype and a carsharing value parameters ||
+|4|Double,String|(lat < -90 || lat > 90) || (lon < -180 || lon > 180)|Mix|One of supported types|<>Null|I|getGasStationsWithCoordinates(double lat, double lon, String gasolinetype,String carsharing) --> Exception, coordinates out of bounds! ||
+|3|Double,String|(lat > -90 || lat < 90) || (lon > -180 || lon < 180)|Mix|<> Supported Gasolinetype|<>Null|I|getGasStationsWithCoordinates(double lat, double lon, String gasolinetype,String carsharing) --> Exception ||
+|4|Double,String|(lat > -90 || lat < 90) || (lon > -180 || lon < 180)|Mix|One of supported types|Null|I|getGasStationsWithCoordinates(double lat, double lon, String gasolinetype,Null) --> Exception ||
+|2|String|Null|-|One of supported types|<>Null|I|getGasStationsWithCoordinates(String gasolinetype,String carsharing) --> Exception ||
+|2|Double|(lat > -90 || lat < 90) || (lon > -180 || lon < 180)|Mix|Null|Null|I|getGasStationsWithCoordinates(double lat, double lon) --> Exception ||
 
 
 # White Box Unit Tests
