@@ -122,16 +122,16 @@ Version: 1
 |1|All other types|I|saveUser(Integer userDto) --> Exception||
 
 
- ### **Class *UserServiceimpl* - method *List<UserDto> getAllUsers()***
+ ### **Class *UserServiceimpl* - method *deleteUser(Integer userId)***
 
-**Criteria for method *List<UserDto> getAllUsers()*:**
+**Criteria for method *deleteUser(Integer userId)*:**
 	
 
  - Number of Input parameters 
  - Type of parameters passed to method
  - sign of parameters passed 
 
-**Predicates for method *List<UserDto> getAllUsers()*:**
+**Predicates for method *deleteUser(Integer userId)*:**
 
 | Criteria | Predicate |
 | -------- | --------- |
@@ -155,13 +155,13 @@ Version: 1
 
 | Number of Input parameters | Type of parameters passed to method | sign of userId | Valid / Invalid | Description of the test case | JUnit test case |
 |-------|-------|-------|-------|-------|-------|
-|1|Int|Positive|V|getAllUsers(Integer 23) --> Deletes the user with the given Id from the database||
-|1|Int|Negative|I|getAllUsers(Integer -23) --> Exception||
-|1|char|-|I|getAllUsers(Char 'A') --> Exception||
-|1|float|-|I|getAllUsers(Char 1.2) --> Exception||
-|1|All other types|-|I|getAllUsers(Char "1.2") --> Exception||
-|0|-|-|I|getAllUsers() --> Exception||
-|1<|-|-|I|getAllUsers(Integer 23, Integer 65) --> Exception||
+|1|Int|Positive|V|deleteUser(Integer 23) --> Deletes the user with the given Id from the database||
+|1|Int|Negative|I|deleteUser(Integer -23) --> Exception||
+|1|char|-|I|deleteUser(Char 'A') --> Exception||
+|1|float|-|I|deleteUser(Char 1.2) --> Exception||
+|1|All other types|-|I|deleteUser(Char "1.2") --> Exception||
+|0|-|-|I|deleteUser() --> Exception||
+|1<|-|-|I|deleteUser(Integer 23, Integer 65) --> Exception||
 
 
 
