@@ -121,6 +121,50 @@ Version: 1
 |>1|UserDto|I|saveUser(UserDto userDto1, UserDto userDto2) --> Exception||
 |1|All other types|I|saveUser(Integer userDto) --> Exception||
 
+
+ ### **Class *UserServiceimpl* - method *List<UserDto> getAllUsers()***
+
+**Criteria for method *List<UserDto> getAllUsers()*:**
+	
+
+ - Number of Input parameters 
+ - Type of parameters passed to method
+ - sign of parameters passed 
+
+**Predicates for method *List<UserDto> getAllUsers()*:**
+
+| Criteria | Predicate |
+| -------- | --------- |
+|  Number of Input parameters        |    0 to 1       |
+|          |     2 and above      |
+|     Type of parameters passed to method     |     Integer     |
+|          |     All other types      |
+
+
+**Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | --------------- |
+|     Number of Input parameters     |         1        |
+|      Type of parameters passed to method    |        Integer         |
+|sign of userId|Positive|
+
+
+**Combination of predicates**:
+
+
+| Number of Input parameters | Type of parameters passed to method | sign of userId | Valid / Invalid | Description of the test case | JUnit test case |
+|-------|-------|-------|-------|-------|-------|
+|1|Int|Positive|V|getAllUsers(Integer 23) --> Deletes the user with the given Id from the database||
+|1|Int|Negative|I|getAllUsers(Integer -23) --> Exception||
+|1|char|-|I|getAllUsers(Char 'A') --> Exception||
+|1|float|-|I|getAllUsers(Char 1.2) --> Exception||
+|1|All other types|-|I|getAllUsers(Char "1.2") --> Exception||
+|0|-|-|I|getAllUsers() --> Exception||
+|1<|-|-|I|getAllUsers(Integer 23, Integer 65) --> Exception||
+
+
+
 # White Box Unit Tests
 
 ### Test cases definition
