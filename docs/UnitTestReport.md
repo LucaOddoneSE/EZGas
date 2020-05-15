@@ -30,7 +30,7 @@ Version: 1
 
 
 
-**Criteria for method *getUserById*:**
+**Criteria for method *getUserById(Integer userId)*:**
 	
 
  - Number of Input parameters for getUserById(Integer userId)
@@ -81,8 +81,45 @@ Version: 1
 
 
 
+ ### **Class *UserServiceimpl* - method *saveUser(UserDto userDto)***
+
+**Criteria for method *saveUser(UserDto userDto)*:**
+	
+
+ - Number of Input parameters 
+ - Type of parameters passed 
 
 
+
+**Predicates for method *saveUser(UserDto userDto)*:**
+
+| Criteria | Predicate |
+| -------- | --------- |
+|  Number of Input parameters        |    0 to 1       |
+|          |     2 and above      |
+|     Type of parameters passed to method     |     UserDto      |
+|          |     All other types      |
+
+
+**Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | --------------- |
+|     Number of Input parameters     |         1        |
+|          |         <> Null      |
+|      Type of parameters passed to method    |        UserDto         |
+
+
+
+**Combination of predicates**:
+
+
+| Number of Input parameters | Type of parameters passed to method | Valid / Invalid | Description of the test case | JUnit test case |
+|-------|-------|-------|-------|-------|-------|
+|1|UserDto|V|saveUser(UserDto userDto) --> User Correctly saved!||
+|0|UserDto|I|saveUser() --> Exception||
+|>1|UserDto|I|saveUser(UserDto userDto1, UserDto userDto2) --> Exception||
+|1|All other types|I|saveUser(Integer userDto) --> Exception||
 
 # White Box Unit Tests
 
