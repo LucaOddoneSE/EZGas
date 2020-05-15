@@ -26,22 +26,22 @@ Version: 1
     the set up of all Spring components
     >
 
- ### **Class *UserServiceimpl* - method *getUserById***
+ ### **Class *UserServiceimpl* - method *getUserById(Integer userId)***
 
 
 
 **Criteria for method *getUserById*:**
 	
 
- - Number of Input parameters
- - Type of parameters passed to method
+ - Number of Input parameters for getUserById(Integer userId)
+ - Type of parameters passed to getUserById(Integer userId)
  - sign of userId
 
 
 
 
 
-**Predicates for method *name*:**
+**Predicates for method *getUserById(Integer userId)*:**
 
 | Criteria | Predicate |
 | -------- | --------- |
