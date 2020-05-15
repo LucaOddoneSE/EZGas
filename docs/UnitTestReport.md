@@ -164,6 +164,14 @@ Version: 1
 |1<|-|-|I|deleteUser(Integer 23, Integer 65) --> Exception||
 
 
+ ### **Class *UserServiceimpl* - method *getAllUsers()***
+
+**Criteria for method *getAllUsers()*:**
+**Predicates for method *getAllUsers()*:**
+**Boundaries**:
+**Combination of predicates**:
+
+
 
 # White Box Unit Tests
 
