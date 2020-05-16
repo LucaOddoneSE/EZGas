@@ -54,7 +54,7 @@ public class UserServiceimpl implements UserService {
 			userDto.setAdmin(false);
 		userRepository.save(userConverter.toUser(userDto));
 		System.out.println("User Correctly saved!");
-		return userDto;
+		return userConverter.toUserDto(userRepository.findOne(userDto.getUserId()));
 	}
 
 	@Override
@@ -94,34 +94,6 @@ public class UserServiceimpl implements UserService {
 
 	@Override
 	public LoginDto login(IdPw credentials) throws InvalidLoginDataException {
-		
-		/*
-		String email;
-		LoginDto loginDto = null;
-		if(credentials == null)
-			throw new InvalidLoginDataException("Error! Passed null credentials to login() method");
-		email = credentials.getUser();
-		if( userRepository.findAll().size() != 0) {
-			for(User u : userRepository.findAll() ) {
-				if(u.getEmail().equals(email)) {
-					System.out.println("User found");
-					if(credentials.getPw().equals(u.getPassword())) {
-						System.out.println("PW match, Going to logIn!");
-						loginDto = new LoginDto(u.getUserId(),u.getUserName(),"token",u.getEmail(),u.getReputation());
-						loginDto.setAdmin(u.getAdmin());
-					}else {
-						System.out.println("PW doesnt match match");
-					}
-				}
-			}
-			
-		}
-		else
-			throw new InvalidLoginDataException("Error! No User exists yet");
-		return loginDto;
-		*/
-        
-		
 		int counter = 0;
 		String email;
 		String password;
@@ -162,9 +134,6 @@ public class UserServiceimpl implements UserService {
 		else
 			throw new InvalidLoginDataException("Error! No one User still exists");
 		return loginDto;
-	
-
-		
 	}
 
 	@Override
