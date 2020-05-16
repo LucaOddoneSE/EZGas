@@ -650,21 +650,21 @@ Version: 1
 **Combination of predicates for GasStationDto()**:
 
 | Number of Input parameters | Type of parameters passed to method |  Valid / Invalid | Description of the test case | JUnit test case |
-|-------|-------|-------|--------------|-------|-------|
+|-------|-------|-------|--------------|-------|
 |19| Boolean, String, Double, Integer|V|GasStationDto(All input parameters) --> Valid ||
 
 
 **Combination of predicates for getGasStationName()**:
 
 | Number of Input parameters | Type of parameters passed to method |  Valid / Invalid | Description of the test case | JUnit test case |
-|-------|-------|-------|--------------|-------|-------|
+|-------|-------|-------|--------------|-------|
 |-|-|V|getGasStationName() --> Valid ||
 
 
 **Combination of predicates for setGasStationName()**:
 
 | Number of Input parameters | Type of parameters passed to method | Valid / Invalid | Description of the test case | JUnit test case |
-|-------|-------|-------|--------------|-------|-------|
+|-------|-------|-------|--------------|-------|
 |1|String|V|setGasStationName("GiacomoBalla") --> Valid ||
 |1|String|I|setGasStationName("") --> Exception ||
 |0|String|I|setGasStationName() --> Exception ||
