@@ -48,6 +48,24 @@ public class UserServiceimpl implements UserService {
 			System.out.println("Error! you want to save in the database a null object User");
 			return null;
 		}
+		if(userRepository.exists(userDto.getUserId())) {
+			Iterator<User> iter = userRepository.findAll().iterator();
+			String email = userRepository.findOne(userDto.getUserId()).getEmail();
+			while(iter.hasNext()) {
+				User user = iter.next();
+				if(user.getEmail().equals(email)) {
+					System.out.println("Error! This user with this email already exists!");
+					return null;
+				}
+			}
+			if(userDto.getReputation() == null)
+				userDto.setReputation(0);
+			if(userDto.getAdmin() == null || userDto.getAdmin() == false)
+				userDto.setAdmin(false);
+			userRepository.save(userConverter.toUser(userDto));
+			System.out.println("User Correctly updated!");
+			return userConverter.toUserDto(userRepository.findOne(userDto.getUserId()));
+		}
 		if(userDto.getReputation() == null)
 			userDto.setReputation(0);
 		if(userDto.getAdmin() == null || userDto.getAdmin() == false)
