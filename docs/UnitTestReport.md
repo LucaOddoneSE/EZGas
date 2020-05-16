@@ -9,7 +9,8 @@ Version: 1
 # Contents
 
 - [Black Box Unit Tests](#black-box-unit-tests)
- - [UserServiceimpl Class](##UserServiceimpl)
+- [UserServiceimpl Class](##UserServiceimpl-Class)
+
  - [GasStationServiceimpl Class](##GasStationServiceimpl)
  - [GasStationDto Class](##GasStationDto)
 
@@ -18,7 +19,7 @@ Version: 1
 
 # Black Box Unit Tests
 
- ## UserServiceimpl
+ ## Black Box Unit Tests
 
  ### **Class *UserServiceimpl* - method *getUserById(Integer userId)***
 
@@ -669,9 +670,9 @@ Version: 1
 |1|String|I|setGasStationName("") --> Exception ||
 |0|String|I|setGasStationName() --> Exception ||
 |1|String|I|setGasStationName("?@3*") --> Exception, Invalid Name format ||
-|1|All other types|I|setGasStationName(234) --> Exception, Invalid Input type! ||
-|1|All other types|I|setGasStationName(2.34) --> Exception, Invalid Input type! ||
-|>1|All other types|I|setGasStationName("GiacomoBalla","Polito") --> Exception, 2 Input parameters! ||
+|1|Integer|I|setGasStationName(234) --> Exception, Invalid Input type! ||
+|1|Double|I|setGasStationName(2.34) --> Exception, Invalid Input type! ||
+|>1|String|I|setGasStationName("GiacomoBalla","Polito") --> Exception, 2 Input parameters! ||
 
 
 # White Box Unit Tests
