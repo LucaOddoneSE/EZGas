@@ -516,7 +516,7 @@ Version: 1
 
 
 | Number of Input parameters | Type of parameters passed to method | Range |Sign of the number|Gasolinetype|carsharing| Valid / Invalid | Description of the test case | JUnit test case |
-|-------|-------|-------|-------|-------|-------|-------|
+|-------|-------|-------|-------|-------|-------|-------|-------|-------|
 |4|Double,String|(lat > -90 || lat < 90) || (lon > -180 || lon < 180)|Mix|One of supported types|<>Null|V|getGasStationsWithCoordinates(double lat, double lon, String gasolinetype,String carsharing) --> Returns all gas stations within 1km from the GeoPoint, with gasolinetype and a carsharing value parameters ||
 |4|Double,String|(lat < -90 || lat > 90) || (lon < -180 || lon > 180)|Mix|One of supported types|<>Null|I|getGasStationsWithCoordinates(double lat, double lon, String gasolinetype,String carsharing) --> Exception, coordinates out of bounds! ||
 |3|Double,String|(lat > -90 || lat < 90) || (lon > -180 || lon < 180)|Mix|<> Supported Gasolinetype|<>Null|I|getGasStationsWithCoordinates(double lat, double lon, String gasolinetype,String carsharing) --> Exception ||
