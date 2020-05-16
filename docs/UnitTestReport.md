@@ -618,8 +618,68 @@ Version: 1
 |<8|Double, Integer|Positive|I|setReport(Integer gasStationId, Integer userId) --> Exception, FuelPrices are missed! ||
 |<8|Double, Integer|Positive|I|setReport(double dieselPrice, double superPrice, double superPlusPrice, double gasPrice, double methanePrice, Integer userId) --> Exception, GasStationId is missed! ||
 |<8|Double, Integer|Positive|I|setReport(Integer gasStationId, double dieselPrice, double superPrice, double superPlusPrice, double gasPrice, double methanePrice) --> Exception, userId is missed! ||
-|>8|Double, Integer|Positive|I|setReport() --> Exception ||
+|>8|Double, Integer|Positive|I|setReport(more than 8 input parameters) --> Exception ||
 
+
+### **Class * GasStationDto****
+
+**Criteria for all methods*:**
+	
+ - Number of Input parameters 
+ - Type of parameter passed to method
+ - Range for Integer
+ - valid format of string
+
+
+
+ **Predicates for all methods*:**
+
+| Criteria | Predicate |
+| -------- | --------- |
+|  Number of Input parameters        |    0 to 19       |
+|          |     20 and above      |
+|     Type of parameters passed to method     |      Boolean, String, Double, Integer    |
+|          |     All other types      |
+|    Range      |   >=MinInt and  <= MaxInt      |
+|          |     > MaxInt      |
+|          |     < MinInt      |
+|   valid format of string       |     "Polito"      |
+|          |     "8?#@"      |
+
+
+**Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | --------------- |
+|     Number of Input parameters     |         19        |
+|      Type of parameters passed to method    |        Boolean, String, Double, Integer         |
+
+
+**Combination of predicates for GasStationDto()**:
+
+| Number of Input parameters | Type of parameters passed to method |  Valid / Invalid | Description of the test case | JUnit test case |
+|-------|-------|-------|--------------|-------|-------|
+|19| Boolean, String, Double, Integer|V|GasStationDto(All input parameters) --> Valid ||
+
+
+**Combination of predicates for getGasStationName()**:
+
+| Number of Input parameters | Type of parameters passed to method |  Valid / Invalid | Description of the test case | JUnit test case |
+|-------|-------|-------|--------------|-------|-------|
+|-|-|V|getGasStationName() --> Valid ||
+
+
+**Combination of predicates for setGasStationName()**:
+
+| Number of Input parameters | Type of parameters passed to method | Valid / Invalid | Description of the test case | JUnit test case |
+|-------|-------|-------|--------------|-------|-------|
+|1|String|V|setGasStationName("GiacomoBalla") --> Valid ||
+|1|String|I|setGasStationName("") --> Exception ||
+|0|String|I|setGasStationName() --> Exception ||
+|1|String|I|setGasStationName("?@3*") --> Exception, Invalid Name format ||
+|1|All other types|I|setGasStationName(234) --> Exception, Invalid Input type! ||
+|1|All other types|I|setGasStationName(2.34) --> Exception, Invalid Input type! ||
+|>1|All other types|I|setGasStationName("GiacomoBalla","Polito") --> Exception, 2 Input parameters! ||
 
 
 # White Box Unit Tests
