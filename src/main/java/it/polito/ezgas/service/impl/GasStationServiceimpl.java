@@ -1,5 +1,6 @@
 package it.polito.ezgas.service.impl;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -17,7 +18,9 @@ import it.polito.ezgas.converter.GasStationConverter;
 import it.polito.ezgas.dto.GasStationDto;
 import it.polito.ezgas.entity.GasStation;
 import it.polito.ezgas.repository.GasStationRepository;
+import it.polito.ezgas.repository.UserRepository;
 import it.polito.ezgas.service.GasStationService;
+import it.polito.ezgas.utils.Day;
 import it.polito.ezgas.utils.Haversine;
 
 /**
@@ -30,6 +33,8 @@ public class GasStationServiceimpl implements GasStationService {
 	private GasStationRepository gasStationRepository;
 	@Autowired
 	private GasStationConverter gasStationConverter;
+	@Autowired
+	private UserRepository userRepository;
 
 	@Override
 	public GasStationDto getGasStationById(Integer gasStationId) throws InvalidGasStationException {
@@ -57,14 +62,22 @@ public class GasStationServiceimpl implements GasStationService {
 			return null;
 		}
 		
-		if( gasStationDto.getDieselPrice() < 0 || gasStationDto.getGasPrice() < 0 || 
-		    gasStationDto.getSuperPrice() < 0  || gasStationDto.getSuperPlusPrice() < 0 || 
-		    gasStationDto.getMethanePrice() < 0) 
-			throw new PriceException("Error! One or more of the fuel types price is negative!");
-		
-		if( (gasStationDto.getLon() < -180 || gasStationDto.getLon() >= 180) || 
-			(gasStationDto.getLat() < -90 || gasStationDto.getLat() >= 90) )
-			throw new GPSDataException("Error! GasStation containes wrong coordinates values");
+		if(gasStationRepository.exists(gasStationDto.getGasStationId())) {
+			if( (gasStationDto.getHasDiesel() && gasStationDto.getDieselPrice() < 0) || 
+					(gasStationDto.getHasGas() && gasStationDto.getGasPrice() < 0  ) || 
+				    (gasStationDto.getHasSuper() && gasStationDto.getSuperPrice() < 0 ) ||
+				    (gasStationDto.getHasSuperPlus() &&  gasStationDto.getSuperPlusPrice() < 0 ) || 
+				    (gasStationDto.getHasMethane() && gasStationDto.getMethanePrice() < 0) ) 
+					throw new PriceException("Error! One or more of the fuel types price is negative!");
+			
+			if( (gasStationDto.getLon() < -180 || gasStationDto.getLon() >= 180) || 
+					(gasStationDto.getLat() < -90 || gasStationDto.getLat() >= 90) )
+					throw new GPSDataException("Error! GasStation containes wrong coordinates values");
+			
+			gasStationRepository.save(gasStationConverter.toGasStation(gasStationDto));
+			System.out.println("Tha GasStation is successfully updated!");
+			return gasStationConverter.toGasStationDto(gasStationRepository.findOne(gasStationDto.getGasStationId()));
+		}
 		
 		if(gasStationDto.getHasDiesel() && gasStationDto.getDieselPrice()<= 0)
 			gasStationDto.setDieselPrice(0);
@@ -77,6 +90,21 @@ public class GasStationServiceimpl implements GasStationService {
 		if(gasStationDto.getHasMethane() && gasStationDto.getMethanePrice() <=0)
 			gasStationDto.setMethanePrice(0);
 		
+		if( (gasStationDto.getHasDiesel() && gasStationDto.getDieselPrice() < 0) || 
+			(gasStationDto.getHasGas() && gasStationDto.getGasPrice() < 0  ) || 
+		    (gasStationDto.getHasSuper() && gasStationDto.getSuperPrice() < 0 ) ||
+		    (gasStationDto.getHasSuperPlus() &&  gasStationDto.getSuperPlusPrice() < 0 ) || 
+		    (gasStationDto.getHasMethane() && gasStationDto.getMethanePrice() < 0) ) 
+			throw new PriceException("Error! One or more of the fuel types price is negative!");
+		
+		if( (gasStationDto.getLon() < -180 || gasStationDto.getLon() >= 180) || 
+			(gasStationDto.getLat() < -90 || gasStationDto.getLat() >= 90) )
+			throw new GPSDataException("Error! GasStation containes wrong coordinates values");
+		
+		gasStationDto.setReportUser(null);
+		gasStationDto.setUserDto(null);
+		gasStationDto.setReportDependability(0);
+		gasStationDto.setReportTimestamp(null);
 		gasStationRepository.save(gasStationConverter.toGasStation(gasStationDto));
 		System.out.println("Tha GasStation passed is successfully saved!");
 		return gasStationConverter.toGasStationDto(gasStationRepository.findOne(gasStationDto.getGasStationId()));
@@ -270,8 +298,71 @@ public class GasStationServiceimpl implements GasStationService {
 	public void setReport(Integer gasStationId, double dieselPrice, double superPrice, double superPlusPrice,
 			double gasPrice, double methanePrice, Integer userId)
 			throws InvalidGasStationException, PriceException, InvalidUserException {
-		// TODO Auto-generated method stub
-		
+		if(gasStationId < 0)
+			throw new InvalidGasStationException("Error! the GasStationId must not be negative");
+		if(userId < 0)
+			throw new InvalidUserException("Error! Invalid userId: userId can't be negative");
+		if(userRepository.exists(userId)) {
+			if(gasStationRepository.exists(gasStationId)) {
+
+				if( (gasStationRepository.findOne(gasStationId).getHasDiesel() && gasStationRepository.findOne(gasStationId).getDieselPrice() < 0) || 
+					(gasStationRepository.findOne(gasStationId).getHasGas() && gasStationRepository.findOne(gasStationId).getGasPrice() < 0  ) || 
+				    (gasStationRepository.findOne(gasStationId).getHasSuper() && gasStationRepository.findOne(gasStationId).getSuperPrice() < 0 ) ||
+				    (gasStationRepository.findOne(gasStationId).getHasSuperPlus() &&  gasStationRepository.findOne(gasStationId).getSuperPlusPrice() < 0 ) || 
+				    (gasStationRepository.findOne(gasStationId).getHasMethane() && gasStationRepository.findOne(gasStationId).getMethanePrice() < 0) ) 
+					throw new PriceException("Error! One or more of the fuel types price is negative!");
+				
+				double obsolence = 0;
+				GasStation gasStation = gasStationRepository.findOne(gasStationId);
+				if(gasStation.getUser() == null && gasStation.getReportTimestamp() == null && gasStation.getReportDependability() == 0) {
+					System.out.println("You're going to report this gasStation for the first time!");
+					gasStation.setUser(userRepository.findOne(userId));
+					gasStation.setReportTimestamp(Day.calendarToString());
+					System.out.println("ReportTimestamp: " + gasStation.getReportTimestamp());
+					try {
+						obsolence = (Day.calculateDays(gasStation.getReportTimestamp()));
+						if(obsolence > 7)
+							obsolence = 0;
+						else
+							obsolence = 1 - obsolence/7;
+						System.out.println("obsolence value: " + obsolence + " (it should be 0)");
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					gasStation.setReportDependability(50*(userRepository.findOne(userId).getReputation()+5)/10+50*obsolence);
+				}
+				else {
+					gasStation.setUser(userRepository.findOne(userId));
+					gasStation.setReportTimestamp(Day.calendarToString());
+					System.out.println("ReportTimestamp: " + gasStation.getReportTimestamp());
+					try {
+						obsolence = (Day.calculateDays(gasStation.getReportTimestamp()));
+						if(obsolence > 7)
+							obsolence = 0;
+						else
+							obsolence = 1 - obsolence/7;
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					gasStation.setReportTimestamp(Day.calendarToString());
+					System.out.println("ReportTimestamp: " + gasStation.getReportTimestamp());
+					gasStation.setReportDependability(50*(userRepository.findOne(userId).getReputation()+5)/10+50*obsolence);
+					return ;
+				}
+			}
+			else {
+				System.out.println("No GasStation with the following GasStationID: " + gasStationId + " " + "was found");
+				return ;
+			}
+			
+		}
+		else {
+			System.out.println("No user with the following userID: " + userId + " " + "was found");
+			return ;
+		}
+		return ;
 	}
 
 	@Override
