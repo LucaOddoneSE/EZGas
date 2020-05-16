@@ -276,6 +276,10 @@ public class GasStationServiceimpl implements GasStationService {
 
 	@Override
 	public List<GasStationDto> getGasStationByCarSharing(String carSharing) {
+		if(carSharing == null) {
+			System.out.println("Error! You have passed a null carsharing as a parameter");
+			return new ArrayList<GasStationDto>();
+		}
 		return getAllGasStations().stream()
 				.filter( (g) -> g.getCarSharing().equals(carSharing))
 				.collect(Collectors.toList());
