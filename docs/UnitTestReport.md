@@ -9,7 +9,7 @@ Version: 1
 # Contents
 
 - [Black Box Unit Tests](#black-box-unit-tests)
-- [UserServiceimpl Class](##UserServiceimpl-Class)
+- [UserServiceimpl](##UserServiceimpl)
 
  - [GasStationServiceimpl Class](##GasStationServiceimpl)
  - [GasStationDto Class](##GasStationDto)
@@ -19,7 +19,7 @@ Version: 1
 
 # Black Box Unit Tests
 
- ## UserServiceimpl Class
+ ## UserServiceimpl
 
  ### **Class *UserServiceimpl* - method *getUserById(Integer userId)***
 
