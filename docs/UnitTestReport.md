@@ -9,17 +9,16 @@ Version: 1
 # Contents
 
 - [Black Box Unit Tests](#black-box-unit-tests)
-- [UserServiceimpl](#UserServiceimpl)
-
- - [GasStationServiceimpl Class](##GasStationServiceimpl)
- - [GasStationDto Class](##GasStationDto)
+- [UserServiceimpl](##UserServiceimpl)
+- [GasStationServiceimpl](##GasStationServiceimpl)
+ - [GasStationDto](##GasStationDto)
 
 - [White Box Unit Tests](#white-box-unit-tests)
 
 
 # Black Box Unit Tests
 
- # UserServiceimpl
+ ## UserServiceimpl
 
  ### **Class *UserServiceimpl* - method *getUserById(Integer userId)***
 
@@ -233,7 +232,7 @@ Version: 1
 |1<|-|-|I|increaseUserReputation(23, 65) --> Exception||
 
 
- ## GasStationServiceimpl Class
+ ## GasStationServiceimpl
 
  ### **Class *GasStationServiceimpl* - method *getGasStationById(Integer gasStationId)***
 
@@ -613,6 +612,7 @@ Version: 1
 |<8|Double, Integer|Positive|I|setReport(Integer gasStationId, double dieselPrice, double superPrice, double superPlusPrice, double gasPrice, double methanePrice) --> Exception, userId is missed! ||
 |>8|Double, Integer|Positive|I|setReport(more than 8 input parameters) --> Exception ||
 
+ ## GasStationDto
 
 ### **Class * GasStationDto****
 
