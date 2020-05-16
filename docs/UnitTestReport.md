@@ -19,7 +19,7 @@ Version: 1
 
 # Black Box Unit Tests
 
- ## Black Box Unit Tests
+ ## UserServiceimpl Class
 
  ### **Class *UserServiceimpl* - method *getUserById(Integer userId)***
 
