@@ -44,8 +44,7 @@ public class GasStationServiceimpl implements GasStationService {
 			System.out.println("The GasStation with the provided gasStationId is found!");
 			System.out.println(gasStationRepository.findOne(gasStationId).getGasStationId() + " " +
 					           gasStationRepository.findOne(gasStationId).getGasStationName() + " " +
-					           gasStationRepository.findOne(gasStationId).getGasStationAddress() + " " +
-					           gasStationRepository.findOne(gasStationId).getReportTimestamp());
+					           gasStationRepository.findOne(gasStationId).getGasStationAddress());
 			return gasStationConverter.toGasStationDto(gasStationRepository.findOne(gasStationId));
 		}
 		else {
@@ -116,8 +115,7 @@ public class GasStationServiceimpl implements GasStationService {
 			gasStation = iter.next();
 			System.out.println( gasStation.getGasStationId() + " " +
 			                    gasStation.getGasStationName() + " " +
-			                    gasStation.getGasStationAddress() + " " +
-			                    gasStation.getReportTimestamp() );
+			                    gasStation.getGasStationAddress());
 			listGasStationDto.add(gasStationConverter.toGasStationDto(gasStation));
 		}
 		return listGasStationDto;
@@ -196,7 +194,7 @@ public class GasStationServiceimpl implements GasStationService {
 			throw new InvalidGasTypeException("Error! You have passed a null gasolinetype as parameter");
 		if(carsharing == null) {
 			System.out.println("Error! You have passed a null carsharing as a parameter");
-			return new ArrayList<GasStationDto>();
+			return null;
 		}
 		if((lat < -90 || lat >= 90) || (lon < -180 || lon >= 180)) {
 			throw new GPSDataException("coordinates out of bounds");
@@ -249,7 +247,7 @@ public class GasStationServiceimpl implements GasStationService {
 			throw new InvalidGasTypeException("Error! You have passed a null gasolinetype as parameter");
 		if(carsharing == null) {
 			System.out.println("Error! You have passed a null carsharing as a parameter");
-			return new ArrayList<GasStationDto>();
+			return null;
 		}
 		List<GasStationDto> gs = getAllGasStations();
 		gs = gs.stream()
@@ -318,7 +316,7 @@ public class GasStationServiceimpl implements GasStationService {
 							obsolence = 0;
 						else
 							obsolence = 1 - obsolence/7;
-						System.out.println("obsolence value: " + obsolence + " (it should be 0)");
+						System.out.println("obsolence value: " + obsolence + " (it should be 1)");
 					} catch (ParseException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -327,7 +325,6 @@ public class GasStationServiceimpl implements GasStationService {
 				}
 				else {
 					gasStation.setUser(userRepository.findOne(userId));
-					gasStation.setReportTimestamp(Day.calendarToString());
 					System.out.println("ReportTimestamp: " + gasStation.getReportTimestamp());
 					try {
 						obsolence = (Day.calculateDays(gasStation.getReportTimestamp()));
@@ -344,6 +341,7 @@ public class GasStationServiceimpl implements GasStationService {
 					gasStation.setReportDependability(50*(userRepository.findOne(userId).getReputation()+5)/10+50*obsolence);
 					return ;
 				}
+				gasStationRepository.save((gasStationRepository.findOne(gasStationId)));
 			}
 			else {
 				System.out.println("No GasStation with the following GasStationID: " + gasStationId + " " + "was found");
@@ -362,12 +360,10 @@ public class GasStationServiceimpl implements GasStationService {
 	public List<GasStationDto> getGasStationByCarSharing(String carSharing) {
 		if(carSharing == null) {
 			System.out.println("Error! You have passed a null carsharing as a parameter");
-			return new ArrayList<GasStationDto>();
+			return null;
 		}
 		return getAllGasStations().stream()
 				.filter( (g) -> g.getCarSharing().equals(carSharing))
 				.collect(Collectors.toList());
 	}
-	
-
 }
