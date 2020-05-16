@@ -48,31 +48,42 @@ public class UserServiceimpl implements UserService {
 			System.out.println("Error! you want to save in the database a null object User");
 			return null;
 		}
-		if(userRepository.exists(userDto.getUserId())) {
-			Iterator<User> iter = userRepository.findAll().iterator();
-			String email = userRepository.findOne(userDto.getUserId()).getEmail();
+		if(userDto.getUserId() == null) {
+			Iterator<User> iter;
+			User user;
+			String email;
+			if(userDto.getEmail()==null) {
+				System.out.println("Error! You haven't inserted any email for this new user");
+				return null;
+			}
+			if(userDto.getReputation() == null)
+			userDto.setReputation(0);
+			if(userDto.getAdmin() == null || userDto.getAdmin() == false)
+				userDto.setAdmin(false);
+			if(userDto.getUserName() == null)
+				userDto.setUserName("Not specified");
+			email = userDto.getEmail();
+			iter = userRepository.findAll().iterator();
 			while(iter.hasNext()) {
-				User user = iter.next();
+				user = iter.next();
 				if(user.getEmail().equals(email)) {
-					System.out.println("Error! This user with this email already exists!");
+					System.out.println("Error! This user with this email already exists in the database!");
 					return null;
 				}
 			}
-			if(userDto.getReputation() == null)
-				userDto.setReputation(0);
-			if(userDto.getAdmin() == null || userDto.getAdmin() == false)
-				userDto.setAdmin(false);
 			userRepository.save(userConverter.toUser(userDto));
-			System.out.println("User Correctly updated!");
-			return userConverter.toUserDto(userRepository.findOne(userDto.getUserId()));
+			System.out.println("User Correctly saved!");
+			return userDto;
 		}
 		if(userDto.getReputation() == null)
 			userDto.setReputation(0);
 		if(userDto.getAdmin() == null || userDto.getAdmin() == false)
 			userDto.setAdmin(false);
+		if(userDto.getUserName() == null)
+			userDto.setUserName("Not specified");
 		userRepository.save(userConverter.toUser(userDto));
-		System.out.println("User Correctly saved!");
-		return userConverter.toUserDto(userRepository.findOne(userDto.getUserId()));
+		System.out.println("User Correctly updated!");
+		return userDto;
 	}
 
 	@Override
