@@ -62,33 +62,30 @@ public class GasStationServiceimpl implements GasStationService {
 			return null;
 		}
 		
-		if(gasStationRepository.exists(gasStationDto.getGasStationId())) {
-			if( (gasStationDto.getHasDiesel() && gasStationDto.getDieselPrice() < 0) || 
-					(gasStationDto.getHasGas() && gasStationDto.getGasPrice() < 0  ) || 
-				    (gasStationDto.getHasSuper() && gasStationDto.getSuperPrice() < 0 ) ||
-				    (gasStationDto.getHasSuperPlus() &&  gasStationDto.getSuperPlusPrice() < 0 ) || 
-				    (gasStationDto.getHasMethane() && gasStationDto.getMethanePrice() < 0) ) 
-					throw new PriceException("Error! One or more of the fuel types price is negative!");
+		if(gasStationDto.getGasStationId() == null) {
+			if(gasStationDto.getHasDiesel() && gasStationDto.getDieselPrice()<= 0)
+				gasStationDto.setDieselPrice(0);
+			if(gasStationDto.getHasGas() && gasStationDto.getGasPrice() <=0)
+				gasStationDto.setGasPrice(0);
+			if(gasStationDto.getHasSuperPlus() && gasStationDto.getSuperPlusPrice() <=0)
+				gasStationDto.setSuperPlusPrice(0);
+			if(gasStationDto.getHasSuper() && gasStationDto.getSuperPrice() <=0)
+				gasStationDto.setSuperPrice(0);
+			if(gasStationDto.getHasMethane() && gasStationDto.getMethanePrice() <=0)
+				gasStationDto.setMethanePrice(0);
 			
 			if( (gasStationDto.getLon() < -180 || gasStationDto.getLon() >= 180) || 
 					(gasStationDto.getLat() < -90 || gasStationDto.getLat() >= 90) )
 					throw new GPSDataException("Error! GasStation containes wrong coordinates values");
 			
+			gasStationDto.setReportUser(null);
+			gasStationDto.setUserDto(null);
+			gasStationDto.setReportDependability(0);
+			gasStationDto.setReportTimestamp(null);
 			gasStationRepository.save(gasStationConverter.toGasStation(gasStationDto));
-			System.out.println("Tha GasStation is successfully updated!");
-			return gasStationConverter.toGasStationDto(gasStationRepository.findOne(gasStationDto.getGasStationId()));
+			System.out.println("The GasStation is successfully saved!");
+			return gasStationDto;
 		}
-		
-		if(gasStationDto.getHasDiesel() && gasStationDto.getDieselPrice()<= 0)
-			gasStationDto.setDieselPrice(0);
-		if(gasStationDto.getHasGas() && gasStationDto.getGasPrice() <=0)
-			gasStationDto.setGasPrice(0);
-		if(gasStationDto.getHasSuperPlus() && gasStationDto.getSuperPlusPrice() <=0)
-			gasStationDto.setSuperPlusPrice(0);
-		if(gasStationDto.getHasSuper() && gasStationDto.getSuperPrice() <=0)
-			gasStationDto.setSuperPrice(0);
-		if(gasStationDto.getHasMethane() && gasStationDto.getMethanePrice() <=0)
-			gasStationDto.setMethanePrice(0);
 		
 		if( (gasStationDto.getHasDiesel() && gasStationDto.getDieselPrice() < 0) || 
 			(gasStationDto.getHasGas() && gasStationDto.getGasPrice() < 0  ) || 
@@ -101,13 +98,9 @@ public class GasStationServiceimpl implements GasStationService {
 			(gasStationDto.getLat() < -90 || gasStationDto.getLat() >= 90) )
 			throw new GPSDataException("Error! GasStation containes wrong coordinates values");
 		
-		gasStationDto.setReportUser(null);
-		gasStationDto.setUserDto(null);
-		gasStationDto.setReportDependability(0);
-		gasStationDto.setReportTimestamp(null);
 		gasStationRepository.save(gasStationConverter.toGasStation(gasStationDto));
-		System.out.println("Tha GasStation passed is successfully saved!");
-		return gasStationConverter.toGasStationDto(gasStationRepository.findOne(gasStationDto.getGasStationId()));
+		System.out.println("The GasStation is successfully updated!");
+		return gasStationDto;
 	}
 
 	@Override
