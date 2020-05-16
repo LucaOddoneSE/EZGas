@@ -79,7 +79,7 @@ public class GasStationServiceimpl implements GasStationService {
 		
 		gasStationRepository.save(gasStationConverter.toGasStation(gasStationDto));
 		System.out.println("Tha GasStation passed is successfully saved!");
-		return gasStationDto;
+		return gasStationConverter.toGasStationDto(gasStationRepository.findOne(gasStationDto.getGasStationId()));
 	}
 
 	@Override
@@ -118,6 +118,8 @@ public class GasStationServiceimpl implements GasStationService {
 	public List<GasStationDto> getGasStationsByGasolineType(String gasolinetype) throws InvalidGasTypeException {
 		
 		List<GasStationDto> gs = getAllGasStations();
+		if(gasolinetype == null)
+			throw new InvalidGasTypeException("Error! You have passed a null gasolinetype as parameter");
 		switch(gasolinetype) {
 		  case "Diesel":
 			  gs = gs.stream()
@@ -150,10 +152,7 @@ public class GasStationServiceimpl implements GasStationService {
 				.collect(Collectors.toList());
 		    break;
 		  default:
-			  if(gasolinetype != null)
-				  throw new InvalidGasTypeException("Gas Type not supported");
-			  else
-				  throw new InvalidGasTypeException("Error! You have passed a null gasolinetype as parameter");
+				throw new InvalidGasTypeException("Error! You have passed a non valid gasolinetype as parameter");
 		}
 		return gs;
 	}
@@ -172,17 +171,22 @@ public class GasStationServiceimpl implements GasStationService {
 	@Override
 	public List<GasStationDto> getGasStationsWithCoordinates(double lat, double lon, String gasolinetype,
 			String carsharing) throws InvalidGasTypeException, GPSDataException {
+		if(gasolinetype == null)
+			throw new InvalidGasTypeException("Error! You have passed a null gasolinetype as parameter");
+		if(carsharing == null) {
+			System.out.println("Error! You have passed a null carsharing as a parameter");
+			return new ArrayList<GasStationDto>();
+		}
 		if((lat < -90 || lat >= 90) || (lon < -180 || lon >= 180)) {
 			throw new GPSDataException("coordinates out of bounds");
 		}else {
 			List<GasStationDto> gs = getAllGasStations().stream()
 					.filter( (g) -> Haversine.distance(lat, lon, g.getLat(), g.getLon() ) <= 1)
+					.sorted( (g1,g2) -> Double.compare(Haversine.distance(lat, lon, g1.getLat(), g1.getLon() ), Haversine.distance(lat, lon, g2.getLat(), g2.getLon() ) ) )
 					.collect(Collectors.toList());
-			if(carsharing != null) {
-				gs = gs.stream()
-						.filter( (g) -> g.getCarSharing().equals(carsharing))
-						.collect(Collectors.toList());
-			}
+			gs = gs.stream()
+					.filter( (g) -> g.getCarSharing().equals(carsharing))
+					.collect(Collectors.toList());
 			switch(gasolinetype) {
 			  case "Diesel":
 				  gs = gs.stream()
@@ -212,8 +216,6 @@ public class GasStationServiceimpl implements GasStationService {
 			  default:
 				  if(gasolinetype != null)
 					  throw new InvalidGasTypeException("Gas Type not supported");
-				  else
-					  throw new InvalidGasTypeException("Error! You have passed a null gasolinetype as parameter");
 			}
 			return gs;
 		}
@@ -222,41 +224,43 @@ public class GasStationServiceimpl implements GasStationService {
 	@Override
 	public List<GasStationDto> getGasStationsWithoutCoordinates(String gasolinetype, String carsharing)
 			throws InvalidGasTypeException {
-		//there is to method description so i dont know if it does what it needs
-		List<GasStationDto> gs = getAllGasStations();
-		if(carsharing != null) {
-			gs = gs.stream()
-					.filter( (g) -> g.getCarSharing().equals(carsharing))
-					.collect(Collectors.toList());
+		if(gasolinetype == null)
+			throw new InvalidGasTypeException("Error! You have passed a null gasolinetype as parameter");
+		if(carsharing == null) {
+			System.out.println("Error! You have passed a null carsharing as a parameter");
+			return new ArrayList<GasStationDto>();
 		}
+		List<GasStationDto> gs = getAllGasStations();
+		gs = gs.stream()
+				.filter( (g) -> g.getCarSharing().equals(carsharing))
+				.collect(Collectors.toList());
 		switch(gasolinetype) {
-		  case "diesel":
+		  case "Diesel":
 			  gs = gs.stream()
 				.filter( (g) -> g.getHasDiesel())
 				.collect(Collectors.toList());
 		    break;
-		  case "methane":
+		  case "Methane":
 			  gs = gs.stream()
 				.filter( (g) -> g.getHasMethane())
 				.collect(Collectors.toList());
 		    break;
-		  case "gas":
+		  case "Gas":
 			  gs = gs.stream()
 				.filter( (g) -> g.getHasGas())
 				.collect(Collectors.toList());
 		    break;
-		  case "super":
+		  case "Super":
 			  gs = gs.stream()
 				.filter( (g) -> g.getHasSuper())
 				.collect(Collectors.toList());
 		    break;
-		  case "superplus":
+		  case "SuperPlus":
 			  gs = gs.stream()
 				.filter( (g) -> g.getHasSuperPlus())
 				.collect(Collectors.toList());
 		    break;
 		  default:
-			  if(gasolinetype != null)
 			  throw new InvalidGasTypeException("Gas Type not supported");
 		}
 		return gs;
