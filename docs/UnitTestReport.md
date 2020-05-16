@@ -590,8 +590,8 @@ Version: 1
 
 | Criteria | Predicate |
 | -------- | --------- |
-|  Number of Input parameters        |    0 to 7       |
-|          |     8 and above      |
+|  Number of Input parameters        |    0 to 8       |
+|          |     9 and above      |
 |     Type of parameters passed to method     |      Double, Integer    |
 |          |     All other types      |
 |    Sign of the Price,UserId      |     Positive      |
@@ -613,6 +613,7 @@ Version: 1
 | Number of Input parameters | Type of parameters passed to method | Sign of the Price,UserId| Valid / Invalid | Description of the test case | JUnit test case |
 |-------|-------|-------|--------------|-------|-------|
 |8|Double, Integer|Positive|V|setReport(Integer gasStationId, double dieselPrice, double superPrice, double superPlusPrice, double gasPrice, double methanePrice, Integer userId) --> Valid ||
+|8|Double, Integer|Negative|I|setReport(Integer gasStationId, -25.4, double superPrice, double superPlusPrice, double gasPrice, double methanePrice, Integer userId) --> Exception, Negative Price! ||
 |8|Double, Integer|Negative|I|setReport(Integer gasStationId, double dieselPrice, double superPrice, double superPlusPrice, double gasPrice, double methanePrice, -20) --> Exception, Negative UserId! ||
 |<8|Double, Integer|Positive|I|setReport(Integer gasStationId, Integer userId) --> Exception, FuelPrices are missed! ||
 |<8|Double, Integer|Positive|I|setReport(double dieselPrice, double superPrice, double superPlusPrice, double gasPrice, double methanePrice, Integer userId) --> Exception, GasStationId is missed! ||
