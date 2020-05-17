@@ -11,7 +11,7 @@ Version: 1
 - [Black Box Unit Tests](#black-box-unit-tests)
 - [UserServiceimpl](##UserServiceimpl)
 - [GasStationServiceimpl](##GasStationServiceimpl)
- - [GasStationDto](##GasStationDto)
+- [GasStationDto](##GasStationDto)
 
 - [White Box Unit Tests](#white-box-unit-tests)
 
@@ -625,7 +625,7 @@ Version: 1
 
 
 
- **Predicates for all methods*:**
+ **Conditions (predicates on criteria) for all methods*:**
 
 | Criteria | Predicate |
 | -------- | --------- |
@@ -648,21 +648,21 @@ Version: 1
 |      Type of parameters passed to method    |        Boolean, String, Double, Integer         |
 
 
-**Combination of predicates for GasStationDto()**:
+**Combination of predicates (define test cases) for GasStationDto()**:
 
 | Number of Input parameters | Type of parameters passed to method |  Valid / Invalid | Description of the test case | JUnit test case |
 |-------|-------|-------|--------------|-------|
 |19| Boolean, String, Double, Integer|V|GasStationDto(All input parameters) --> Valid ||
 
 
-**Combination of predicates for getGasStationName()**:
+**Combination of predicates (define test cases) for getGasStationName()**:
 
 | Number of Input parameters | Type of parameters passed to method |  Valid / Invalid | Description of the test case | JUnit test case |
 |-------|-------|-------|--------------|-------|
 |-|-|V|getGasStationName() --> Valid ||
 
 
-**Combination of predicates for setGasStationName()**:
+**Combination of predicates (define test cases) for setGasStationName()**:
 
 | Number of Input parameters | Type of parameters passed to method | Valid / Invalid | Description of the test case | JUnit test case |
 |-------|-------|-------|--------------|-------|

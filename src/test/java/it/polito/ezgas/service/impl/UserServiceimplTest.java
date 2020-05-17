@@ -2,14 +2,22 @@ package it.polito.ezgas.service.impl;
 
 import static org.junit.Assert.*;
 
+import org.junit.Assert;
 import org.junit.Test;
+import it.polito.ezgas.service.impl.*;
 
 public class UserServiceimplTest {
 
+	UserServiceimplTest GU = new UserServiceimplTest();
+
 	@Test
 	public void testGetUserById() {
-		fail("Not yet implemented");
+		AssertEquals("can't be Negative", GU.GetUserById(-1));
+        AssertEquals("can't be Null", GU.GetUserById());
+		
 	}
+
+
 
 	@Test
 	public void testSaveUser() {
