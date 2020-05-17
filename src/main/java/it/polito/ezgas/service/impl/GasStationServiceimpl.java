@@ -182,7 +182,7 @@ public class GasStationServiceimpl implements GasStationService {
 			throw new GPSDataException("coordinates out of bounds");
 		}else {
 			return getAllGasStations().stream()
-				.filter( (g) -> Haversine.distance(lat, lon, g.getLat(), g.getLon() ) <= 1)
+				.filter( (g) -> Haversine.distance(lat, lon, g.getLat(), g.getLon() ) <= 1.0)
 				.sorted( (g1,g2) -> Double.compare(Haversine.distance(lat, lon, g1.getLat(), g1.getLon() ), Haversine.distance(lat, lon, g2.getLat(), g2.getLon() ) ) )
 				.collect(Collectors.toList());
 			}
@@ -203,9 +203,12 @@ public class GasStationServiceimpl implements GasStationService {
 					.filter( (g) -> Haversine.distance(lat, lon, g.getLat(), g.getLon() ) <= 1)
 					.sorted( (g1,g2) -> Double.compare(Haversine.distance(lat, lon, g1.getLat(), g1.getLon() ), Haversine.distance(lat, lon, g2.getLat(), g2.getLon() ) ) )
 					.collect(Collectors.toList());
-			gs = gs.stream()
+			if(carsharing.equals("null")){}
+			else{
+				gs = gs.stream()
 					.filter( (g) -> g.getCarSharing().equals(carsharing))
 					.collect(Collectors.toList());
+			}
 			switch(gasolinetype) {
 			  case "Diesel":
 				  gs = gs.stream()
@@ -233,7 +236,7 @@ public class GasStationServiceimpl implements GasStationService {
 					.collect(Collectors.toList());
 			    break;
 			  default:
-				  if(gasolinetype != null)
+				  if(!gasolinetype.equals("null"))
 					  throw new InvalidGasTypeException("Gas Type not supported");
 			}
 			return gs;
@@ -250,9 +253,12 @@ public class GasStationServiceimpl implements GasStationService {
 			return null;
 		}
 		List<GasStationDto> gs = getAllGasStations();
+		if(carsharing.equals("null")){}
+		else{
 		gs = gs.stream()
 				.filter( (g) -> g.getCarSharing().equals(carsharing))
 				.collect(Collectors.toList());
+		}
 		switch(gasolinetype) {
 		  case "Diesel":
 			  gs = gs.stream()
@@ -280,7 +286,9 @@ public class GasStationServiceimpl implements GasStationService {
 				.collect(Collectors.toList());
 		    break;
 		  default:
-			  throw new InvalidGasTypeException("Gas Type not supported");
+			  if(!gasolinetype.equals("null"))
+				  throw new InvalidGasTypeException("Gas Type not supported");
+		
 		}
 		return gs;
 	}
@@ -362,8 +370,13 @@ public class GasStationServiceimpl implements GasStationService {
 			System.out.println("Error! You have passed a null carsharing as a parameter");
 			return null;
 		}
-		return getAllGasStations().stream()
+		ArrayList<GasStationDto> gs = new ArrayList<>();
+		if(carSharing.equals("null")){}
+		else{
+		gs = getAllGasStations().stream()
 				.filter( (g) -> g.getCarSharing().equals(carSharing))
-				.collect(Collectors.toList());
+				.collect(Collectors.toCollection(ArrayList::new));
+		}
+		return gs;
 	}
 }
