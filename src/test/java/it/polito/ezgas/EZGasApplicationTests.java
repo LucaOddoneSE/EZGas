@@ -13,7 +13,7 @@ import it.polito.ezgas.entity.GasStation;
 public class EZGasApplicationTests {
 
 	@Test
-    public void testgetGasStationId() {
+    public void testGasStationId() {
 		GasStation GasStation = new GasStation();
 		int GasStationId = 1;
 		GasStation.setGasStationId(GasStationId);
@@ -22,7 +22,7 @@ public class EZGasApplicationTests {
 
 		
 	@Test
-    public void testgetGasStationName() {
+    public void testGasStationName() {
 		GasStation GasStation = new GasStation();
 		String GasStationName = "test";
 		GasStation.setGasStationName(GasStationName);
@@ -55,3 +55,7 @@ public class EZGasApplicationTests {
 	
 
 }
+
+
+
+

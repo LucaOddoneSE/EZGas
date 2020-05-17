@@ -14,11 +14,27 @@ import it.polito.ezgas.entity.User;
 public class PriceReportTests {
 
 	@Test
-    public void testgetUser() {
+    public void testUser() {
 		PriceReport PriceReport = new PriceReport(null, 0, 0, 0, 0);
 		User user = null;
 		PriceReport.setUser(user);
 		assert(PriceReport.getUser() == user);
+    }
+	
+	@Test
+    public void testDieselPrice() {
+		PriceReport PriceReport = new PriceReport(null, 0, 0, 0, 0);
+		Double DieselPrice = 23.2;
+		PriceReport.setDieselPrice(DieselPrice);
+		assert(PriceReport.getDieselPrice() == DieselPrice);
+    }
+
+	@Test
+    public void testPriceReportId() {
+		PriceReport PriceReport = new PriceReport(null, 0, 0, 0, 0);
+		int PriceReportId = 100;
+		PriceReport.setPriceReportId(PriceReportId);
+		assert(PriceReport.getPriceReportId() == PriceReportId);
     }
 
 	
