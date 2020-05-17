@@ -167,13 +167,31 @@ public class UserServiceimpl implements UserService {
 
 	@Override
 	public Integer increaseUserReputation(Integer userId) throws InvalidUserException {
-		// TODO Auto-generated method stub
+		if(userId < 0) 
+			throw new InvalidUserException("Error! You have passed an invalid UserId(userId<0)");
+		if(userRepository.exists(userId)) {
+			User user = userRepository.findOne(userId);
+			if(user.getReputation()<5)
+				user.setReputation(user.getReputation()+1);
+			userRepository.save(user);
+			return user.getReputation();
+		}
+		System.out.println("User with the following userID: " + userId + " doesn't exist in the database");
 		return null;
 	}
 
 	@Override
 	public Integer decreaseUserReputation(Integer userId) throws InvalidUserException {
-		// TODO Auto-generated method stub
+		if(userId < 0) 
+			throw new InvalidUserException("Error! You have passed an invalid UserId(userId can't be negative)");
+		if(userRepository.exists(userId)) {
+			User user = userRepository.findOne(userId);
+			if(user.getReputation()>-5)
+				user.setReputation(user.getReputation()-1);
+			userRepository.save(user);
+			return user.getReputation();
+		}
+		System.out.println("User with the following userID: " + userId + " was not found in the database");
 		return null;
 	}
 	
