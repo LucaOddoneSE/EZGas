@@ -690,14 +690,14 @@ Version: 1
 
     Coverage panel:
     
-    <img src="https://ibb.co/61zRKf8.jpg" alt="Gantt-Chart" border="0">
+    [![EclEmma.jpg](https://i.postimg.cc/26N2FW1g/EclEmma.jpg)](https://postimg.cc/wtFX97ck)
     
     Coverage methods:
     
-    <img src="https://ibb.co/xX69Kpb.jpg" alt="Gantt-Chart" border="0">
-    <img src="https://ibb.co/sm9xpNT.jpg" alt="Gantt-Chart" border="0">
-    <img src="https://ibb.co/dcDcwtH.jpg" alt="Gantt-Chart" border="0">
-    <img src="https://ibb.co/SsWXr2F" alt="Gantt-Chart" border="0">
+    [![gs1.jpg](https://i.postimg.cc/pdXMCSpM/gs1.jpg)](https://postimg.cc/rDbHFQ1f)
+    [![gs2.jpg](https://i.postimg.cc/Vvtx5QHn/gs2.jpg)](https://postimg.cc/9wW8NS2Q)
+    [![gs3.jpg](https://i.postimg.cc/02RgFjbf/gs3.jpg)](https://postimg.cc/Btgw1q5L)
+    [![gs4.jpg](https://i.postimg.cc/wj2S1kFf/gs4.jpg)](https://postimg.cc/SnXZ5CBC)
 
 ### Loop coverage analysis
 
@@ -707,6 +707,145 @@ Version: 1
 | getGasStationName() | - | - | testGasStationName() |
 | getGasStationAddress() | - | - | testGasStationAddress() |
 | getReportDependability() | - | - | testReportDependability() |
+
+
+## Package Entity - Class PriceReport
+
+### Test cases definition
+
+| Unit name | JUnit test case |
+|--|--|
+| getDieselPrice() | testDieselPrice() |
+| getPriceReportId() | testPriceReportId() |
+
+### Code coverage report
+
+    Coverage methods:
+    
+    [![pr1.jpg](https://i.postimg.cc/pXdxMZ8B/pr1.jpg)](https://postimg.cc/Rq22cwg3)
+    [![pr2.jpg](https://i.postimg.cc/vmrCVgfB/pr2.jpg)](https://postimg.cc/sB2nF2nd)
+    
+    
+
+### Loop coverage analysis
+
+|Unit name | Loop rows | Number of iterations | JUnit test case |
+|---|---|---|---|
+| getDieselPrice() | - | - | testDieselPrice() |
+| getPriceReportId() | - | - | testPriceReportId() |
+
+
+## Package Entity - Class UserDto
+
+### Test cases definition
+
+| Unit name | JUnit test case |
+|--|--|
+| getUserId() | testUserId() |
+| getUserName() | testUserName() |
+| getPassword() | testPassword() |
+
+
+### Code coverage report
+
+    Coverage methods:
+    
+    [![u1.jpg](https://i.postimg.cc/PJP62Pp1/u1.jpg)](https://postimg.cc/ctGMJ1cJ)
+    [![u2.jpg](https://i.postimg.cc/Xv4Qt2Bj/u2.jpg)](https://postimg.cc/tsv3xNzw)
+    [![u3.jpg](https://i.postimg.cc/5yhmgpMM/u3.jpg)](https://postimg.cc/H8t5swxS)
+    
+    
+
+### Loop coverage analysis
+
+|Unit name | Loop rows | Number of iterations | JUnit test case |
+|---|---|---|---|
+| getUserId() | - | - | testUserId() |
+| getUserName() | - | - | testUserName() |
+| getPassword() | - | - | testPassword() |
+
+
+## Package Dto - Class LoginDto
+
+### Test cases definition
+
+| Unit name | JUnit test case |
+|--|--|
+| getAdmin() | testAdmin() |
+| getReputation() | testReputation() |
+| getEmail() | testEmail() |
+
+### Code coverage report
+
+    Coverage methods:
+    
+    [![l1.jpg](https://i.postimg.cc/N0CCT6LQ/l1.jpg)](https://postimg.cc/HJ5t17QN)
+    [![l2.jpg](https://i.postimg.cc/FFLCdJvQ/l2.jpg)](https://postimg.cc/rzqN7szh)
+    [![l3.jpg](https://i.postimg.cc/tCGShCRn/l3.jpg)](https://postimg.cc/yWnyKKZ7)
+    
+    
+
+### Loop coverage analysis
+
+|Unit name | Loop rows | Number of iterations | JUnit test case |
+|---|---|---|---|
+| getAdmin() | - | - | testAdmin() |
+| getReputation() | - | - | testReputation() |
+| getEmail() | - | - | testEmail() |
+
+
+## Package Dto - Class IdPwDto
+
+### Test cases definition
+
+| Unit name | JUnit test case |
+|--|--|
+| getUser() | TestIdPwUser() |
+| getPw() | TestIdPwPass() |
+
+### Code coverage report
+
+    Coverage methods:
+    
+    [![i1.jpg](https://i.postimg.cc/13JvhGGD/i1.jpg)](https://postimg.cc/VJ0qXbHN)
+    [![i2.jpg](https://i.postimg.cc/fbyBwVCp/i2.jpg)](https://postimg.cc/Fftjps2V)
+    
+    
+
+### Loop coverage analysis
+
+|Unit name | Loop rows | Number of iterations | JUnit test case |
+|---|---|---|---|
+| getUser() | - | - | TestIdPwUser() |
+| getPw() | - | - | TestIdPwPass() |
+
+
+## Package Dto - Class PriceReportDto
+
+### Test cases definition
+
+| Unit name | JUnit test case |
+|--|--|
+| getDieselPrice() | TestDiselPrice() |
+| getPriceReportIdPw() | TestPriceReportId() |
+
+### Code coverage report
+
+    Coverage methods:
+    
+    [![prd1.jpg](https://i.postimg.cc/k5LFqfBR/prd1.jpg)](https://postimg.cc/gwq6KyyG)
+    [![prd2.jpg](https://i.postimg.cc/2jQFNdm3/prd2.jpg)](https://postimg.cc/YjSm1Wvw)
+    
+    
+
+### Loop coverage analysis
+
+|Unit name | Loop rows | Number of iterations | JUnit test case |
+|---|---|---|---|
+| getDieselPrice() | - | - | TestDiselPrice() |
+| getPriceReportIdPw() | - | - | TestPriceReportId() |
+
+
 
 
 
