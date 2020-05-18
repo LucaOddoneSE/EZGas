@@ -9,18 +9,16 @@ Version: 1
 # Contents
 
 - [Black Box Unit Tests](#black-box-unit-tests)
-- [GasStation](##GasStation)
-- [User](##User)
-- [LoginDto](##LoginDto)
-- [IdPwDto](##IdPwDto)
-
-
+- [GasStation](#GasStation)
+- [User](#User)
+- [LoginDto](#LoginDto)
+- [IdPwDto](#IdPwDto)
 - [White Box Unit Tests](#white-box-unit-tests)
 
 
 # Black Box Unit Tests
 
-##GasStation Class
+# GasStation
 
 **Criteria for method *setGasStationId(Integer gasStationId)*:**
  	
@@ -52,8 +50,8 @@ Version: 1
 
 **Combination of predicates**:
 
-| Type of parameter | sign | Valid / Invalid | Description of the test case | JUnit test case |
-|-------|-------|-------|-------|-------|-------|
+| sign | Valid / Invalid | Description of the test case | JUnit test case |
+|-------|-------|-------|-------|
 |Positive|V|setGasStationId(1) --> valid GasStationId|testGasStationId|
 |Negative|I|setGasStationId(-1) --> Exception|testGasStationId1|
 
@@ -93,7 +91,6 @@ Version: 1
 **Criteria for method *setGasStationName(String gasStationName)*:**
  	
  
- - Type of parameter
  - String Lenght 
 
 
@@ -120,8 +117,8 @@ Version: 1
 
 **Combination of predicates**:
 
-|Type| Length| Valid / Invalid | Description of the test case | JUnit test case |
-|:-------:|:-------:|:-------:|-------|
+| Length| Valid / Invalid | Description of the test case | JUnit test case |
+|:-------:|:-------:|:-------:|-------:|
 | 0 < s.length < s.maxlength  | Valid | setGasStationName("GiacomoBalla") -> valid|testGasStationName|
 | s.length = 0  | Valid | setGasStationName("") -> ""|testGasStationName1|
 
@@ -197,6 +194,7 @@ Version: 1
 ||reportDependability < 0 |Valid|setReportDependability(-4.2)-> -4.2|testReportDependability2 |
 
 
+# User
 
 ### **Class *User* - method *setUserId(Integer userId)***
 
@@ -240,7 +238,7 @@ Version: 1
 
 
 
-### **Class *GasStation* - method *getUserId()***
+### **Class *User* - method *getUserId()***
 
 **Criteria for method *getUserId()*:**
 	
@@ -422,7 +420,7 @@ Version: 1
 ||reputation < 0 |Valid|setReputation(-1)-> -1| testUserReputation4|
 
 
-
+# LoginDto
 
 ### **Class *LoginDto* - *getUserName***
 
@@ -556,7 +554,7 @@ Version: 1
 |false|Valid| setAdmin(false); getAdmin() -> false | testAdmin1|
 |false|Valid| setAdmin(true); getAdmin() -> true | testAdmin|
 
-
+# IdPwDto
 
 ### **Class *IdPw* - method *getUser()***
 
@@ -688,16 +686,18 @@ Version: 1
 
 ### Code coverage report
 
-    Coverage panel:
+Coverage panel:
+
+<img src="https://i.postimg.cc/26N2FW1g/EclEmma.jpg"  border="0">
+
     
-    <img src="https://ibb.co/61zRKf8.jpg" alt="Gantt-Chart" border="0">
-    
-    Coverage methods:
-    
-    <img src="https://ibb.co/xX69Kpb.jpg" alt="Gantt-Chart" border="0">
-    <img src="https://ibb.co/sm9xpNT.jpg" alt="Gantt-Chart" border="0">
-    <img src="https://ibb.co/dcDcwtH.jpg" alt="Gantt-Chart" border="0">
-    <img src="https://ibb.co/SsWXr2F" alt="Gantt-Chart" border="0">
+Coverage methods:
+ 
+<img src="https://i.postimg.cc/pdXMCSpM/gs1.jpg"  border="0">
+<img src="https://i.postimg.cc/Vvtx5QHn/gs2.jpg"  border="0">
+<img src="https://i.postimg.cc/02RgFjbf/gs3.jpg"  border="0">
+<img src="https://i.postimg.cc/wj2S1kFf/gs4.jpg"  border="0">
+
 
 ### Loop coverage analysis
 
@@ -707,6 +707,144 @@ Version: 1
 | getGasStationName() | - | - | testGasStationName() |
 | getGasStationAddress() | - | - | testGasStationAddress() |
 | getReportDependability() | - | - | testReportDependability() |
+
+
+## Package Entity - Class PriceReport
+
+### Test cases definition
+
+| Unit name | JUnit test case |
+|--|--|
+| getDieselPrice() | testDieselPrice() |
+| getPriceReportId() | testPriceReportId() |
+
+### Code coverage report
+
+Coverage methods:
+
+<img src="https://i.postimg.cc/pXdxMZ8B/pr1.jpg" alt="test" border="0">
+<img src="https://i.postimg.cc/vmrCVgfB/pr2.jpg" alt="test" border="0">
+
+### Loop coverage analysis
+
+|Unit name | Loop rows | Number of iterations | JUnit test case |
+|---|---|---|---|
+| getDieselPrice() | - | - | testDieselPrice() |
+| getPriceReportId() | - | - | testPriceReportId() |
+
+
+## Package Entity - Class UserDto
+
+### Test cases definition
+
+| Unit name | JUnit test case |
+|--|--|
+| getUserId() | testUserId() |
+| getUserName() | testUserName() |
+| getPassword() | testPassword() |
+
+
+### Code coverage report
+
+Coverage methods:
+
+<img src="https://i.postimg.cc/PJP62Pp1/u1.jpg" alt="test" border="0">
+<img src="https://i.postimg.cc/Xv4Qt2Bj/u2.jpg" alt="test" border="0">
+<img src="https://i.postimg.cc/5yhmgpMM/u3.jpg" alt="test" border="0">
+
+    
+    
+
+### Loop coverage analysis
+
+|Unit name | Loop rows | Number of iterations | JUnit test case |
+|---|---|---|---|
+| getUserId() | - | - | testUserId() |
+| getUserName() | - | - | testUserName() |
+| getPassword() | - | - | testPassword() |
+
+
+## Package Dto - Class LoginDto
+
+### Test cases definition
+
+| Unit name | JUnit test case |
+|--|--|
+| getAdmin() | testAdmin() |
+| getReputation() | testReputation() |
+| getEmail() | testEmail() |
+
+### Code coverage report
+
+Coverage methods:
+
+<img src="https://i.postimg.cc/N0CCT6LQ/l1.jpg" alt="test" border="0">
+<img src="https://i.postimg.cc/FFLCdJvQ/l2.jpg" alt="test" border="0">
+<img src="https://i.postimg.cc/tCGShCRn/l3.jpg" alt="test" border="0">
+
+    
+    
+
+### Loop coverage analysis
+
+|Unit name | Loop rows | Number of iterations | JUnit test case |
+|---|---|---|---|
+| getAdmin() | - | - | testAdmin() |
+| getReputation() | - | - | testReputation() |
+| getEmail() | - | - | testEmail() |
+
+
+## Package Dto - Class IdPwDto
+
+### Test cases definition
+
+| Unit name | JUnit test case |
+|--|--|
+| getUser() | TestIdPwUser() |
+| getPw() | TestIdPwPass() |
+
+### Code coverage report
+
+Coverage methods:
+
+<img src="https://i.postimg.cc/13JvhGGD/i1.jpg" alt="test" border="0">
+<img src="https://i.postimg.cc/fbyBwVCp/i2.jpg" alt="test" border="0">
+  
+   
+
+### Loop coverage analysis
+
+|Unit name | Loop rows | Number of iterations | JUnit test case |
+|---|---|---|---|
+| getUser() | - | - | TestIdPwUser() |
+| getPw() | - | - | TestIdPwPass() |
+
+
+## Package Dto - Class PriceReportDto
+
+### Test cases definition
+
+| Unit name | JUnit test case |
+|--|--|
+| getDieselPrice() | TestDiselPrice() |
+| getPriceReportIdPw() | TestPriceReportId() |
+
+### Code coverage report
+
+Coverage methods:
+
+<img src="https://i.postimg.cc/k5LFqfBR/prd1.jpg" alt="test" border="0">
+<img src="https://i.postimg.cc/2jQFNdm3/prd2.jpg" alt="test" border="0">
+    
+
+### Loop coverage analysis
+
+|Unit name | Loop rows | Number of iterations | JUnit test case |
+|---|---|---|---|
+| getDieselPrice() | - | - | TestDiselPrice() |
+| getPriceReportIdPw() | - | - | TestPriceReportId() |
+
+
 
 
 
