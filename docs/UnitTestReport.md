@@ -689,9 +689,7 @@ Version: 1
 ### Code coverage report
 
     Coverage panel:
-    
-    [![EclEmma.jpg](https://i.postimg.cc/26N2FW1g/EclEmma.jpg)](https://postimg.cc/wtFX97ck)
-    
+    <img src="https://i.postimg.cc/26N2FW1g/EclEmma.jpg"  border="0">
     Coverage methods:
 
 <img src="https://i.postimg.cc/pdXMCSpM/gs1.jpg"  border="0">
@@ -722,10 +720,8 @@ Version: 1
 
     Coverage methods:
     
-    [![pr1.jpg](https://i.postimg.cc/pXdxMZ8B/pr1.jpg)](https://postimg.cc/Rq22cwg3)
-    [![pr2.jpg](https://i.postimg.cc/vmrCVgfB/pr2.jpg)](https://postimg.cc/sB2nF2nd)
-    
-    
+    <img src="https://i.postimg.cc/pXdxMZ8B/pr1.jpg"  border="0">
+    <img src="https://i.postimg.cc/vmrCVgfB/pr2.jpg"  border="0">
 
 ### Loop coverage analysis
 
@@ -750,11 +746,9 @@ Version: 1
 
     Coverage methods:
     
-    [![u1.jpg](https://i.postimg.cc/PJP62Pp1/u1.jpg)](https://postimg.cc/ctGMJ1cJ)
-    [![u2.jpg](https://i.postimg.cc/Xv4Qt2Bj/u2.jpg)](https://postimg.cc/tsv3xNzw)
-    [![u3.jpg](https://i.postimg.cc/5yhmgpMM/u3.jpg)](https://postimg.cc/H8t5swxS)
-    
-    
+        <img src="https://i.postimg.cc/PJP62Pp1/u1.jpg"  border="0">
+        <img src="https://i.postimg.cc/Xv4Qt2Bj/u2.jpg"  border="0">
+        <img src="https://i.postimg.cc/5yhmgpMM/u3.jpg"  border="0">
 
 ### Loop coverage analysis
 
@@ -779,11 +773,9 @@ Version: 1
 
     Coverage methods:
     
-    [![l1.jpg](https://i.postimg.cc/N0CCT6LQ/l1.jpg)](https://postimg.cc/HJ5t17QN)
-    [![l2.jpg](https://i.postimg.cc/FFLCdJvQ/l2.jpg)](https://postimg.cc/rzqN7szh)
-    [![l3.jpg](https://i.postimg.cc/tCGShCRn/l3.jpg)](https://postimg.cc/yWnyKKZ7)
-    
-    
+            <img src="https://i.postimg.cc/N0CCT6LQ/l1.jpg"  border="0">
+            <img src="https://i.postimg.cc/FFLCdJvQ/l2.jpg"  border="0">
+            <img src="https://i.postimg.cc/tCGShCRn/l3.jpg"  border="0">
 
 ### Loop coverage analysis
 
@@ -807,10 +799,8 @@ Version: 1
 
     Coverage methods:
     
-    [![i1.jpg](https://i.postimg.cc/13JvhGGD/i1.jpg)](https://postimg.cc/VJ0qXbHN)
-    [![i2.jpg](https://i.postimg.cc/fbyBwVCp/i2.jpg)](https://postimg.cc/Fftjps2V)
-    
-    
+                <img src="https://i.postimg.cc/13JvhGGD/i1.jpg"  border="0">
+                <img src="https://i.postimg.cc/fbyBwVCp/i2.jpg"  border="0">
 
 ### Loop coverage analysis
 
@@ -833,10 +823,8 @@ Version: 1
 
     Coverage methods:
     
-    [![prd1.jpg](https://i.postimg.cc/k5LFqfBR/prd1.jpg)](https://postimg.cc/gwq6KyyG)
-    [![prd2.jpg](https://i.postimg.cc/2jQFNdm3/prd2.jpg)](https://postimg.cc/YjSm1Wvw)
-    
-    
+                    <img src="https://i.postimg.cc/k5LFqfBR/prd1.jpg"  border="0">
+                    <img src="https://i.postimg.cc/2jQFNdm3/prd2.jpg"  border="0">
 
 ### Loop coverage analysis
 
