@@ -680,9 +680,13 @@ Version: 1
 | Unit name | JUnit test case |
 |--|--|
 | getGasStationId() | testGasStationId() |
+| getGasStationId() | testGasStationId1() |
 | getGasStationName() | testGasStationName() |
+| getGasStationName() | testGasStationName1() |
 | getGasStationAddress() | testGasStationAddress() |
 | getReportDependability() | testReportDependability() |
+| getReportDependability() | testReportDependability1() |
+| getReportDependability() | testReportDependability2() |
 
 ### Code coverage report
 
@@ -704,9 +708,13 @@ Coverage methods:
 |Unit name | Loop rows | Number of iterations | JUnit test case |
 |---|---|---|---|
 | getGasStationId() | - | - | testGasStationId() |
+| getGasStationId() | - | - | testGasStationId1() |
 | getGasStationName() | - | - | testGasStationName() |
+| getGasStationName() | - | - | testGasStationName1() |
 | getGasStationAddress() | - | - | testGasStationAddress() |
 | getReportDependability() | - | - | testReportDependability() |
+| getReportDependability() | - | - | testReportDependability1() |
+| getReportDependability() | - | - | testReportDependability2() |
 
 
 ## Package Entity - Class PriceReport
@@ -733,15 +741,22 @@ Coverage methods:
 | getPriceReportId() | - | - | testPriceReportId() |
 
 
-## Package Entity - Class UserDto
+## Package Entity - Class User
 
 ### Test cases definition
 
 | Unit name | JUnit test case |
 |--|--|
 | getUserId() | testUserId() |
+| getUserId() | testUserId1() |
+| getUserId() | testUserId2() |
 | getUserName() | testUserName() |
 | getPassword() | testPassword() |
+| getEmail() | testEmail() |
+| getReputation() | testReputation1() |
+| getReputation() | testReputation2() |
+| getReputation() | testReputation3() |
+| getReputation() | testReputation4() |
 
 
 ### Code coverage report
@@ -760,8 +775,16 @@ Coverage methods:
 |Unit name | Loop rows | Number of iterations | JUnit test case |
 |---|---|---|---|
 | getUserId() | - | - | testUserId() |
+| getUserId() | - | - | testUserId1() |
+| getUserId() | - | - | testUserId2() |
 | getUserName() | - | - | testUserName() |
 | getPassword() | - | - | testPassword() |
+| getEmail() | - | - | testEmail() |
+| getReputation() | - | - | testReputation1() |
+| getReputation() | - | - | testReputation2() |
+| getReputation() | - | - | testReputation3() |
+| getReputation() | - | - | testReputation4() |
+
 
 
 ## Package Dto - Class LoginDto
@@ -770,7 +793,11 @@ Coverage methods:
 
 | Unit name | JUnit test case |
 |--|--|
+| getUserName() | testUserName() |
+| getUserName() | testUserName1() |
+| getUserName() | testUserName2() |
 | getAdmin() | testAdmin() |
+| getAdmin() | testAdmin1() |
 | getReputation() | testReputation() |
 | getEmail() | testEmail() |
 
@@ -789,7 +816,11 @@ Coverage methods:
 
 |Unit name | Loop rows | Number of iterations | JUnit test case |
 |---|---|---|---|
+| getUserName() | - | - | testUserName() |
+| getUserName() | - | - | testUserName1() |
+| getUserName() | - | - | testUserName2() |
 | getAdmin() | - | - | testAdmin() |
+| getAdmin() | - | - | testAdmin1() |
 | getReputation() | - | - | testReputation() |
 | getEmail() | - | - | testEmail() |
 
@@ -801,7 +832,11 @@ Coverage methods:
 | Unit name | JUnit test case |
 |--|--|
 | getUser() | TestIdPwUser() |
+| getUser() | TestIdPwUser1() |
+| getUser() | TestIdPwUser2() |
 | getPw() | TestIdPwPass() |
+| getPw() | TestIdPwPass1() |
+| getPw() | TestIdPwPass2() |
 
 ### Code coverage report
 
@@ -817,7 +852,11 @@ Coverage methods:
 |Unit name | Loop rows | Number of iterations | JUnit test case |
 |---|---|---|---|
 | getUser() | - | - | TestIdPwUser() |
+| getUser() | - | - | TestIdPwUser1() |
+| getUser() | - | - | TestIdPwUser2() |
 | getPw() | - | - | TestIdPwPass() |
+| getPw() | - | - | TestIdPwPass1() |
+| getPw() | - | - | TestIdPwPass2() |
 
 
 ## Package Dto - Class PriceReportDto
