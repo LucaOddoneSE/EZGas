@@ -233,413 +233,322 @@ left to right direction
 
 package "it.polito.ezgas.entity" {
    class User {
-    String firstName
-    String lastName
-    String account_name
-    String account_pwd
+    Integer userId
+    String userName
+    String password
     String email
-    int trust_level
+    Integer reputation
+    boolean admin
     __
-    +void setFirstName(String)
-    +void setLastName(String)
-    +void setEmail(String)
-    +void setAccount_Name(String)
-    +void setAccount_Pwd(String)
-    +String getFirstName()
-    +String getLastname()
-    +String getAccount_Name()
-    +String getAccount_Pwd()
+    +Integer getUserId()
+    +void setUserId(Integer userId)
+    +String getUserName()
+    +void setUserName(String userName)
+    +void setPassword(String password)
+    +String getPassword()
     +String getEmail()
-    +int getTrust_Level()
+    +void setEmail(String email)
+    +Integer getReputation()
+    +void setReputation(Integer reputation)
+    +boolean getAdmin()
+    +void setAdmin(boolean admin)
   }
   class GasStation {
-    int ID
-    String name
-    String address
-    String brand
+    Integer gasStationId
+    String gasStationName
+    String gasStationAddress
     boolean hasDiesel
-    boolean hasGasoline
-    boolean hasPremiumDiesel
-    boolean hasPremiumGasoline
-    boolean hasLPG
+    boolean hasSuper
+    boolean hasSuperPlus
+    boolean hasGas
     booelan hasMethane
-    __
-    +void setName(String)
-    +void setAddress(String)
-    +void setBrand(String)
-    +String getName()
-    +String getAddress()
-    +boolean getHasDiesel()
-    +boolean getHasGasoline()
-    +boolean getHasPremiumDiesel()
-    +boolean getHasPremiumGasoline()
-    +booelan getHasLPG()
-    +booelan getHasMethane()
-  }
-  class Administrator {
-    
-  }
-  class PriceList {
-    Date time_tag
+    String carSharing
+    double lat
+    double lon
     double dieselPrice
-    double gasolinePrice
-    double premiumDieselPrice
-    double premiumGasolinePrice
-    double LPGPrice
+    double superPrice
+    double superPlusPrice
+    double gasPrice
     double methanePrice
-    int trust_level
-    GasStation gasStation
+    Integer reportUser
+    String reportTimestamp
+    double reportDependability
     User user
     __
-    +void setTime_tag(Date)
-    +void setDieselPrice(double)
-    +void setGasolinePrice(double)
-    +void setPremiumDieselPrice(double)
-    +void setPremiumGasolinePrice(double)
-    +void setLPGPrice(double)
-    +void setMethanePrice(double)
-    +void setTrust_Level(int)
-    +Date getTime_tag()
+    +Integer getGasStationId()
+    +void setGasStationId(Integer gasStationId)
+    +String getGasStationName()
+    +void setGasStationName(String gasStationName)
+    +String getGasStationAddress()
+    +void setGasStationAddress(String gasStationAddress)
+    +double getReportDependability()
+    +void setReportDependability(double reportDependability)
+    +Integer getReportUser()
+    +void setReportUser(Integer reportUser)
+    +String getReportTimestamp()
+    +void setReportTimestamp(String reportTimestamp)
+    +boolean getHasDiesel()
+    +void setHasDiesel(boolean hasDiesel)
+    +boolean getHasSuper()
+    +void setHasSuper(boolean hasSuper)
+    +boolean getHasSuperPlus()
+    +void setHasSuperPlus(boolean hasSuperPlus)
+    +boolean getHasGas()
+    +void setHasGas(boolean hasGas)
+    +double getLat()
+    +void setLat(double lat)
+    +double getLon()
+    +void setLon(double lon)
     +double getDieselPrice()
-    +double getGasolinePrice()
-    +double getPremiumDieselPrice()
-    +double getPremiumGasolinePrice()
-    +double getLPGPrice()
+    +void setDieselPrice(double dieselPrice)
+    +double getSuperPrice()
+    +void setSuperPrice(double superPrice)
+    +double getSuperPlusPrice()
+    +void setSuperPlusPrice(double superPlusPrice)
+    +double getGasPrice()
+    +void setGasPrice(double gasPrice)
+    +User getUser()
+    +void setUser(User user)
+    +boolean getHasMethane()
+    +void setHasMethane(boolean hasMethane)
     +double getMethanePrice()
-    +int getTrust_Level()
-  }
-  class GeoPoint {
-    double latitude
-    double longitude
-    __
-    +void setLatitude(double)
-    +void setLongitude(double)
-    +double getLatitude()
-    +double getLongitude()
-  }
-  class CarSharingCompany {
-    String name
-    __
-    +void setName(String)
-    +String getName()
-  }
-  class EZGas {
-    +boolean run()
-    +boolean notRun()
-  }
-  class AnonymousUser {
+    +void setMethanePrice(double methanePrice)
+    +String getCarSharing()
+    +void setCarSharing(String carSharing)
   }
 }
 
 package "it.polito.ezgas.dto" {
-   class UserDto {
-    String firstName
-    String lastName
-    String account_name
-    String account_pwd
+  class UserDto {
+    Integer userId
+    String userName
+    String password
     String email
-    int trust_level
+    Integer reputation
+    boolean admin
     __
-    +void setFirstName(String)
-    +void setLastName(String)
-    +void setEmail(String)
-    +void setAccount_Name(String)
-    +void setAccount_Pwd(String)
-    +String getFirstName()
-    +String getLastname()
-    +String getAccount_Name()
-    +String getAccount_Pwd()
+    +Integer getUserId()
+    +void setUserId(Integer userId)
+    +String getUserName()
+    +void setUserName(String userName)
+    +void setPassword(String password)
+    +String getPassword()
     +String getEmail()
-    +int getTrust_Level()
+    +void setEmail(String email)
+    +Integer getReputation()
+    +void setReputation(Integer reputation)
+    +boolean getAdmin()
+    +void setAdmin(boolean admin)
   }
   class GasStationDto {
-    int ID
-    String name
-    String address
-    String brand
+    Integer gasStationId
+    String gasStationName
+    String gasStationAddress
     boolean hasDiesel
-    boolean hasGasoline
-    boolean hasPremiumDiesel
-    boolean hasPremiumGasoline
-    boolean hasLPG
+    boolean hasSuper
+    boolean hasSuperPlus
+    boolean hasGas
     booelan hasMethane
-    __
-    +void setName(String)
-    +void setAddress(String)
-    +void setBrand(String)
-    +String getName()
-    +String getAddress()
-    +boolean getHasDiesel()
-    +boolean getHasGasoline()
-    +boolean getHasPremiumDiesel()
-    +boolean getHasPremiumGasoline()
-    +booelan getHasLPG()
-    +booelan getHasMethane()
-  }
-  class AdministratorDto {
-  }
-  class PriceListDto {
-    Date time_tag
+    String carSharing
+    double lat
+    double lon
     double dieselPrice
-    double gasolinePrice
-    double premiumDieselPrice
-    double premiumGasolinePrice
-    double LPGPrice
+    double superPrice
+    double superPlusPrice
+    double gasPrice
     double methanePrice
-    int trust_level
-    GasStation gasStation
-    User user
+    Integer reportUser
+    String reportTimestamp
+    double reportDependability
+    UserDto userDto
     __
-    +void setTime_tag(Date)
-    +void setDieselPrice(double)
-    +void setGasolinePrice(double)
-    +void setPremiumDieselPrice(double)
-    +void setPremiumGasolinePrice(double)
-    +void setLPGPrice(double)
-    +void setMethanePrice(double)
-    +void setTrust_Level(int)
-    +Date getTime_tag()
+    +Integer getGasStationId()
+    +void setGasStationId(Integer gasStationId)
+    +String getGasStationName()
+    +void setGasStationName(String gasStationName)
+    +String getGasStationAddress()
+    +void setGasStationAddress(String gasStationAddress)
+    +double getReportDependability()
+    +void setReportDependability(double reportDependability)
+    +Integer getReportUser()
+    +void setReportUser(Integer reportUser)
+    +String getReportTimestamp()
+    +void setReportTimestamp(String reportTimestamp)
+    +boolean getHasDiesel()
+    +void setHasDiesel(boolean hasDiesel)
+    +boolean getHasSuper()
+    +void setHasSuper(boolean hasSuper)
+    +boolean getHasSuperPlus()
+    +void setHasSuperPlus(boolean hasSuperPlus)
+    +boolean getHasGas()
+    +void setHasGas(boolean hasGas)
+    +double getLat()
+    +void setLat(double lat)
+    +double getLon()
+    +void setLon(double lon)
     +double getDieselPrice()
-    +double getGasolinePrice()
-    +double getPremiumDieselPrice()
-    +double getPremiumGasolinePrice()
-    +double getLPGPrice()
+    +void setDieselPrice(double dieselPrice)
+    +double getSuperPrice()
+    +void setSuperPrice(double superPrice)
+    +double getSuperPlusPrice()
+    +void setSuperPlusPrice(double superPlusPrice)
+    +double getGasPrice()
+    +void setGasPrice(double gasPrice)
+    +User getUserDto()
+    +void setUserDto(User userDto)
+    +boolean getHasMethane()
+    +void setHasMethane(boolean hasMethane)
     +double getMethanePrice()
-    +int getTrust_Level()
+    +void setMethanePrice(double methanePrice)
+    +String getCarSharing()
+    +void setCarSharing(String carSharing)
   }
-  class GeoPointDto {
-    double latitude
-    double longitude
+  class LoginDto {
+    Integer userId
+    String userName
+    String token
+    String email
+    Integer reputation
+    boolean admin
     __
-    +void setLatitude(double)
-    +void setLongitude(double)
-    +double getLatitude()
-    +double getLongitude()
+    +Integer getUserId()
+    +void setUserId(Integer userId)
+    +String getUserName()
+    +void setUserName(String userName)
+    +String getToken()
+    +void setToken(String token)
+    +String getEmail()
+    +void setEmail(String email)
+    +Integer getReputation()
+    +void setReputation(Integer reputation)
+    +boolean getAdmin()
+    +void setAdmin(Boolean admin)
   }
-  class CarSharingCompanyDto {
-    String name
+  class IdPw {
+    String user
+    String pw
     __
-    +void setName(String)
-    +String getName()
-  }
-  class EZGasDto {
-  }
-  class AnonymousUserDto {
+    +String getUser()
+    +void setUser(String user)
+    +String getPw()
+    +void setPw(String pw)
   }
 }
 
 package "it.polito.ezgas.controller" {
    class UserController {
-    +UserDto createAccount(UserDto)
-    +UserDto login(UserDto)
-    +UserDto deleteUser(UserDto)
-    +UserDto modifyUser(UserDto)
-    +List<GasStationDto> searchGasStationWithRadiusAddress(String)
-    +List<GasStationDto> showGasStationsAndFuelsOnMap(double,double)
-    +List<GasStationDto> getGasStationsByFuelType(String)
-    +List<GasStationDto> sortGasStationsByFuelPrice(double,double,String)
-    +List<GasStationDto> sortGasStationByDistance(double,double,String)
-    +boolean isCorrect(double)
+    +UserDto getUserById(Integer userId)
+    +List<UserDto> getAllUsers()
+    +UserDto saveUser(UserDto userDto)
+    +boolean deleteUser(Integer userId)
+    +Integer increaseUserReputation(Integer userId)
+    +Integer decreaseUserReputation(userId)
+    +LoginDto login(IdPw credentials)
   }
   class GasStationController {
-    +GasStationDto createGasStation(GasStationDto)
-    +GasStationDto modifyGasStation(GasStationDto)
-    +GasStationDto DeleteGasStation(GasStationDto)
-  }
-  class AdministratorController {
-    +UserDto createAccount(UserDto)
-    +UserDto login(UserDto)
-    +UserDto deleteUser(UserDto)
-    +List<UserDto> listAllUsers()
-    +UserDto searchUser(UserDto)
-    +UserDto modifyUser(UserDto)
-    +GasStationDto createGasStation(GasStationDto)
-    +GasStationDto modifyGasStation(GasStationDto)
-    +GasStationDto deleteGasStation(GasStationDto)
+    +GasStationDto getGasStationById(Integer gasStationId)
     +List<GasStationDto> getAllGasStations()
-    +List<GasStationDto> searchGasStationWithRadiusAddress(String)
-    +List<GasStationDto> showGasStationsAndFuelsOnMap(double,double)
-    +List<GasStationDto> getGasStationsByFuelType(String)
-    +List<GasStationDto> sortGasStationsByFuelPrice(double,double,String)
-    +List<GasStationDto> sortGasStationByDistance(double,double,String)
+    +void saveGasStation(GasStationDto gasStationDto)
+    +void deleteGasStation(Integer gasStationId)
+    +List<GasStationDto> getGasStationsByGasolineType(String gasolinetype)
+    +List<GasStationDto> getGasStationsByProximity(double myLat,double myLon)
+    +List<GasStationDto> getGasStationsWithCoordinates(double myLat,double myLon,String gasolineType,String carSharing)
+    +void setGasStationReport(Integer gasStationId,double dieselPrice,double superPrice,double superPlusPrice,double gasPrice,double methanePrice,Integer userId)
   }
-  class PriceListController {
-    +PriceListDto createPriceList(<UserDto>,<GasStation>)
-    +PriceListDto updateTrustLevel(<UserDto>,<GasStatio>)
-    +PriceListDto evaluatePriceList(<UserDto>,<GasStation>)
-    +UserDto getLastUserUpdate(UserDto)
-  }
-  class GeoPointController {
-    +List<GasStationDto> searchGasStationWithRadiusGeoPoint(double,double)
-  }
-  class CarSharingCompanyController {
-    +List<GasStationDto> getGasStationByCarSharing(String)
-  }
-  class EZGasController {
-    +boolean startApplication()
-    +boolean stopApplication()
-  }
-  class AnonymousUserController {
-    +List<GasStationDto> searchGasStationWithRadiusAddress(String)
-    +List<GasStationDto> showGasStationsAndFuelsOnMap(double,double)
-    +List<GasStationDto> getGasStationsByFuelType(String)
-    +List<GasStationDto> sortGasStationsByFuelPrice(double,double,String)
-    +List<GasStationDto> sortGasStationByDistance(double,double,String) 
+  class HomeController {
+    +String admin()
+    +String index()
+    +String map()
+    +String login()
+    +String update()
+    +String signup()
   }
 }
 
 package "it.polito.ezgas.service" {
    interface UserService {
-     +UserDto getUserById(int)
-     +UserDto saveUser(UserDto)
+     +UserDto getUserById(Integer userId)
+     +UserDto saveUser(UserDto userDto)
      +List<UserDto> getAllUsers()
-     +boolean deleteUser(int)
-     +LoginDto login(IdPw)
-     +int increaseUserReputation(int)
-     +int decreaseUserReputation(int)
+     +boolean deleteUser(Integer userId)
+     +LoginDto login(IdPw credentials)
+     +Integer increaseUserReputation(Integer userId)
+     +Integer decreaseUserReputation(Integer userId)
    }
    note right: This interface just contains the methods related to User entity.\nThe implementation of these methods will be done in the "UserServiceImpl" class
   
    interface GasStationService {
-     +GasStationDto getGasStationById(int)
-     +GasStationDto saveGasStation(GasStationDto)
+     +GasStationDto getGasStationById(Integer gasStationId)
+     +GasStationDto saveGasStation(GasStationDto gasStationDto)
      +List<GasStationDto> getAllGasStations()
-     +boolean deleteGasStation(int)
-     +List<GasStationDto> getGasStationsByGasolineType(String)
-     +List<GasStationDto> getGasStationsByProximity(double,double)
-     +List<GasStationDto> getGasStationsWithCoordinates(double,double,String,String)
-     +List<GasStationDto> getGasStationsWithoutCoordinates(String,String)
-     +void setReport(int,double,double,double,double,double,int)
-     +List<GasStationDto> getGasStationByCarSharing(String)
+     +boolean deleteGasStation(Integer gasStationId)
+     +List<GasStationDto> getGasStationsByGasolineType(String gasolinetype)
+     +List<GasStationDto> getGasStationsByProximity(double lat, double lon)
+     +List<GasStationDto> getGasStationsWithCoordinates(double lat, double lon, String gasolinetype, String carsharing)
+     +List<GasStationDto> getGasStationsWithoutCoordinates(String gasolinetype, String carsharing)
+     +void setReport(Integer gasStationId, double dieselPrice, double superPrice, double superPlusPrice, double gasPrice, double methanePrice, Integer userId)
+     +List<GasStationDto> getGasStationByCarSharing(String carSharing)
    }
   note right: This interface just contains the methods related to GasStation entity.\nThe implementation of these methods will be done in the "GasStationServiceImpl" class
 }
 
+package "it.polito.ezgas.repository" {
+   class UserRepository {
+     +save(User user)
+     +findOne(Integer userId)
+     +findAll()
+     +exists(Integer UserId)
+     +delete(Integer UserId)
+   }
+   class GasStationRepository {
+     +save(GasStation gasStation)
+     +findOne(Integer gasStationId)
+     +findAll()
+     +exists(Integer gasStationId)
+     +delete(Integer gasStationId)
+   }
+}
 package "it.polito.ezgas.serviceImpl" {
    class UserServiceImpl {
-    +UserDto getUserById(int)
-    +UserDto saveUser(UserDto)
-    +List<UserDto> getAllUsers()
-    +boolean deleteUser(int)
-    +LoginDto login(IdPw)
-    +int increaseUserReputation(int)
-    +int decreaseUserReputation(int)
+     +UserDto getUserById(Integer userId)
+     +UserDto saveUser(UserDto userDto)
+     +List<UserDto> getAllUsers()
+     +boolean deleteUser(Integer userId)
+     +LoginDto login(IdPw credentials)
+     +Integer increaseUserReputation(Integer userId)
+     +Integer decreaseUserReputation(Integer userId)
   }
   class GasStationServiceImpl {
-    +GasStationDto getGasStationById(int)
-    +GasStationDto saveGasStation(GasStationDto)
-    +List<GasStationDto> getAllGasStations()
-    +boolean deleteGasStation(int)
-    +List<GasStationDto> getGasStationsByGasolineType(String)
-    +List<GasStationDto> getGasStationsByProximity(double,double)
-    +List<GasStationDto> getGasStationsWithCoordinates(double,double,String,String)
-    +List<GasStationDto> getGasStationsWithoutCoordinates(String,String)
-    +void setReport(int,double,double,double,double,double,int)
-    +List<GasStationDto> getGasStationByCarSharing(String)
+     +GasStationDto getGasStationById(Integer gasStationId)
+     +GasStationDto saveGasStation(GasStationDto gasStationDto)
+     +List<GasStationDto> getAllGasStations()
+     +boolean deleteGasStation(Integer gasStationId)
+     +List<GasStationDto> getGasStationsByGasolineType(String gasolinetype)
+     +List<GasStationDto> getGasStationsByProximity(double lat, double lon)
+     +List<GasStationDto> getGasStationsWithCoordinates(double lat, double lon, String gasolinetype, String carsharing)
+     +List<GasStationDto> getGasStationsWithoutCoordinates(String gasolinetype, String carsharing)
+     +void setReport(Integer gasStationId, double dieselPrice, double superPrice, double superPlusPrice, double gasPrice, double methanePrice, Integer userId)
+     +List<GasStationDto> getGasStationByCarSharing(String carSharing)
   } 
 }
 
 package "it.polito.ezgas.converter" {
    class UserConverter {
-    +UserDto toUserDto(User)
-  }
-  class GasStationConverter {
-    +GasStationDto toGasStationDto(GasStation)
-  }
-  class AdministratorConverter {
-    +AdministratorDto toAdministratorDto(Administrator)
-  }
-  class PriceListConverter {
-    +PriceListDto toPriceListDto(PriceList)
-  }
-  class GeoPointConverter {
-    +GeoPointDto toGeoPointDto(GeoPoint)
-  }
-  class CarSharingCompanyConverter {
-    +CarSharingCompanyDto toCarSharingCompanyDto(CarSharingCompany)
-  }
-  class EZGasConverter {
-    +EZGasDto toEZGasDto(EZGas)
-  }
-  class AnonymousUserConverter {
-    +AnonymousUserDto toAnonymousUserDto(AnonymousUser)
-  }
+     User user
+     UserDto userDto
+     __
+     +UserDto toUserDto(User userSource)
+     +User toUser(UserDto userDtoSource)
+ }
+   class GasStationConverter {
+     GasStation gasStation
+     GasStationDto gasStationDto
+     UserConverter userConverter
+     __
+     +GasStationDto toGasStationDto(GasStation gasStationSource)
+     +GasStation toGasStation(GasStationDto gasStationDtoSource)
+ }
 }
-
-User "1" -- "1" UserDto
-User "1" -- "1" UserConverter
-UserController "1" -- "1..*" UserDto
-UserController "1" -- "0..*" GasStationDto
-UserController "1" -- "1" UserServiceImpl
-UserController "1" -- "0..*" GeoPointDto
-UserController "1" -- "1" GasStationServiceImpl
-UserService <|-- UserServiceImpl
-GasStation "1" -- "1" GasStationDto
-GasStation "1" -- "1" GasStationConverter
-GasStationController "1" -- "1..*" GasStationDto
-GasStationController "1" -- "1" GasStationServiceImpl
-GasStationService <|-- GasStationServiceImpl
-Administrator "1" -- "1" AdministratorDto
-Administrator "1" -- "1" AdministratorConverter
-AdministratorController "1" -- "1..*" AdministratorDto
-AdministratorController "1" -- "1" UserServiceImpl
-AdministratorController "1" -- "1" GasStationServiceImpl
-AdministratorController "1" -- "0..*" GasStationDto
-AdministratorController "1" -- "0..*" UserDto
-AdministratorController "1" -- "0..*" PriceListDto
-AdministratorController "1" -- "0..*" GeoPointDto
-User <|-- Administrator
-UserDto <|-- AdministratorDto
-PriceList "1" -- "1" PriceListDto
-PriceList "1" -- "1" PriceListConverter
-PriceListDto "1..*" -- "1" PriceListController
-PriceListController "1" -- "1..*" GasStationDto
-PriceListController "1" -- "1..*" UserDto
-GeoPoint "1" -- "1" GeoPointDto
-GeoPoint "0..*" -- "1" GeoPointConverter
-GeoPointController "1" -- "1..*" GeoPointDto
-GeoPointController "1" -- "0..*" UserDto
-GeoPointController "1" -- "1..*" AdministratorDto
-GeoPointController "1" -- "0..*" AnonymousUserDto
-GeoPointController "1" -- "0..*" GasStationDto
-GeoPointController "1" -- "1" UserServiceImpl
-GeoPointController "1" -- "1" GasStationServiceImpl
-CarSharingCompany "1" -- "1" CarSharingCompanyDto
-CarSharingCompany "1" -- "1" CarSharingCompanyConverter
-CarSharingCompanyDto "1..*" -- "1" CarSharingCompanyController
-CarSharingCompanyController "1" -- "0..*" GasStationDto
-CarSharingCompanyController "1" -- "0..*" UserDto
-CarSharingCompanyController "1" -- "1..*" AdministratorDto
-CarSharingCompanyController "1" -- "0..*" AnonymousUserDto
-EZGas "1" -- "1" EZGasDto
-EZGas "1" -- "1" EZGasConverter
-EZGasDto "1" -- "1" EZGasController
-EZGasDto "1" -- "0..*" UserDto
-EZGasDto "1" -- "0..*" GasStationDto
-EZGasDto "1" -- "0..*" AdministratorDto
-AnonymousUser "1" -- "1" AnonymousUserDto
-AnonymousUser "1" -- "1" AnonymousUserConverter
-AnonymousUserController "1" -- "0..*" AnonymousUserDto
-AnonymousUserController "1" -- "1" UserServiceImpl
-AnonymousUserController "1" -- "1" GasStationServiceImpl
-User "0..*" -- "1" EZGas
-User "0..*" -- "0..*" GeoPoint
-User "1" -- "0..*" PriceList
-AnonymousUser "0..*" -- "1" EZGas
-AnonymousUser "0..*" -- "0..*" GeoPoint
-GasStation "0..*" -- "1" EZGas
-GasStation "1" -- "1" GeoPoint
-GasStation "1" -- "0..1" PriceList
-GasStation "0..*" -- "0..1" CarSharingCompany
-UserDto "0..*" -- "1" EZGasDto
-UserDto "0..*" -- "0..*" GeoPointDto
-AnonymousUserDto "0..*" -- "1" EZGasDto
-AnonymousUserDto "0..*" -- "0..*" GeoPointDto
-UserDto "1" -- "0..*" PriceListDto
-GasStationDto "0..*" -- "1" EZGasDto
-GasStationDto "1" -- "1" GeoPointDto
-GasStationDto "1" -- "0..1" PriceListDto
-GasStationDto "0..*" -- "0..1" CarSharingCompanyDto
 
 it.polito.ezgas.converter -right[hidden]-> it.polito.ezgas.serviceImpl
 it.polito.ezgas.converter -right[hidden]-> it.polito.ezgas.service
