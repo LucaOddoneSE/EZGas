@@ -306,9 +306,16 @@ public class GasStationServiceimpl implements GasStationService {
 				if( (gasStationRepository.findOne(gasStationId).getHasDiesel() && gasStationRepository.findOne(gasStationId).getDieselPrice() < 0) || 
 					(gasStationRepository.findOne(gasStationId).getHasGas() && gasStationRepository.findOne(gasStationId).getGasPrice() < 0  ) || 
 				    (gasStationRepository.findOne(gasStationId).getHasSuper() && gasStationRepository.findOne(gasStationId).getSuperPrice() < 0 ) ||
-				    (gasStationRepository.findOne(gasStationId).getHasSuperPlus() &&  gasStationRepository.findOne(gasStationId).getSuperPlusPrice() < 0 ) || 
+				    (gasStationRepository.findOne(gasStationId).getHasSuperPlus() &&   gasStationRepository.findOne(gasStationId).getSuperPlusPrice() < 0 ) || 
 				    (gasStationRepository.findOne(gasStationId).getHasMethane() && gasStationRepository.findOne(gasStationId).getMethanePrice() < 0) ) 
-					throw new PriceException("Error! One or more of the fuel types price is negative!");
+						throw new PriceException("Error! One or more of the fuel types price is negative!");
+				
+				if( (gasStationRepository.findOne(gasStationId).getHasDiesel() && dieselPrice < 0) || 
+					(gasStationRepository.findOne(gasStationId).getHasGas() && gasPrice < 0  ) || 
+				    (gasStationRepository.findOne(gasStationId).getHasSuper() && superPrice < 0 ) ||
+				    (gasStationRepository.findOne(gasStationId).getHasSuperPlus() &&  superPlusPrice < 0 ) || 
+				    (gasStationRepository.findOne(gasStationId).getHasMethane() && methanePrice < 0) ) 
+						throw new PriceException("Error! One or more of the fuel types price is negative!");
 				
 				double obsolence = 0;
 				GasStation gasStation = gasStationRepository.findOne(gasStationId);
@@ -316,6 +323,13 @@ public class GasStationServiceimpl implements GasStationService {
 					System.out.println("You're going to report this gasStation for the first time!");
 					gasStation.setReportUser(userId);
 					gasStation.setReportTimestamp(Day.calendarToString());
+					
+					gasStation.setDieselPrice(dieselPrice);
+					gasStation.setGasPrice(gasPrice);
+					gasStation.setSuperPrice(superPrice);
+					gasStation.setSuperPlusPrice(superPlusPrice);
+					gasStation.setMethanePrice(methanePrice);
+					
 					System.out.println("ReportTimestamp: " + gasStation.getReportTimestamp());
 					try {
 						obsolence = (Day.calculateDays(gasStation.getReportTimestamp()));
@@ -346,6 +360,12 @@ public class GasStationServiceimpl implements GasStationService {
 					gasStation.setReportTimestamp(Day.calendarToString());
 					System.out.println("ReportTimestamp: " + gasStation.getReportTimestamp());
 					gasStation.setReportDependability(50*(userRepository.findOne(userId).getReputation()+5)/10+50*obsolence);
+					
+					gasStation.setDieselPrice(dieselPrice);
+					gasStation.setGasPrice(gasPrice);
+					gasStation.setSuperPrice(superPrice);
+					gasStation.setSuperPlusPrice(superPlusPrice);
+					gasStation.setMethanePrice(methanePrice);
 				}
 				gasStationRepository.save((gasStationRepository.findOne(gasStationId)));
 			}
