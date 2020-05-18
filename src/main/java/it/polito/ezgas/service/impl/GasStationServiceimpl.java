@@ -314,7 +314,7 @@ public class GasStationServiceimpl implements GasStationService {
 				GasStation gasStation = gasStationRepository.findOne(gasStationId);
 				if(gasStation.getReportTimestamp() == null && gasStation.getReportDependability() == 0) {
 					System.out.println("You're going to report this gasStation for the first time!");
-					gasStation.setUser(userRepository.findOne(userId));
+					gasStation.setReportUser(userId);
 					gasStation.setReportTimestamp(Day.calendarToString());
 					System.out.println("ReportTimestamp: " + gasStation.getReportTimestamp());
 					try {
@@ -331,7 +331,7 @@ public class GasStationServiceimpl implements GasStationService {
 					gasStation.setReportDependability(50*(userRepository.findOne(userId).getReputation()+5)/10+50*obsolence);
 				}
 				else {
-					gasStation.setUser(userRepository.findOne(userId));
+					gasStation.setReportUser(userId);
 					System.out.println("ReportTimestamp: " + gasStation.getReportTimestamp());
 					try {
 						obsolence = (Day.calculateDays(gasStation.getReportTimestamp()));
@@ -346,7 +346,6 @@ public class GasStationServiceimpl implements GasStationService {
 					gasStation.setReportTimestamp(Day.calendarToString());
 					System.out.println("ReportTimestamp: " + gasStation.getReportTimestamp());
 					gasStation.setReportDependability(50*(userRepository.findOne(userId).getReputation()+5)/10+50*obsolence);
-					return ;
 				}
 				gasStationRepository.save((gasStationRepository.findOne(gasStationId)));
 			}
