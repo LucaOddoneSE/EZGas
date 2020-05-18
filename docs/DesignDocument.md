@@ -228,7 +228,7 @@ Contains Service classes that implement the Service Interfaces in the Service pa
 
 @startuml
 
-scale 8192*2002 
+scale 8192*1536 
 left to right direction
 
 package "it.polito.ezgas.entity" {
@@ -549,6 +549,35 @@ package "it.polito.ezgas.converter" {
      +GasStation toGasStation(GasStationDto gasStationDtoSource)
  }
 }
+
+
+User "1" -- "1" UserDto
+GasStation "1" -- "1" GasStationDto
+GasStationDto "0..*" -- "1" GasStationServiceImpl
+UserDto "0..*" -- "1" UserServiceImpl
+GasStationController "1" -- "1" GasStationServiceImpl
+UserController "1" -- "1" UserServiceImpl
+UserController "1" -- "0..*" UserDto
+UserController "1" -- "0..*" LoginDto
+GasStationController "1" -- "0..*" GasStationDto
+UserController "1" -- "1" HomeController
+GasStationController "1" -- "1" HomeController
+UserConverter "1" -- "0..*" User
+UserConverter "1" -- "0..*" UserDto
+GasStationConverter "1" -- "0..*" GasStation
+GasStationConverter "1" -- "0..*" GasStationDto
+User "0..*" -- "1" UserRepository
+GasStation "0..*" -- "1" GasStationRepository
+GasStationRepository "1" -- "1" UserRepository
+UserController "1" -- "1" UserRepository
+GasStationController "1" -- "1" GasStationRepository
+UserConverter "1" -- "1" UserController
+GasStationConverter "1" -- "1" GasStationController
+IdPw "0..*" -- "1" UserController
+IdPw "1" -- "1" LoginDto
+
+UserService <|-- UserServiceImpl
+GasStationService <|-- GasStationServiceImpl
 
 it.polito.ezgas.converter -right[hidden]-> it.polito.ezgas.serviceImpl
 it.polito.ezgas.converter -right[hidden]-> it.polito.ezgas.service
