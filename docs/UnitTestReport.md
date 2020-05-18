@@ -722,11 +722,9 @@ Version: 1
 ### Code coverage report
 
     Coverage methods:
-    
+   
     <img src="https://i.postimg.cc/pXdxMZ8B/pr1.jpg" alt="test" border="0">
-    [![pr2.jpg](https://i.postimg.cc/vmrCVgfB/pr2.jpg)](https://postimg.cc/sB2nF2nd)
-    
-    <img src="https://i.postimg.cc/pXdxMZ8B/pr1.jpg" alt="test" border="0">
+    <img src="https://i.postimg.cc/vmrCVgfB/pr2.jpg" alt="test" border="0">
 
 ### Loop coverage analysis
 
