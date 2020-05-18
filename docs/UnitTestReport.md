@@ -13,8 +13,6 @@ Version: 1
 - [User](##User)
 - [LoginDto](##LoginDto)
 - [IdPwDto](##IdPwDto)
-
-
 - [White Box Unit Tests](#white-box-unit-tests)
 
 
@@ -52,8 +50,8 @@ Version: 1
 
 **Combination of predicates**:
 
-| Type of parameter | sign | Valid / Invalid | Description of the test case | JUnit test case |
-|-------|-------|-------|-------|-------|-------|
+| sign | Valid / Invalid | Description of the test case | JUnit test case |
+|-------|-------|-------|-------|-------|
 |Positive|V|setGasStationId(1) --> valid GasStationId|testGasStationId|
 |Negative|I|setGasStationId(-1) --> Exception|testGasStationId1|
 
@@ -93,7 +91,6 @@ Version: 1
 **Criteria for method *setGasStationName(String gasStationName)*:**
  	
  
- - Type of parameter
  - String Lenght 
 
 
@@ -120,8 +117,8 @@ Version: 1
 
 **Combination of predicates**:
 
-|Type| Length| Valid / Invalid | Description of the test case | JUnit test case |
-|:-------:|:-------:|:-------:|-------|
+| Length| Valid / Invalid | Description of the test case | JUnit test case |
+|:-------:|:-------:|:-------:|-------:|
 | 0 < s.length < s.maxlength  | Valid | setGasStationName("GiacomoBalla") -> valid|testGasStationName|
 | s.length = 0  | Valid | setGasStationName("") -> ""|testGasStationName1|
 
