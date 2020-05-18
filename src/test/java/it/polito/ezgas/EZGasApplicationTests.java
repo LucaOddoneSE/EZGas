@@ -1,5 +1,6 @@
 package it.polito.ezgas;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,7 +14,7 @@ import it.polito.ezgas.entity.*;
 @SpringBootTest
 public class EZGasApplicationTests {
 	
-// GasStation Entity
+// GasStation
 	
 	@Test
     public void testGasStationId() {
@@ -23,109 +24,185 @@ public class EZGasApplicationTests {
 		assert(GasStation.getGasStationId() == GasStationId);
     }
 
+	@Test
+    public void testGasStationId1() {
+		GasStation GasStation = new GasStation();
+		int GasStationId = -1;
+		GasStation.setGasStationId(GasStationId);
+		assert(GasStation.getGasStationId() == GasStationId);
+    }
+	
+
+	
 		
 	@Test
     public void testGasStationName() {
 		GasStation GasStation = new GasStation();
-		String GasStationName = "test";
+		String GasStationName = "GiacomoBalla";
+		GasStation.setGasStationName(GasStationName);
+		assert(GasStation.getGasStationName() == GasStationName);
+    }
+	
+	@Test
+    public void testGasStationName1() {
+		GasStation GasStation = new GasStation();
+		String GasStationName = "";
 		GasStation.setGasStationName(GasStationName);
 		assert(GasStation.getGasStationName() == GasStationName);
     }
 	
 	
-	@Test
-    public void testGasStationAddress() {
-		GasStation GasStation = new GasStation();
-		String GasStationAddress = "Politecnico di Torino Turin Piedmonte Italy";
-		GasStation.setGasStationAddress(GasStationAddress);
-		assert(GasStation.getGasStationAddress() == GasStationAddress);
-    }
-
+	
 
 	@Test
     public void testReportDependability() {
 		GasStation GasStation = new GasStation();
-		Double ReportDependability = 1.2 ;
+		Double ReportDependability = Double.MAX_VALUE+1;
+		GasStation.setReportDependability(ReportDependability);
+		assert(GasStation.getReportDependability() == ReportDependability);
+    }
+	
+	@Test
+    public void testReportDependability1() {
+		GasStation GasStation = new GasStation();
+		Double ReportDependability = 4.2;
 		GasStation.setReportDependability(ReportDependability);
 		assert(GasStation.getReportDependability() == ReportDependability);
     }
 	
 	
-	// Price Report Entity
+	@Test
+    public void testReportDependability2() {
+		GasStation GasStation = new GasStation();
+		Double ReportDependability = -4.2;
+		GasStation.setReportDependability(ReportDependability);
+		assert(GasStation.getReportDependability() == ReportDependability);
+    }
 	
 	
-	@Test
-    public void testDieselPrice() {
-		PriceReport PriceReport = new PriceReport(null, 0, 0, 0, 0);
-		Double DieselPrice = 23.2;
-		PriceReport.setDieselPrice(DieselPrice);
-		assert(PriceReport.getDieselPrice() == DieselPrice);
-    }
-
-	@Test
-    public void testPriceReportId() {
-		PriceReport PriceReport = new PriceReport(null, 0, 0, 0, 0);
-		int PriceReportId = 100;
-		PriceReport.setPriceReportId(PriceReportId);
-		assert(PriceReport.getPriceReportId() == PriceReportId);
-    }
-
-	// User Entity 
+	
+	// User 
 	@Test
     public void testUserId() {
 		User user = new User();
-		int UserId = 20;
+		int UserId = Integer.MAX_VALUE+1;
 		user.setUserId(UserId);
 		assert(user.getUserId() == UserId);
     }
 	
-	@Test
-    public void testUserName() {
+    public void testUserId1() {
 		User user = new User();
-		String UserName = "test";
-		user.setUserName(UserName);
-		assert(user.getUserName() == UserName);
+		int UserId = 4;
+		user.setUserId(UserId);
+		assert(user.getUserId() == UserId);
     }
-	
+    
+    public void testUserId2() {
+		User user = new User();
+		int UserId = -4;
+		user.setUserId(UserId);
+		assert(user.getUserId() == UserId);
+    }
+    
+    
 	@Test
     public void testPassword() {
 		User user = new User();
 		String Pass = "test!@";
 		user.setPassword(Pass);
-		assert(user.getUserName() == Pass);
+		assert(user.getPassword() == Pass);
+    }
+    
+    
+	@Test
+    public void testEmail() {
+		User user = new User();
+		String Email = "s274475@studenti.polito.it";
+		user.setEmail(Email);
+		assert(user.getEmail() == Email);
+    }
+	
+	@Test
+    public void testReputation1() {
+		User user = new User();
+		Integer reputation = 5+1;
+		user.setReputation(reputation);
+		assert(user.getReputation() == reputation);
+    }
+	
+	@Test
+    public void testReputation2() {
+		User user = new User();
+		Integer reputation = -5-1;
+		user.setReputation(reputation);
+		assert(user.getReputation() == reputation);
+    }
+	
+	@Test
+    public void testReputation3() {
+		User user = new User();
+		Integer reputation = 1;
+		user.setReputation(reputation);
+		assert(user.getReputation() == reputation);
+    }
+	
+	@Test
+    public void testReputation4() {
+		User user = new User();
+		Integer reputation = -1;
+		user.setReputation(reputation);
+		assert(user.getReputation() == reputation);
     }
 
 	
-	// Login dto
+	// Login 
 	
+		
+		@Test
+	    public void testUserName() {
+			LoginDto login = new LoginDto();
+			String UserName = "Fereshteh Feizabadi";
+			login.setUserName(UserName);
+			assert(login.getUserName() == UserName);
+	    }
+		@Test
+	    public void testUserName1() {
+			LoginDto login = new LoginDto();
+			String UserName = "";
+			login.setUserName(UserName);
+			assert(login.getUserName() == UserName);
+	    }
+		
+		
+		@Test
+	    public void testUserName2() {
+			LoginDto login = new LoginDto();
+			String UserName = null;
+			login.setUserName(UserName);
+			assert(login.getUserName() == UserName);
+	    }
+		
+		
 		@Test
 	    public void testAdmin() {
+			LoginDto login = new LoginDto();
+			boolean admin = false;
+			login.setAdmin(admin);
+			assert(login.getAdmin() == admin);
+	    }
+		
+		@Test
+	    public void testAdmin1() {
 			LoginDto login = new LoginDto();
 			boolean admin = true;
 			login.setAdmin(admin);
 			assert(login.getAdmin() == admin);
 	    }
 		
-		
-		@Test
-	    public void testReputation() {
-			LoginDto login = new LoginDto();
-			Integer Reputation = 12;
-			login.setReputation(Reputation);
-			assert(login.getReputation() == Reputation);
-	    }
-
-		@Test
-	    public void testEmail() {
-			LoginDto login = new LoginDto();
-			String Email = "s274475@polito.it";
-			login.setEmail(Email);
-			assert(login.getEmail()==Email);
-	    }
-		
 	
 	
-	// IdPw dto
+	
+	// IdPw 
 
 	@Test
     public void TestIdPwUser() {
@@ -136,28 +213,44 @@ public class EZGasApplicationTests {
     }
 	
 	@Test
+    public void TestIdPwUser1() {
+		IdPw IdPass = new IdPw();
+		String user = null;
+		IdPass.setUser(user);
+		assert(IdPass.getUser()==user);
+    }
+	
+	@Test
+    public void TestIdPwUser2() {
+		IdPw IdPass = new IdPw();
+		String user = "";
+		IdPass.setUser(user);
+		assert(IdPass.getUser()==user);
+    }
+	
+	
+	@Test
     public void TestIdPwPass() {
 		IdPw IdPass = new IdPw();
-		String pass = "Test";
+		String pass = "TestPass";
 		IdPass.setPw(pass);
 		assert(IdPass.getPw()== pass);
     }
 	
-	// Price Report Dto
 	@Test
-    public void TestDiselPrice() {
-		PriceReportDto PriceReport = new PriceReportDto(null, null, 0, 0, 0, 0);
-		double DiselPrice = 83.2;
-		PriceReport.setDieselPrice(DiselPrice);
-		assert(PriceReport.getDieselPrice() == DiselPrice);
+    public void TestIdPwPass1() {
+		IdPw IdPass = new IdPw();
+		String pass = "";
+		IdPass.setPw(pass);
+		assert(IdPass.getPw()== pass);
     }
 	
 	@Test
-    public void TestPriceReportId() {
-		PriceReportDto PriceReport = new PriceReportDto(null, null, 0, 0, 0, 0);
-		Integer PriceReportId = 12;
-		PriceReport.setPriceReportId(PriceReportId);
-		assert(PriceReport.getPriceReportId() == PriceReportId);
+    public void TestIdPwPass2() {
+		IdPw IdPass = new IdPw();
+		String pass = null;
+		IdPass.setPw(pass);
+		assert(IdPass.getPw()== pass);
     }
 	
 

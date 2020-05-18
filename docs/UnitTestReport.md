@@ -9,678 +9,668 @@ Version: 1
 # Contents
 
 - [Black Box Unit Tests](#black-box-unit-tests)
-- [entity.GasStation](##entity.GasStation)
-- [entity.PriceReport](##entity.PriceReport)
-- [entity.User](##entity.User)
-- [dto.LoginDto](##dto.LoginDto)
-- [dto.GasStation](##dto.GasStation)
-- [dto.IdPw](##dto.IdPw)
-- [dto.PriceReport](##dto.PriceReport)
+- [GasStation](##GasStation)
+- [User](##User)
+- [LoginDto](##LoginDto)
+- [IdPwDto](##IdPwDto)
 
-- [UserServiceimpl](##UserServiceimpl)
-- [GasStationServiceimpl](##GasStationServiceimpl)
 
 - [White Box Unit Tests](#white-box-unit-tests)
 
 
 # Black Box Unit Tests
 
- ## UserServiceimpl
+##GasStation Class
 
- ### **Class *UserServiceimpl* - method *getUserById(Integer userId)***
+**Criteria for method *setGasStationId(Integer gasStationId)*:**
+ 	
+ - sign 
+ - Range
 
-
-
-**Criteria for method *getUserById(Integer userId)*:**
-	
-
- - Number of Input parameters for getUserById(Integer userId)
- - Type of parameters passed to getUserById(Integer userId)
- - sign of userId
  
-
-
-
-
-
-**Predicates for method *getUserById(Integer userId)*:**
+  
+**Predicates for method *setGasStationId(Integer gasStationId)*:**
 
 | Criteria | Predicate |
-| -------- | --------- |
-|  Number of Input parameters        |    0 to 1       |
-|          |     2 and above      |
-|     Type of parameters passed to method     |     Integer      |
-|          |     All other types      |
-|     sign of userId     |   Positive        |
-|          |     Negative      |
-|          |     Mixed      |
+| -------- | :---------: |
+|  Range    |  gasStationId ≥ maxint    |
+|           |  gasStationId ≤ minint    |
+|           | minint ≤ gasStationId ≤ maxint    |
+|  Sign     |  Positive        |
+|           |  Negative         |
 
 
 
-
-
-**Boundaries**:
+**Boundaries for method *setGasStationId(Integer gasStationId)**:
 
 | Criteria | Boundary values |
 | -------- | --------------- |
-|     Number of Input parameters     |         1        |
-|      Type of parameters passed to method    |        Integer         |
-|sign of userId|Positive|
+|  Range    |  minint, maxint    |
+|sign|Positive|
+
 
 
 **Combination of predicates**:
 
-
-| Number of Input parameters | Type of parameters passed to method | sign of userId | Valid / Invalid | Description of the test case | JUnit test case |
+| Type of parameter | sign | Valid / Invalid | Description of the test case | JUnit test case |
 |-------|-------|-------|-------|-------|-------|
-|1|Int|Positive|V|getUserById(23) --> valid userId||
-|1|Int|Negative|I|getUserById(-23) --> Exception||
-|1|char|-|I|getUserById('A') --> Exception||
-|1|float|-|I|getUserById(1.2) --> Exception||
-|1|All other types|-|I|getUserById("1.2") --> Exception||
-|0|-|-|I|getUserById() --> Exception||
-|1<|-|-|I|getUserById(23, 65) --> Exception||
+|Positive|V|setGasStationId(1) --> valid GasStationId|testGasStationId|
+|Negative|I|setGasStationId(-1) --> Exception|testGasStationId1|
 
 
 
- ### **Class *UserServiceimpl* - method *saveUser(UserDto userDto)***
+### **Class *GasStation* - method *getGasStationId()***
 
-**Criteria for method *saveUser(UserDto userDto)*:**
+**Criteria for method *getGasStationId()*:**
 	
-
- - Number of Input parameters 
- - Type of parameters passed 
-
-
-
-**Predicates for method *saveUser(UserDto userDto)*:**
+ - gasStationId is null
+  
+**Predicates for method *getGasStationId()*:**
 
 | Criteria | Predicate |
-| -------- | --------- |
-|  Number of Input parameters        |    0 to 1       |
-|          |     2 and above      |
-|     Type of parameters passed to method     |     UserDto      |
-|          |     All other types      |
-
+| -------- | :---------: |
+| gasStationId is null    |  True    |
+|                                |  False   |
 
 **Boundaries**:
 
 | Criteria | Boundary values |
 | -------- | --------------- |
-|     Number of Input parameters     |         1        |
-|          |         <> Null      |
-|      Type of parameters passed to method    |        UserDto         |
-
 
 
 **Combination of predicates**:
 
 
-| Number of Input parameters | Type of parameters passed to method | Valid / Invalid | Description of the test case | JUnit test case |
-|-------|-------|-------|-------|-------|
-|1|UserDto|V|saveUser(UserDto userDto) --> User Correctly saved!||
-|0|UserDto|I|saveUser() --> Exception||
-|>1|UserDto|I|saveUser(UserDto userDto1, UserDto userDto2) --> Exception||
-|1|All other types|I|saveUser(Integer userDto) --> Exception||
+| gasStationId is null| Valid / Invalid | Description of the test case | JUnit test case 
+|:-------:|:-------:|-------|-------|
+|True|Valid|getGasStationId()-> NULL| testGasStationId2 |
+|False|Valid|getGasStationId()-> 4| testGasStationId3|
 
 
- ### **Class *UserServiceimpl* - method *deleteUser(Integer userId)***
 
-**Criteria for method *deleteUser(Integer userId)*:**
-	
 
- - Number of Input parameters 
- - Type of parameters passed to method
- - sign of parameters passed 
 
-**Predicates for method *deleteUser(Integer userId)*:**
-
-| Criteria | Predicate |
-| -------- | --------- |
-|  Number of Input parameters        |    0 to 1       |
-|          |     2 and above      |
-|     Type of parameters passed to method     |     Integer     |
-|    sign of parameters passed      |     Positive      |
-|          |     Negative      |
-
-**Boundaries**:
-
-| Criteria | Boundary values |
-| -------- | --------------- |
-|     Number of Input parameters     |         1        |
-|      Type of parameters passed to method    |        Integer         |
-|sign of userId|Positive|
-
-
-**Combination of predicates**:
-
-
-| Number of Input parameters | Type of parameters passed to method | sign of userId | Valid / Invalid | Description of the test case | JUnit test case |
-|-------|-------|-------|-------|-------|-------|
-|1|Int|Positive|V|deleteUser(23) --> Deletes the user with the given Id from the database||
-|1|Int|Negative|I|deleteUser(-23) --> Exception||
-|1|char|-|I|deleteUser('A') --> Exception||
-|1|float|-|I|deleteUser(1.2) --> Exception||
-|1|All other types|-|I|deleteUser("1.2") --> Exception||
-|0|-|-|I|deleteUser() --> Exception||
-|1<|-|-|I|deleteUser(23, 65) --> Exception||
-
-
- ### **Class *UserServiceimpl* - method *login(IdPw credentials)***
-
-**Criteria for method *login(IdPw credentials)*:**
-
- - Number of Input parameters 
- - Type of parameters passed to method
-
-**Predicates for method *login(IdPw credentials)*:**
-
-| Criteria | Predicate |
-| -------- | --------- |
-|  Number of Input parameters        |    0 to 1       |
-|          |     2 and above      |
-|     Type of parameters passed to method     |     String     |
-|          |     All other types      |
-
-**Boundaries**:
-
-| Criteria | Boundary values |
-| -------- | --------------- |
-|     Number of Input parameters     |         1        |
-|          |         <> Null      |
-|      Type of parameters passed to method    |        IdPw         |
-
-
-**Combination of predicates**:
-
-| Number of Input parameters | Type of parameters passed to method | Valid / Invalid | Description of the test case | JUnit test case |
-|-------|-------|-------|-------|-------|
-|1|IdPw|V|login(IdPw credentials) --> Valid||
-|0|IdPw|I|login() --> Exception||
-|>1|IdPw|I|login(IdPw credential1,IdPw credential2) --> Exception||
-|1|All other types|I|login(Integer credentials) --> Exception||
-
-
- ### **Class *UserServiceimpl* - method *increaseUserReputation(Integer userId) , decreaseUserReputation(Integer userId)***
-
-**Criteria for method *increaseUserReputation(Integer userId) , decreaseUserReputation(Integer userId)*:**
-
- - Number of Input parameters 
- - Type of parameters passed to method
- - sign of parameters passed 
-
-**Predicates for method *increaseUserReputation(Integer userId) , decreaseUserReputation(Integer userId)*:**
-
-| Criteria | Predicate |
-| -------- | --------- |
-|  Number of Input parameters        |    0 to 1       |
-|          |     2 and above      |
-|     Type of parameters passed to method     |     Integer     |
-|          |     All other types      |
-
-
-**Boundaries**:
-
-| Criteria | Boundary values |
-| -------- | --------------- |
-|     Number of Input parameters     |         1        |
-|      Type of parameters passed to method    |        Integer         |
-|sign of userId|Positive|
-
-**Combination of predicates**:
-
-| Number of Input parameters | Type of parameters passed to method | sign of userId | Valid / Invalid | Description of the test case | JUnit test case |
-|-------|-------|-------|-------|-------|-------|
-|1|Int|Positive|V|increaseUserReputation(23) --> Increases by 1 the user Reputation||
-|1|Int|Negative|I|increaseUserReputation(-23) --> Exception||
-|1|char|-|I|increaseUserReputation('A') --> Exception||
-|1|float|-|I|increaseUserReputation(1.2) --> Exception||
-|1|All other types|-|I|increaseUserReputation("1.2") --> Exception||
-|0|-|-|I|increaseUserReputation() --> Exception||
-|1<|-|-|I|increaseUserReputation(23, 65) --> Exception||
-
-
- ## GasStationServiceimpl
-
- ### **Class *GasStationServiceimpl* - method *getGasStationById(Integer gasStationId)***
-
-
- - Number of Input parameters for getGasStationById(Integer gasStationId)
- - Type of parameters passed to getGasStationById(Integer gasStationId)
- - sign of gasStationId
-
-
-
-
-
-**Predicates for method *getGasStationById(Integer gasStationId)*:**
-
-| Criteria | Predicate |
-| -------- | --------- |
-|  Number of Input parameters        |    0 to 1       |
-|          |     2 and above      |
-|     Type of parameters passed to method     |     Integer      |
-|          |     All other types      |
-|     sign of userId     |   Positive        |
-|          |     Negative      |
-|          |     Mixed      |
-
-
-
-
-
-**Boundaries**:
-
-| Criteria | Boundary values |
-| -------- | --------------- |
-|     Number of Input parameters     |         1        |
-|      Type of parameters passed to method    |        Integer         |
-|sign of GasStationId|Positive|
-
-
-**Combination of predicates**:
-
-
-| Number of Input parameters | Type of parameters passed to method | sign of userId | Valid / Invalid | Description of the test case | JUnit test case |
-|-------|-------|-------|-------|-------|-------|
-|1|Int|Positive|V|getGasStationById(23) --> valid GasStationId, GasStation found with this Id||
-|1|Int|Positive|V|getGasStationById(455) --> Null, Not found GasStaion with this Id||
-|1|Int|Negative|I|getGasStationById(-23) --> Exception||
-|1|char|-|I|getGasStationById('A') --> Exception||
-|1|float|-|I|getGasStationById(1.2) --> Exception||
-|1|All other types|-|I|getGasStationById("1.2") --> Exception||
-|0|-|-|I|getGasStationById() --> Exception||
-|1<|-|-|I|getGasStationById(23,65) --> Exception||
-
-
- ### **Class *GasStationServiceimpl* - method *saveGasStation(GasStationDto gasStationDto)***
- - Number of Input parameters for saveGasStation(GasStationDto gasStationDto)
- - Type of parameter passed to saveGasStation(GasStationDto gasStationDto)
-
-
-**Predicates for method *saveGasStation(GasStationDto gasStationDto)*:**
-
-| Criteria | Predicate |
-| -------- | --------- |
-|  Number of Input parameters        |    0 to 1       |
-|          |     2 and above      |
-|     Type of parameters passed to method     |     GasStationDto      |
-|          |     All other types      |
-
-
-**Boundaries**:
-
-| Criteria | Boundary values |
-| -------- | --------------- |
-|     Number of Input parameters     |         1        |
-|          |         <> Null      |
-|      Type of parameters passed to method    |        GasStationDto         |
-
-
-
-**Combination of predicates**:
-
-
-| Number of Input parameters | Type of parameters passed to method | Valid / Invalid | Description of the test case | JUnit test case |
-|-------|-------|-------|-------|-------|
-|1|GasStationDto|V|saveGasStation(GasStationDto gasStationDto) --> GasStationDto stored in the DB||
-|0|GasStationDto|I|saveGasStation() --> Error!||
-|>1|GasStationDto|I|saveGasStation(GasStationDto gasStationDto1, GasStationDto gasStationDto2) --> Exception||
-|1|All other types|I|saveUser(Integer gasStationDto) --> Exception||
-
-
-### **Class *GasStationServiceimpl* - method *deleteGasStation(Integer gasStationId)***
-
-**Criteria for method *deleteGasStation(Integer gasStationId)*:**
-	
-
- - Number of Input parameters 
- - Type of parameters passed to method
- - sign of parameters passed 
-
-**Predicates for method *deleteGasStation(Integer gasStationId)*:**
-
-| Criteria | Predicate |
-| -------- | --------- |
-|  Number of Input parameters        |    0 to 1       |
-|          |     2 and above      |
-|     Type of parameters passed to method     |     Integer     |
-|          |     All other types      |
-|    sign of parameters passed      |     Positive      |
-|         |     Negative      |
-
-
-**Boundaries**:
-
-| Criteria | Boundary values |
-| -------- | --------------- |
-|     Number of Input parameters     |         1        |
-|      Type of parameters passed to method    |        Integer         |
-|sign of gasStationId|Positive|
-
-
-**Combination of predicates**:
-
-
-| Number of Input parameters | Type of parameters passed to method | sign of userId | Valid / Invalid | Description of the test case | JUnit test case |
-|-------|-------|-------|-------|-------|-------|
-|1|Int|Positive|V|deleteGasStation(23) --> Deletes the GasStation with the given Id from the database||
-|1|Int|Negative|I|deleteGasStation(-23) --> Exception||
-|1|char|-|I|deleteGasStation('A') --> Exception||
-|1|float|-|I|deleteGasStation(1.2) --> Exception||
-|1|All other types|-|I|deleteGasStation("1.2") --> Exception||
-|0|-|-|I|deleteGasStation() --> Exception||
-|1<|-|-|I|deleteGasStation(23, 65) --> Exception||
-
-
-
-### **Class *GasStationServiceimpl* - method *getGasStationsByGasolineType(String gasolinetype)***
-
-**Criteria for method *getGasStationsByGasolineType(String gasolinetype)*:**
-	
-
- - Number of Input parameters 
- - Type of parameter passed to method
- - Correct format 
+**Criteria for method *setGasStationName(String gasStationName)*:**
+ 	
  
- **Predicates for method *getGasStationsByGasolineType(String gasolinetype)*:**
+ - Type of parameter
+ - String Lenght 
 
-| Criteria | Predicate |
-| -------- | --------- |
-|  Number of Input parameters        |    0 to 1       |
-|          |     2 and above      |
-|     Type of parameters passed to method     |     String     |
-|          |     All other types      |
-
-
-**Boundaries**:
-
-| Criteria | Boundary values |
-| -------- | --------------- |
-|     Number of Input parameters     |         1        |
-|      Type of parameters passed to method    |        String         |
-
-
-
-**Combination of predicates**:
-
-
-| Number of Input parameters | Type of parameters passed to method | Valid / Invalid | Description of the test case | JUnit test case |
-|-------|-------|-------|-------|-------|
-|1|String|V|getGasStationsByGasolineType("Diesel") --> Returns all gas stations that provide this gasoline type||
-|0|-|V|getGasStationsByGasolineType() --> Return Empty ArrayList||
-|1|String|I|getGasStationsByGasolineType(23) --> Exception||
-|1|Int||I|getGasStationsByGasolineType(-23) --> Exception||
-|1|float|I|getGasStationsByGasolineType(1.2) --> Exception||
-|1|All other types|I|getGasStationsByGasolineType("1.2") --> Exception||
-|1<|-|I|getGasStationsByGasolineType(23, 65) --> Exception||
-
-
-
-
-### **Class *GasStationServiceimpl* - method *getGasStationsByProximity(double lat, double lon)***
-
-**Criteria for method *getGasStationsByProximity(double lat, double lon)*:**
-	
-
- - Number of Input parameters 
- - Type of parameter passed to method
- - Range 
- - Sign of the number 
-
-
- **Predicates for method *getGasStationsByProximity(double lat, double lon)*:**
-
-| Criteria | Predicate |
-| -------- | --------- |
-|  Number of Input parameters        |    0 to 2       |
-|          |     3 and above      |
-|     Type of parameters passed to method     |     Double    |
-|          |     All other types      |
-|     Range     |    (lat > -90 || lat < 90) || (lon > -180 || lon < 180)     |
-|          |    (lat > -90 OR lat < 90) OR (lon > -180 OR lon < 180)     |
-|     Sign of the number     |     Positive      |
-|          |     Negative      |
-|          |     Mix      |
-
-**Boundaries**:
-
-| Criteria | Boundary values |
-| -------- | --------------- |
-|     Number of Input parameters     |         2        |
-|      Type of parameters passed to method    |        Double         |
-|     Range     |   (lat > -90 OR lat < 90) OR (lon > -180 OR lon < 180)     |
-|     Sign of the number     |     Positive, Negative, Mix      |
-
-
-
-**Combination of predicates**:
-
-
-| Number of Input parameters | Type of parameters passed to method | Range |Sign of the number| Valid / Invalid | Description of the test case | JUnit test case |
-|-------|-------|-------|-------|-------|-------|-------|
-|2|Double|(lat > -90 OR lat < 90) OR (lon > -180 OR lon < 180)|Mix|V|getGasStationsByProximity(double lat, double lon) --> Returns all gas stations within 1km from the GeoPoint||
-|2|Double|(lat < -90 OR lat > 90) OR (lon < -180 OR lon > 180)|Mix|V|getGasStationsByProximity(double lat, double lon) --> Exception, coordinates out of bounds!||
-|2|All other types|-|-|I|getGasStationsByProximity(Int lat, Int lon) --> Exception||
-|1|Double|-|-|I|getGasStationsByProximity(Int lat) --> Exception||
-|0|Double|-|-|I|getGasStationsByProximity() --> Exception||
-|>2|Double|-|-|I|getGasStationsByProximity(double lat, double lon,double x) --> Exception||
-
-
-### **Class *GasStationServiceimpl* - method *getGasStationsWithCoordinates(double lat, double lon, String gasolinetype,String carsharing)***
-
-**Criteria for method *getGasStationsWithCoordinates(double lat, double lon, String gasolinetype,String carsharing)*:**
-	
-
- - Number of Input parameters 
- - Type of parameter passed to method
- - Range 
- - Sign of the number 
- - Gasolinetype
- 
-
-
- **Predicates for method *getGasStationsWithCoordinates(double lat, double lon, String gasolinetype,String carsharing)*:**
-
-| Criteria | Predicate |
-| -------- | --------- |
-|  Number of Input parameters        |    0 to 4       |
-|          |     5 and above      |
-|     Type of parameters passed to method     |     Double and String    |
-|          |     All other types      |
-|     Range  Lat,Lon   |    (lat > -90 OR lat < 90) OR (lon > -180 OR lon < 180)     |
-|          |    (lat > -90 OR lat < 90) OR (lon > -180 OR lon < 180)     |
-|     Sign of the Lat,Lon     |     Positive      |
-|          |     Negative      |
-|          |     Mix      |
-|    Gasolinetype      |   one of these:  diesel,methane,gas,super,superplus      |
-|          |    Not supported     |
-|          |    Null     |
-|          |  <>  Null     |
-|    carsharing     |     <> Null      |
-|         |      Null      |
-
-**Boundaries**:
-
-| Criteria | Boundary values |
-| -------- | --------------- |
-|     Number of Input parameters     |         4        |
-|      Type of parameters passed to method    |        Double and String         |
-|     Range Lat,Lon     |   (lat > -90 OR lat < 90) OR (lon > -180 OR lon < 180)     |
-|     Sign of the Lat,Lon     |     Positive, Negative, Mix      |
-|    Gasolinetype      |     diesel,methane,gas,super,superplus      |
-|    carsharing     |     <> Null      |
-
-
-**Combination of predicates**:
-
-
-| Number of Input parameters | Type of parameters passed to method | Range |Sign of the number|Gasolinetype|carsharing| Valid / Invalid | Description of the test case | JUnit test case |
-|-------|-------|-------|-------|-------|-------|-------|-------|-------|
-|4|Double,String|(lat > -90 OR lat < 90) OR (lon > -180 OR lon < 180)|Mix|One of supported types|<>Null|V|getGasStationsWithCoordinates(double lat, double lon, String gasolinetype,String carsharing) --> Returns all gas stations within 1km from the GeoPoint, with gasolinetype and a carsharing value parameters ||
-|4|Double,String|(lat < -90 OR lat > 90) OR (lon < -180 OR lon > 180)|Mix|One of supported types|<>Null|I|getGasStationsWithCoordinates(double lat, double lon, String gasolinetype,String carsharing) --> Exception, coordinates out of bounds! ||
-|3|Double,String|(lat > -90 OR lat < 90) OR (lon > -180 OR lon < 180)|Mix|<> Supported Gasolinetype|<>Null|I|getGasStationsWithCoordinates(double lat, double lon, String gasolinetype,String carsharing) --> Exception ||
-|4|Double,String|(lat > -90 OR lat < 90) OR (lon > -180 OR lon < 180)|Mix|One of supported types|Null|I|getGasStationsWithCoordinates(double lat, double lon, String gasolinetype,Null) --> Exception ||
-|2|String|Null|-|One of supported types|<>Null|I|getGasStationsWithCoordinates(String gasolinetype,String carsharing) --> Exception ||
-|2|Double|(lat > -90 OR lat < 90) OR (lon > -180 OR lon < 180)|Mix|Null|Null|I|getGasStationsWithCoordinates(double lat, double lon) --> Exception ||
-
-
-
-### **Class *GasStationServiceimpl* - method *getGasStationsWithCoordinates(double lat, double lon, String gasolinetype,String carsharing)***
-
-**Criteria for method *getGasStationsWithCoordinates(double lat, double lon, String gasolinetype,String carsharing)*:**
-	
-
- - Number of Input parameters 
- - Type of parameter passed to method
- - Gasolinetype
- 
-
-
- **Predicates for method *getGasStationsWithoutCoordinates(String gasolinetype,String carsharing)*:**
-
-| Criteria | Predicate |
-| -------- | --------- |
-|  Number of Input parameters        |    0 to 2       |
-|          |     3 and above      |
-|     Type of parameters passed to method     |      String    |
-|          |     All other types      |
-|    Gasolinetype      |   one of these:  diesel,methane,gas,super,superplus      |
-|          |    Not supported     |
-|          |    Null     |
-|          |  <>  Null     |
-|    carsharing     |     <> Null      |
-|         |      Null      |
-
-**Boundaries**:
-
-| Criteria | Boundary values |
-| -------- | --------------- |
-|     Number of Input parameters     |         2        |
-|      Type of parameters passed to method    |       String         |
-|    Gasolinetype      |     diesel,methane,gas,super,superplus      |
-|    carsharing     |     <> Null      |
-
-
-**Combination of predicates**:
-
-
-| Number of Input parameters | Type of parameters passed to method | Gasolinetype|carsharing| Valid / Invalid | Description of the test case | JUnit test case |
-|-------|-------|-------|-------|-------|-------|-------|
-|2|String|One of supported types|<>Null|V|getGasStationsWithoutCoordinates(String gasolinetype,String carsharing) --> Valid ||
-|2|String|<> One of supported types|<>Null|I|getGasStationsWithoutCoordinates(String gasolinetype,String carsharing) --> Exception, Gas Type not supported! ||
-|1|String|One of supported types|Null|I|getGasStationsWithoutCoordinates(String gasolinetype,Null) --> Exception ||
-|1|String|Null|<>Null|I|getGasStationsWithoutCoordinates(Null,String carsharing) --> Exception ||
-|0|String|Null|Null|I|getGasStationsWithoutCoordinates() --> Exception ||
-|>2|String|One of supported types|<>Null|I|getGasStationsWithoutCoordinates(String gasolinetype,String carsharing,String X) --> Exception ||
-
-
-### **Class *GasStationServiceimpl* - method *setReport()***
-
-**Criteria for method *setReport()*:**
-	
-
- - Number of Input parameters 
- - Type of parameter passed to method
- - Sign of the Price, UserId
 
  
- 
- **Predicates for method *setReport()*:**
+  
+**Predicates for method *setGasStationName(String gasStationName)*:**
 
 | Criteria | Predicate |
-| -------- | --------- |
-|  Number of Input parameters        |    0 to 8       |
-|          |     9 and above      |
-|     Type of parameters passed to method     |      Double, Integer    |
-|          |     All other types      |
-|    Sign of the Price,UserId      |     Positive      |
-|          |     Negative      |
+| -------- | :---------: |
+|  String length    |  0 < s.length < s.maxlength   |
+|           | s.length > s.maxlength  |
 
+
+
+**Boundaries for method *setGasStationName(String gasStationName)**:
+
+| Criteria | Boundary values |
+| -------- | --------------- |
+|  String length    |  0 < s.length < s.maxlength   |
+
+
+
+
+
+**Combination of predicates**:
+
+|Type| Length| Valid / Invalid | Description of the test case | JUnit test case |
+|:-------:|:-------:|:-------:|-------|
+| 0 < s.length < s.maxlength  | Valid | setGasStationName("GiacomoBalla") -> valid|testGasStationName|
+| s.length = 0  | Valid | setGasStationName("") -> ""|testGasStationName1|
+
+
+
+### **Class *GasStation* - method *getGasStationName()***
+
+**Criteria for method *getGasStationName()*:**
+	
+ - GasStationName is null
+  
+**Predicates for method *getGasStationName()*:**
+
+| Criteria | Predicate |
+| -------- | :---------: |
+| GasStationName is null    |  True    |
+|                                |  False   |
 
 **Boundaries**:
 
 | Criteria | Boundary values |
 | -------- | --------------- |
-|     Number of Input parameters     |         8        |
-|      Type of parameters passed to method    |       Double, Integer         |
-|    Sign of the Price, UserId      |     Positive      |
 
 
 **Combination of predicates**:
 
 
-| Number of Input parameters | Type of parameters passed to method | Sign of the Price,UserId| Valid / Invalid | Description of the test case | JUnit test case |
-|-------|-------|-------|--------------|-------|-------|
-|8|Double, Integer|Positive|V|setReport(Integer gasStationId, double dieselPrice, double superPrice, double superPlusPrice, double gasPrice, double methanePrice, Integer userId) --> Valid ||
-|8|Double, Integer|Negative|I|setReport(Integer gasStationId, -25.4, double superPrice, double superPlusPrice, double gasPrice, double methanePrice, Integer userId) --> Exception, Negative Price! ||
-|8|Double, Integer|Negative|I|setReport(Integer gasStationId, double dieselPrice, double superPrice, double superPlusPrice, double gasPrice, double methanePrice, -20) --> Exception, Negative UserId! ||
-|<8|Double, Integer|Positive|I|setReport(Integer gasStationId, Integer userId) --> Exception, FuelPrices are missed! ||
-|<8|Double, Integer|Positive|I|setReport(double dieselPrice, double superPrice, double superPlusPrice, double gasPrice, double methanePrice, Integer userId) --> Exception, GasStationId is missed! ||
-|<8|Double, Integer|Positive|I|setReport(Integer gasStationId, double dieselPrice, double superPrice, double superPlusPrice, double gasPrice, double methanePrice) --> Exception, userId is missed! ||
-|>8|Double, Integer|Positive|I|setReport(more than 8 input parameters) --> Exception ||
+| GasStationName is null| Valid / Invalid | Description of the test case | JUnit test case 
+|:-------:|:-------:|-------|-------|
+|True|Valid|getGasStationId()-> NULL| testGasStationName2 |
+|False|Valid|getGasStationId()-> "GiacomoBalla"| testGasStationName3|
 
- ## GasStationDto
 
-### **Class * GasStationDto****
 
-**Criteria for all methods*:**
+
+### **Class *GasStation* - method *setReportDependability(double reportDependability)***
+
+**Criteria for method *setReportDependability(double reportDependability)*:**
 	
- - Number of Input parameters 
- - Type of parameter passed to method
- - Range for Integer
- - valid format of string
+ - Range
+ - Sign
+  
+  
+**Predicates for method *setReportDependability(double reportDependability)*:**
+
+| Criteria | Predicate |
+| -------- | :---------: |
+|  Range    |  reportDependability ≥ maxint    |
+|           |  reportDependability ≤ minint    |
+|           | minint ≤ reportDependability ≤ maxint    |
+|  Sign     |  reportDependability > 0         |
+|           |  reportDependability < 0         |
+
+
+**Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | :---------: |
+|  Range    |  minint, maxint    |
+|  Sign     |  0        |
 
 
 
- **Conditions (predicates on criteria) for all methods*:**
+**Combination of predicates**:
+
+
+| Range|Sign| Valid / Invalid | Description of the test case | JUnit test case
+|:-------:|:-------:|:-------:|-------|-------|
+|reportDependability ≥ maxint|reportDependability > 0 |Valid|setReportDependability(Double.MAX_VALUE+1)-> Double.MAX_VALUE| testReportDependability|
+||reportDependability < 0 |Invalid|-| |
+|reportDependability ≤ minint|reportDependability > 0 |Invalid|-| |
+|minint ≤ reportDependability ≤ maxint|reportDependability > 0 |Valid|setReportDependability(4.2)-> 4.2| testReportDependability1|
+||reportDependability < 0 |Valid|setReportDependability(-4.2)-> -4.2|testReportDependability2 |
+
+
+
+### **Class *User* - method *setUserId(Integer userId)***
+
+**Criteria for method *setUserId(Integer userId)*:**
+	
+ - Range
+ - Sign
+  
+  
+**Predicates for method *setUserId(Integer userId)*:**
+
+| Criteria | Predicate |
+| -------- | :---------: |
+|  Range    |  userId ≥ maxint    |
+|           |  userId ≤ minint    |
+|           | minint ≤ userId ≤ maxint    |
+|  Sign     |  userId > 0         |
+|           |  userId < 0         |
+
+
+**Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | :---------: |
+|  Range    |  minint, maxint    |
+|  Sign     |  0        |
+
+
+
+**Combination of predicates**:
+
+
+| Range|Sign| Valid / Invalid | Description of the test case | JUnit test case |
+|:-------:|:-------:|:-------:|-------|-------|
+|userId ≥ maxint|userId > 0 |Valid|setUserId(Integer.MAX_VALUE+1)-> Integer.MIN_VALUE| testUserId|
+||userId < 0 |Invalid|-| |
+|userId ≤ minint|userId > 0 |Invalid|-| |
+||userId < 0 |Valid|setUserId(Integer.MIN_VALUE-1)-> Integer.MAX_VALUE| testUserId|
+|minint ≤ userId ≤ maxint|userId > 0 |Valid|setUserId(4)-> 4| testUserId|
+||userId < 0 |Valid|setUserId(-4)-> -4| testUserId|
+
+
+
+### **Class *GasStation* - method *getUserId()***
+
+**Criteria for method *getUserId()*:**
+	
+ - userId is null
+  
+**Predicates for method *getUserId()*:**
+
+| Criteria | Predicate |
+| -------- | :---------: |
+| userId is null    |  True    |
+|                                |  False   |
+
+**Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | --------------- |
+
+
+**Combination of predicates**:
+
+
+| userId is null| Valid / Invalid | Description of the test case | JUnit test case 
+|:-------:|:-------:|-------|-------|
+|True|Valid|getUserId()-> NULL| testUserId3|
+|False|Valid|getUserId()-> 3| testUserId4|
+
+
+
+### **Class *User* - method *getPassword()***
+
+**Criteria for method *getPassword()*:**
+	
+ - password is null
+  
+**Predicates for method *getPassword()*:**
+
+| Criteria | Predicate |
+| -------- | :---------: |
+| password is null    |  True    |
+|                                |  False   |
+
+**Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | --------------- |
+
+
+**Combination of predicates**:
+
+
+| password is null| Valid / Invalid | Description of the test case | JUnit test case 
+|:-------:|:-------:|-------|-------|
+|True|Valid|getPassword()-> NULL| testPassword2|
+|False|Valid|getPassword()-> "testpass"| testPassword3|
+
+
+### **Class *User* - *getEmail()***
+
+**Criteria for *getEmail()*:**
+
+ - Length of *email* string
+
+**Predicates for method *getEmail()*:**
 
 | Criteria | Predicate |
 | -------- | --------- |
-|  Number of Input parameters        |    0 to 19       |
-|          |     20 and above      |
-|     Type of parameters passed to method     |      Boolean, String, Double, Integer    |
-|          |     All other types      |
-|    Range      |   >=MinInt and  <= MaxInt      |
-|          |     > MaxInt      |
-|          |     < MinInt      |
-|   valid format of string       |     "Polito"      |
-|          |     "8?#@"      |
+| Length of *email* string       | >0          |
+
+**Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | --------------- |
+| Length of *email* string         | ""                |
+|          | null                |
+
+**Combination of predicates**:
+
+| Length of *email* string | Valid / Invalid | Description of the test case | JUnit test case |
+|-------|-------|-------|-------|
+|>0|Valid|Object initialized with "s274475@polito.it"; getEmail() -> "s274475@polito.it"|testEmail|
+|=0|Valid|Object initialized with ""; getEmail() -> ""|testEmail|
+|null|Valid|Object initialized with null; getEmail() -> null|testEmail|
+|<0|Invalid|Object initialized with a string of negative length |Not feasible|
+|>max array size|Invalid|Object initialized with a string of length > max array size|Not feasible|
+
+
+ ### **Class *User* - *setEmail(String email)***
+
+**Criteria for *setEmail(String email)*:**
+
+ - Length of *email* string
+
+**Predicates for method *setEmail(String email)*:**
+
+| Criteria | Predicate |
+| -------- | --------- |
+| Length of *email* string       | >0          |
+
+**Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | --------------- |
+| Length of *email* string | "" |
+|          | null |
+
+**Combination of predicates**:
+
+| Length of *email* string | Valid / Invalid | Description of the test case | JUnit test case |
+|-------|-------|-------|-------|
+|>0|Valid|setEmail("s274475@studenti.polito.it"); getEmail() -> "s274475@studenti.polito.it"|testEmail|
+|=0|Valid|setEmail(""); getEmail() -> ""|testEmail|
+|null|Valid|setEmail(null); getEmail() -> null|testEmail|
+|<0|Invalid|Not feasible |Not feasible|
+|>max array size|Invalid|str = string of length > max array size|setEmail(str) -> java.lang.OutOfMemoryError: Requested array size exceeds VM limit|
+
+
+
+### **Class *User* - method *getReputation()***
+
+**Criteria for method *getReputation()*:**
+
+ - reputation is null
+  
+**Predicates for method *getReputation()*:**
+
+| Criteria | Predicate |
+| -------- | :---------: |
+| reputation is null    |  True    |
+|                       |  False   |
+
+**Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | --------------- |
+
+
+**Combination of predicates**:
+
+| reputation is null| Valid / Invalid | Description of the test case | JUnit test case 
+|:-------:|:-------:|-------|-------|
+|True|Valid|getReputation()-> NULL| testReputation |
+|False|Valid|getReputation()-> 1| testReputation|
+
+
+
+### **Class *User* - method *setReputation(Integer reputation)***
+
+**Criteria for method *setReputation(Integer reputation)*:**
+
+   - Range
+   - Sign
+  
+**Predicates for method *setReputation(Integer reputation)*:**
+
+| Criteria | Predicate |
+| -------- | :---------: |
+| Range    |  reputation < -5    |
+|                                |  -5 <= reputation <= 5   |
+|                                |  reputation > 5   |
+| Sign    |  reputation > 0    |
+|                                |  reputation < 0   |
+
+**Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | :---------: |
+|  Range    |  -5, 5    |
+|  Sign     |  0        |
+
+**Combination of predicates**:
+
+| Range|Sign| Valid / Invalid | Description of the test case | JUnit test case |
+|:-------:|:-------:|:-------:|-------|-------|
+|reputation ≥ 5|reputation > 0 |Valid|setReputation(5+1)-> 6| testUserReputation1 |
+||reputation < 0 |Invalid|-| |
+|reputation ≤ -5|reputation > 0 |Invalid|-| |
+||reputation < 0 |Valid|setReputation(-5-1)-> -6|testUserReputation2|
+|-5 ≤ reputation ≤ 5|reputation > 0 |Valid|setReputation(1) -> 1| testUserReputation3|
+||reputation < 0 |Valid|setReputation(-1)-> -1| testUserReputation4|
+
+
+
+
+### **Class *LoginDto* - *getUserName***
+
+
+
+**Criteria for *getUserName*:**
+	
+
+ - Length of *userName* string
+
+
+
+
+**Predicates for method *getUserName*:**
+
+| Criteria | Predicate |
+| -------- | --------- |
+| Length of *userName* string       | >0          |
+
+
+
 
 
 **Boundaries**:
 
 | Criteria | Boundary values |
 | -------- | --------------- |
-|     Number of Input parameters     |         19        |
-|      Type of parameters passed to method    |        Boolean, String, Double, Integer         |
+| Length of *userName* string         | ""                |
+|          | null                |
 
 
-**Combination of predicates (define test cases) for GasStationDto()**:
 
-| Number of Input parameters | Type of parameters passed to method |  Valid / Invalid | Description of the test case | JUnit test case |
-|-------|-------|-------|--------------|-------|
-|19| Boolean, String, Double, Integer|V|GasStationDto(All input parameters) --> Valid ||
+**Combination of predicates**:
 
 
-**Combination of predicates (define test cases) for getGasStationName()**:
+| Length of *userName* string | Valid / Invalid | Description of the test case | JUnit test case |
+|-------|-------|-------|-------|
+|>0|Valid|Object initialized with "Fereshteh Feizabadi"; getUserName() -> "Fereshteh Feizabadi"|testUserName|
+|=0|Valid|Object initialized with ""; getUserName() -> ""|testUserName1|
+|null|Valid|Object initialized with null; getUserName() -> null|testUserName2|
+|<0|Invalid|Object initialized with a string of negative length |Not feasible|
+|>max array size|Invalid|Object initialized with a string of length > max array size|Not feasible|
 
-| Number of Input parameters | Type of parameters passed to method |  Valid / Invalid | Description of the test case | JUnit test case |
-|-------|-------|-------|--------------|-------|
-|-|-|V|getGasStationName() --> Valid ||
 
 
-**Combination of predicates (define test cases) for setGasStationName()**:
 
-| Number of Input parameters | Type of parameters passed to method | Valid / Invalid | Description of the test case | JUnit test case |
-|-------|-------|-------|--------------|-------|
-|1|String|V|setGasStationName("GiacomoBalla") --> Valid ||
-|1|String|I|setGasStationName("") --> Exception ||
-|0|String|I|setGasStationName() --> Exception ||
-|1|String|I|setGasStationName("?@3*") --> Exception, Invalid Name format ||
-|1|Integer|I|setGasStationName(234) --> Exception, Invalid Input type! ||
-|1|Double|I|setGasStationName(2.34) --> Exception, Invalid Input type! ||
-|>1|String|I|setGasStationName("GiacomoBalla","Polito") --> Exception, 2 Input parameters! ||
+ ### **Class *LoginDto* - *setUserName***
+
+
+
+**Criteria for *setUserName*:**
+	
+
+ - Length of *userName* string
+
+
+
+
+**Predicates for method *setUserName*:**
+
+| Criteria | Predicate |
+| -------- | --------- |
+| Length of *userName* string       | >0          |
+
+
+
+
+
+**Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | --------------- |
+| Length of *userName* string | "" |
+|          | null |
+
+
+
+**Combination of predicates**:
+
+
+| Length of *userName* string | Valid / Invalid | Description of the test case | JUnit test case |
+|-------|-------|-------|-------|
+|>0|Valid|setUserName("Fereshteh Feizabadi"); getUserName() -> "Fereshteh Feizabadi"|testUserName|
+|=0|Valid|setUserName(""); getUserName() -> ""|testUserName|
+|null|Valid|setUserName(null); getUserName() -> null|testUserName|
+|<0|Invalid|Not feasible |Not feasible|
+|>max array size|Invalid|str = string of length > max array size|setUserName(str) -> java.lang.OutOfMemoryError: Requested array size exceeds VM limit|
+
+
+### **Class *LoginDto* - *getAdmin***
+
+
+
+**Criteria for *getAdmin*:**
+	
+
+ - Value of *admin* boolean
+
+
+
+
+**Predicates for method *getAdmin*:**
+
+| Criteria | Predicate |
+| -------- | --------- |
+| Value of *admin* boolean       | Uninitialized          |
+|          | After setAdmin(null)          |
+|          | After setAdmin(false)          |
+|          | After setAdmin(true)          |
+
+
+
+
+
+**Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | --------------- |
+| Value of *admin* boolean | null |
+|          | false |
+|          | true |
+
+
+**Combination of predicates**:
+
+
+| Value of *admin* boolean | Valid / Invalid | Description of the test case | JUnit test case |
+|-------|-------|-------|-------|
+|Uninitialized|Valid| getAdmin() -> false|testAdmin|
+|false|Valid| setAdmin(null); getAdmin() -> null | |
+|false|Valid| setAdmin(false); getAdmin() -> false | testAdmin1|
+|false|Valid| setAdmin(true); getAdmin() -> true | testAdmin|
+
+
+
+### **Class *IdPw* - method *getUser()***
+
+**Criteria for method *getUser()*:**
+	
+ - User is null
+  
+**Predicates for method *getUser()*:**
+
+| Criteria | Predicate |
+| -------- | :---------: |
+| User is null    |  True    |
+|                                |  False   |
+
+**Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | --------------- |
+
+
+**Combination of predicates**:
+
+| User is null| Valid / Invalid | Description of the test case | JUnit test case 
+|:-------:|:-------:|-------|-------|
+|True|Valid|getUser()-> NULL| TestIdPwPass|
+|False|Valid|getUser()-> "testuser"| TestIdPwPass1|
+
+
+### **Class *IdPw* - method *setUser(String user)***
+
+**Criteria for *setUser(String user)*:**
+
+ - Length of *user* string
+
+**Predicates for method *setUser(String user)*:**
+
+| Criteria | Predicate |
+| -------- | --------- |
+| Length of *user* string       | >0          |
+
+**Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | --------------- |
+| Length of *user* string | "" |
+|          | null |
+
+**Combination of predicates**:
+
+| Length of *user* string | Valid / Invalid | Description of the test case | JUnit test case |
+|-------|-------|-------|-------|
+|>0|Valid|setUser("testuser"); getUser() -> "testuser"|TestIdPwPass|
+|=0|Valid|setUser(""); getUser() -> ""|TestIdPwPass2|
+|null|Valid|setUser(null); getUser() -> null|TestIdPwPass1|
+|<0|Invalid|Not feasible |Not feasible|
+|>max array size|Invalid|str = string of length > max array size|setUser(str) -> java.lang.OutOfMemoryError: Requested array size exceeds VM limit|
+
+### **Class *IdPw* - method *getPw()***
+
+**Criteria for method *getPw()*:**
+	
+ - password is null
+  
+**Predicates for method *getPw()*:**
+
+| Criteria | Predicate |
+| -------- | :---------: |
+| password is null    |  True    |
+|                                |  False   |
+
+**Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | --------------- |
+
+
+**Combination of predicates**:
+
+| password is null| Valid / Invalid | Description of the test case | JUnit test case 
+|:-------:|:-------:|-------|-------|
+|True|Valid|getPw()-> NULL| TestIdPwPass|
+|False|Valid|getPw()-> "testpass"| TestIdPwPass|
+
+
+### **Class *IdPw* - method *setPw(String pw)***
+
+**Criteria for *setPw(String pw)*:**
+
+ - Length of *pw* string
+
+**Predicates for method *setPw(String pw)*:**
+
+| Criteria | Predicate |
+| -------- | --------- |
+| Length of *pw* string       | >0          |
+
+**Boundaries**:
+
+| Criteria | Boundary values |
+| -------- | --------------- |
+| Length of *pw* string | "" |
+|          | null |
+
+**Combination of predicates**:
+
+| Length of *pw* string | Valid / Invalid | Description of the test case | JUnit test case |
+|-------|-------|-------|-------|
+|>0|Valid|setPw("testpass"); getPw() -> "testpass"|TestIdPwPass|
+|=0|Valid|setPw(""); getPw() -> ""|TestIdPwPass1|
+|null|Valid|setPw(null); getPw() -> null|TestIdPwPass2|
+|<0|Invalid|Not feasible |Not feasible|
+|>max array size|Invalid|str = string of length > max array size|setPw(str) -> java.lang.OutOfMemoryError: Requested array size exceeds VM limit|
+
+
 
 
 # White Box Unit Tests
