@@ -685,24 +685,33 @@ Version: 1
 
 # White Box Unit Tests
 
+## Package Entity - Class GasStation
+
 ### Test cases definition
     
     <JUnit test classes must be in src/test/java/it/polito/ezgas>
     <Report here all the created JUnit test cases, and the units/classes under test >
     <For traceability write the class and method name that contains the test case>
 
-
 | Unit name | JUnit test case |
 |--|--|
-|||
-|||
-||||
+| getGasStationId() | testGasStationId() |
+| getGasStationName() | testGasStationName() |
+| getGasStationAddress() | testGasStationAddress() |
+| getReportDependability() | testReportDependability() |
 
 ### Code coverage report
 
     <Add here the screenshot report of the statement and branch coverage obtained using
     the Eclemma tool. >
-
+    Coverage panel
+    [](https://ibb.co/61zRKf8)
+    
+    Coverage methods
+    [](https://ibb.co/xX69Kpb)
+    [](https://ibb.co/sm9xpNT)
+    [](https://ibb.co/dcDcwtH)
+    [](https://ibb.co/SsWXr2F)
 
 ### Loop coverage analysis
 
@@ -711,9 +720,10 @@ Version: 1
 
 |Unit name | Loop rows | Number of iterations | JUnit test case |
 |---|---|---|---|
-|||||
-|||||
-||||||
+| getGasStationId() | - | - | testGasStationId() |
+| getGasStationName() | - | - | testGasStationName() |
+| getGasStationAddress() | - | - | testGasStationAddress() |
+| getReportDependability() | - | - | testReportDependability() |
 
 
 
