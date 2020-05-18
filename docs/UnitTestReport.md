@@ -688,10 +688,6 @@ Version: 1
 ## Package Entity - Class GasStation
 
 ### Test cases definition
-    
-    <JUnit test classes must be in src/test/java/it/polito/ezgas>
-    <Report here all the created JUnit test cases, and the units/classes under test >
-    <For traceability write the class and method name that contains the test case>
 
 | Unit name | JUnit test case |
 |--|--|
@@ -702,21 +698,18 @@ Version: 1
 
 ### Code coverage report
 
-    <Add here the screenshot report of the statement and branch coverage obtained using
-    the Eclemma tool. >
-    Coverage panel
-    [](https://ibb.co/61zRKf8)
+    Coverage panel:
     
-    Coverage methods
-    [](https://ibb.co/xX69Kpb)
-    [](https://ibb.co/sm9xpNT)
-    [](https://ibb.co/dcDcwtH)
-    [](https://ibb.co/SsWXr2F)
+    <img src="https://ibb.co/61zRKf8.jpg" alt="Gantt-Chart" border="0">
+    
+    Coverage methods:
+    
+    <img src="https://ibb.co/xX69Kpb.jpg" alt="Gantt-Chart" border="0">
+    <img src="https://ibb.co/sm9xpNT.jpg" alt="Gantt-Chart" border="0">
+    <img src="https://ibb.co/dcDcwtH.jpg" alt="Gantt-Chart" border="0">
+    <img src="https://ibb.co/SsWXr2F" alt="Gantt-Chart" border="0">
 
 ### Loop coverage analysis
-
-    <Identify significant loops in the units and reports the test cases
-    developed to cover zero, one or multiple iterations >
 
 |Unit name | Loop rows | Number of iterations | JUnit test case |
 |---|---|---|---|
