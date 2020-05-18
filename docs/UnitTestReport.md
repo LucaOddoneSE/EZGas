@@ -9,9 +9,16 @@ Version: 1
 # Contents
 
 - [Black Box Unit Tests](#black-box-unit-tests)
+- [entity.GasStation](##entity.GasStation)
+- [entity.PriceReport](##entity.PriceReport)
+- [entity.User](##entity.User)
+- [dto.LoginDto](##dto.LoginDto)
+- [dto.GasStation](##dto.GasStation)
+- [dto.IdPw](##dto.IdPw)
+- [dto.PriceReport](##dto.PriceReport)
+
 - [UserServiceimpl](##UserServiceimpl)
 - [GasStationServiceimpl](##GasStationServiceimpl)
-- [GasStationDto](##GasStationDto)
 
 - [White Box Unit Tests](#white-box-unit-tests)
 

@@ -5,8 +5,6 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import it.polito.ezgas.entity.GasStation;
-import it.polito.ezgas.entity.PriceReport;
 import it.polito.ezgas.entity.User;
 
 
