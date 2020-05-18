@@ -626,23 +626,14 @@ Scennario 10.1:
 
 ```plantuml
 @startuml
-GUI -> User : 1: setEmail(U_email)
-GUI -> User : 2: setAccountPwd(U_pwd)
-
-User -> Geopoint : 3: setLatitud(lat)
-User -> Geopoint : 4: setLongitude(long)
-
-Geopoint -> GasStation : 5: getAddress()
-
-User -> GasStation : 6: getHasDiesel()
-
-User <- PriceList : 7: getDieselPrice()
-
-User -> PriceList : 8: isCorrect(price)
-
-Administrator -> PriceListController: 9: getLastUserUpdate() (U2)
-
-PriceList <- Administrator : 10: setTrustLevel(+1) (U2)
+UserController -> HomeController : 1: login()
+UserController <- HomeController : 2: login(credentials)
+UserController -> HomeController : 3: map()
+HomeController -> GasStationController : 4: getGasStationByProximity(mylat, mylon)
+UserController -> HomeController : 5: update()
+UserController -> HomeController : 6: admin()
+UserController <- HomeController : 7: getUserById(u2)
+UserController <- HomeController : 8: increaseUserReputation(u2)
 @enduml
 ```
 
@@ -650,23 +641,14 @@ Scennario 10.2:
 
 ```plantuml
 @startuml
-GUI -> User : 1: setEmail(U_email)
-GUI -> User : 2: setAccountPwd(U_pwd)
-
-User -> Geopoint : 3: setLatitud(lat)
-User -> Geopoint : 4: setLongitude(long)
-
-Geopoint -> GasStation : 5: getAddress()
-
-User -> GasStation : 6: getHasDiesel()
-
-User <- PriceList : 7: getDieselPrice()
-
-User -> PriceList : 8: isCorrect(price)
-
-Administrator -> PriceListController: 9: getLastUserUpdate() (U2)
-
-PriceList <- Administrator : 10: setTrustLevel(-1) (U2)
+UserController -> HomeController : 1: login()
+UserController <- HomeController : 2: login(credentials)
+UserController -> HomeController : 3: map()
+HomeController -> GasStationController : 4: getGasStationByProximity(mylat, mylon)
+UserController -> HomeController : 5: update()
+UserController -> HomeController : 6: admin()
+UserController <- HomeController : 7: getUserById(u2)
+UserController <- HomeController : 8: decreaseUserReputation(u2)
 @enduml
 ```
 
