@@ -9,7 +9,7 @@ Version: 1
 # Contents
 
 - [Black Box Unit Tests](#black-box-unit-tests)
-- [GasStation](##GasStation)
+- [GasStation](#GasStation)
 - [User](##User)
 - [LoginDto](##LoginDto)
 - [IdPwDto](##IdPwDto)
@@ -18,7 +18,7 @@ Version: 1
 
 # Black Box Unit Tests
 
-##GasStation Class
+#GasStation
 
 **Criteria for method *setGasStationId(Integer gasStationId)*:**
  	
