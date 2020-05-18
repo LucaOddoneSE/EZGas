@@ -747,11 +747,12 @@ Coverage methods:
 
 ### Code coverage report
 
-    Coverage methods:
-    <img src="https://i.postimg.cc/PJP62Pp1/u1.jpg" alt="test" border="0">
+Coverage methods:
 
-    [![u2.jpg](https://i.postimg.cc/Xv4Qt2Bj/u2.jpg)](https://postimg.cc/tsv3xNzw)
-    [![u3.jpg](https://i.postimg.cc/5yhmgpMM/u3.jpg)](https://postimg.cc/H8t5swxS)
+<img src="https://i.postimg.cc/PJP62Pp1/u1.jpg" alt="test" border="0">
+<img src="https://i.postimg.cc/Xv4Qt2Bj/u2.jpg" alt="test" border="0">
+<img src="https://i.postimg.cc/5yhmgpMM/u3.jpg" alt="test" border="0">
+
     
     
 
@@ -776,11 +777,12 @@ Coverage methods:
 
 ### Code coverage report
 
-    Coverage methods:
-    
-    [![l1.jpg](https://i.postimg.cc/N0CCT6LQ/l1.jpg)](https://postimg.cc/HJ5t17QN)
-    [![l2.jpg](https://i.postimg.cc/FFLCdJvQ/l2.jpg)](https://postimg.cc/rzqN7szh)
-    [![l3.jpg](https://i.postimg.cc/tCGShCRn/l3.jpg)](https://postimg.cc/yWnyKKZ7)
+Coverage methods:
+
+<img src="https://i.postimg.cc/N0CCT6LQ/l1.jpg" alt="test" border="0">
+<img src="https://i.postimg.cc/FFLCdJvQ/l2.jpg" alt="test" border="0">
+<img src="https://i.postimg.cc/tCGShCRn/l3.jpg" alt="test" border="0">
+
     
     
 
@@ -804,12 +806,11 @@ Coverage methods:
 
 ### Code coverage report
 
-    Coverage methods:
-    
-    [![i1.jpg](https://i.postimg.cc/13JvhGGD/i1.jpg)](https://postimg.cc/VJ0qXbHN)
-    [![i2.jpg](https://i.postimg.cc/fbyBwVCp/i2.jpg)](https://postimg.cc/Fftjps2V)
-    
-    
+Coverage methods:
+<img src="https://i.postimg.cc/13JvhGGD/i1.jpg" alt="test" border="0">
+<img src="https://i.postimg.cc/fbyBwVCp/i2.jpg" alt="test" border="0">
+  
+   
 
 ### Loop coverage analysis
 
@@ -830,11 +831,10 @@ Coverage methods:
 
 ### Code coverage report
 
-    Coverage methods:
-    
-    [![prd1.jpg](https://i.postimg.cc/k5LFqfBR/prd1.jpg)](https://postimg.cc/gwq6KyyG)
-    [![prd2.jpg](https://i.postimg.cc/2jQFNdm3/prd2.jpg)](https://postimg.cc/YjSm1Wvw)
-    
+Coverage methods:
+
+<img src="https://i.postimg.cc/k5LFqfBR/prd1.jpg" alt="test" border="0">
+<img src="https://i.postimg.cc/2jQFNdm3/prd2.jpg" alt="test" border="0">
     
 
 ### Loop coverage analysis
