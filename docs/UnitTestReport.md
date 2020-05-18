@@ -721,7 +721,7 @@ Version: 1
 
 ### Code coverage report
 
-    Coverage methods:
+Coverage methods:
    
     <img src="https://i.postimg.cc/pXdxMZ8B/pr1.jpg" alt="test" border="0">
     <img src="https://i.postimg.cc/vmrCVgfB/pr2.jpg" alt="test" border="0">
@@ -748,8 +748,8 @@ Version: 1
 ### Code coverage report
 
     Coverage methods:
-    
-    [![u1.jpg](https://i.postimg.cc/PJP62Pp1/u1.jpg)](https://postimg.cc/ctGMJ1cJ)
+    <img src="https://i.postimg.cc/PJP62Pp1/u1.jpg" alt="test" border="0">
+
     [![u2.jpg](https://i.postimg.cc/Xv4Qt2Bj/u2.jpg)](https://postimg.cc/tsv3xNzw)
     [![u3.jpg](https://i.postimg.cc/5yhmgpMM/u3.jpg)](https://postimg.cc/H8t5swxS)
     
