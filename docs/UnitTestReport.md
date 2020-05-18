@@ -10,15 +10,15 @@ Version: 1
 
 - [Black Box Unit Tests](#black-box-unit-tests)
 - [GasStation](#GasStation)
-- [User](##User)
-- [LoginDto](##LoginDto)
-- [IdPwDto](##IdPwDto)
+- [User](#User)
+- [LoginDto](#LoginDto)
+- [IdPwDto](#IdPwDto)
 - [White Box Unit Tests](#white-box-unit-tests)
 
 
 # Black Box Unit Tests
 
-#GasStation
+# GasStation
 
 **Criteria for method *setGasStationId(Integer gasStationId)*:**
  	
@@ -194,6 +194,7 @@ Version: 1
 ||reportDependability < 0 |Valid|setReportDependability(-4.2)-> -4.2|testReportDependability2 |
 
 
+# User
 
 ### **Class *User* - method *setUserId(Integer userId)***
 
@@ -237,7 +238,7 @@ Version: 1
 
 
 
-### **Class *GasStation* - method *getUserId()***
+### **Class *User* - method *getUserId()***
 
 **Criteria for method *getUserId()*:**
 	
@@ -419,7 +420,7 @@ Version: 1
 ||reputation < 0 |Valid|setReputation(-1)-> -1| testUserReputation4|
 
 
-
+# LoginDto
 
 ### **Class *LoginDto* - *getUserName***
 
@@ -553,7 +554,7 @@ Version: 1
 |false|Valid| setAdmin(false); getAdmin() -> false | testAdmin1|
 |false|Valid| setAdmin(true); getAdmin() -> true | testAdmin|
 
-
+# IdPwDto
 
 ### **Class *IdPw* - method *getUser()***
 
