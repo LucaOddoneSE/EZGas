@@ -108,7 +108,7 @@ public class EZGasApplicationTests {
 	@Test
     public void testPassword() {
 		User user = new User();
-		String Pass = "test!@";
+		String Pass = "testpass";
 		user.setPassword(Pass);
 		assert(user.getPassword() == Pass);
     }

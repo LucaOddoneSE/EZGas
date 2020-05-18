@@ -693,11 +693,11 @@ Version: 1
     [![EclEmma.jpg](https://i.postimg.cc/26N2FW1g/EclEmma.jpg)](https://postimg.cc/wtFX97ck)
     
     Coverage methods:
-    
-    [![gs1.jpg](https://i.postimg.cc/pdXMCSpM/gs1.jpg)](https://postimg.cc/rDbHFQ1f)
-    [![gs2.jpg](https://i.postimg.cc/Vvtx5QHn/gs2.jpg)](https://postimg.cc/9wW8NS2Q)
-    [![gs3.jpg](https://i.postimg.cc/02RgFjbf/gs3.jpg)](https://postimg.cc/Btgw1q5L)
-    [![gs4.jpg](https://i.postimg.cc/wj2S1kFf/gs4.jpg)](https://postimg.cc/SnXZ5CBC)
+
+<img src="https://i.postimg.cc/pdXMCSpM/gs1.jpg"  border="0">
+<img src="https://i.postimg.cc/Vvtx5QHn/gs2.jpg"  border="0">
+<img src="https://i.postimg.cc/02RgFjbf/gs3.jpg"  border="0">
+<img src="https://i.postimg.cc/wj2S1kFf/gs4.jpg"  border="0">
 
 ### Loop coverage analysis
 
