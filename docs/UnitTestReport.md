@@ -51,7 +51,7 @@ Version: 1
 **Combination of predicates**:
 
 | sign | Valid / Invalid | Description of the test case | JUnit test case |
-|-------|-------|-------|-------|-------|
+|-------|-------|-------|-------|
 |Positive|V|setGasStationId(1) --> valid GasStationId|testGasStationId|
 |Negative|I|setGasStationId(-1) --> Exception|testGasStationId1|
 
