@@ -859,29 +859,4 @@ Coverage methods:
 | getPw() | - | - | TestIdPwPass2() |
 
 
-## Package Dto - Class PriceReportDto
-
-### Test cases definition
-
-| Unit name | JUnit test case |
-|--|--|
-| getDieselPrice() | TestDiselPrice() |
-| getPriceReportId() | TestPriceReportId() |
-
-### Code coverage report
-
-Coverage methods:
-
-<img src="https://i.postimg.cc/k5LFqfBR/prd1.jpg" alt="test" border="0">
-<img src="https://i.postimg.cc/2jQFNdm3/prd2.jpg" alt="test" border="0">
-    
-
-### Loop coverage analysis
-
-|Unit name | Loop rows | Number of iterations | JUnit test case |
-|---|---|---|---|
-| getDieselPrice() | - | - | TestDiselPrice() |
-| getPriceReportId() | - | - | TestPriceReportId() |
-
-
 
