@@ -884,6 +884,26 @@ Coverage methods:
 | getPriceReportIdPw() | - | - | TestPriceReportId() |
 
 
+## Package Service.impl - Class GasStationServiceimpl
+
+### Test cases definition
+
+| Unit name | JUnit test case |
+|--|--|
+| saveGasStation() | saveGasStationTest() |
+
+### Code coverage report
+
+Coverage methods:
+
+<img src="https://i.postimg.cc/4d1gLvZj/siSave.jpg" alt="test" border="0">
+
+
+### Loop coverage analysis
+
+|Unit name | Loop rows | Number of iterations | JUnit test case |
+|---|---|---|---|
+| saveGasStation() | - | - | saveGasStationTest() |
 
 
 
