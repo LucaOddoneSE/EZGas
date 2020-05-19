@@ -32,8 +32,6 @@ public class EZGasApplicationTests {
 		assert(GasStation.getGasStationId() == GasStationId);
     }
 	
-
-	
 		
 	@Test
     public void testGasStationName() {
@@ -90,14 +88,22 @@ public class EZGasApplicationTests {
 		assert(user.getUserId() == UserId);
     }
 	
+	@Test
     public void testUserId1() {
+		User user = new User();
+		int UserId = Integer.MIN_VALUE+1;
+		user.setUserId(UserId);
+		assert(user.getUserId() == UserId);
+    }
+	
+    public void testUserId2() {
 		User user = new User();
 		int UserId = 4;
 		user.setUserId(UserId);
 		assert(user.getUserId() == UserId);
     }
     
-    public void testUserId2() {
+    public void testUserId3() {
 		User user = new User();
 		int UserId = -4;
 		user.setUserId(UserId);
@@ -112,6 +118,14 @@ public class EZGasApplicationTests {
 		user.setPassword(Pass);
 		assert(user.getPassword() == Pass);
     }
+	
+	@Test
+    public void testPassword1() {
+		User user = new User();
+		String Pass = "";
+		user.setPassword(Pass);
+		assert(user.getPassword() == Pass);
+    }
     
     
 	@Test
@@ -122,6 +136,16 @@ public class EZGasApplicationTests {
 		assert(user.getEmail() == Email);
     }
 	
+    
+	@Test
+    public void testEmail1() {
+		User user = new User();
+		String Email = "";
+		user.setEmail(Email);
+		assert(user.getEmail() == Email);
+    }
+	
+		
 	@Test
     public void testReputation1() {
 		User user = new User();
@@ -199,7 +223,6 @@ public class EZGasApplicationTests {
 			assert(login.getAdmin() == admin);
 	    }
 		
-	
 	
 	
 	// IdPw 

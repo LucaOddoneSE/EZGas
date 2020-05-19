@@ -81,8 +81,8 @@ Version: 1
 
 | gasStationId is null| Valid / Invalid | Description of the test case | JUnit test case 
 |:-------:|:-------:|-------|-------|
-|True|Valid|getGasStationId()-> NULL| testGasStationId2 |
-|False|Valid|getGasStationId()-> 4| testGasStationId3|
+|True|Valid|getGasStationId()-> NULL| testGasStationId |
+|False|Valid|getGasStationId()-> 4| testGasStationId|
 
 
 
@@ -148,8 +148,8 @@ Version: 1
 
 | GasStationName is null| Valid / Invalid | Description of the test case | JUnit test case 
 |:-------:|:-------:|-------|-------|
-|True|Valid|getGasStationId()-> NULL| testGasStationName2 |
-|False|Valid|getGasStationId()-> "GiacomoBalla"| testGasStationName3|
+|True|Valid|getGasStationId()-> NULL| testGasStationName1 |
+|False|Valid|getGasStationId()-> "GiacomoBalla"| testGasStationName|
 
 
 
@@ -232,9 +232,9 @@ Version: 1
 |userId ≥ maxint|userId > 0 |Valid|setUserId(Integer.MAX_VALUE+1)-> Integer.MIN_VALUE| testUserId|
 ||userId < 0 |Invalid|-| |
 |userId ≤ minint|userId > 0 |Invalid|-| |
-||userId < 0 |Valid|setUserId(Integer.MIN_VALUE-1)-> Integer.MAX_VALUE| testUserId|
-|minint ≤ userId ≤ maxint|userId > 0 |Valid|setUserId(4)-> 4| testUserId|
-||userId < 0 |Valid|setUserId(-4)-> -4| testUserId|
+||userId < 0 |Valid|setUserId(Integer.MIN_VALUE-1)-> Integer.MAX_VALUE| testUserId1|
+|minint ≤ userId ≤ maxint|userId > 0 |Valid|setUserId(4)-> 4| testUserId2|
+||userId < 0 |Valid|setUserId(-4)-> -4| testUserId3|
 
 
 
@@ -262,8 +262,8 @@ Version: 1
 
 | userId is null| Valid / Invalid | Description of the test case | JUnit test case 
 |:-------:|:-------:|-------|-------|
-|True|Valid|getUserId()-> NULL| testUserId3|
-|False|Valid|getUserId()-> 3| testUserId4|
+|True|Valid|getUserId()-> NULL| testUserId|
+|False|Valid|getUserId()-> 3| testUserId|
 
 
 
@@ -291,8 +291,8 @@ Version: 1
 
 | password is null| Valid / Invalid | Description of the test case | JUnit test case 
 |:-------:|:-------:|-------|-------|
-|True|Valid|getPassword()-> NULL| testPassword2|
-|False|Valid|getPassword()-> "testpass"| testPassword3|
+|True|Valid|getPassword()-> NULL| testPassword1|
+|False|Valid|getPassword()-> "testpass"| testPassword|
 
 
 ### **Class *User* - *getEmail()***
@@ -319,7 +319,7 @@ Version: 1
 | Length of *email* string | Valid / Invalid | Description of the test case | JUnit test case |
 |-------|-------|-------|-------|
 |>0|Valid|Object initialized with "s274475@polito.it"; getEmail() -> "s274475@polito.it"|testEmail|
-|=0|Valid|Object initialized with ""; getEmail() -> ""|testEmail|
+|=0|Valid|Object initialized with ""; getEmail() -> ""|testEmail1|
 |null|Valid|Object initialized with null; getEmail() -> null|testEmail|
 |<0|Invalid|Object initialized with a string of negative length |Not feasible|
 |>max array size|Invalid|Object initialized with a string of length > max array size|Not feasible|
@@ -349,7 +349,7 @@ Version: 1
 | Length of *email* string | Valid / Invalid | Description of the test case | JUnit test case |
 |-------|-------|-------|-------|
 |>0|Valid|setEmail("s274475@studenti.polito.it"); getEmail() -> "s274475@studenti.polito.it"|testEmail|
-|=0|Valid|setEmail(""); getEmail() -> ""|testEmail|
+|=0|Valid|setEmail(""); getEmail() -> ""|testEmail1|
 |null|Valid|setEmail(null); getEmail() -> null|testEmail|
 |<0|Invalid|Not feasible |Not feasible|
 |>max array size|Invalid|str = string of length > max array size|setEmail(str) -> java.lang.OutOfMemoryError: Requested array size exceeds VM limit|
@@ -380,7 +380,7 @@ Version: 1
 | reputation is null| Valid / Invalid | Description of the test case | JUnit test case 
 |:-------:|:-------:|-------|-------|
 |True|Valid|getReputation()-> NULL| testReputation |
-|False|Valid|getReputation()-> 1| testReputation|
+|False|Valid|getReputation()-> 1| testReputation3|
 
 
 
@@ -504,8 +504,8 @@ Version: 1
 | Length of *userName* string | Valid / Invalid | Description of the test case | JUnit test case |
 |-------|-------|-------|-------|
 |>0|Valid|setUserName("Fereshteh Feizabadi"); getUserName() -> "Fereshteh Feizabadi"|testUserName|
-|=0|Valid|setUserName(""); getUserName() -> ""|testUserName|
-|null|Valid|setUserName(null); getUserName() -> null|testUserName|
+|=0|Valid|setUserName(""); getUserName() -> ""|testUserName1|
+|null|Valid|setUserName(null); getUserName() -> null|testUserName2|
 |<0|Invalid|Not feasible |Not feasible|
 |>max array size|Invalid|str = string of length > max array size|setUserName(str) -> java.lang.OutOfMemoryError: Requested array size exceeds VM limit|
 
@@ -606,9 +606,9 @@ Version: 1
 
 | Length of *user* string | Valid / Invalid | Description of the test case | JUnit test case |
 |-------|-------|-------|-------|
-|>0|Valid|setUser("testuser"); getUser() -> "testuser"|TestIdPwPass|
-|=0|Valid|setUser(""); getUser() -> ""|TestIdPwPass2|
-|null|Valid|setUser(null); getUser() -> null|TestIdPwPass1|
+|>0|Valid|setUser("testuser"); getUser() -> "testuser"|TestIdPwUser|
+|=0|Valid|setUser(""); getUser() -> ""|TestIdPwUser2|
+|null|Valid|setUser(null); getUser() -> null|TestIdPwUser1|
 |<0|Invalid|Not feasible |Not feasible|
 |>max array size|Invalid|str = string of length > max array size|setUser(str) -> java.lang.OutOfMemoryError: Requested array size exceeds VM limit|
 
@@ -635,8 +635,8 @@ Version: 1
 
 | password is null| Valid / Invalid | Description of the test case | JUnit test case 
 |:-------:|:-------:|-------|-------|
-|True|Valid|getPw()-> NULL| TestIdPwPass|
-|False|Valid|getPw()-> "testpass"| TestIdPwPass|
+|True|Valid|getPw()-> NULL| TestIdPwUser1|
+|False|Valid|getPw()-> "testpass"| TestIdPwUser|
 
 
 ### **Class *IdPw* - method *setPw(String pw)***
