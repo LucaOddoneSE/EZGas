@@ -36,6 +36,21 @@ public class GasStationServiceimpl implements GasStationService {
 	@Autowired
 	private UserRepository userRepository;
 
+	public GasStationServiceimpl(GasStationRepository gasStationRepository, GasStationConverter gasStationConverter,
+			UserRepository userRepository) {
+		this.gasStationRepository = gasStationRepository;
+		this.gasStationConverter = gasStationConverter;
+		this.userRepository = userRepository;
+	}
+
+	public GasStationServiceimpl(GasStationRepository gasStationRepository) {
+		this.gasStationRepository = gasStationRepository;
+	}
+
+	public GasStationServiceimpl() {
+
+	}
+
 	@Override
 	public GasStationDto getGasStationById(Integer gasStationId) throws InvalidGasStationException {
 		if(gasStationId<0)
@@ -324,11 +339,16 @@ public class GasStationServiceimpl implements GasStationService {
 					gasStation.setReportUser(userId);
 					gasStation.setReportTimestamp(Day.calendarToString());
 					
-					gasStation.setDieselPrice(dieselPrice);
-					gasStation.setGasPrice(gasPrice);
-					gasStation.setSuperPrice(superPrice);
-					gasStation.setSuperPlusPrice(superPlusPrice);
-					gasStation.setMethanePrice(methanePrice);
+					if(gasStation.getHasDiesel())
+						gasStation.setDieselPrice(dieselPrice);
+					if(gasStation.getHasGas())
+						gasStation.setGasPrice(gasPrice);
+					if(gasStation.getHasSuper())
+						gasStation.setSuperPrice(superPrice);
+					if(gasStation.getHasSuperPlus())
+						gasStation.setSuperPlusPrice(superPlusPrice);
+					if(gasStation.getHasMethane())
+						gasStation.setMethanePrice(methanePrice);
 					
 					System.out.println("ReportTimestamp: " + gasStation.getReportTimestamp());
 					try {
@@ -359,13 +379,17 @@ public class GasStationServiceimpl implements GasStationService {
 					}
 					gasStation.setReportTimestamp(Day.calendarToString());
 					System.out.println("ReportTimestamp: " + gasStation.getReportTimestamp());
+					if(gasStation.getHasDiesel())
+						gasStation.setDieselPrice(dieselPrice);
+					if(gasStation.getHasGas())
+						gasStation.setGasPrice(gasPrice);
+					if(gasStation.getHasSuper())
+						gasStation.setSuperPrice(superPrice);
+					if(gasStation.getHasSuperPlus())
+						gasStation.setSuperPlusPrice(superPlusPrice);
+					if(gasStation.getHasMethane())
+						gasStation.setMethanePrice(methanePrice);
 					gasStation.setReportDependability(50*(userRepository.findOne(userId).getReputation()+5)/10+50*obsolence);
-					
-					gasStation.setDieselPrice(dieselPrice);
-					gasStation.setGasPrice(gasPrice);
-					gasStation.setSuperPrice(superPrice);
-					gasStation.setSuperPlusPrice(superPlusPrice);
-					gasStation.setMethanePrice(methanePrice);
 				}
 				gasStationRepository.save((gasStationRepository.findOne(gasStationId)));
 			}
