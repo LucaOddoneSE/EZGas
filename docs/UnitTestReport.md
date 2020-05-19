@@ -325,7 +325,7 @@ Version: 1
 |>max array size|Invalid|Object initialized with a string of length > max array size|Not feasible|
 
 
- ### **Class *User* - *setEmail(String email)***
+### **Class *User* - *setEmail(String email)***
 
 **Criteria for *setEmail(String email)*:**
 
@@ -866,7 +866,7 @@ Coverage methods:
 | Unit name | JUnit test case |
 |--|--|
 | getDieselPrice() | TestDiselPrice() |
-| getPriceReportIdPw() | TestPriceReportId() |
+| getPriceReportId() | TestPriceReportId() |
 
 ### Code coverage report
 
@@ -881,7 +881,7 @@ Coverage methods:
 |Unit name | Loop rows | Number of iterations | JUnit test case |
 |---|---|---|---|
 | getDieselPrice() | - | - | TestDiselPrice() |
-| getPriceReportIdPw() | - | - | TestPriceReportId() |
+| getPriceReportId() | - | - | TestPriceReportId() |
 
 
 ## Package Service.impl - Class GasStationServiceimpl
