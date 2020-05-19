@@ -65,8 +65,6 @@ public class GasStationServiceimplTests {
 		gs = new GasStation(name, address, diesel, super1, superPlus, gas, methane, carSharing, lat, lon, dPrice,
 				sPrice, spPrice, gPrice, mPrice, user, timeStamp, dependability);
 
-		gs.setGasStationId(null);
-
 		gsd = new GasStationDto(id, name, address, diesel, super1, superPlus, gas, methane, carSharing, lat, lon,
 				dPrice, sPrice, spPrice, gPrice, mPrice, user, timeStamp, dependability);
 
