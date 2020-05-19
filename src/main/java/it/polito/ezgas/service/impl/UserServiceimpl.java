@@ -44,14 +44,14 @@ public class UserServiceimpl implements UserService {
 
 	@Override
 	public UserDto saveUser(UserDto userDto) {
+		Iterator<User> iter;
+		User user;
+		String email;
 		if(userDto == null) {
 			System.out.println("Error! you want to save in the database a null object User");
 			return null;
 		}
 		if(userDto.getUserId() == null) {
-			Iterator<User> iter;
-			User user;
-			String email;
 			if(userDto.getEmail()==null) {
 				System.out.println("Error! You haven't inserted any email for this new user");
 				return null;
@@ -81,6 +81,15 @@ public class UserServiceimpl implements UserService {
 			userDto.setAdmin(false);
 		if(userDto.getUserName() == null)
 			userDto.setUserName("Not specified");
+		email = userDto.getEmail();
+		iter = userRepository.findAll().iterator();
+		while(iter.hasNext()) {
+			user = iter.next();
+			if(user.getEmail().equals(email) && user.getUserId() != userDto.getUserId()) {
+				System.out.println("Error! This user with this email already exists in the database!");
+				return null;
+			}
+		}
 		userRepository.save(userConverter.toUser(userDto));
 		System.out.println("User Correctly updated!");
 		return userDto;
