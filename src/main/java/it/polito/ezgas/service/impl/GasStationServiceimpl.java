@@ -29,11 +29,11 @@ import it.polito.ezgas.utils.Haversine;
 @Service
 public class GasStationServiceimpl implements GasStationService {
 	
-	// @Autowired
+	@Autowired
 	private GasStationRepository gasStationRepository;
-	// @Autowired
+	@Autowired
 	private GasStationConverter gasStationConverter;
-	// @Autowired
+	@Autowired
 	private UserRepository userRepository;
 
 	public GasStationServiceimpl(GasStationRepository gasStationRepository, GasStationConverter gasStationConverter,
