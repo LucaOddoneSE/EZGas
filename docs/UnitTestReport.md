@@ -14,6 +14,11 @@ Version: 1
 - [LoginDto](#LoginDto)
 - [IdPwDto](#IdPwDto)
 - [White Box Unit Tests](#white-box-unit-tests)
+- [GasStation](#packageEntity-ClassGasStation)
+- [User](#PackageEntity-ClassUser)
+- [LoginDto](#PackageDto-ClassLoginDto)
+- [IdPwDto](#PackageDto-ClassIdPwDto)
+- [GasStationServiceimpl](#PackageService.impl-ClassGasStationServiceimpl)
 
 
 # Black Box Unit Tests
@@ -692,7 +697,7 @@ Version: 1
 
 Coverage panel:
 
-<img src="https://i.postimg.cc/26N2FW1g/EclEmma.jpg"  border="0">
+<img src="https://i.postimg.cc/jCYxJ3Sn/coverage.jpg"  border="0">
 
     
 Coverage methods:
@@ -715,30 +720,6 @@ Coverage methods:
 | getReportDependability() | - | - | testReportDependability() |
 | getReportDependability() | - | - | testReportDependability1() |
 | getReportDependability() | - | - | testReportDependability2() |
-
-
-## Package Entity - Class PriceReport
-
-### Test cases definition
-
-| Unit name | JUnit test case |
-|--|--|
-| getDieselPrice() | testDieselPrice() |
-| getPriceReportId() | testPriceReportId() |
-
-### Code coverage report
-
-Coverage methods:
-
-<img src="https://i.postimg.cc/pXdxMZ8B/pr1.jpg" alt="test" border="0">
-<img src="https://i.postimg.cc/vmrCVgfB/pr2.jpg" alt="test" border="0">
-
-### Loop coverage analysis
-
-|Unit name | Loop rows | Number of iterations | JUnit test case |
-|---|---|---|---|
-| getDieselPrice() | - | - | testDieselPrice() |
-| getPriceReportId() | - | - | testPriceReportId() |
 
 
 ## Package Entity - Class User
@@ -857,6 +838,28 @@ Coverage methods:
 | getPw() | - | - | TestIdPwPass() |
 | getPw() | - | - | TestIdPwPass1() |
 | getPw() | - | - | TestIdPwPass2() |
+
+## Package Service.impl - Class GasStationServiceimpl
+
+### Test cases definition
+
+| Unit name | JUnit test case |
+|--|--|
+| saveGasStation() | saveGasStationTest() |
+
+### Code coverage report
+
+Coverage methods:
+
+<img src="https://i.postimg.cc/4d1gLvZj/siSave.jpg" alt="test" border="0">
+
+
+### Loop coverage analysis
+
+|Unit name | Loop rows | Number of iterations | JUnit test case |
+|---|---|---|---|
+| saveGasStation() | - | - | saveGasStationTest() |
+
 
 
 
