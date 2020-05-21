@@ -2,7 +2,7 @@ package it.polito.ezgas.dto;
 
 import org.junit.jupiter.api.Test;
 
-class LoginDtoTest {
+public class LoginDtoTest {
 
 
 	@Test
