@@ -1,6 +1,6 @@
 package it.polito.ezgas.dto;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 public class IdPwTest {
 
