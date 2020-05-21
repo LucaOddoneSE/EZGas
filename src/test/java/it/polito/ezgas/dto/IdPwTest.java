@@ -2,7 +2,7 @@ package it.polito.ezgas.dto;
 
 import org.junit.jupiter.api.Test;
 
-class IdPwTest {
+public class IdPwTest {
 
 	@Test
     public void TestIdPwUser() {
