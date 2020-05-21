@@ -4,14 +4,11 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import org.junit.Assert;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import java.util.ArrayList;
-
 import it.polito.ezgas.dto.*;
 import it.polito.ezgas.entity.*;
 import it.polito.ezgas.converter.GasStationConverter;
@@ -19,18 +16,10 @@ import it.polito.ezgas.repository.GasStationRepository;
 import it.polito.ezgas.repository.UserRepository;
 import it.polito.ezgas.service.GasStationService;
 import exception.GPSDataException;
-import exception.InvalidGasStationException;
 import exception.PriceException;
-import it.polito.ezgas.converter.GasStationConverter;
 import it.polito.ezgas.dto.GasStationDto;
 import it.polito.ezgas.entity.GasStation;
-import it.polito.ezgas.repository.GasStationRepository;
-import it.polito.ezgas.repository.UserRepository;
-import it.polito.ezgas.service.GasStationService;
 import it.polito.ezgas.service.impl.GasStationServiceimpl;
-import exception.InvalidGasTypeException;
-import it.polito.ezgas.dto.UserDto;
-
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -354,7 +343,3 @@ public class EZGasApplicationTests {
 	}
 
 }
-
-
-
-
