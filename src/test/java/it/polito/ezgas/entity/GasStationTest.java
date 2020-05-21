@@ -2,7 +2,7 @@ package it.polito.ezgas.entity;
 
 import org.junit.jupiter.api.Test;
 
-class GasStationTest {
+public class GasStationTest {
 	
 	@Test
     public void testGasStationId() {
