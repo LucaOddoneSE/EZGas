@@ -391,5 +391,69 @@ public class UserServiceImplStep2Tests {
 		
 		assertEquals(2,userServiceImp.getAllUsers().size());
 	}
+	
+	//Perform a login
+	@SuppressWarnings("unused")
+	@Test
+	public void testLogin() throws InvalidLoginDataException {
+		UserDto user1 = new UserDto(1, "Luca Oddone", "Password", "lucaoddone@polito.it", 3);
+		UserDto user2 = new UserDto(2, "Paola Oddone", "Password", "paolaoddone@polito.it", 4);
+		IdPw credentials = new IdPw();
+		
+		ids.clear();
+		listUsers.clear();
+		listUsersDto.clear();
+		
+		credentials.setUser("lucaoddone@polito.it");
+		credentials.setPw("Password");
+		
+		when(userServiceImp.login(credentials)).thenAnswer( invocation -> {
+			if(credentials == null)
+				throw new InvalidLoginDataException("Error! The method receives a null object");
+			if(credentials.getPw() == null || credentials.getUser() == null)
+				throw new InvalidLoginDataException("Error! Passed null credentials");
+			if (credentials.getUser().equals("lucaoddone@polito.it") && credentials.getPw().equals("Password")
+					&& ids.contains(1))
+				return new LoginDto(1, "Luca Oddone", "token", "lucaoddone@polito.it", 3);
+			if (credentials.getUser().equals("paolaoddone@polito.it") && credentials.getPw().equals("Password")
+					&& ids.contains(2))
+				return new LoginDto(2, "Paola Oddone", "token", "paolaoddone@polito.it", 4);
+			return null;
+		});
+		
+        when(userServiceImp.saveUser(user1)).thenAnswer( invocation -> {
+			if(ids.contains(1)==true)
+				return null;
+			User entity1 = new User("Luca Oddone", "Password", "lucaoddone@polito.it", 3);
+			entity1.setUserId(1);
+			when(userConverter.toUser(user1)).thenReturn(entity1);
+			listUsers.add(0,userConverter.toUser(user1));
+			listUsersDto.add(0,user1);
+			ids.add(0,1);
+			return user1;
+		});
+		
+		when(userServiceImp.saveUser(user2)).thenAnswer( invocation -> {
+			if(ids.contains(2)==true)
+				return null;
+			User entity2 = new User("Paola Oddone", "Password", "paolaoddone@polito.it", 4);
+			entity2.setUserId(2);
+			when(userConverter.toUser(user2)).thenReturn(entity2);
+			listUsers.add(1,userConverter.toUser(user2));
+			listUsersDto.add(1,user2);
+			ids.add(1,2);
+			return user2;
+		});
+		
+		assertEquals(1,userServiceImp.saveUser(user1).getUserId());
+		assertEquals(2,userServiceImp.saveUser(user2).getUserId());
+		
+		assertEquals(1,userServiceImp.login(credentials).getUserId());
+		
+		credentials.setUser("paolaoddone@polito.it");
+		credentials.setPw("Password");
+		
+		assertEquals(2,userServiceImp.login(credentials).getUserId());
+	}
 		
 }
