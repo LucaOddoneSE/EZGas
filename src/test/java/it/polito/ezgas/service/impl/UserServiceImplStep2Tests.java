@@ -111,4 +111,47 @@ public class UserServiceImplStep2Tests {
 		assertEquals(1,userServiceImp.saveUser(user1).getUserId());
 		assertEquals(2,userServiceImp.saveUser(user2).getUserId());
 	}
+	
+	//Avoid saving Users already present in the database
+	@Test
+	public void testsaveUserUsersAlreadyPresent() {
+		UserDto user1 = new UserDto(1, "Luca Oddone", "Password", "lucaoddone@polito.it", 3);
+		UserDto user2 = new UserDto(2, "Paola Oddone", "Password", "paolaoddone@polito.it", 4);
+		
+		ids.clear();
+		listUsers.clear();
+		listUsersDto.clear();
+		
+		when(userServiceImp.saveUser(user1)).thenAnswer( invocation -> {
+			if(ids.contains(1)==true)
+				return null;
+			User entity1 = new User("Luca Oddone", "Password", "lucaoddone@polito.it", 3);
+			entity1.setUserId(1);
+			when(userConverter.toUser(user1)).thenReturn(entity1);
+			listUsers.add(0,userConverter.toUser(user1));
+			listUsersDto.add(0,user1);
+			ids.add(0,1);
+			return user1;
+		});
+		
+		when(userServiceImp.saveUser(user2)).thenAnswer( invocation -> {
+			if(ids.contains(2)==true)
+				return null;
+			User entity2 = new User("Paola Oddone", "Password", "paolaoddone@polito.it", 4);
+			entity2.setUserId(2);
+			when(userConverter.toUser(user2)).thenReturn(entity2);
+			listUsers.add(1,userConverter.toUser(user2));
+			listUsersDto.add(1,user2);
+			ids.add(1,2);
+			return user2;
+		});
+		
+		assertEquals(1,userServiceImp.saveUser(user1).getUserId());
+		assertEquals(2,userServiceImp.saveUser(user2).getUserId());
+		
+		assertNull(userServiceImp.saveUser(user1));
+		assertNull(userServiceImp.saveUser(user2));
+	}
+	
+	
 }
