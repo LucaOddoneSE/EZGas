@@ -271,4 +271,19 @@ public class UserServiceImplStep1 implements UserServiceStep1 {
 		assertEquals(2,userServiceImplStep1.decreaseUserReputation(1));
 		assertEquals(3,userServiceImplStep1.decreaseUserReputation(2));
 	}
+	
+	//Throw Exception(userId<0)
+	@Test(expected=InvalidUserException.class)
+	public void testDecreaseUserReputationNegativeUserId() throws InvalidUserException {
+		userServiceImplStep1 = new UserServiceImplStep1();
+		UserServiceStep1.ids.clear();
+		UserServiceStep1.listUsers.clear();
+		assertEquals(1, userServiceImplStep1
+				.saveUser(new UserDto(1, "Luca Oddone", "Password", "lucaoddone@polito.it", 3))
+				.getUserId());
+		assertEquals(2, userServiceImplStep1
+				.saveUser(new UserDto(2, "Paola Oddone", "Password", "paolaoddone@polito.it", 4))
+				.getUserId());
+		assertEquals(2,userServiceImplStep1.decreaseUserReputation(-6));
+	}
 }
