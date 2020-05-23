@@ -37,4 +37,15 @@ public class UserServiceImplStep2Tests {
 		when(userServiceImp.getAllUsers()).thenReturn(listUsersDto);
 		assertEquals(0,userServiceImp.getAllUsers().size());
 	}
+
+	// Throw Exception(userId<0)
+	@Test(expected = InvalidUserException.class)
+	public void testgetUserByIdNegativeUserId() throws InvalidUserException {
+		ids.clear();
+		listUsers.clear();
+		listUsersDto.clear();
+		
+		when(userServiceImp.getUserById(-5)).thenThrow(new InvalidUserException("Error UserId < 0") );
+		userServiceImp.getUserById(-5);
+	}
 }
