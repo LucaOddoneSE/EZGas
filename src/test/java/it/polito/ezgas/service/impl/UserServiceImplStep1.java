@@ -23,5 +23,13 @@ public class UserServiceImplStep1 implements UserServiceStep1 {
 		UserServiceStep1.listUsers.clear();
 		assertEquals(0, userServiceImplStep1.getAllUsers().size());
 	}
-
+	
+	// Throw Exception(userId<0)
+	@Test(expected = InvalidUserException.class)
+	public void testgetUserByIdNegativeUserId() throws InvalidUserException {
+		userServiceImplStep1 = new UserServiceImplStep1();
+		UserServiceStep1.ids.clear();
+		UserServiceStep1.listUsers.clear();
+		userServiceImplStep1.getUserById(-5);
+	}
 }
