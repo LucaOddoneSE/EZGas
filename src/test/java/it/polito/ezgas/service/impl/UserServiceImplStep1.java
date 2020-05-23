@@ -90,4 +90,13 @@ public class UserServiceImplStep1 implements UserServiceStep1 {
 		assertTrue(userServiceImplStep1.deleteUser(1));
 	}
 	
+	// Throw Exception(userId<0)
+	@Test(expected = InvalidUserException.class)
+	public void testdeleteUserNegativeUserId() throws InvalidUserException {
+		userServiceImplStep1 = new UserServiceImplStep1();
+		UserServiceStep1.ids.clear();
+		UserServiceStep1.listUsers.clear();
+		userServiceImplStep1.deleteUser(-5);
+	}
+	
 }
