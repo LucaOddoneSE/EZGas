@@ -134,4 +134,20 @@ public class UserServiceImplStep1 implements UserServiceStep1 {
 		credentials.setPw("Password");
 		assertEquals(2,userServiceImplStep1.login(credentials).getUserId());
 	}
+	
+	//Passing null credentials
+	@Test(expected=InvalidLoginDataException.class)
+	public void testLoginNullCredentials() throws InvalidLoginDataException {
+		IdPw credentials = null;
+		userServiceImplStep1 = new UserServiceImplStep1();
+		UserServiceStep1.ids.clear();
+		UserServiceStep1.listUsers.clear();
+		assertEquals(1, userServiceImplStep1
+				.saveUser(new UserDto(1, "Luca Oddone", "Password", "lucaoddone@polito.it", 3))
+				.getUserId());
+		assertEquals(2, userServiceImplStep1
+				.saveUser(new UserDto(2, "Paola Oddone", "Password", "paolaoddone@polito.it", 4))
+				.getUserId());
+		userServiceImplStep1.login(credentials);
+	}
 }
