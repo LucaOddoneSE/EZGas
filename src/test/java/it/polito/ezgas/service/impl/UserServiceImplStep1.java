@@ -42,4 +42,18 @@ public class UserServiceImplStep1 implements UserServiceStep1 {
 		assertNull(userServiceImplStep1.getUserById(1));
 		assertNull(userServiceImplStep1.getUserById(2));
 	}
+	
+	//Save Users
+	@Test
+	public void testsaveUserNewUsers() {
+		userServiceImplStep1 = new UserServiceImplStep1();
+		UserServiceStep1.ids.clear();
+		UserServiceStep1.listUsers.clear();
+		assertEquals(1, userServiceImplStep1
+				.saveUser(new UserDto(1, "Luca Oddone", "Password", "lucaoddone@polito.it", 3))
+				.getUserId());
+		assertEquals(2, userServiceImplStep1
+				.saveUser(new UserDto(2, "Paola Oddone", "Password", "paolaoddone@polito.it", 4))
+				.getUserId());
+	}
 }
