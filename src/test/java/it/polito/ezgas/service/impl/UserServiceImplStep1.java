@@ -235,4 +235,24 @@ public class UserServiceImplStep1 implements UserServiceStep1 {
 				.getUserId());
 		assertEquals(4,userServiceImplStep1.increaseUserReputation(-6));
 	}
+	
+	//Already reached the max reputation
+	@Test
+	public void testIncreaseUserReputationReachingMax() throws InvalidUserException {
+		userServiceImplStep1 = new UserServiceImplStep1();
+		UserServiceStep1.ids.clear();
+		UserServiceStep1.listUsers.clear();
+		assertEquals(1, userServiceImplStep1
+				.saveUser(new UserDto(1, "Luca Oddone", "Password", "lucaoddone@polito.it", 3))
+				.getUserId());
+		assertEquals(2, userServiceImplStep1
+				.saveUser(new UserDto(2, "Paola Oddone", "Password", "paolaoddone@polito.it", 4))
+				.getUserId());
+		assertEquals(4,userServiceImplStep1.increaseUserReputation(1));
+		assertEquals(5,userServiceImplStep1.increaseUserReputation(1));
+		assertEquals(5,userServiceImplStep1.increaseUserReputation(2));
+		
+		assertNull(userServiceImplStep1.increaseUserReputation(1));
+		assertNull(userServiceImplStep1.increaseUserReputation(2));
+	}
 }
