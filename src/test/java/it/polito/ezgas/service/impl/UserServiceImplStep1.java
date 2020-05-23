@@ -32,4 +32,14 @@ public class UserServiceImplStep1 implements UserServiceStep1 {
 		UserServiceStep1.listUsers.clear();
 		userServiceImplStep1.getUserById(-5);
 	}
+	
+	//EmptyList
+	@Test
+	public void testgetUserByIdNoUsersYet() throws InvalidUserException {
+		userServiceImplStep1 = new UserServiceImplStep1();
+		UserServiceStep1.ids.clear();
+		UserServiceStep1.listUsers.clear();
+		assertNull(userServiceImplStep1.getUserById(1));
+		assertNull(userServiceImplStep1.getUserById(2));
+	}
 }
