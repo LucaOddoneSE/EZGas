@@ -99,4 +99,18 @@ public class UserServiceImplStep1 implements UserServiceStep1 {
 		userServiceImplStep1.deleteUser(-5);
 	}
 	
+	//Retrieve All users present in the DB
+	@Test
+	public void testgetAllUsers() {
+		userServiceImplStep1 = new UserServiceImplStep1();
+		UserServiceStep1.ids.clear();
+		UserServiceStep1.listUsers.clear();
+		assertEquals(1, userServiceImplStep1
+				.saveUser(new UserDto(1, "Luca Oddone", "Password", "lucaoddone@polito.it", 3))
+				.getUserId());
+		assertEquals(2, userServiceImplStep1
+				.saveUser(new UserDto(2, "Paola Oddone", "Password", "paolaoddone@polito.it", 4))
+				.getUserId());
+		assertEquals(2, userServiceImplStep1.getAllUsers().size());
+	}
 }
