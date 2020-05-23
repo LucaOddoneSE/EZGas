@@ -772,5 +772,12 @@ public class UserServiceImplStep2Tests {
 		assertEquals(4,userServiceImp.increaseUserReputation(1));
 		assertEquals(5,userServiceImp.increaseUserReputation(2));
 	}
+	
+	//Throw Exception(userId<0)
+	@Test(expected=InvalidUserException.class)
+	public void testIncreaseUserReputationNegativeUserId() throws InvalidUserException {
+		when(userServiceImp.increaseUserReputation(-1)).thenThrow(new InvalidUserException("Error! You have passed a negative userId"));
+		userServiceImp.increaseUserReputation(-1);
+	}
 		
 }
