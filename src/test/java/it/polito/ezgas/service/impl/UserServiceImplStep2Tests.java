@@ -342,4 +342,11 @@ public class UserServiceImplStep2Tests {
 		assertNull(userServiceImp.deleteUser(1));
 		assertNull(userServiceImp.deleteUser(2));
 	}
+	
+	// Throw Exception(userId<0)
+	@Test(expected = InvalidUserException.class)
+	public void testdeleteUserNegativeUserId() throws InvalidUserException {
+		when(userServiceImp.deleteUser(-100)).thenThrow(new InvalidUserException("Error! UserId < 0"));
+		userServiceImp.deleteUser(-100);
+	}
 }
