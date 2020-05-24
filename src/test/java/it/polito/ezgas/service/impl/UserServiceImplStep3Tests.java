@@ -287,4 +287,359 @@ public class UserServiceImplStep3Tests {
 		assertEquals("paolaoddone@polito.it",userServiceImp.getUserById(2).getEmail());
 			
 	}
+
+        //DeleteOneUser
+	@Test
+	public void testdeleteUser() throws InvalidUserException {
+		UserDto user1 = new UserDto(1, "Luca Oddone", "Password", "lucaoddone@polito.it", 3);
+		UserDto user2 = new UserDto(2, "Paola Oddone", "Password", "paolaoddone@polito.it", 4);
+		
+		ids.clear();
+		listUsers.clear();
+		listUsersDto.clear();
+		
+		when(userServiceImp.saveUser(user1)).thenAnswer( invocation -> {
+			when(userRepository.exists(1)).thenReturn(ids.contains(1));
+			when(userConverter.toUser(user1)).thenReturn(new User(user1.getUserName(), user1.getPassword(),user1.getEmail(),user1.getReputation()));
+			if(userRepository.exists(1)) {
+				User user = null;
+				Iterator<User> iter = listUsers.iterator();
+				while(iter.hasNext()) {
+					user = iter.next();
+					if(user.getUserId() == 1)
+						break;
+				}
+				user.setUserId(user1.getUserId());
+				user.setUserName(user1.getUserName());
+				user.setEmail(user1.getEmail());
+				user.setPassword(user1.getPassword());
+				user.setReputation(user1.getReputation());
+				return new UserDto(user.getUserId(),user.getUserName(),user.getPassword(),user.getEmail(),user.getReputation());
+				
+			}
+			User entity1 = userConverter.toUser(user1);
+			entity1.setUserId(user1.getUserId());
+			listUsers.add(entity1);
+			ids.add(1);
+			return user1;
+		});
+		
+		when(userServiceImp.saveUser(user2)).thenAnswer( invocation -> {
+			when(userRepository.exists(2)).thenReturn(ids.contains(2));
+			when(userConverter.toUser(user2)).thenReturn(new User(user2.getUserName(), user2.getPassword(),user2.getEmail(),user2.getReputation()));
+			if(userRepository.exists(2)) {
+				User user = null;
+				Iterator<User> iter = listUsers.iterator();
+				while(iter.hasNext()) {
+					user = iter.next();
+					if(user.getUserId() == 2)
+						break;
+				}
+				user.setUserId(user1.getUserId());
+				user.setUserName(user1.getUserName());
+				user.setEmail(user1.getEmail());
+				user.setPassword(user1.getPassword());
+				user.setReputation(user1.getReputation());
+				return new UserDto(user.getUserId(),user.getUserName(),user.getPassword(),user.getEmail(),user.getReputation());
+				
+			}
+			User entity2 = userConverter.toUser(user2);
+			entity2.setUserId(user2.getUserId());
+			listUsers.add(entity2);
+			ids.add(2);
+			return user2;
+		});
+		
+		assertEquals(1,userServiceImp.saveUser(user1).getUserId());
+		assertEquals(2,userServiceImp.saveUser(user2).getUserId());
+		assertEquals(1,listUsers.get(0).getUserId());
+		assertEquals(2,listUsers.get(1).getUserId());
+		
+		doAnswer(new Answer<Void>() {
+			public Void answer(InvocationOnMock invocation) {
+				Integer i = null;
+				User user = null;
+				Iterator<Integer> iterInt = ids.iterator();
+				Iterator<User> iterUser = listUsers.iterator();
+				while(iterInt.hasNext()) {
+					i = iterInt.next();
+					if(i==1)
+						break;
+				}
+				ids.remove(i);
+				while(iterUser.hasNext()) {
+					user = iterUser.next();
+					if(user.getUserId() == 1)
+						break;
+				}
+				listUsers.remove(user);
+				return null;
+			}
+		}).when(userRepository).delete(1);
+		
+		doAnswer(new Answer<Void>() {
+			public Void answer(InvocationOnMock invocation) {
+				Integer i = null;
+				User user = null;
+				Iterator<Integer> iterInt = ids.iterator();
+				Iterator<User> iterUser = listUsers.iterator();
+				while(iterInt.hasNext()) {
+					i = iterInt.next();
+					if(i == 2)
+						break;
+				}
+				ids.remove(i);
+				while(iterUser.hasNext()) {
+					user = iterUser.next();
+					if(user.getUserId() == 2)
+						break;
+				}
+				listUsers.remove(user);
+				return null;
+			}
+		}).when(userRepository).delete(2);
+		
+		when(userServiceImp.deleteUser(1)).thenAnswer(invocation -> {
+			when(userRepository.exists(1)).thenReturn(ids.contains(1));
+			if(userRepository.exists(1)) {
+				userRepository.delete(1);
+				return true;
+			}
+			return null;
+		});
+		
+		when(userServiceImp.deleteUser(2)).thenAnswer(invocation -> {
+			when(userRepository.exists(2)).thenReturn(ids.contains(2));
+			if(userRepository.exists(2)) {
+				userRepository.delete(2);
+				return true;
+			}
+			return null;
+		});
+		
+		userServiceImp.deleteUser(1);
+		userServiceImp.deleteUser(2);
+		
+		assertNull(userServiceImp.getUserById(1));
+		assertNull(userServiceImp.getUserById(2));
+	}
+	
+	//Delete a User that does not exist
+	@Test
+	public void testdeleteUserDoesNotExist() throws InvalidUserException {
+		UserDto user1 = new UserDto(1, "Luca Oddone", "Password", "lucaoddone@polito.it", 3);
+		UserDto user2 = new UserDto(2, "Paola Oddone", "Password", "paolaoddone@polito.it", 4);
+		
+		ids.clear();
+		listUsers.clear();
+		listUsersDto.clear();
+		
+		when(userServiceImp.saveUser(user1)).thenAnswer( invocation -> {
+			when(userRepository.exists(1)).thenReturn(ids.contains(1));
+			when(userConverter.toUser(user1)).thenReturn(new User(user1.getUserName(), user1.getPassword(),user1.getEmail(),user1.getReputation()));
+			if(userRepository.exists(1)) {
+				User user = null;
+				Iterator<User> iter = listUsers.iterator();
+				while(iter.hasNext()) {
+					user = iter.next();
+					if(user.getUserId() == 1)
+						break;
+				}
+				user.setUserId(user1.getUserId());
+				user.setUserName(user1.getUserName());
+				user.setEmail(user1.getEmail());
+				user.setPassword(user1.getPassword());
+				user.setReputation(user1.getReputation());
+				return new UserDto(user.getUserId(),user.getUserName(),user.getPassword(),user.getEmail(),user.getReputation());
+				
+			}
+			User entity1 = userConverter.toUser(user1);
+			entity1.setUserId(user1.getUserId());
+			listUsers.add(entity1);
+			ids.add(1);
+			return user1;
+		});
+		
+		when(userServiceImp.saveUser(user2)).thenAnswer( invocation -> {
+			when(userRepository.exists(2)).thenReturn(ids.contains(2));
+			when(userConverter.toUser(user2)).thenReturn(new User(user2.getUserName(), user2.getPassword(),user2.getEmail(),user2.getReputation()));
+			if(userRepository.exists(2)) {
+				User user = null;
+				Iterator<User> iter = listUsers.iterator();
+				while(iter.hasNext()) {
+					user = iter.next();
+					if(user.getUserId() == 2)
+						break;
+				}
+				user.setUserId(user1.getUserId());
+				user.setUserName(user1.getUserName());
+				user.setEmail(user1.getEmail());
+				user.setPassword(user1.getPassword());
+				user.setReputation(user1.getReputation());
+				return new UserDto(user.getUserId(),user.getUserName(),user.getPassword(),user.getEmail(),user.getReputation());
+				
+			}
+			User entity2 = userConverter.toUser(user2);
+			entity2.setUserId(user2.getUserId());
+			listUsers.add(entity2);
+			ids.add(2);
+			return user2;
+		});
+		
+		assertEquals(1,userServiceImp.saveUser(user1).getUserId());
+		assertEquals(2,userServiceImp.saveUser(user2).getUserId());
+		
+		doAnswer(new Answer<Void>() {
+			public Void answer(InvocationOnMock invocation) {
+				Integer i = null;
+				User user = null;
+				Iterator<Integer> iterInt = ids.iterator();
+				Iterator<User> iterUser = listUsers.iterator();
+				while(iterInt.hasNext()) {
+					i = iterInt.next();
+					if(i==1)
+						break;
+				}
+				ids.remove(i);
+				while(iterUser.hasNext()) {
+					user = iterUser.next();
+					if(user.getUserId() == 1)
+						break;
+				}
+				listUsers.remove(user);
+				return null;
+			}
+		}).when(userRepository).delete(1);
+		
+		doAnswer(new Answer<Void>() {
+			public Void answer(InvocationOnMock invocation) {
+				Integer i = null;
+				User user = null;
+				Iterator<Integer> iterInt = ids.iterator();
+				Iterator<User> iterUser = listUsers.iterator();
+				while(iterInt.hasNext()) {
+					i = iterInt.next();
+					if(i == 2)
+						break;
+				}
+				ids.remove(i);
+				while(iterUser.hasNext()) {
+					user = iterUser.next();
+					if(user.getUserId() == 2)
+						break;
+				}
+				listUsers.remove(user);
+				return null;
+			}
+		}).when(userRepository).delete(2);
+		
+		when(userServiceImp.deleteUser(1)).thenAnswer(invocation -> {
+			when(userRepository.exists(1)).thenReturn(ids.contains(1));
+			if(userRepository.exists(1)) {
+				userRepository.delete(1);
+				return true;
+			}
+			return null;
+		});
+		
+		when(userServiceImp.deleteUser(2)).thenAnswer(invocation -> {
+			when(userRepository.exists(2)).thenReturn(ids.contains(2));
+			if(userRepository.exists(2)) {
+				userRepository.delete(2);
+				return true;
+			}
+			return null;
+		});
+		
+		assertTrue(userServiceImp.deleteUser(1));
+		assertTrue(userServiceImp.deleteUser(2));
+		
+		assertNull(userServiceImp.deleteUser(1));
+		assertNull(userServiceImp.deleteUser(2));
+	}
+	
+	// Throw Exception(userId<0)
+	@Test(expected = InvalidUserException.class)
+	public void testdeleteUserNegativeUserId() throws InvalidUserException {
+		when(userServiceImp.deleteUser(-100)).thenThrow(new InvalidUserException("Error! UserId < 0"));
+		userServiceImp.deleteUser(-100);
+	}
+	
+	//Retrieve All users present in the DB
+	@Test
+	public void testgetAllUsers() {
+		UserDto user1 = new UserDto(1, "Luca Oddone", "Password", "lucaoddone@polito.it", 3);
+		UserDto user2 = new UserDto(2, "Paola Oddone", "Password", "paolaoddone@polito.it", 4);
+		
+		ids.clear();
+		listUsers.clear();
+		listUsersDto.clear();
+		
+		when(userServiceImp.getAllUsers()).thenAnswer( invocation -> {
+			Iterator<User> iter;
+			when(userRepository.findAll()).thenReturn(listUsers);
+			iter = userRepository.findAll().iterator();
+			while(iter.hasNext()) {
+				listUsersDto.add(userConverter.toUserDto(iter.next()));
+			}
+			return listUsersDto;
+		});
+		
+		when(userServiceImp.saveUser(user1)).thenAnswer( invocation -> {
+			when(userRepository.exists(1)).thenReturn(ids.contains(1));
+			when(userConverter.toUser(user1)).thenReturn(new User(user1.getUserName(), user1.getPassword(),user1.getEmail(),user1.getReputation()));
+			if(userRepository.exists(1)) {
+				User user = null;
+				Iterator<User> iter = listUsers.iterator();
+				while(iter.hasNext()) {
+					user = iter.next();
+					if(user.getUserId() == 1)
+						break;
+				}
+				user.setUserId(user1.getUserId());
+				user.setUserName(user1.getUserName());
+				user.setEmail(user1.getEmail());
+				user.setPassword(user1.getPassword());
+				user.setReputation(user1.getReputation());
+				return new UserDto(user.getUserId(),user.getUserName(),user.getPassword(),user.getEmail(),user.getReputation());
+				
+			}
+			User entity1 = userConverter.toUser(user1);
+			entity1.setUserId(user1.getUserId());
+			listUsers.add(entity1);
+			ids.add(1);
+			return user1;
+		});
+		
+		when(userServiceImp.saveUser(user2)).thenAnswer( invocation -> {
+			when(userRepository.exists(2)).thenReturn(ids.contains(2));
+			when(userConverter.toUser(user2)).thenReturn(new User(user2.getUserName(), user2.getPassword(),user2.getEmail(),user2.getReputation()));
+			if(userRepository.exists(2)) {
+				User user = null;
+				Iterator<User> iter = listUsers.iterator();
+				while(iter.hasNext()) {
+					user = iter.next();
+					if(user.getUserId() == 2)
+						break;
+				}
+				user.setUserId(user1.getUserId());
+				user.setUserName(user1.getUserName());
+				user.setEmail(user1.getEmail());
+				user.setPassword(user1.getPassword());
+				user.setReputation(user1.getReputation());
+				return new UserDto(user.getUserId(),user.getUserName(),user.getPassword(),user.getEmail(),user.getReputation());
+				
+			}
+			User entity2 = userConverter.toUser(user2);
+			entity2.setUserId(user2.getUserId());
+			listUsers.add(entity2);
+			ids.add(2);
+			return user2;
+		});
+		
+		assertEquals(1,userServiceImp.saveUser(user1).getUserId());
+		assertEquals(2,userServiceImp.saveUser(user2).getUserId());
+		
+		assertEquals(2,userServiceImp.getAllUsers().size());
+	}
 }	
