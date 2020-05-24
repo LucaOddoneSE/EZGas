@@ -51,7 +51,7 @@ public class UserServiceImplStep3Tests {
 		assertEquals(0,userServiceImp.getAllUsers().size());
 	}
 
-	// Throw Exception(userId<0)
+	// Throw Exception(userId<0)-m
 	@Test(expected = InvalidUserException.class)
 	public void testgetUserByIdNegativeUserId() throws InvalidUserException {
 		ids.clear();
@@ -110,5 +110,74 @@ public class UserServiceImplStep3Tests {
 		
 		assertNull(userServiceImp.getUserById(1));
 		assertNull(userServiceImp.getUserById(2));
+	}
+
+        //Save Users
+	@Test
+	public void testsaveUserNewUsers() throws InvalidUserException {
+		UserDto user1 = new UserDto(1, "Luca Oddone", "Password", "lucaoddone@polito.it", 3);
+		UserDto user2 = new UserDto(2, "Paola Oddone", "Password", "paolaoddone@polito.it", 4);
+		
+		ids.clear();
+		listUsers.clear();
+		listUsersDto.clear();
+		
+		when(userServiceImp.saveUser(user1)).thenAnswer( invocation -> {
+			when(userRepository.exists(1)).thenReturn(ids.contains(1));
+			when(userConverter.toUser(user1)).thenReturn(new User(user1.getUserName(), user1.getPassword(),user1.getEmail(),user1.getReputation()));
+			if(userRepository.exists(1)) {
+				User user = null;
+				Iterator<User> iter = listUsers.iterator();
+				while(iter.hasNext()) {
+					user = iter.next();
+					if(user.getUserId() == 1)
+						break;
+				}
+				user.setUserId(user1.getUserId());
+				user.setUserName(user1.getUserName());
+				user.setEmail(user1.getEmail());
+				user.setPassword(user1.getPassword());
+				user.setReputation(user1.getReputation());
+				return new UserDto(user.getUserId(),user.getUserName(),user.getPassword(),user.getEmail(),user.getReputation());
+				
+			}
+			User entity1 = userConverter.toUser(user1);
+			entity1.setUserId(user1.getUserId());
+			listUsers.add(entity1);
+			ids.add(1);
+			return user1;
+		});
+		
+		when(userServiceImp.saveUser(user2)).thenAnswer( invocation -> {
+			when(userRepository.exists(2)).thenReturn(ids.contains(2));
+			when(userConverter.toUser(user2)).thenReturn(new User(user2.getUserName(), user2.getPassword(),user2.getEmail(),user2.getReputation()));
+			if(userRepository.exists(2)) {
+				User user = null;
+				Iterator<User> iter = listUsers.iterator();
+				while(iter.hasNext()) {
+					user = iter.next();
+					if(user.getUserId() == 2)
+						break;
+				}
+				user.setUserId(user1.getUserId());
+				user.setUserName(user1.getUserName());
+				user.setEmail(user1.getEmail());
+				user.setPassword(user1.getPassword());
+				user.setReputation(user1.getReputation());
+				return new UserDto(user.getUserId(),user.getUserName(),user.getPassword(),user.getEmail(),user.getReputation());
+				
+			}
+			User entity2 = userConverter.toUser(user2);
+			entity2.setUserId(user2.getUserId());
+			listUsers.add(entity2);
+			ids.add(2);
+			return user2;
+		});
+		
+		assertEquals(1,userServiceImp.saveUser(user1).getUserId());
+		assertEquals(2,userServiceImp.saveUser(user2).getUserId());
+		
+		assertEquals(1,listUsers.get(0).getUserId());
+		assertEquals(2,listUsers.get(1).getUserId());
 	}
 }	
