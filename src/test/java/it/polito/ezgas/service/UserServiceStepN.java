@@ -9,7 +9,7 @@ import it.polito.ezgas.dto.IdPw;
 import it.polito.ezgas.dto.LoginDto;
 import it.polito.ezgas.dto.UserDto;
 
-public interface UserServiceStep1 {
+public interface UserServiceStepN {
 
 	List<UserDto> listUsers = new ArrayList<>();
 	List<Integer> ids = new ArrayList<>();
