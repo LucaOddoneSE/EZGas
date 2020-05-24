@@ -24,6 +24,8 @@ Version:
 # Dependency graph 
 
 ```plantuml
+scale 8192*1536 
+left to right direction
 @startuml
 package BackEnd {
 package "it.polito.ezgas.service" {
