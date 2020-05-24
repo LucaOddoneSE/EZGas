@@ -40,24 +40,24 @@ Version:
      JUnit test cases applied to them>
 
 ## Step 1
-| Classes  | JUnit test cases |
-|--|--|
-|||
+| Classes  | JUnit test cases |Logical definition|
+|--|--|--|
+||||
 
 
 ## Step 2
-| Classes  | JUnit test cases |
-|--|--|
-|||
+| Classes  | JUnit test cases |Logical definition|
+|--|--|--|
+||||
 
 
 ## Step n API Tests
 
    <The last integration step  should correspond to API testing, or tests applied to all classes implementing the APIs defined in the Service package>
 
-| Classes  | JUnit test cases |
-|--|--|
-|||
+| Classes  | JUnit test cases |Logical definition|
+|--|--|--|
+||||
 
 
 
@@ -110,6 +110,6 @@ Report also for each of the scenarios the (one or more) API JUnit tests that cov
 
 | Non Functional Requirement | Test name |
 | -------------------------- | --------- |
-|                            |           |
+|        Response Time                    |           |
 
 
