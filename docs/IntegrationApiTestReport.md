@@ -298,20 +298,16 @@ package "it.polito.ezgas.entity" {
 }
 User "1" -- "1" UserDto
 GasStation "1" -- "1" GasStationDto
-GasStationDto "0..*" -- "1" GasStationServiceImpl
-UserDto "0..*" -- "1" UserServiceImpl
 UserConverter "1" -- "0..*" User
 UserConverter "1" -- "0..*" UserDto
+UserConverter "1" -- "1" UserService
+GasStationConverter "1" -- "1" GasStationService
 GasStationConverter "1" -- "0..*" GasStation
 GasStationConverter "1" -- "0..*" GasStationDto
 User "0..*" -- "1" UserRepository
 GasStation "0..*" -- "1" GasStationRepository
 GasStationRepository "1" -- "1" UserRepository
 IdPw "1" -- "1" LoginDto
-UserService <|-- UserServiceImpl
-GasStationService <|-- GasStationServiceImpl
-it.polito.ezgas.converter -right[hidden]-> it.polito.ezgas.serviceImpl
-it.polito.ezgas.converter -right[hidden]-> it.polito.ezgas.service
 @enduml
 ```
      
