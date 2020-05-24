@@ -734,4 +734,353 @@ public class UserServiceImplStep3Tests {
 		
 		assertEquals(2,userServiceImp.login(credentials).getUserId());
 	}
+
+        //Passing null credentials
+	@SuppressWarnings("unused")
+	@Test(expected=InvalidLoginDataException.class)
+	public void testLoginNullCredentials() throws InvalidLoginDataException {
+		IdPw credentials = null;
+		
+		UserDto user1 = new UserDto(1, "Luca Oddone", "Password", "lucaoddone@polito.it", 3);
+		UserDto user2 = new UserDto(2, "Paola Oddone", "Password", "paolaoddone@polito.it", 4);
+		
+		ids.clear();
+		listUsers.clear();
+		listUsersDto.clear();
+		
+		when(userServiceImp.login(credentials)).thenAnswer( invocation -> {
+			if(credentials == null)
+				throw new InvalidLoginDataException("Error! The method receives a null object");
+			if(credentials.getPw() == null || credentials.getUser() == null)
+				throw new InvalidLoginDataException("Error! Passed null credentials");
+			if (credentials.getUser().equals("lucaoddone@polito.it") && credentials.getPw().equals("Password")
+					&& ids.contains(1))
+				return new LoginDto(1, "Luca Oddone", "token", "lucaoddone@polito.it", 3);
+			if (credentials.getUser().equals("paolaoddone@polito.it") && credentials.getPw().equals("Password")
+					&& ids.contains(2))
+				return new LoginDto(2, "Paola Oddone", "token", "paolaoddone@polito.it", 4);
+			return null;
+		});
+		
+		when(userServiceImp.saveUser(user1)).thenAnswer( invocation -> {
+			when(userRepository.exists(1)).thenReturn(ids.contains(1));
+			when(userConverter.toUser(user1)).thenReturn(new User(user1.getUserName(), user1.getPassword(),user1.getEmail(),user1.getReputation()));
+			if(userRepository.exists(1)) {
+				User user = null;
+				Iterator<User> iter = listUsers.iterator();
+				while(iter.hasNext()) {
+					user = iter.next();
+					if(user.getUserId() == 1)
+						break;
+				}
+				user.setUserId(user1.getUserId());
+				user.setUserName(user1.getUserName());
+				user.setEmail(user1.getEmail());
+				user.setPassword(user1.getPassword());
+				user.setReputation(user1.getReputation());
+				return new UserDto(user.getUserId(),user.getUserName(),user.getPassword(),user.getEmail(),user.getReputation());
+				
+			}
+			User entity1 = userConverter.toUser(user1);
+			entity1.setUserId(user1.getUserId());
+			listUsers.add(entity1);
+			ids.add(1);
+			return user1;
+		});
+		
+		when(userServiceImp.saveUser(user2)).thenAnswer( invocation -> {
+			when(userRepository.exists(2)).thenReturn(ids.contains(2));
+			when(userConverter.toUser(user2)).thenReturn(new User(user2.getUserName(), user2.getPassword(),user2.getEmail(),user2.getReputation()));
+			if(userRepository.exists(2)) {
+				User user = null;
+				Iterator<User> iter = listUsers.iterator();
+				while(iter.hasNext()) {
+					user = iter.next();
+					if(user.getUserId() == 2)
+						break;
+				}
+				user.setUserId(user1.getUserId());
+				user.setUserName(user1.getUserName());
+				user.setEmail(user1.getEmail());
+				user.setPassword(user1.getPassword());
+				user.setReputation(user1.getReputation());
+				return new UserDto(user.getUserId(),user.getUserName(),user.getPassword(),user.getEmail(),user.getReputation());
+				
+			}
+			User entity2 = userConverter.toUser(user2);
+			entity2.setUserId(user2.getUserId());
+			listUsers.add(entity2);
+			ids.add(2);
+			return user2;
+		});
+		
+		assertEquals(1,userServiceImp.saveUser(user1).getUserId());
+		assertEquals(2,userServiceImp.saveUser(user2).getUserId());
+		
+		userServiceImp.login(credentials);
+	}
+	
+	//Passing null e-mail credential
+	@SuppressWarnings("unused")
+	@Test(expected=InvalidLoginDataException.class)
+	public void testLoginNullEmail() throws InvalidLoginDataException {
+	    IdPw credentials = new IdPw();
+		
+		UserDto user1 = new UserDto(1, "Luca Oddone", "Password", "lucaoddone@polito.it", 3);
+		UserDto user2 = new UserDto(2, "Paola Oddone", "Password", "paolaoddone@polito.it", 4);
+		
+		ids.clear();
+		listUsers.clear();
+		listUsersDto.clear();
+		
+		credentials.setPw("Password");
+		credentials.setUser(null);
+		
+		when(userServiceImp.login(credentials)).thenAnswer( invocation -> {
+			if(credentials == null)
+				throw new InvalidLoginDataException("Error! The method receives a null object");
+			if(credentials.getPw() == null || credentials.getUser() == null)
+				throw new InvalidLoginDataException("Error! Passed null credentials");
+			if (credentials.getUser().equals("lucaoddone@polito.it") && credentials.getPw().equals("Password")
+					&& ids.contains(1))
+				return new LoginDto(1, "Luca Oddone", "token", "lucaoddone@polito.it", 3);
+			if (credentials.getUser().equals("paolaoddone@polito.it") && credentials.getPw().equals("Password")
+					&& ids.contains(2))
+				return new LoginDto(2, "Paola Oddone", "token", "paolaoddone@polito.it", 4);
+			return null;
+		});
+		
+		when(userServiceImp.saveUser(user1)).thenAnswer( invocation -> {
+			when(userRepository.exists(1)).thenReturn(ids.contains(1));
+			when(userConverter.toUser(user1)).thenReturn(new User(user1.getUserName(), user1.getPassword(),user1.getEmail(),user1.getReputation()));
+			if(userRepository.exists(1)) {
+				User user = null;
+				Iterator<User> iter = listUsers.iterator();
+				while(iter.hasNext()) {
+					user = iter.next();
+					if(user.getUserId() == 1)
+						break;
+				}
+				user.setUserId(user1.getUserId());
+				user.setUserName(user1.getUserName());
+				user.setEmail(user1.getEmail());
+				user.setPassword(user1.getPassword());
+				user.setReputation(user1.getReputation());
+				return new UserDto(user.getUserId(),user.getUserName(),user.getPassword(),user.getEmail(),user.getReputation());
+				
+			}
+			User entity1 = userConverter.toUser(user1);
+			entity1.setUserId(user1.getUserId());
+			listUsers.add(entity1);
+			ids.add(1);
+			return user1;
+		});
+		
+		when(userServiceImp.saveUser(user2)).thenAnswer( invocation -> {
+			when(userRepository.exists(2)).thenReturn(ids.contains(2));
+			when(userConverter.toUser(user2)).thenReturn(new User(user2.getUserName(), user2.getPassword(),user2.getEmail(),user2.getReputation()));
+			if(userRepository.exists(2)) {
+				User user = null;
+				Iterator<User> iter = listUsers.iterator();
+				while(iter.hasNext()) {
+					user = iter.next();
+					if(user.getUserId() == 2)
+						break;
+				}
+				user.setUserId(user1.getUserId());
+				user.setUserName(user1.getUserName());
+				user.setEmail(user1.getEmail());
+				user.setPassword(user1.getPassword());
+				user.setReputation(user1.getReputation());
+				return new UserDto(user.getUserId(),user.getUserName(),user.getPassword(),user.getEmail(),user.getReputation());
+				
+			}
+			User entity2 = userConverter.toUser(user2);
+			entity2.setUserId(user2.getUserId());
+			listUsers.add(entity2);
+			ids.add(2);
+			return user2;
+		});
+		
+		assertEquals(1,userServiceImp.saveUser(user1).getUserId());
+		assertEquals(2,userServiceImp.saveUser(user2).getUserId());
+		
+		userServiceImp.login(credentials);
+	}
+	
+	//Passing null password credential
+	@SuppressWarnings("unused")
+	@Test(expected=InvalidLoginDataException.class)
+	public void testLoginNullPassword() throws InvalidLoginDataException {
+		IdPw credentials = new IdPw();
+		
+		UserDto user1 = new UserDto(1, "Luca Oddone", "Password", "lucaoddone@polito.it", 3);
+		UserDto user2 = new UserDto(2, "Paola Oddone", "Password", "paolaoddone@polito.it", 4);
+		
+		ids.clear();
+		listUsers.clear();
+		listUsersDto.clear();
+		
+		credentials.setPw(null);
+		credentials.setUser("lucaoddone@polito.it");
+		
+		when(userServiceImp.login(credentials)).thenAnswer( invocation -> {
+			if(credentials == null)
+				throw new InvalidLoginDataException("Error! The method receives a null object");
+			if(credentials.getPw() == null || credentials.getUser() == null)
+				throw new InvalidLoginDataException("Error! Passed null credentials");
+			if (credentials.getUser().equals("lucaoddone@polito.it") && credentials.getPw().equals("Password")
+					&& ids.contains(1))
+				return new LoginDto(1, "Luca Oddone", "token", "lucaoddone@polito.it", 3);
+			if (credentials.getUser().equals("paolaoddone@polito.it") && credentials.getPw().equals("Password")
+					&& ids.contains(2))
+				return new LoginDto(2, "Paola Oddone", "token", "paolaoddone@polito.it", 4);
+			return null;
+		});
+		
+		when(userServiceImp.saveUser(user1)).thenAnswer( invocation -> {
+			when(userRepository.exists(1)).thenReturn(ids.contains(1));
+			when(userConverter.toUser(user1)).thenReturn(new User(user1.getUserName(), user1.getPassword(),user1.getEmail(),user1.getReputation()));
+			if(userRepository.exists(1)) {
+				User user = null;
+				Iterator<User> iter = listUsers.iterator();
+				while(iter.hasNext()) {
+					user = iter.next();
+					if(user.getUserId() == 1)
+						break;
+				}
+				user.setUserId(user1.getUserId());
+				user.setUserName(user1.getUserName());
+				user.setEmail(user1.getEmail());
+				user.setPassword(user1.getPassword());
+				user.setReputation(user1.getReputation());
+				return new UserDto(user.getUserId(),user.getUserName(),user.getPassword(),user.getEmail(),user.getReputation());
+				
+			}
+			User entity1 = userConverter.toUser(user1);
+			entity1.setUserId(user1.getUserId());
+			listUsers.add(entity1);
+			ids.add(1);
+			return user1;
+		});
+		
+		when(userServiceImp.saveUser(user2)).thenAnswer( invocation -> {
+			when(userRepository.exists(2)).thenReturn(ids.contains(2));
+			when(userConverter.toUser(user2)).thenReturn(new User(user2.getUserName(), user2.getPassword(),user2.getEmail(),user2.getReputation()));
+			if(userRepository.exists(2)) {
+				User user = null;
+				Iterator<User> iter = listUsers.iterator();
+				while(iter.hasNext()) {
+					user = iter.next();
+					if(user.getUserId() == 2)
+						break;
+				}
+				user.setUserId(user1.getUserId());
+				user.setUserName(user1.getUserName());
+				user.setEmail(user1.getEmail());
+				user.setPassword(user1.getPassword());
+				user.setReputation(user1.getReputation());
+				return new UserDto(user.getUserId(),user.getUserName(),user.getPassword(),user.getEmail(),user.getReputation());
+				
+			}
+			User entity2 = userConverter.toUser(user2);
+			entity2.setUserId(user2.getUserId());
+			listUsers.add(entity2);
+			ids.add(2);
+			return user2;
+		});
+		
+		assertEquals(1,userServiceImp.saveUser(user1).getUserId());
+		assertEquals(2,userServiceImp.saveUser(user2).getUserId());
+		
+		userServiceImp.login(credentials);
+	}
+	
+	//Passing both e-mail and password null
+	@SuppressWarnings("unused")
+	@Test(expected=InvalidLoginDataException.class)
+	public void testLoginNull() throws InvalidLoginDataException {
+		IdPw credentials = new IdPw();
+		
+		UserDto user1 = new UserDto(1, "Luca Oddone", "Password", "lucaoddone@polito.it", 3);
+		UserDto user2 = new UserDto(2, "Paola Oddone", "Password", "paolaoddone@polito.it", 4);
+		
+		ids.clear();
+		listUsers.clear();
+		listUsersDto.clear();
+		
+		credentials.setPw(null);
+		credentials.setUser(null);
+		
+		when(userServiceImp.login(credentials)).thenAnswer( invocation -> {
+			if(credentials == null)
+				throw new InvalidLoginDataException("Error! The method receives a null object");
+			if(credentials.getPw() == null || credentials.getUser() == null)
+				throw new InvalidLoginDataException("Error! Passed null credentials");
+			if (credentials.getUser().equals("lucaoddone@polito.it") && credentials.getPw().equals("Password")
+					&& ids.contains(1))
+				return new LoginDto(1, "Luca Oddone", "token", "lucaoddone@polito.it", 3);
+			if (credentials.getUser().equals("paolaoddone@polito.it") && credentials.getPw().equals("Password")
+					&& ids.contains(2))
+				return new LoginDto(2, "Paola Oddone", "token", "paolaoddone@polito.it", 4);
+			return null;
+		});
+		
+		when(userServiceImp.saveUser(user1)).thenAnswer( invocation -> {
+			when(userRepository.exists(1)).thenReturn(ids.contains(1));
+			when(userConverter.toUser(user1)).thenReturn(new User(user1.getUserName(), user1.getPassword(),user1.getEmail(),user1.getReputation()));
+			if(userRepository.exists(1)) {
+				User user = null;
+				Iterator<User> iter = listUsers.iterator();
+				while(iter.hasNext()) {
+					user = iter.next();
+					if(user.getUserId() == 1)
+						break;
+				}
+				user.setUserId(user1.getUserId());
+				user.setUserName(user1.getUserName());
+				user.setEmail(user1.getEmail());
+				user.setPassword(user1.getPassword());
+				user.setReputation(user1.getReputation());
+				return new UserDto(user.getUserId(),user.getUserName(),user.getPassword(),user.getEmail(),user.getReputation());
+				
+			}
+			User entity1 = userConverter.toUser(user1);
+			entity1.setUserId(user1.getUserId());
+			listUsers.add(entity1);
+			ids.add(1);
+			return user1;
+		});
+		
+		when(userServiceImp.saveUser(user2)).thenAnswer( invocation -> {
+			when(userRepository.exists(2)).thenReturn(ids.contains(2));
+			when(userConverter.toUser(user2)).thenReturn(new User(user2.getUserName(), user2.getPassword(),user2.getEmail(),user2.getReputation()));
+			if(userRepository.exists(2)) {
+				User user = null;
+				Iterator<User> iter = listUsers.iterator();
+				while(iter.hasNext()) {
+					user = iter.next();
+					if(user.getUserId() == 2)
+						break;
+				}
+				user.setUserId(user1.getUserId());
+				user.setUserName(user1.getUserName());
+				user.setEmail(user1.getEmail());
+				user.setPassword(user1.getPassword());
+				user.setReputation(user1.getReputation());
+				return new UserDto(user.getUserId(),user.getUserName(),user.getPassword(),user.getEmail(),user.getReputation());
+				
+			}
+			User entity2 = userConverter.toUser(user2);
+			entity2.setUserId(user2.getUserId());
+			listUsers.add(entity2);
+			ids.add(2);
+			return user2;
+		});
+		
+		assertEquals(1,userServiceImp.saveUser(user1).getUserId());
+		assertEquals(2,userServiceImp.saveUser(user2).getUserId());
+		
+		userServiceImp.login(credentials);
+	}
 }	
