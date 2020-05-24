@@ -65,6 +65,7 @@ public class UserRepositoryTests implements JpaRepository<User, Integer> {
 		assertEquals(2,listUsers.size());
 	}
 	
+	@Test
 	public void testFindOne() {
 		User user1 = new User("Luca Oddone", "Password", "lucaoddone@polito.it", 3);
 		User user2 = new User("Paola Oddone","Password","paolaoddone@polito.it",4);
@@ -80,6 +81,21 @@ public class UserRepositoryTests implements JpaRepository<User, Integer> {
 		
 		assertNull(findOne(100));
 	}
+	
+	@Test
+	public void testSave() {
+		User user1 = new User("Luca Oddone", "Password", "lucaoddone@polito.it", 3);
+		User user2 = new User("Paola Oddone","Password","paolaoddone@polito.it",4);
+		
+		listUsers.clear();
+		user1.setUserId(1);
+		user2.setUserId(2);
+		listUsers.add(user1);
+		listUsers.add(user2);
+		
+		assertEquals("Tommaso Recami",save(new User("Tommaso Recami", "Password", 
+				"tommasorecami@polito.it", 2)).getUserName());
+	}
 
 	@Override
 	public Page<User> findAll(Pageable pageable) {
@@ -89,8 +105,8 @@ public class UserRepositoryTests implements JpaRepository<User, Integer> {
 
 	@Override
 	public <S extends User> S save(S entity) {
-		// TODO Auto-generated method stub
-		return null;
+		listUsers.add(entity);
+		return entity;
 	}
 
 	@Override
