@@ -61,4 +61,54 @@ public class UserServiceImplStep3Tests {
 		when(userServiceImp.getUserById(-5)).thenThrow(new InvalidUserException("Error UserId < 0") );
 		userServiceImp.getUserById(-5);
 	}
+
+        //NoResults
+	@Test
+	public void testgetUserByIdNoUsersYet() throws InvalidUserException {
+		
+		ids.clear();
+		listUsers.clear();
+		listUsersDto.clear();
+		
+		when(userServiceImp.getUserById(1)).thenAnswer(invocation -> {
+			when(userRepository.exists(1)).thenReturn(ids.contains(1));
+			when(userConverter.toUserDto(userRepository.findOne(1)))
+					.thenAnswer( invocazione -> {
+						Iterator<User> iter = listUsers.iterator();
+						while(iter.hasNext()) {
+							User user = iter.next();
+							if(user.getUserId() == 1)
+								return new UserDto(user.getUserId(),user.getUserName(),
+										user.getPassword(),user.getEmail(),user.getReputation());
+						}
+						return null;
+					});
+			if(userRepository.exists(1))
+				return userConverter.toUserDto(userRepository.findOne(1));
+			else
+				return null;
+		});
+		
+		when(userServiceImp.getUserById(2)).thenAnswer(invocation -> {
+			when(userRepository.exists(2)).thenReturn(ids.contains(2));
+			when(userConverter.toUserDto(userRepository.findOne(2)))
+					.thenAnswer( invocazione -> {
+						Iterator<User> iter = listUsers.iterator();
+						while(iter.hasNext()) {
+							User user = iter.next();
+							if(user.getUserId() == 2)
+								return new UserDto(user.getUserId(),user.getUserName(),
+										user.getPassword(),user.getEmail(),user.getReputation());
+						}
+						return null;
+					});
+			if(userRepository.exists(2))
+				return userConverter.toUserDto(userRepository.findOne(2));
+			else
+				return null;
+		});
+		
+		assertNull(userServiceImp.getUserById(1));
+		assertNull(userServiceImp.getUserById(2));
+	}
 }	
