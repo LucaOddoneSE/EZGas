@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import org.junit.Test;
+import org.mockito.Mock;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
@@ -23,8 +24,11 @@ import it.polito.ezgas.repository.UserRepository;
 
 public class UserServiceImplStep3Tests {
 
+	@Mock
 	private UserServiceimpl userServiceImp = mock(UserServiceimpl.class);
+	@Mock
 	private UserConverter userConverter = mock(UserConverter.class);
+	@Mock
 	private UserRepository userRepository = mock(UserRepository.class);
 	
 	private List<User> listUsers = new ArrayList<>();
