@@ -415,4 +415,71 @@ public class GasStationServiceImplTests {
 		
 		gasStationServiceImplMock.saveGasStation(gasStation1Dto);
 	}
+
+    //Save a new GasStation throw GPSDataException
+	@Test(expected=GPSDataException.class)
+	public void testSaveGasStationGPSDataException() throws PriceException, GPSDataException {
+		GasStationDto gasStation1Dto = new GasStationDto(1,"GasStation1","Via Italia 1",true,true,false,false,true,
+				"BlaBlaCar",181.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
+				"BlaBlaCar",181.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
+		
+		listGasStationDto.clear();
+		listGasStation.clear();
+		
+		when(gasStationConverterMock.toGasStationDto(gasStation1)).thenReturn(gasStation1Dto);
+		when(gasStationConverterMock.toGasStation(gasStation1Dto)).thenReturn(gasStation1);
+		
+		when(gasStationServiceImplMock.saveGasStation(gasStation1Dto)).thenAnswer(invocation -> {
+			Integer GasStationId = gasStation1Dto.getGasStationId();
+			
+			if( (gasStation1Dto.getHasDiesel() && gasStation1Dto.getDieselPrice() < 0) || 
+					(gasStation1Dto.getHasGas() && gasStation1Dto.getGasPrice() < 0  ) || 
+				    (gasStation1Dto.getHasSuper() && gasStation1Dto.getSuperPrice() < 0 ) ||
+				    (gasStation1Dto.getHasSuperPlus() &&  gasStation1Dto.getSuperPlusPrice() < 0 ) || 
+				    (gasStation1Dto.getHasMethane() && gasStation1Dto.getMethanePrice() < 0) ) 
+					throw new PriceException("Error! One or more of the fuel types price is negative!");
+			
+			if( (gasStation1Dto.getLon() < -180 || gasStation1Dto.getLon() >= 180) || 
+					(gasStation1Dto.getLat() < -90 || gasStation1Dto.getLat() >= 90) )
+					throw new GPSDataException("Error! GasStation containes wrong coordinates values");
+			
+			when(gasStationRepositoryMock.findOne(GasStationId)).thenAnswer( inv -> {
+				Iterator<GasStation> iter = listGasStation.iterator();
+				while(iter.hasNext()) {
+					GasStation station = iter.next();
+					if(station.getGasStationId() == GasStationId)
+						return station;
+				}
+				return null;
+			});
+			
+			if(gasStationRepositoryMock.findOne(GasStationId) == null) {
+				listGasStation.add(gasStationConverterMock.toGasStation(gasStation1Dto));
+				return gasStation1Dto;
+			}
+			GasStation station = gasStationRepositoryMock.findOne(GasStationId);
+			station.setGasStationName(gasStation1Dto.getGasStationName());
+			station.setGasStationAddress(gasStation1Dto.getGasStationAddress());
+			station.setHasDiesel(gasStation1Dto.getHasDiesel()); 
+			station.setHasSuper(gasStation1Dto.getHasSuper());
+			station.setHasSuperPlus(gasStation1Dto.getHasSuperPlus());
+			station.setHasGas(gasStation1Dto.getHasGas());
+			station.setHasMethane(gasStation1Dto.getHasMethane());
+			station.setCarSharing(gasStation1Dto.getCarSharing());
+			station.setLat(gasStation1Dto.getLat());
+			station.setLon(gasStation1Dto.getLon());
+			station.setDieselPrice(gasStation1Dto.getDieselPrice());
+			station.setSuperPrice(gasStation1Dto.getSuperPrice());
+			station.setSuperPlusPrice(gasStation1Dto.getSuperPlusPrice());
+			station.setGasPrice(gasStation1Dto.getGasPrice());
+			station.setMethanePrice(gasStation1Dto.getMethanePrice());
+			station.setReportUser(gasStation1Dto.getReportUser());
+			station.setReportTimestamp(gasStation1Dto.getReportTimestamp());
+			station.setReportDependability(gasStation1Dto.getReportDependability());
+			return gasStation1Dto;
+		});
+		
+		gasStationServiceImplMock.saveGasStation(gasStation1Dto);
+	}
 }
