@@ -522,6 +522,57 @@ public class GasStationServiceImplTests {
 		
 		assertEquals(2,listGasStationDto.size());
 	}
+	
+	@Test
+	public void testDeleteGasStation() throws InvalidGasStationException {
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
+				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
+		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,
+				"BlaBlaCar",61.649,117.550,0,0,1.25,1.55,0,null,null,0);
+		
+		listGasStationDto.clear();
+		listGasStation.clear();
+		
+		gasStation1.setGasStationId(1);
+		gasStation2.setGasStationId(2);
+		
+		listGasStation.add(gasStation1);
+		listGasStation.add(gasStation2);
+		
+		Integer int1 = gasStation1.getGasStationId();
+		Integer int2 = gasStation2.getGasStationId();
+		
+		when(gasStationServiceImplMock.deleteGasStation(int1)).thenAnswer( invocation -> {
+			Iterator<GasStation> iter = listGasStation.listIterator();
+			while(iter.hasNext()) {
+				GasStation gasStation = iter.next();
+				if(gasStation.getGasStationId() == int1) {
+					listGasStation.remove(gasStation1);
+					break;
+				}
+			}
+			return null;
+		});
+		
+		when(gasStationServiceImplMock.deleteGasStation(int2)).thenAnswer( invocation -> {
+			Iterator<GasStation> iter = listGasStation.listIterator();
+			while(iter.hasNext()) {
+				GasStation gasStation = iter.next();
+				if(gasStation.getGasStationId() == int2) {
+					listGasStation.remove(gasStation2);
+					break;
+				}
+			}
+			return null;
+		});
+		
+		gasStationServiceImplMock.deleteGasStation(int1);
+		
+		assertEquals(1,listGasStation.size());
+		
+		gasStationServiceImplMock.deleteGasStation(int2);
+		
+		assertEquals(0,listGasStation.size());
+	}
 }
-
 
