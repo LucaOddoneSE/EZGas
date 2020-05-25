@@ -2,6 +2,7 @@ package it.polito.ezgas.service.impl;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -12,6 +13,8 @@ import java.util.List;
 import org.junit.Test;
 import org.mockito.Matchers;
 import org.mockito.Mock;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 import org.mockito.stubbing.OngoingStubbing;
 
 import exception.GPSDataException;
@@ -20,6 +23,7 @@ import exception.PriceException;
 import it.polito.ezgas.converter.GasStationConverter;
 import it.polito.ezgas.dto.GasStationDto;
 import it.polito.ezgas.entity.GasStation;
+import it.polito.ezgas.entity.User;
 import it.polito.ezgas.repository.GasStationRepository;
 import it.polito.ezgas.repository.UserRepository;
 
@@ -543,27 +547,39 @@ public class GasStationServiceImplTests {
 		Integer int2 = gasStation2.getGasStationId();
 		
 		when(gasStationServiceImplMock.deleteGasStation(int1)).thenAnswer( invocation -> {
-			Iterator<GasStation> iter = listGasStation.listIterator();
-			while(iter.hasNext()) {
-				GasStation gasStation = iter.next();
-				if(gasStation.getGasStationId() == int1) {
-					listGasStation.remove(gasStation1);
-					break;
+			doAnswer(new Answer<Void>() {
+				public Void answer(InvocationOnMock invocation) {
+					Iterator<GasStation> iter = listGasStation.listIterator();
+					while(iter.hasNext()) {
+						GasStation gasStation = iter.next();
+						if(gasStation.getGasStationId() == int1) {
+							listGasStation.remove(gasStation1);
+							break;
+						}
+					}
+					return null;
 				}
-			}
+			}).when(gasStationRepositoryMock).delete(int1);
+			gasStationRepositoryMock.delete(int1);
 			return null;
 		});
 		
 		when(gasStationServiceImplMock.deleteGasStation(int2)).thenAnswer( invocation -> {
-			Iterator<GasStation> iter = listGasStation.listIterator();
-			while(iter.hasNext()) {
-				GasStation gasStation = iter.next();
-				if(gasStation.getGasStationId() == int2) {
-					listGasStation.remove(gasStation2);
-					break;
+			doAnswer(new Answer<Void>() {
+				public Void answer(InvocationOnMock invocation) {
+					Iterator<GasStation> iter = listGasStation.listIterator();
+					while(iter.hasNext()) {
+						GasStation gasStation = iter.next();
+						if(gasStation.getGasStationId() == int2) {
+							listGasStation.remove(gasStation2);
+							break;
+						}
+					}
+					return null;
 				}
-			}
-			return null;
+			}).when(gasStationRepositoryMock).delete(int2);
+			gasStationRepositoryMock.delete(int2);
+		return null;
 		});
 		
 		gasStationServiceImplMock.deleteGasStation(int1);
@@ -574,5 +590,45 @@ public class GasStationServiceImplTests {
 		
 		assertEquals(0,listGasStation.size());
 	}
+	
+	//Delete method throw InvalidGasStationException
+	@Test(expected=InvalidGasStationException.class)
+	public void testDeleteGasStationInvalidGasStationException() throws InvalidGasStationException {
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
+				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
+		
+		listGasStationDto.clear();
+		listGasStation.clear();
+		
+		gasStation1.setGasStationId(1);
+		
+		listGasStation.add(gasStation1);
+		
+		Integer int1 = -1;
+		
+		when(gasStationServiceImplMock.deleteGasStation(int1)).thenAnswer( invocation -> {
+			if(int1 < 0)
+				throw new InvalidGasStationException("Error! It has been passed an invalid gasStationId(<0)");
+			doAnswer(new Answer<Void>() {
+				public Void answer(InvocationOnMock invocation) {
+					Iterator<GasStation> iter = listGasStation.listIterator();
+					while(iter.hasNext()) {
+						GasStation gasStation = iter.next();
+						if(gasStation.getGasStationId() == int1) {
+							listGasStation.remove(gasStation1);
+							break;
+						}
+					}
+					return null;
+				}
+			}).when(gasStationRepositoryMock).delete(int1);
+			gasStationRepositoryMock.delete(int1);
+			return null;
+		});
+		
+		gasStationServiceImplMock.deleteGasStation(int1);
+		
+	}
+	
 }
 
