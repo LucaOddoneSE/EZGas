@@ -120,6 +120,19 @@ UserController  --> UserDto
 |  7     | Updates the fuel price in this gas station |
 
 
+## Scenario UC1.2
+
+| Scenario | Save user and cannot log in because introduces wrong password and email |
+| ------------- |:-------------:| 
+|  Precondition     | User doesn't exist |
+|  Post condition     | User exists and cannot access to his/her account |
+| Step#        | Description  |
+|  1     | Introduce name, password, email |  
+|  2     | Create account saving user in databse |
+|  3     | Log in with the same values instead of password and email |
+|  4     | Cannot access to his/her account |
+
+
 ## Scenario UC2.1
 
 | Scenario | Increase user reputation |
@@ -138,6 +151,22 @@ UserController  --> UserDto
 
 ## Scenario UC2.2
 
+| Scenario | Increase user reputation - error negative user id |
+| ------------- |:-------------:| 
+|  Precondition     | Correct fuel price |
+|  Post condition     | Cannot find user because it's a negative id |
+| Step#        | Description  |
+|  1     | Log in |
+|  2     | Access to his/her account |
+|  3     | Get list of all gas stations |
+|  4     | Select gas station required by its id and check the fuel price |
+|  5     | Get list of all users |
+|  6     | Select user required |
+|  7     | Exception negative user id |
+
+
+## Scenario UC2.3
+
 | Scenario | Increase user reputation |
 | ------------- |:-------------:| 
 |  Precondition     | Wrong fuel price |
@@ -150,6 +179,47 @@ UserController  --> UserDto
 |  5     | Get list of all users |
 |  6     | Select user required |
 |  7     | Decrease selected user reputation |
+
+
+## Scenario UC3.1
+
+| Scenario | Delete user |
+| ------------- |:-------------:| 
+|  Precondition     | User exists |
+|  Post condition     | User doesn't exist |
+| Step#        | Description  |
+|  1     | Log in |
+|  2     | Access to his/her account |
+|  3     | Delete his/her account |
+
+
+## Scenatio UC3.2
+
+| Scenario | Delete gas Station |
+| ------------- |:-------------:| 
+|  Precondition     | Gas station exists |
+|  Post condition     | Gas station doesn't exist |
+| Step#        | Description  |
+|  1     | Log in |
+|  2     | Access to his/her account |
+|  3     | Get lis of all gas stations |
+|  4     | Select gas station by id |
+|  5     | Delete gas station |
+
+
+## Scenario UC3.3
+
+| Scenario | Delete gas Station - Error invalid gas station |
+| ------------- |:-------------:| 
+|  Precondition     | Gas station exists |
+|  Post condition     | Gas station still exist because introduced a negative id |
+| Step#        | Description  |
+|  1     | Log in |
+|  2     | Access to his/her account |
+|  3     | Get lis of all gas stations |
+|  4     | Select gas station by id |
+|  5     | Delete gas station |
+|  6     | Exception invalid gas station |
 
 
 # Coverage of Scenarios and FR
