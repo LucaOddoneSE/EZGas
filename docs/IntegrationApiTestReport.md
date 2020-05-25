@@ -190,12 +190,12 @@ Report also for each of the scenarios the (one or more) API JUnit tests that cov
 
 | Scenario ID | Functional Requirements covered | JUnit  Test(s) | 
 | ----------- | ------------------------------- | ----------- | 
-|  ..         | FRx                             |             |             
-|  ..         | FRy                             |             |             
-| ...         |                                 |             |             
-| ...         |                                 |             |             
-| ...         |                                 |             |             
-| ...         |                                 |             |             
+|  1.1        | FR1.1, FR2                      |testsaveUserNewUsers(), testLogin()|             
+|  1.2        | FR1.1, FR2                      |testsaveUserNewUsers(), testLogin()|             
+|  1.3        | FR1.1, FR2                      |testsaveUserNewUsers(), testLogin()|             
+|  1.4        | FR1.1, FR2                      |testsaveUserNewUsers(), testLogin()|             
+|  2.1        | ?                               |testIncreaseUserReputationExistingUsers()|             
+|  2.2        | ?                               |testIncreaseUserReputationNegativeUserId()|              
 
 
 
