@@ -233,13 +233,14 @@ Report also for each of the scenarios the (one or more) API JUnit tests that cov
 
 | Scenario ID | Functional Requirements covered | JUnit  Test(s) | 
 | ----------- | ------------------------------- | ----------- | 
-|  1.1        | FR1.1, FR2                      |testsaveUserNewUsers(), testLogin()|             
-|  1.2        | FR1.1, FR2                      |testsaveUserNewUsers(), testLogin()|             
-|  1.3        | FR1.1, FR2                      |testsaveUserNewUsers(), testLogin()|             
-|  1.4        | FR1.1, FR2                      |testsaveUserNewUsers(), testLogin()|             
-|  2.1        | ?                               |testIncreaseUserReputationExistingUsers()|             
-|  2.2        | ?                               |testIncreaseUserReputationNegativeUserId()|              
-
+|  1.1        | FR1.1, FR3.3, FR5.1             |  |             
+|  1.2        | FR1.1, FR2                      | testsaveUserNewUsers(), testLogin() |                      
+|  2.1        | ?                               | testIncreaseUserReputationExistingUsers() |             
+|  2.2        | ?                               | testIncreaseUserReputationNegativeUserId() |      
+|  2.3        | ?                               | testDecreaseUserReputationExistingUsers() |
+|  3.1        | FR1.2                           | testdeleteUser() |             
+|  3.2        | FR3.2                           | testDeleteGasStation() |            
+|  3.3        | FR3.2                           | testDeleteGasStationInvalidGasStationException() |   
 
 
 # Coverage of Non Functional Requirements
