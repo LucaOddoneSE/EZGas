@@ -106,77 +106,50 @@ UserController  --> UserDto
 
 ## Scenario UC1.1
 
-| Scenario | Save new user and log in |
+| Scenario | Create new user and update fuel price in gas station |
 | ------------- |:-------------:| 
-|  Precondition     | user doesn't exist |
-|  Post condition     | user exists and can access to his/her account |
+|  Precondition     | User doesn't exist |
+|  Post condition     | User exists and change fuel price |
 | Step#        | Description  |
 |  1     | Introduce name, password email |  
 |  2     | Create account saving user in databse |
-|  3     | Log in with the same values |
+|  3     | Log in with same values |
 |  4     | Access to his/her account |
-
-##Scenarion UC1.2
-
-| Scenario | Save new user and cannot log in because he/she introduces wrong password |
-| ------------- |:-------------:| 
-|  Precondition     | user doesn't exist |
-|  Post condition     | user exists and cannot access to his/her account |
-| Step#        | Description  |
-|  1     | Introduce name, password, email |  
-|  2     | Create account saving user in databse |
-|  3     | Log in with the same values instead of password |
-|  4     | Cannot access to his/her account |
-
-##Scenario UC1.3
-
-| Scenario | Save new user and cannot log in because he/she introduces wrong email |
-| ------------- |:-------------:| 
-|  Precondition     | user doesn't exist |
-|  Post condition     | user exists and cannot access to his/her account |
-| Step#        | Description  |
-|  1     | Introduce name, password, email |  
-|  2     | Create account saving user in databse |
-|  3     | Log in with the same values instead of email|
-|  4     | Cannot access to his/her account |
+|  5     | Get list of all gas stations |
+|  6     | Select gas station required by its id |
+|  7     | Updates the fuel price in this gas station |
 
 
-##Scenario UC1.4
-
-| Scenario | Save new user and cannot log in because he/she introduces wrong password and email |
-| ------------- |:-------------:| 
-|  Precondition     | user doesn't exist |
-|  Post condition     | user exists and cannot access to his/her account |
-| Step#        | Description  |
-|  1     | Introduce name, password, email |  
-|  2     | Create account saving user in databse |
-|  3     | Log in with the same values instead of password and email |
-|  4     | Cannot access to his/her account |
-
-
-##Scenario UC2.1
+## Scenario UC2.1
 
 | Scenario | Increase user reputation |
 | ------------- |:-------------:| 
-|  Precondition     | user reputation lower than after |
-|  Post condition     | user reputation higher than before |
+|  Precondition     | Correct fuel price |
+|  Post condition     | User reputation higher than before |
 | Step#        | Description  |
-|  1     | Look for the user who wants to increase his/her reputation in the list |  
-|  2     | Select it |
-|  3     | increase his/her reputation |
+|  1     | Log in |
+|  2     | Access to his/her account |
+|  3     | Get list of all gas stations |
+|  4     | Select gas station required by its id and check the fuel price |
+|  5     | Get list of all users |
+|  6     | Select user required |
+|  7     | Increase selected user reputation |
 
 
-##Scenario UC2.2
+## Scenario UC2.2
 
-| Scenario |  Increase user reputation - error negative Id |
+| Scenario | Increase user reputation |
 | ------------- |:-------------:| 
-|  Precondition     | user reputation lower than after |
-|  Post condition     | cannot increase user reputation |
+|  Precondition     | Wrong fuel price |
+|  Post condition     | Cannot increase user reputation |
 | Step#        | Description  |
-|  1     | Look for the user who wants to increase his/her reputation in the list |  
-|  2     | Select it |
-|  3     | cannot increase his/her reputation because the id is negative|
-
+|  1     | Log in |
+|  2     | Access to his/her account |
+|  3     | Get list of all gas stations |
+|  4     | Select gas station required by its id and check the fuel price |
+|  5     | Get list of all users |
+|  6     | Select user required |
+|  7     | Decrease selected user reputation |
 
 
 # Coverage of Scenarios and FR
