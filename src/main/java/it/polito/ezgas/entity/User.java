@@ -29,7 +29,7 @@ public class User implements Serializable{
     @Column
     private Integer reputation;
     @Column
-    private Boolean admin;
+    private Boolean admin = false;
 
     public Integer getUserId() {
         return userId;
