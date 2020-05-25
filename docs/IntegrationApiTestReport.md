@@ -233,7 +233,7 @@ Report also for each of the scenarios the (one or more) API JUnit tests that cov
 
 | Scenario ID | Functional Requirements covered | JUnit  Test(s) | 
 | ----------- | ------------------------------- | ----------- | 
-|  1.1        | FR1.1, FR3.3, FR5.1             | testsaveUserNewUsers() |             
+|  1.1        | FR1.1, FR3.3, FR5.1             | testsaveUserNewUsers(), testsetReport() |             
 |  1.2        | FR1.1, FR2                      | testsaveUserNewUsers(), testLogin() |                      
 |  2.1        | ?                               | testIncreaseUserReputationExistingUsers() |             
 |  2.2        | ?                               | testIncreaseUserReputationNegativeUserId() |      
