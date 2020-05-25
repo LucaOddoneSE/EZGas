@@ -12,8 +12,11 @@ import java.util.List;
 import org.junit.Test;
 import org.mockito.Matchers;
 import org.mockito.Mock;
+import org.mockito.stubbing.OngoingStubbing;
 
+import exception.GPSDataException;
 import exception.InvalidGasStationException;
+import exception.PriceException;
 import it.polito.ezgas.converter.GasStationConverter;
 import it.polito.ezgas.dto.GasStationDto;
 import it.polito.ezgas.entity.GasStation;
@@ -132,9 +135,9 @@ public class GasStationServiceImplTests {
 	public void testgetGasStationByIdExistingGasStation() throws InvalidGasStationException {
 		
 		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",110.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
+				"BlaBlaCar",110.574,81.320,1.25,1.55,0,0,0.90,null,null,0);
 		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,
-				"BlaBlaCar",110.649,107.550,0,0,1.25,1.55,0,null,null,0);
+				"BlaBlaCar",110.649,87.550,0,0,1.25,1.55,0,null,null,0);
 		
 		gasStation1.setGasStationId(1);
 		gasStation2.setGasStationId(2);
@@ -239,5 +242,110 @@ public class GasStationServiceImplTests {
 				new InvalidGasStationException("Error! You have passed a negative GasStationId") );
 		
 		gasStationServiceImplMock.getGasStationById(-10);
+	}
+	
+	//Save a new GasStation
+	@Test
+	public void testSaveGasStationNewOne() throws PriceException, GPSDataException, InvalidGasStationException {
+		GasStationDto gasStation1Dto = new GasStationDto(1,"GasStation1","Via Italia 1",true,true,false,false,true,
+				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
+		GasStationDto gasStation2Dto = new GasStationDto(2,"GasStation2","Via Italia 2",false,false,true,true,false,
+				"BlaBlaCar",61.649,117.550,0,0,1.25,1.55,0,null,null,0);
+	
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
+				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
+		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,
+				"BlaBlaCar",61.649,117.550,0,0,1.25,1.55,0,null,null,0);
+		
+		listGasStationDto.clear();
+		listGasStation.clear();
+		
+		when(gasStationConverterMock.toGasStationDto(gasStation1)).thenReturn(gasStation1Dto);
+		when(gasStationConverterMock.toGasStation(gasStation1Dto)).thenReturn(gasStation1);
+		
+		when(gasStationConverterMock.toGasStationDto(gasStation2)).thenReturn(gasStation2Dto);
+		when(gasStationConverterMock.toGasStation(gasStation2Dto)).thenReturn(gasStation2);
+		
+		when(gasStationServiceImplMock.saveGasStation(gasStation1Dto)).thenAnswer(invocation -> {
+			Integer GasStationId = gasStation1Dto.getGasStationId();
+			when(gasStationRepositoryMock.findOne(GasStationId)).thenAnswer( inv -> {
+				Iterator<GasStation> iter = listGasStation.iterator();
+				while(iter.hasNext()) {
+					GasStation station = iter.next();
+					if(station.getGasStationId() == GasStationId)
+						return station;
+				}
+				return null;
+			});
+			if(gasStationRepositoryMock.findOne(GasStationId) == null) {
+				listGasStation.add(gasStationConverterMock.toGasStation(gasStation1Dto));
+				return gasStation1Dto;
+			}
+			GasStation station = gasStationRepositoryMock.findOne(GasStationId);
+			station.setGasStationName(gasStation1Dto.getGasStationName());
+			station.setGasStationAddress(gasStation1Dto.getGasStationAddress());
+			station.setHasDiesel(gasStation1Dto.getHasDiesel()); 
+			station.setHasSuper(gasStation1Dto.getHasSuper());
+			station.setHasSuperPlus(gasStation1Dto.getHasSuperPlus());
+			station.setHasGas(gasStation1Dto.getHasGas());
+			station.setHasMethane(gasStation1Dto.getHasMethane());
+			station.setCarSharing(gasStation1Dto.getCarSharing());
+			station.setLat(gasStation1Dto.getLat());
+			station.setLon(gasStation1Dto.getLon());
+			station.setDieselPrice(gasStation1Dto.getDieselPrice());
+			station.setSuperPrice(gasStation1Dto.getSuperPrice());
+			station.setSuperPlusPrice(gasStation1Dto.getSuperPlusPrice());
+			station.setGasPrice(gasStation1Dto.getGasPrice());
+			station.setMethanePrice(gasStation1Dto.getMethanePrice());
+			station.setReportUser(gasStation1Dto.getReportUser());
+			station.setReportTimestamp(gasStation1Dto.getReportTimestamp());
+			station.setReportDependability(gasStation1Dto.getReportDependability());
+			return gasStation1Dto;
+		});
+		
+		when(gasStationServiceImplMock.saveGasStation(gasStation2Dto)).thenAnswer(invocation -> {
+			Integer GasStationId = gasStation2Dto.getGasStationId();
+			when(gasStationRepositoryMock.findOne(GasStationId)).thenAnswer( inv -> {
+				Iterator<GasStation> iter = listGasStation.iterator();
+				while(iter.hasNext()) {
+					GasStation station = iter.next();
+					if(station.getGasStationId() == GasStationId)
+						return station;
+				}
+				return null;
+			});
+			if(gasStationRepositoryMock.findOne(GasStationId) == null) {
+				listGasStation.add(gasStationConverterMock.toGasStation(gasStation2Dto));
+				return gasStation2Dto;
+			}
+			GasStation station = gasStationRepositoryMock.findOne(GasStationId);
+			station.setGasStationName(gasStation2Dto.getGasStationName());
+			station.setGasStationAddress(gasStation2Dto.getGasStationAddress());
+			station.setHasDiesel(gasStation2Dto.getHasDiesel()); 
+			station.setHasSuper(gasStation2Dto.getHasSuper());
+			station.setHasSuperPlus(gasStation2Dto.getHasSuperPlus());
+			station.setHasGas(gasStation2Dto.getHasGas());
+			station.setHasMethane(gasStation2Dto.getHasMethane());
+			station.setCarSharing(gasStation2Dto.getCarSharing());
+			station.setLat(gasStation2Dto.getLat());
+			station.setLon(gasStation2Dto.getLon());
+			station.setDieselPrice(gasStation2Dto.getDieselPrice());
+			station.setSuperPrice(gasStation2Dto.getSuperPrice());
+			station.setSuperPlusPrice(gasStation2Dto.getSuperPlusPrice());
+			station.setGasPrice(gasStation2Dto.getGasPrice());
+			station.setMethanePrice(gasStation2Dto.getMethanePrice());
+			station.setReportUser(gasStation2Dto.getReportUser());
+			station.setReportTimestamp(gasStation2Dto.getReportTimestamp());
+			station.setReportDependability(gasStation2Dto.getReportDependability());
+			return gasStation2Dto;
+		});
+		
+		gasStationServiceImplMock.saveGasStation(gasStation1Dto);
+		
+		assertEquals(1,listGasStation.size());
+		
+		gasStationServiceImplMock.saveGasStation(gasStation2Dto);
+		
+		assertEquals(2,listGasStation.size());
 	}
 }
