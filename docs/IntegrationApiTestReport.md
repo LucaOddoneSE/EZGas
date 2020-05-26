@@ -25,40 +25,63 @@ Version:
 
 ```plantuml
 @startuml
-left to right direction
-
-Interface GasStationServiceImpl {}
-class GasStationConverter {}
-class GasStationRepository {}
+package Controller {
 class GasStationController {}
-class GasStation {}
-class GasStationDTO {}
-
-Interface UserServiceImpl {}
-class UserConverter {}
-class UserRepository {}
 class UserController {}
+}
+
+package Service {
+class GasStationServiceImpl {}
+class UserServiceImpl {}
+class GasStationService {}
+class UserService {}
+}
+
+
+package Converter {
+class UserConverter {}
+class GasStationConverter {}
+}
+
+
+package Repository {
+class UserRepository {}
+class GasStationRepository {}
+}
+
+package Dto{
 class LoginDto {}
 class IdPw {}
 class UserDto {}
+class GasStationDTO {}
+
+}
+
+package Entity {
 class User {}
+class GasStation {}
+}
 
 
-GasStationServiceImpl  -->  GasStationConverter
-GasStationServiceImpl  -->  GasStationRepository
-GasStationServiceImpl  -->  GasStation
-GasStationServiceImpl  -->  GasStationDTO
-GasStationController   -->  GasStationDTO
-GasStationConverter    -->  GasStation
 
-UserServiceImpl  --> User
-UserServiceImpl  --> UserConverter
-UserServiceImpl  --> UserRepository
-UserServiceImpl  --> LoginDto
-UserServiceImpl  --> IdPw
-UserServiceImpl  --> UserDto
-UserController  --> UserDto
+GasStationController --> GasStationService
+UserController --> UserService 
+UserService --> UserServiceImpl
+GasStationService --> GasStationServiceImpl
+GasStationServiceImpl --> GasStationConverter
+GasStationServiceImpl --> GasStationRepository
+UserServiceImpl --> UserRepository
+UserServiceImpl --> UserConverter
+GasStationConverter --> GasStationDTO
+GasStationConverter --> GasStation
+UserConverter --> UserDto
+UserConverter --> LoginDto
+UserConverter --> User
+LoginDto -right-> IdPw 
+GasStationRepository --> GasStation
+UserRepository --> User
 @enduml
+
 ```
      
 # Integration approach
@@ -233,7 +256,7 @@ Report also for each of the scenarios the (one or more) API JUnit tests that cov
 
 | Scenario ID | Functional Requirements covered | JUnit  Test(s) | 
 | ----------- | ------------------------------- | ----------- | 
-|  1.1        | FR1.1, FR3.3, FR5.1             | testsaveUserNewUsers() |             
+|  1.1        | FR1.1, FR3.3, FR5.1             | testsaveUserNewUsers(), testsetReport() |             
 |  1.2        | FR1.1, FR2                      | testsaveUserNewUsers(), testLogin() |                      
 |  2.1        | ?                               | testIncreaseUserReputationExistingUsers() |             
 |  2.2        | ?                               | testIncreaseUserReputationNegativeUserId() |      
