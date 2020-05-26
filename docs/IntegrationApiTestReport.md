@@ -103,24 +103,66 @@ UserRepository --> User
 ## Step 1
 | Classes  | JUnit test cases |Logical definition|
 |--|--|--|
-||||
-
+|UserRepository|testExists()||
+||testDelete()||
+||testFindAll()||
+||testFindOne()||
+||testSave()||
 
 ## Step 2
 | Classes  | JUnit test cases |Logical definition|
 |--|--|--|
-||||
+|UserRepository + UserConverter|testToUserDto||
+||testToUser()||
+|UserServiceimpl|testgetUserByIdNegativeUserId()||
+||testgetUserByIdNoUsersYet()||
+||testsaveUserNewUsers()||
+||testsaveUserUsersAlreadyPresent()||
+||testGetUserById()||
+||testdeleteUser()||
+||testdeleteUserDoesNotExist()||
+||testdeleteUserNegativeUserId()||
+||testgetAllUsers()||
+||testLogin()||
+||testLoginNullCredentials()||
+||testLoginNullEmail()||
+||testLoginNullPassword()||
+||testLoginNull()||
+||testIncreaseUserReputationExistingUsers()||
+||testIncreaseUserReputationNegativeUserId()||
+||testIncreaseUserReputationReachingMax()||
+||testDecreaseUserReputationExistingUsers()||
+||testDecreaseUserReputationNegativeUserId()||
+||testDecreaseUserReputationReachingMin()||
 
 
-## Step n API Tests
+
+## Step 3 API Tests
 
    <The last integration step  should correspond to API testing, or tests applied to all classes implementing the APIs defined in the Service package>
 
 | Classes  | JUnit test cases |Logical definition|
 |--|--|--|
-||||
-
-
+|UserRepository + UserConverter + UserServiceimpl|testgetAllUsersEmptyDB()||
+||testgetUserByIdNegativeUserId()||
+||testgetUserByIdNoUsersYet()||
+||testsaveUserNewUsers()||
+||testGetUserById()||
+||testdeleteUser()||
+||testdeleteUserDoesNotExist()||
+||testdeleteUserNegativeUserId()||
+||testgetAllUsers()||
+||testLogin()||
+||testLoginNullCredentials()||
+||testLoginNullEmail()||
+||testLoginNullPassword()||
+||testLoginNull()||
+||testIncreaseUserReputationExistingUsers()||
+||testIncreaseUserReputationNegativeUserId()||
+||testIncreaseUserReputationReachingMax()||
+||testDecreaseUserReputationExistingUsers()||
+||testDecreaseUserReputationNegativeUserId()||
+||testDecreaseUserReputationReachingMin()||
 
 
 # Scenarios
