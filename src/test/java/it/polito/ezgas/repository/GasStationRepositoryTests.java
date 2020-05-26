@@ -29,6 +29,8 @@ public class GasStationRepositoryTests implements JpaRepository<GasStation,Integ
 		gasStation1.setGasStationId(1);
 		gasStation2.setGasStationId(2);
 		
+		listGasStation.clear();
+		
 		listGasStation.add(gasStation1);
 		listGasStation.add(gasStation2);
 		
@@ -47,6 +49,8 @@ public class GasStationRepositoryTests implements JpaRepository<GasStation,Integ
 		
 		gasStation1.setGasStationId(1);
 		gasStation2.setGasStationId(2);
+		
+		listGasStation.clear();
 		
 		listGasStation.add(gasStation1);
 		listGasStation.add(gasStation2);
@@ -67,6 +71,8 @@ public class GasStationRepositoryTests implements JpaRepository<GasStation,Integ
 		gasStation1.setGasStationId(1);
 		gasStation2.setGasStationId(2);
 		
+		listGasStation.clear();
+		
 		listGasStation.add(gasStation1);
 		listGasStation.add(gasStation2);
 		
@@ -83,6 +89,8 @@ public class GasStationRepositoryTests implements JpaRepository<GasStation,Integ
 		gasStation1.setGasStationId(1);
 		gasStation2.setGasStationId(2);
 		
+		listGasStation.clear();
+		
 		listGasStation.add(gasStation1);
 		listGasStation.add(gasStation2);
 		
@@ -97,6 +105,8 @@ public class GasStationRepositoryTests implements JpaRepository<GasStation,Integ
 				"BlaBlaCar",110.574,81.320,1.25,1.55,0,0,0.90,null,null,0);
 		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,
 				"BlaBlaCar",110.649,87.550,0,0,1.25,1.55,0,null,null,0);
+		
+		listGasStation.clear();
 		
 		save(gasStation1);
 		save(gasStation2);
