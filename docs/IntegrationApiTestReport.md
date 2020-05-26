@@ -86,17 +86,19 @@ UserRepository --> User
      
 # Integration approach
 
-    <Write here the integration sequence you adopted, in general terms (top down, bottom up, mixed) and as sequence
-    (ex: step1: class A, step 2: class A+B, step 3: class A+B+C, etc)> 
-    <The last integration step corresponds to API testing at level of Service package>
-    <Tests at level of Controller package will be done later>
+	The approach is bottom up
+ 
+	Step 1: Repository classes
+
+	Step 2: Repository + Converters
+
+	Step 3: Repository + Converters + Serviceimpl
+
 
 
 
 #  Tests
 
-   <define below a table for each integration step. For each integration step report the group of classes under test, and the names of
-     JUnit test cases applied to them>
 
 ## Step 1
 | Classes  | JUnit test cases |Logical definition|
@@ -276,6 +278,6 @@ Report also for each of the scenarios the (one or more) API JUnit tests that cov
 
 | Non Functional Requirement | Test name |
 | -------------------------- | --------- |
-|        Response Time                    |           |
+|        Response Time                    |    All JUnit tests executed less than 0.5s     |
 
 
