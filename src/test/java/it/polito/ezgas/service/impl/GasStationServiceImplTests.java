@@ -839,6 +839,7 @@ public class GasStationServiceImplTests {
 		assertEquals("BlueSG",listGasStationDto.get(0).getCarSharing());
 	}
 	
+	//SetReport to an existing GasStation
 	@Test
 	public void testsetReport() throws InvalidGasStationException, PriceException, InvalidUserException {
 		UserDto user1Dto = new UserDto(1, "Luca Oddone", "Password", "lucaoddone@polito.it", 3);
@@ -865,12 +866,8 @@ public class GasStationServiceImplTests {
 		when(gasStationConverterMock.toGasStationDto(gasStation1)).thenReturn(gasStation1Dto);
 		when(gasStationConverterMock.toGasStation(gasStation1Dto)).thenReturn(gasStation1);
 		
-		/*when(gasStationServiceImplMock.setReport(gasStationId, dieselPrice, superPrice, superPlusPrice, gasPrice, methanePrice, userId)).
-		           thenAnswer( invocation -> {
-		        	   
-		  });*/
-		
 		doAnswer(new Answer<Void>() {
+			@SuppressWarnings("unused")
 			public Void answer(InvocationOnMock invocation) throws PriceException, InvalidGasStationException, InvalidUserException {
 				
 				when(gasStationRepositoryMock.findOne(gasStationId)).thenReturn(gasStation1);
@@ -949,7 +946,8 @@ public class GasStationServiceImplTests {
 	     assertEquals(Integer.valueOf(1),gasStation1.getReportUser());
 	     assertEquals(Double.valueOf(90),Double.valueOf(gasStation1.getReportDependability()));
 	}
-	
+
+	//Test for verifying the catch of InvalidGasStationException
 	@Test(expected=InvalidGasStationException.class)
 	public void testsetReportInvalidGasStationException() throws InvalidGasStationException, PriceException, InvalidUserException {
 		UserDto user1Dto = new UserDto(1, "Luca Oddone", "Password", "lucaoddone@polito.it", 3);
@@ -975,11 +973,6 @@ public class GasStationServiceImplTests {
 		
 		when(gasStationConverterMock.toGasStationDto(gasStation1)).thenReturn(gasStation1Dto);
 		when(gasStationConverterMock.toGasStation(gasStation1Dto)).thenReturn(gasStation1);
-		
-		/*when(gasStationServiceImplMock.setReport(gasStationId, dieselPrice, superPrice, superPlusPrice, gasPrice, methanePrice, userId)).
-		           thenAnswer( invocation -> {
-		        	   
-		  });*/
 		
 		doAnswer(new Answer<Void>() {
 			@SuppressWarnings("unused")
@@ -1059,6 +1052,7 @@ public class GasStationServiceImplTests {
 	     gasStationServiceImplMock.setReport(gasStationId, dieselPrice, superPrice, superPlusPrice, gasPrice, methanePrice, userId);
 	}
 	
+	//Catch of InvalidUserException
 	@Test(expected=InvalidUserException.class)
 	public void testsetReportInvalidUserException() throws InvalidGasStationException, PriceException, InvalidUserException {
 		@SuppressWarnings("unused")
@@ -1086,11 +1080,6 @@ public class GasStationServiceImplTests {
 		when(gasStationConverterMock.toGasStationDto(gasStation1)).thenReturn(gasStation1Dto);
 		when(gasStationConverterMock.toGasStation(gasStation1Dto)).thenReturn(gasStation1);
 		
-		/*when(gasStationServiceImplMock.setReport(gasStationId, dieselPrice, superPrice, superPlusPrice, gasPrice, methanePrice, userId)).
-		           thenAnswer( invocation -> {
-		        	   
-		  });*/
-		
 		doAnswer(new Answer<Void>() {
 			@SuppressWarnings("unused")
 			public Void answer(InvocationOnMock invocation) throws PriceException, InvalidGasStationException, InvalidUserException {
@@ -1169,6 +1158,7 @@ public class GasStationServiceImplTests {
 	     gasStationServiceImplMock.setReport(gasStationId, dieselPrice, superPrice, superPlusPrice, gasPrice, methanePrice, userId);
 	}
 	
+	//Throw of PriceException
 	@Test(expected = PriceException.class)
 	public void testsetReportPriceException() throws InvalidGasStationException, PriceException, InvalidUserException {
 		UserDto user1Dto = new UserDto(1, "Luca Oddone", "Password", "lucaoddone@polito.it", 3);
@@ -1194,11 +1184,6 @@ public class GasStationServiceImplTests {
 		
 		when(gasStationConverterMock.toGasStationDto(gasStation1)).thenReturn(gasStation1Dto);
 		when(gasStationConverterMock.toGasStation(gasStation1Dto)).thenReturn(gasStation1);
-		
-		/*when(gasStationServiceImplMock.setReport(gasStationId, dieselPrice, superPrice, superPlusPrice, gasPrice, methanePrice, userId)).
-		           thenAnswer( invocation -> {
-		        	   
-		  });*/
 		
 		doAnswer(new Answer<Void>() {
 			public Void answer(InvocationOnMock invocation) throws PriceException, InvalidGasStationException, InvalidUserException {
@@ -1277,6 +1262,7 @@ public class GasStationServiceImplTests {
 	     gasStationServiceImplMock.setReport(gasStationId, dieselPrice, superPrice, superPlusPrice, gasPrice, methanePrice, userId);
 	}
 	
+	//Test for retrieving the GasStation which are near less than 1km
 	@SuppressWarnings("unused")
 	@Test
 	public void testgetGasStationsByProximity() throws GPSDataException {
@@ -1336,6 +1322,7 @@ public class GasStationServiceImplTests {
 		assertEquals(2,listGasStationDto.size());
 	}
 	
+	//Throw GPSDataException for getGasStationsByProximity() method
 	@SuppressWarnings("unused")
 	@Test(expected=GPSDataException.class)
 	public void testgetGasStationsByProximityThrowException() throws GPSDataException {
@@ -1391,6 +1378,80 @@ public class GasStationServiceImplTests {
 		});
 		
 		gasStationServiceImplMock.getGasStationsByProximity(lat, lon);
+	}
+	
+	//Test for retrieving the GasStation in a certain area
+	@SuppressWarnings("unused")
+	public void testgetGasStationsWithCoordinates() throws InvalidGasTypeException, GPSDataException {
+		GasStationDto gasStation1Dto = new GasStationDto(1,"GasStation1","Via Italia 1",true,true,false,false,true,
+				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
+		GasStationDto gasStation2Dto = new GasStationDto(2,"GasStation2","Via Italia 2",false,false,true,true,false,
+				"BlaBlaCar",61.649,117.550,0,0,1.25,1.55,0,null,null,0);
+	
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
+				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
+		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,
+				"BlaBlaCar",61.649,117.550,0,0,1.25,1.55,0,null,null,0);
+		
+		final double lat = 81.574;
+		final double lon = 111.320;
+		final String gasolinetype = "Diesel";
+		final String carSharing = "BlaBlaCar";
+		
+		listGasStationDto.clear();
+		listGasStation.clear();
+		
+		gasStation1.setGasStationId(1);
+		gasStation2.setGasStationId(2);
+		
+		listGasStation.add(gasStation1);
+		listGasStation.add(gasStation2);
+		
+		when(gasStationConverterMock.toGasStationDto(gasStation1)).thenReturn(gasStation1Dto);
+		when(gasStationConverterMock.toGasStation(gasStation1Dto)).thenReturn(gasStation1);
+		
+		when(gasStationConverterMock.toGasStationDto(gasStation2)).thenReturn(gasStation2Dto);
+		when(gasStationConverterMock.toGasStation(gasStation2Dto)).thenReturn(gasStation2);
+		
+		when(gasStationServiceImplMock.getAllGasStations()).then( invocation -> {
+			Iterator<GasStation> iter = listGasStation.listIterator();
+			while(iter.hasNext()) {
+				GasStation gasStation = iter.next();
+				if(gasStation.getGasStationId() == 1)
+					listGasStationDto.add(gasStationConverterMock.toGasStationDto(gasStation1));
+				else
+					listGasStationDto.add(gasStationConverterMock.toGasStationDto(gasStation2));
+			}
+			return listGasStationDto;
+		});
+		
+		when(gasStationServiceImplMock.getGasStationsWithCoordinates(lat, lon, gasolinetype, carSharing)).thenAnswer( invocation -> {
+			if((lat < -90 || lat >= 90) || (lon < -180 || lon >= 180))
+				throw new GPSDataException("coordinates out of bounds");
+			switch(gasolinetype) {
+			case "Diesel":
+				Iterator<GasStation> iter = listGasStation.iterator();
+				while(iter.hasNext()) {
+					GasStation gasStation = iter.next();
+					if(gasStation.getCarSharing().equals(carSharing) == false || gasStation.getHasDiesel() == false)
+						listGasStationDto.remove(gasStation);
+				}
+				listGasStationDto.
+				stream()
+				.filter( (g) -> Haversine.distance(lat, lon, g.getLat(), g.getLon() ) <= 1)
+				.sorted( (g1,g2) -> Double.compare(Haversine.distance(lat, lon, g1.getLat(), g1.getLon() ), Haversine.distance(lat, lon, g2.getLat(), g2.getLon() ) ) )
+				.collect(Collectors.toList());
+			break ;
+			default:
+				if(gasolinetype.equals("null"))
+					  throw new InvalidGasTypeException("Gas Type not supported");
+			}
+			return listGasStationDto;
+		});
+		
+		gasStationServiceImplMock.getGasStationsWithCoordinates(lat, lon, gasolinetype, carSharing);
+		
+		assertEquals(1,listGasStationDto.size());
 	}
 	
 }
