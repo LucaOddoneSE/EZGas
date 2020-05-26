@@ -118,7 +118,7 @@ UserRepository --> User
 ## Step 2
 | Classes  | JUnit test cases |Logical definition|
 |--|--|--|
-|UserRepository + UserConverter|testToUserDto|Stubs|
+|UserRepository + UserConverter|testToUserDto()|Stubs|
 ||testToUser()|Stubs|
 |GasStationRepository + GasStationConverter|testToGasStationDto()|Stubs|
 ||testToGasStation()|Stubs|
