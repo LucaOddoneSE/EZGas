@@ -2,6 +2,7 @@ package it.polito.ezgas.service.impl;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -1381,7 +1382,7 @@ public class GasStationServiceImplTests {
 	}
 	
 	//Test for retrieving the GasStation in a certain area
-	@SuppressWarnings({ "unused", "unlikely-arg-type" })
+	@SuppressWarnings({ "unused" })
 	public void testgetGasStationsWithCoordinates() throws InvalidGasTypeException, GPSDataException {
 		GasStationDto gasStation1Dto = new GasStationDto(1,"GasStation1","Via Italia 1",true,true,false,false,true,
 				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
@@ -1433,8 +1434,12 @@ public class GasStationServiceImplTests {
 				Iterator<GasStation> iter = listGasStation.iterator();
 				while(iter.hasNext()) {
 					GasStation gasStation = iter.next();
-					if(gasStation.getCarSharing().equals(carSharing) == false || gasStation.getHasDiesel() == false)
-						listGasStationDto.remove(gasStation);
+					if(gasStation.getCarSharing().equals(carSharing) == false || gasStation.getHasDiesel() == false) {
+						if(gasStation.getGasStationId() == 1)
+							listGasStationDto.remove(gasStationConverterMock.toGasStationDto(gasStation1));
+						else
+							listGasStationDto.remove(gasStationConverterMock.toGasStationDto(gasStation2));
+					}
 				}
 				listGasStationDto.
 				stream()
@@ -1454,7 +1459,7 @@ public class GasStationServiceImplTests {
 	}
 	
 	//Throw InvalidGasStationException
-	@SuppressWarnings({ "unused", "unlikely-arg-type" })
+	@SuppressWarnings({ "unused" })
 	@Test(expected=InvalidGasTypeException.class)
 	public void testgetGasStationsWithCoordinatesThrowInvalidGasTypeException() throws InvalidGasTypeException, GPSDataException {
 		GasStationDto gasStation1Dto = new GasStationDto(1,"GasStation1","Via Italia 1",true,true,false,false,true,
@@ -1507,8 +1512,12 @@ public class GasStationServiceImplTests {
 				Iterator<GasStation> iter = listGasStation.iterator();
 				while(iter.hasNext()) {
 					GasStation gasStation = iter.next();
-					if(gasStation.getCarSharing().equals(carSharing) == false || gasStation.getHasDiesel() == false)
-						listGasStationDto.remove(gasStation);
+					if(gasStation.getCarSharing().equals(carSharing) == false || gasStation.getHasDiesel() == false) {
+						if(gasStation.getGasStationId() == 1)
+							listGasStationDto.remove(gasStationConverterMock.toGasStationDto(gasStation1));
+						else
+							listGasStationDto.remove(gasStationConverterMock.toGasStationDto(gasStation2));
+					}
 				}
 				listGasStationDto.
 				stream()
@@ -1541,7 +1550,7 @@ public class GasStationServiceImplTests {
 		
 		final double lat = 181.574;
 		final double lon = 111.320;
-		final String gasolinetype = "Fuel";
+		final String gasolinetype = "Diesel";
 		final String carSharing = "BlaBlaCar";
 		
 		listGasStationDto.clear();
@@ -1579,8 +1588,12 @@ public class GasStationServiceImplTests {
 				Iterator<GasStation> iter = listGasStation.iterator();
 				while(iter.hasNext()) {
 					GasStation gasStation = iter.next();
-					if(gasStation.getCarSharing().equals(carSharing) == false || gasStation.getHasDiesel() == false)
-						listGasStationDto.remove(gasStation);
+					if(gasStation.getCarSharing().equals(carSharing) == false || gasStation.getHasDiesel() == false) {
+						if(gasStation.getGasStationId() == 1)
+							listGasStationDto.remove(gasStationConverterMock.toGasStationDto(gasStation1));
+						else
+							listGasStationDto.remove(gasStationConverterMock.toGasStationDto(gasStation2));
+					}
 				}
 				listGasStationDto.
 				stream()
@@ -1597,4 +1610,75 @@ public class GasStationServiceImplTests {
 		gasStationServiceImplMock.getGasStationsWithCoordinates(lat, lon, gasolinetype, carSharing);
 	}
 	
+	//Retrieve Gasstation based on gasolinetype and carsharing
+	@Test
+	public void testgetGasStationsWithoutCoordinates() throws InvalidGasTypeException {
+		GasStationDto gasStation1Dto = new GasStationDto(1,"GasStation1","Via Italia 1",true,true,false,false,true,
+				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
+		GasStationDto gasStation2Dto = new GasStationDto(2,"GasStation2","Via Italia 2",false,false,true,true,false,
+				"BlaBlaCar",61.649,117.550,0,0,1.25,1.55,0,null,null,0);
+	
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
+				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
+		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,
+				"BlaBlaCar",61.649,117.550,0,0,1.25,1.55,0,null,null,0);
+		
+		final String gasolinetype = "Diesel";
+		final String carSharing = "BlaBlaCar";
+		
+		listGasStationDto.clear();
+		listGasStation.clear();
+		
+		gasStation1.setGasStationId(1);
+		gasStation2.setGasStationId(2);
+		
+		listGasStation.add(gasStation1);
+		listGasStation.add(gasStation2);
+		
+		when(gasStationConverterMock.toGasStationDto(gasStation1)).thenReturn(gasStation1Dto);
+		when(gasStationConverterMock.toGasStation(gasStation1Dto)).thenReturn(gasStation1);
+		
+		when(gasStationConverterMock.toGasStationDto(gasStation2)).thenReturn(gasStation2Dto);
+		when(gasStationConverterMock.toGasStation(gasStation2Dto)).thenReturn(gasStation2);
+		
+		when(gasStationServiceImplMock.getAllGasStations()).then( invocation -> {
+			Iterator<GasStation> iter = listGasStation.listIterator();
+			while(iter.hasNext()) {
+				GasStation gasStation = iter.next();
+				if(gasStation.getGasStationId() == 1)
+					listGasStationDto.add(gasStationConverterMock.toGasStationDto(gasStation1));
+				else
+					listGasStationDto.add(gasStationConverterMock.toGasStationDto(gasStation2));
+			}
+			return listGasStationDto;
+		});
+		
+		when(gasStationServiceImplMock.getGasStationsWithoutCoordinates(gasolinetype, carSharing)).thenAnswer( invocation -> {
+			switch(gasolinetype) {
+			case "Diesel":
+				Iterator<GasStation> iter;
+				gasStationServiceImplMock.getAllGasStations();
+				iter = listGasStation.iterator();
+				while(iter.hasNext()) {
+					GasStation gasStation = iter.next();
+					if(gasStation.getCarSharing().equals(carSharing) == false || gasStation.getHasDiesel() == false) {
+						if(gasStation.getGasStationId() == 1)
+							listGasStationDto.remove(gasStationConverterMock.toGasStationDto(gasStation1));
+						else
+							listGasStationDto.remove(gasStationConverterMock.toGasStationDto(gasStation2));
+					}
+				}
+				break;
+			default:
+					throw new InvalidGasTypeException("Error! You have passed an invalid gasolinetype!");
+			}
+			return listGasStationDto;
+		});
+		
+		gasStationServiceImplMock.getGasStationsWithoutCoordinates(gasolinetype, carSharing);
+		
+		assertEquals(1,listGasStationDto.size());
+		assertTrue(listGasStationDto.get(0).getHasDiesel());
+		assertEquals("BlaBlaCar",listGasStationDto.get(0).getCarSharing());
+	}
 }
