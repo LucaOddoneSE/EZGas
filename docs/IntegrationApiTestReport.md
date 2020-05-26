@@ -99,8 +99,6 @@ UserRepository --> User
 
 #  Tests
 
-   <define below a table for each integration step. For each integration step report the group of classes under test, and the names of
-     JUnit test cases applied to them>
 
 ## Step 1
 | Classes  | JUnit test cases |Logical definition|
@@ -280,6 +278,6 @@ Report also for each of the scenarios the (one or more) API JUnit tests that cov
 
 | Non Functional Requirement | Test name |
 | -------------------------- | --------- |
-|        Response Time                    |           |
+|        Response Time                    |    All JUnit tests executed less than 0.5s     |
 
 
