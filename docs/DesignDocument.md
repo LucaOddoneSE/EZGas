@@ -626,14 +626,10 @@ Scennario 10.1:
 
 ```plantuml
 @startuml
-UserController -> HomeController : 1: login()
-UserController <- HomeController : 2: login(credentials)
-UserController -> HomeController : 3: map()
-HomeController -> GasStationController : 4: getGasStationByProximity(mylat, mylon)
-UserController -> HomeController : 5: update()
-UserController -> HomeController : 6: admin()
-UserController <- HomeController : 7: getUserById(u2)
-UserController <- HomeController : 8: increaseUserReputation(u2)
+UserController <- HomeController : 1: login(credentials)
+HomeController -> GasStationController : 2: getGasStationByProximity(mylat, mylon)
+UserController <- HomeController : 3: getUserById(u2)
+UserController <- HomeController : 4: increaseUserReputation(u2)
 @enduml
 ```
 
@@ -641,14 +637,10 @@ Scennario 10.2:
 
 ```plantuml
 @startuml
-UserController -> HomeController : 1: login()
-UserController <- HomeController : 2: login(credentials)
-UserController -> HomeController : 3: map()
-HomeController -> GasStationController : 4: getGasStationByProximity(mylat, mylon)
-UserController -> HomeController : 5: update()
-UserController -> HomeController : 6: admin()
-UserController <- HomeController : 7: getUserById(u2)
-UserController <- HomeController : 8: decreaseUserReputation(u2)
+UserController <- HomeController : 1: login(credentials)
+HomeController -> GasStationController : 2: getGasStationByProximity(mylat, mylon)
+UserController <- HomeController : 3: getUserById(u2)
+UserController <- HomeController : 4: decreaseUserReputation(u2)
 @enduml
 ```
 
