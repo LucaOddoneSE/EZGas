@@ -22,6 +22,7 @@ import it.polito.ezgas.entity.GasStationTest;
 	UserServiceImplTests.class, UserConverterTests.class, UserRepositoryTests.class,
 	GasStationServiceImplTests.class, GasStationConverterTests.class,
 	GasStationRepositoryTests.class})
+
 public class AllTests {
 
 }
