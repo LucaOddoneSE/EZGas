@@ -1,10 +1,7 @@
 package it.polito.ezgas.service.impl;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -16,12 +13,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.Test;
-import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
-import org.mockito.stubbing.OngoingStubbing;
-
 import exception.GPSDataException;
 import exception.InvalidGasStationException;
 import exception.InvalidGasTypeException;
@@ -35,6 +29,7 @@ import it.polito.ezgas.entity.User;
 import it.polito.ezgas.repository.GasStationRepository;
 import it.polito.ezgas.repository.UserRepository;
 import it.polito.ezgas.utils.Day;
+import it.polito.ezgas.utils.Haversine;
 
 public class GasStationServiceImplTests {
 	
@@ -1280,6 +1275,64 @@ public class GasStationServiceImplTests {
 		}).when(gasStationServiceImplMock).setReport(gasStationId, dieselPrice, superPrice, superPlusPrice, gasPrice, methanePrice, userId);
 		
 	     gasStationServiceImplMock.setReport(gasStationId, dieselPrice, superPrice, superPlusPrice, gasPrice, methanePrice, userId);
+	}
+	
+	@Test
+	public void testgetGasStationsByProximity() throws GPSDataException {
+		GasStationDto gasStation1Dto = new GasStationDto(1,"GasStation1","Via Italia 1",true,true,false,false,true,
+				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
+		GasStationDto gasStation2Dto = new GasStationDto(2,"GasStation2","Via Italia 2",false,false,true,true,false,
+				"BlaBlaCar",61.649,117.550,0,0,1.25,1.55,0,null,null,0);
+	
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
+				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
+		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,
+				"BlaBlaCar",61.649,117.550,0,0,1.25,1.55,0,null,null,0);
+		
+		final double lat = 80.761;
+		final double lon = 154.987;
+		
+		listGasStationDto.clear();
+		listGasStation.clear();
+		
+		gasStation1.setGasStationId(1);
+		gasStation2.setGasStationId(2);
+		
+		listGasStation.add(gasStation1);
+		listGasStation.add(gasStation2);
+		
+		when(gasStationConverterMock.toGasStationDto(gasStation1)).thenReturn(gasStation1Dto);
+		when(gasStationConverterMock.toGasStation(gasStation1Dto)).thenReturn(gasStation1);
+		
+		when(gasStationConverterMock.toGasStationDto(gasStation2)).thenReturn(gasStation2Dto);
+		when(gasStationConverterMock.toGasStation(gasStation2Dto)).thenReturn(gasStation2);
+		
+		when(gasStationServiceImplMock.getAllGasStations()).then( invocation -> {
+			Iterator<GasStation> iter = listGasStation.listIterator();
+			while(iter.hasNext()) {
+				GasStation gasStation = iter.next();
+				if(gasStation.getGasStationId() == 1)
+					listGasStationDto.add(gasStationConverterMock.toGasStationDto(gasStation1));
+				else
+					listGasStationDto.add(gasStationConverterMock.toGasStationDto(gasStation2));
+			}
+			return listGasStationDto;
+		});
+		
+		when(gasStationServiceImplMock.getGasStationsByProximity(lat, lon)).thenAnswer( invocation -> {
+			if((lat < -90 || lat >= 90) || (lon < -180 || lon >= 180))
+				throw new GPSDataException("coordinates out of bounds");
+			gasStationServiceImplMock.getAllGasStations();
+			listGasStationDto.stream()
+			.filter( (g) -> Haversine.distance(lat, lon, g.getLat(), g.getLon() ) <= 1.0)
+			.sorted( (g1,g2) -> Double.compare(Haversine.distance(lat, lon, g1.getLat(), g1.getLon() ), Haversine.distance(lat, lon, g2.getLat(), g2.getLon() ) ) )
+			.collect(Collectors.toList());
+			return null;
+		});
+		
+		gasStationServiceImplMock.getGasStationsByProximity(lat, lon);
+		
+		assertEquals(2,listGasStationDto.size());
 	}
 	
 }
