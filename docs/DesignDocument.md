@@ -590,24 +590,24 @@ it.polito.ezgas.converter -right[hidden]-> it.polito.ezgas.service
 # Verification traceability matrix
 
 
-|       | GasStationServiceImpl | UserServiceImpl | Administrator | User | AnonymousUser | GasStation | PriceList | CarSharingCompany | GeoPoint |
-|-------|:---------------------:|:---------------:|:-------------:|:----:|:-------------:|:----------:|:---------:|:-----------------:|:--------:|
-| FR1.1 |                       |        X        |       X       |   X  |               |            |           |                   |          |
-| FR1.2 |                       |        X        |       X       |   X  |               |            |           |                   |          |
-| FR1.3 |                       |        X        |       X       |   X  |               |            |           |                   |          |
-| FR1.4 |                       |        X        |       X       |   X  |               |            |           |                   |          |
-| FR2   |                       |        X        |       X       |   X  |               |            |           |                   |          |
-| FR3.1 |           X           |                 |               |      |               |      X     |           |                   |          |
-| FR3.2 |           X           |                 |               |      |               |      X     |           |                   |          |
-| FR3.3 |           X           |                 |               |      |               |      X     |           |                   |          |
-| FR4.1 |           X           |                 |               |      |               |      X     |           |                   |     X    |
-| FR4.2 |           X           |                 |               |      |               |      X     |           |                   |     X    |
-| FR4.3 |           X           |                 |               |      |               |      X     |     X     |                   |     X    |
-| FR4.4 |           X           |                 |               |      |               |      X     |     X     |                   |          |
-| FR4.5 |           X           |                 |               |      |               |      X     |           |         X         |          |
-| FR5.1 |           X           |                 |               |   X  |               |      X     |     X     |                   |          |
-| FR5.2 |                       |                 |               |      |               |      X     |     X     |                   |          |
-| FR5.3 |           X           |                 |               |   X  |               |      X     |     X     |                   |          |
+|       | GasStationServiceImpl | UserServiceImpl | User | GasStation | LoginDTO | IdPw |
+|-------|:---------------------:|:---------------:|:----:|:----------:|:--------:|:----:|
+| FR1.1 |                       |        X        |   X  |            |          |      |
+| FR1.2 |                       |        X        |   X  |            |          |      |
+| FR1.3 |                       |        X        |   X  |            |          |      |
+| FR1.4 |                       |        X        |   X  |            |          |      |
+| FR2   |                       |        X        |   X  |            |     X    |   X  |
+| FR3.1 |           X           |                 |      |      X     |          |      |
+| FR3.2 |           X           |                 |      |      X     |          |      |
+| FR3.3 |           X           |                 |      |      X     |          |      |
+| FR4.1 |           X           |                 |      |      X     |          |      |
+| FR4.2 |           X           |                 |      |      X     |          |      |
+| FR4.3 |           X           |                 |      |      X     |          |      |
+| FR4.4 |           X           |                 |      |      X     |          |      |
+| FR4.5 |           X           |                 |      |      X     |          |      |
+| FR5.1 |           X           |                 |   X  |      X     |          |      |
+| FR5.2 |           X           |                 |   X  |      X     |          |      |
+| FR5.3 |           X           |                 |   X  |      X     |          |      |
 
 The involvment of a class in the it.polito.ezgas.entity package implies the use of the respective class in the converter, dto, repository and controller packages.
 
