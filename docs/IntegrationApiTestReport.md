@@ -103,19 +103,25 @@ UserRepository --> User
 ## Step 1
 | Classes  | JUnit test cases |Logical definition|
 |--|--|--|
-|UserRepository|testExists()||
-||testDelete()||
-||testFindAll()||
-||testFindOne()||
-||testSave()||
+|UserRepository|testExists()|Stubs|
+||testDelete()|Stubs|
+||testFindAll()|Stubs|
+||testFindOne()|Stubs|
+||testSave()|Stubs|
+|GasStationRepository|testExist()|Stubs|
+||testDelete()|Stubs|
+||testFindAll()|Stubs|
+||testfindOne()|Stubs|
+||testsave()|Stubs|
+
 
 ## Step 2
 | Classes  | JUnit test cases |Logical definition|
 |--|--|--|
-|UserRepository + UserConverter|testToUserDto||
-||testToUser()||
-|GasStationRepository + GasStationConverter|testToGasStationDto()||
-||testToGasStation()||
+|UserRepository + UserConverter|testToUserDto()|Stubs|
+||testToUser()|Stubs|
+|GasStationRepository + GasStationConverter|testToGasStationDto()|Stubs|
+||testToGasStation()|Stubs|
 
 
 ## Step 3 API Tests
@@ -123,7 +129,7 @@ UserRepository --> User
 
 | Classes  | JUnit test cases |Logical definition|
 |--|--|--|
-|UserRepository + UserConverter + UserServiceimpl|testgetAllUsersEmptyDB()||
+|UserRepository + UserConverter + UserServiceimpl|testgetAllUsersEmptyDB()|Mock|
 ||testgetUserByIdNegativeUserId()||
 ||testgetUserByIdNoUsersYet()||
 ||testsaveUserNewUsers()||
@@ -143,8 +149,7 @@ UserRepository --> User
 ||testDecreaseUserReputationExistingUsers()||
 ||testDecreaseUserReputationNegativeUserId()||
 ||testDecreaseUserReputationReachingMin()||
-|GasStationRepository + GasStationConverter + GasStationServiceimpl|||
-||testgetGasStationByIdEmptyDatabase()||
+|GasStationRepository + GasStationConverter + GasStationServiceimpl|testgetGasStationByIdEmptyDatabase()|Mock|
 ||testgetGasStationByIdExistingGasStation()||
 ||testgetGasStationByIdNegativeUserId()||
 ||testSaveGasStationNewOne()||
@@ -298,9 +303,9 @@ UserRepository --> User
 | ----------- | ------------------------------- | ----------- | 
 |  1.1        | FR1.1, FR3.3, FR5.1             | testsaveUserNewUsers(), testsetReport() |             
 |  1.2        | FR1.1, FR2                      | testsaveUserNewUsers(), testLogin() |                      
-|  2.1        | Not included in official requirment document                               | testIncreaseUserReputationExistingUsers() |             
-|  2.2        | Not included in official requirment document                                | testIncreaseUserReputationNegativeUserId() |      
-|  2.3        | Not included in official requirment document                                | testDecreaseUserReputationExistingUsers() |
+|  2.1        | Not included in the official requirements                               | testIncreaseUserReputationExistingUsers() |             
+|  2.2        | Not included in the official requirements                                | testIncreaseUserReputationNegativeUserId() |      
+|  2.3        | Not included in the official requirements                                | testDecreaseUserReputationExistingUsers() |
 |  3.1        | FR1.2                           | testdeleteUser() |             
 |  3.2        | FR3.2                           | testDeleteGasStation() |            
 |  3.3        | FR3.2                           | testDeleteGasStationInvalidGasStationException() |   
