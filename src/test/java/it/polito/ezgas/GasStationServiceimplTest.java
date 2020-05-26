@@ -27,7 +27,7 @@ import it.polito.ezgas.service.impl.GasStationServiceimpl;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 
-public class GasStationServiceimplTests {
+public class GasStationServiceimplTest {
 
 	private static final Integer id = 123;
 	private static final String name = "Repsol";
