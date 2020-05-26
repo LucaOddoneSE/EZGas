@@ -1,10 +1,10 @@
 # Integration and API Test Documentation
 
-Authors:
+Authors: Group 50
 
-Date:
+Date: 26 May
 
-Version:
+Version: 1.1
 
 # Contents
 
@@ -114,32 +114,12 @@ UserRepository --> User
 |--|--|--|
 |UserRepository + UserConverter|testToUserDto||
 ||testToUser()||
-|UserServiceimpl|testgetUserByIdNegativeUserId()||
-||testgetUserByIdNoUsersYet()||
-||testsaveUserNewUsers()||
-||testsaveUserUsersAlreadyPresent()||
-||testGetUserById()||
-||testdeleteUser()||
-||testdeleteUserDoesNotExist()||
-||testdeleteUserNegativeUserId()||
-||testgetAllUsers()||
-||testLogin()||
-||testLoginNullCredentials()||
-||testLoginNullEmail()||
-||testLoginNullPassword()||
-||testLoginNull()||
-||testIncreaseUserReputationExistingUsers()||
-||testIncreaseUserReputationNegativeUserId()||
-||testIncreaseUserReputationReachingMax()||
-||testDecreaseUserReputationExistingUsers()||
-||testDecreaseUserReputationNegativeUserId()||
-||testDecreaseUserReputationReachingMin()||
-
+|GasStationRepository + GasStationConverter|testToGasStationDto()||
+||testToGasStation()||
 
 
 ## Step 3 API Tests
 
-   <The last integration step  should correspond to API testing, or tests applied to all classes implementing the APIs defined in the Service package>
 
 | Classes  | JUnit test cases |Logical definition|
 |--|--|--|
@@ -163,13 +143,33 @@ UserRepository --> User
 ||testDecreaseUserReputationExistingUsers()||
 ||testDecreaseUserReputationNegativeUserId()||
 ||testDecreaseUserReputationReachingMin()||
+|GasStationRepository + GasStationConverter + GasStationServiceimpl|||
+||testgetGasStationByIdEmptyDatabase()||
+||testgetGasStationByIdExistingGasStation()||
+||testgetGasStationByIdNegativeUserId()||
+||testSaveGasStationNewOne()||
+||testSaveGasStationPriceException()||
+||testSaveGasStationGPSDataException()||
+||testGetAllGasStations()||
+||testDeleteGasStation()||
+||testDeleteGasStationInvalidGasStationException()||
+||testGasStationsByGasolineType()||
+||testGasStationsByGasolineTypeException()||
+||testgetGasStationByCarSharing()||
+||testsetReport()||
+||testsetReportInvalidGasStationException()||
+||testsetReportInvalidUserException()||
+||testgetGasStationsByProximity()||
+||testgetGasStationsByProximityThrowException()||
+||testgetGasStationsWithCoordinates()||
+||testgetGasStationsWithCoordinatesThrowInvalidGasTypeException()||
+||testgetGasStationsWithCoordinatesThrowGPSDataException()||
+||testgetGasStationsWithoutCoordinates()||
+||testgetGasStationsWithoutCoordinatesThrowInvalidGasTypeException()||
 
 
 # Scenarios
 
-
-<If needed, define here additional scenarios for the application. Scenarios should be named
- referring the UC they detail>
 
 ## Scenario UC1.1
 
@@ -292,28 +292,21 @@ UserRepository --> User
 # Coverage of Scenarios and FR
 
 
-<Report in the following table the coverage of  scenarios (from official requirements and from above) vs FR. 
-Report also for each of the scenarios the (one or more) API JUnit tests that cover it. >
-
-
 
 
 | Scenario ID | Functional Requirements covered | JUnit  Test(s) | 
 | ----------- | ------------------------------- | ----------- | 
 |  1.1        | FR1.1, FR3.3, FR5.1             | testsaveUserNewUsers(), testsetReport() |             
 |  1.2        | FR1.1, FR2                      | testsaveUserNewUsers(), testLogin() |                      
-|  2.1        | ?                               | testIncreaseUserReputationExistingUsers() |             
-|  2.2        | ?                               | testIncreaseUserReputationNegativeUserId() |      
-|  2.3        | ?                               | testDecreaseUserReputationExistingUsers() |
+|  2.1        | Not included in official requirment document                               | testIncreaseUserReputationExistingUsers() |             
+|  2.2        | Not included in official requirment document                                | testIncreaseUserReputationNegativeUserId() |      
+|  2.3        | Not included in official requirment document                                | testDecreaseUserReputationExistingUsers() |
 |  3.1        | FR1.2                           | testdeleteUser() |             
 |  3.2        | FR3.2                           | testDeleteGasStation() |            
 |  3.3        | FR3.2                           | testDeleteGasStationInvalidGasStationException() |   
 
 
 # Coverage of Non Functional Requirements
-
-
-<Report in the following table the coverage of the Non Functional Requirements of the application - only those that can be tested with automated testing frameworks.>
 
 
 ### 
