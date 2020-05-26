@@ -90,6 +90,19 @@ public class GasStationRepositoryTests implements JpaRepository<GasStation,Integ
 		assertEquals(2,findOne(2).getGasStationId());
 		assertNull(findOne(100));
 	}
+	
+	@Test
+	public void testsave() {
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
+				"BlaBlaCar",110.574,81.320,1.25,1.55,0,0,0.90,null,null,0);
+		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,
+				"BlaBlaCar",110.649,87.550,0,0,1.25,1.55,0,null,null,0);
+		
+		save(gasStation1);
+		save(gasStation2);
+		
+		assertEquals(2,listGasStation.size());
+	}
 
 	private void assertFalse(boolean exists) {
 		// TODO Auto-generated method stub
@@ -104,8 +117,9 @@ public class GasStationRepositoryTests implements JpaRepository<GasStation,Integ
 
 	@Override
 	public <S extends GasStation> S save(S entity) {
-		// TODO Auto-generated method stub
-		return null;
+		listGasStation.add(entity);
+		
+		return entity;
 	}
 
 	@Override
