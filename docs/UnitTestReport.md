@@ -696,7 +696,7 @@ Version: 1
 
 Coverage panel:
 
-<img src="https://i.postimg.cc/jCYxJ3Sn/coverage.jpg"  border="0">
+<img src="https://i.postimg.cc/q7LrcmR1/coverage.jpg"  border="0">
 
     
 Coverage methods:
