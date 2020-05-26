@@ -91,6 +91,10 @@ UserRepository --> User
     <The last integration step corresponds to API testing at level of Service package>
     <Tests at level of Controller package will be done later>
 
+The approach is bottom up. 
+Step 1: Repository classes
+Step 2: Repository + Converters
+Step 3: Repository + Converters + Serviceimpl
 
 
 #  Tests
