@@ -1,7 +1,5 @@
 package it.polito.ezgas.repository;
 
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
@@ -57,6 +55,22 @@ public class GasStationRepositoryTests implements JpaRepository<GasStation,Integ
 		assertEquals(1,listGasStation.size());
 		delete(2);
 		assertEquals(0,listGasStation.size());
+	}
+	
+	@Test
+	public void testFindAll() {
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
+				"BlaBlaCar",110.574,81.320,1.25,1.55,0,0,0.90,null,null,0);
+		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,
+				"BlaBlaCar",110.649,87.550,0,0,1.25,1.55,0,null,null,0);
+		
+		gasStation1.setGasStationId(1);
+		gasStation2.setGasStationId(2);
+		
+		listGasStation.add(gasStation1);
+		listGasStation.add(gasStation2);
+		
+		assertEquals(2,findAll().size());
 	}
 
 	private void assertFalse(boolean exists) {
@@ -163,7 +177,7 @@ public class GasStationRepositoryTests implements JpaRepository<GasStation,Integ
 	@Override
 	public List<GasStation> findAll() {
 		// TODO Auto-generated method stub
-		return null;
+		return listGasStation;
 	}
 
 	@Override
