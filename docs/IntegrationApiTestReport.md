@@ -108,6 +108,12 @@ UserRepository --> User
 ||testFindAll()|Stubs|
 ||testFindOne()|Stubs|
 ||testSave()|Stubs|
+|GasStationRepository|testExist()|Stubs|
+||testDelete()|Stubs|
+||testFindAll()|Stubs|
+||testfindOne()|Stubs|
+||testsave()|Stubs|
+
 
 ## Step 2
 | Classes  | JUnit test cases |Logical definition|
@@ -143,8 +149,7 @@ UserRepository --> User
 ||testDecreaseUserReputationExistingUsers()||
 ||testDecreaseUserReputationNegativeUserId()||
 ||testDecreaseUserReputationReachingMin()||
-|GasStationRepository + GasStationConverter + GasStationServiceimpl|||
-||testgetGasStationByIdEmptyDatabase()||
+|GasStationRepository + GasStationConverter + GasStationServiceimpl|testgetGasStationByIdEmptyDatabase()|Mock|
 ||testgetGasStationByIdExistingGasStation()||
 ||testgetGasStationByIdNegativeUserId()||
 ||testSaveGasStationNewOne()||
