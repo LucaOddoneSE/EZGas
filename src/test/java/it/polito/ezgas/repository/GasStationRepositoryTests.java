@@ -1,5 +1,7 @@
 package it.polito.ezgas.repository;
 
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
@@ -36,6 +38,25 @@ public class GasStationRepositoryTests implements JpaRepository<GasStation,Integ
 		assertTrue(exists(2));
 		assertFalse(exists(100));
 		
+	}
+	
+	@Test
+	public void testDelete() {
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
+				"BlaBlaCar",110.574,81.320,1.25,1.55,0,0,0.90,null,null,0);
+		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,
+				"BlaBlaCar",110.649,87.550,0,0,1.25,1.55,0,null,null,0);
+		
+		gasStation1.setGasStationId(1);
+		gasStation2.setGasStationId(2);
+		
+		listGasStation.add(gasStation1);
+		listGasStation.add(gasStation2);
+		
+		delete(1);
+		assertEquals(1,listGasStation.size());
+		delete(2);
+		assertEquals(0,listGasStation.size());
 	}
 
 	private void assertFalse(boolean exists) {
@@ -81,8 +102,20 @@ public class GasStationRepositoryTests implements JpaRepository<GasStation,Integ
 
 	@Override
 	public void delete(Integer id) {
-		// TODO Auto-generated method stub
+		int flag = 0;
+		Iterator<GasStation> iter = listGasStation.iterator();
+		GasStation gasStation = null;
 		
+		while(iter.hasNext()) {
+			gasStation = iter.next();
+			if(gasStation.getGasStationId() == id) {
+				flag = 1;
+				break;
+			}
+		}
+		if(flag == 1)
+			listGasStation.remove(gasStation);
+		return ;
 	}
 
 	@Override
