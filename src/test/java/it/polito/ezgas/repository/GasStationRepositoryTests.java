@@ -72,6 +72,24 @@ public class GasStationRepositoryTests implements JpaRepository<GasStation,Integ
 		
 		assertEquals(2,findAll().size());
 	}
+	
+	@Test
+	public void testfindOne() {
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
+				"BlaBlaCar",110.574,81.320,1.25,1.55,0,0,0.90,null,null,0);
+		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,
+				"BlaBlaCar",110.649,87.550,0,0,1.25,1.55,0,null,null,0);
+		
+		gasStation1.setGasStationId(1);
+		gasStation2.setGasStationId(2);
+		
+		listGasStation.add(gasStation1);
+		listGasStation.add(gasStation2);
+		
+		assertEquals(1,findOne(1).getGasStationId());
+		assertEquals(2,findOne(2).getGasStationId());
+		assertNull(findOne(100));
+	}
 
 	private void assertFalse(boolean exists) {
 		// TODO Auto-generated method stub
@@ -92,7 +110,13 @@ public class GasStationRepositoryTests implements JpaRepository<GasStation,Integ
 
 	@Override
 	public GasStation findOne(Integer id) {
-		// TODO Auto-generated method stub
+		Iterator<GasStation> iter = listGasStation.iterator();
+		
+		while(iter.hasNext()) {
+			GasStation gasStation = iter.next();
+			if(gasStation.getGasStationId() == id)
+				return gasStation;
+		}
 		return null;
 	}
 
