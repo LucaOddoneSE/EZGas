@@ -10,6 +10,7 @@ import it.polito.ezgas.service.impl.UserServiceImplStepN;
 import it.polito.ezgas.service.impl.GasStationServiceImplTests;
 import it.polito.ezgas.service.impl.UserServiceImplStep2Tests;
 import it.polito.ezgas.service.impl.UserServiceImplStep3Tests;
+import it.polito.ezgas.converter.GasStationConverterTests;
 import it.polito.ezgas.converter.UserConverterTests;
 import it.polito.ezgas.dto.IdPwTest;
 import it.polito.ezgas.dto.LoginDtoTest;
@@ -19,7 +20,7 @@ import it.polito.ezgas.entity.GasStationTest;
 @SuiteClasses({ UserTest.class, GasStationTest.class, IdPwTest.class, 
 	LoginDtoTest.class, UserServiceImplStepN.class, UserServiceImplStep2Tests.class,
 	UserServiceImplStep3Tests.class, UserConverterTests.class, UserRepositoryTests.class,
-	GasStationServiceImplTests.class})
+	GasStationServiceImplTests.class, GasStationConverterTests.class})
 public class AllTests {
 
 }
