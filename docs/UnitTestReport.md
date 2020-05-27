@@ -18,7 +18,6 @@ Version: 1
 - [User](#PackageEntity-ClassUser)
 - [LoginDto](#PackageDto-ClassLoginDto)
 - [IdPwDto](#PackageDto-ClassIdPwDto)
-- [GasStationServiceimpl](#PackageService.impl-ClassGasStationServiceimpl)
 
 
 # Black Box Unit Tests
@@ -697,7 +696,7 @@ Version: 1
 
 Coverage panel:
 
-<img src="https://i.postimg.cc/jCYxJ3Sn/coverage.jpg"  border="0">
+<img src="https://i.postimg.cc/q7LrcmR1/coverage.jpg"  border="0">
 
     
 Coverage methods:
@@ -838,28 +837,4 @@ Coverage methods:
 | getPw() | - | - | TestIdPwPass() |
 | getPw() | - | - | TestIdPwPass1() |
 | getPw() | - | - | TestIdPwPass2() |
-
-## Package Service.impl - Class GasStationServiceimpl
-
-### Test cases definition
-
-| Unit name | JUnit test case |
-|--|--|
-| saveGasStation() | saveGasStationTest() |
-
-### Code coverage report
-
-Coverage methods:
-
-<img src="https://i.postimg.cc/4d1gLvZj/siSave.jpg" alt="test" border="0">
-
-
-### Loop coverage analysis
-
-|Unit name | Loop rows | Number of iterations | JUnit test case |
-|---|---|---|---|
-| saveGasStation() | - | - | saveGasStationTest() |
-
-
-
 

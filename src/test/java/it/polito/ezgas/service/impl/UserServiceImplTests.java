@@ -22,7 +22,7 @@ import it.polito.ezgas.dto.UserDto;
 import it.polito.ezgas.entity.User;
 import it.polito.ezgas.repository.UserRepository;
 
-public class UserServiceImplStep3Tests {
+public class UserServiceImplTests {
 
 	@Mock
 	private UserServiceimpl userServiceImp = mock(UserServiceimpl.class);
