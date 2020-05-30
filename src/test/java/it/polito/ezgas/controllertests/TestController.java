@@ -33,6 +33,7 @@ public class TestController {
 	/*@Test
 	public void testSaveUser() throws ClientProtocolException, IOException {
 	} */
+	
 	@Test
 	public void testGetAllUsers() throws ClientProtocolException, IOException {
 		HttpUriRequest request = new HttpGet("http://localhost:8080/user/getAllUsers");
@@ -42,7 +43,7 @@ public class TestController {
 		ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		UserDto[] userDtoArray = mapper.readValue(jsonFromResponse, UserDto[].class);
 		
-		assertTrue(userDtoArray.length == 4);
+		assertTrue(userDtoArray.length == 6);
 	}
 	
 	@Test
@@ -51,5 +52,16 @@ public class TestController {
 		HttpResponse response = HttpClientBuilder.create().build().execute(request);
 		
 		assertTrue(response.getStatusLine().getStatusCode() == 200);
+	}
+	
+	//GasStationController
+	@Test
+	public void testgetGasStationById() throws ClientProtocolException, IOException {
+		HttpUriRequest request = new HttpGet("http://localhost:8080/gasstation/getGasStation/2");
+		HttpResponse response = HttpClientBuilder.create().build().execute(request);
+		String jsonFromResponse = EntityUtils.toString(response.getEntity());
+		
+		assertTrue(response.getStatusLine().getStatusCode() == 200);
+		assertTrue(jsonFromResponse.contains("GasStation2"));
 	}
 }
