@@ -12,20 +12,21 @@ This part of the document reports about testing at the GUI level. Tests are end 
 
 ## Coverage of Scenarios and FR
 
-```
-<Complete this table (from IntegrationApiTestReport.md) with the column on the right. In the GUI Test column, report the name of the .py  file with the test case you created.>
-```
 
 ### 
 
 | Scenario ID | Functional Requirements covered | GUI Test(s) |
 | ----------- | ------------------------------- | ----------- | 
-| 1           | FRx                             |             |             
-| 2           | FRy                             |             |             
-| ...         |                                 |             |         
-| ...         |                                 |             |             
-| ...         |                                 |             |             
-| ...         |                                 |             |             
+|  UC1     | FR1.1: Create User Account                             |             |             
+|  UC2     | FR1.1: Modify user account                             |             |             
+|    UC3    |      FR1.1: Delete user account                            |             |         
+|    UC4      |        FR3.1: Create Gas Station                         |             |             
+|      UC5    |           FR3.1: Modify Gas Station information                      |             |             
+|         UC6 |                   FR3.2: Delete Gas Station              |             | 
+|         UC7 |                   FR5.1: Report fuel price for a gas station              |             | 
+|   UC8       |                   FR4.3: Obtain price of fuel for gas stations in a certain geographic area
+|    UC9    |                   FR5.2: Update trust level of price list              |             |             
+|      UC10   |                   FR5.3: Evaluate price              |             |             
 
 
 # REST  API  Testing
