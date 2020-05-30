@@ -15,6 +15,7 @@ import org.junit.Test;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import it.polito.ezgas.dto.GasStationDto;
 import it.polito.ezgas.dto.UserDto;
 
 public class TestController {
@@ -92,8 +93,21 @@ public class TestController {
 		String jsonFromResponse = EntityUtils.toString(response.getEntity());
 		
 		ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-		UserDto[] userDtoArray = mapper.readValue(jsonFromResponse, UserDto[].class);
+		GasStationDto[] gasStationDtoArray = mapper.readValue(jsonFromResponse, GasStationDto[].class);
 		
-		assertTrue(userDtoArray.length == 2);
+		assertTrue(gasStationDtoArray.length == 2);
 	}
+
+	@Test
+	public void testGetGasStationsWithCoordinates() throws ClientProtocolException, IOException {
+		HttpUriRequest request = new HttpGet("http://localhost:8080/gasstation/getGasStationsWithCoordinates/45.5066977/8.128328/Diesel/Car2Go");
+		HttpResponse response = HttpClientBuilder.create().build().execute(request);
+		String jsonFromResponse = EntityUtils.toString(response.getEntity());
+		
+		ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		GasStationDto[] gasStationDtoArray = mapper.readValue(jsonFromResponse, GasStationDto[].class);
+		
+		assertTrue(gasStationDtoArray.length == 2);
+	}
+	
 }
