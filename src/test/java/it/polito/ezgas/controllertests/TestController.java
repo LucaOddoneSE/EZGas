@@ -76,4 +76,12 @@ public class TestController {
 		
 		assertTrue(userDtoArray.length == 5);
 	}
+	
+	@Test
+	public void testDeleteGasStation() throws ClientProtocolException, IOException {
+		HttpUriRequest request = new HttpDelete("http://localhost:8080/gasstation/deleteGasStation/3");
+		HttpResponse response = HttpClientBuilder.create().build().execute(request);
+		
+		assertTrue(response.getStatusLine().getStatusCode() == 200);
+	}
 }
