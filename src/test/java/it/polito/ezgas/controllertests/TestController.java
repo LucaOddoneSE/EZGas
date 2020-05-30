@@ -110,4 +110,16 @@ public class TestController {
 		assertTrue(gasStationDtoArray.length == 2);
 	}
 	
+	@Test
+	public void testGetGasStationsWithoutCoordinates() throws ClientProtocolException, IOException {
+		HttpUriRequest request = new HttpGet("http://localhost:8080/gasstation/getGasStationsWithoutCoordinates/Diesel/Enjoy");
+		HttpResponse response = HttpClientBuilder.create().build().execute(request);
+		String jsonFromResponse = EntityUtils.toString(response.getEntity());
+		
+		ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		GasStationDto[] gasStationDtoArray = mapper.readValue(jsonFromResponse, GasStationDto[].class);
+		
+		assertTrue(gasStationDtoArray.length == 2);
+	}
+	
 }
