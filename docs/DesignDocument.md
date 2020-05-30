@@ -590,24 +590,24 @@ it.polito.ezgas.converter -right[hidden]-> it.polito.ezgas.service
 # Verification traceability matrix
 
 
-|       | GasStationServiceImpl | UserServiceImpl | Administrator | User | AnonymousUser | GasStation | PriceList | CarSharingCompany | GeoPoint |
-|-------|:---------------------:|:---------------:|:-------------:|:----:|:-------------:|:----------:|:---------:|:-----------------:|:--------:|
-| FR1.1 |                       |        X        |       X       |   X  |               |            |           |                   |          |
-| FR1.2 |                       |        X        |       X       |   X  |               |            |           |                   |          |
-| FR1.3 |                       |        X        |       X       |   X  |               |            |           |                   |          |
-| FR1.4 |                       |        X        |       X       |   X  |               |            |           |                   |          |
-| FR2   |                       |        X        |       X       |   X  |               |            |           |                   |          |
-| FR3.1 |           X           |                 |               |      |               |      X     |           |                   |          |
-| FR3.2 |           X           |                 |               |      |               |      X     |           |                   |          |
-| FR3.3 |           X           |                 |               |      |               |      X     |           |                   |          |
-| FR4.1 |           X           |                 |               |      |               |      X     |           |                   |     X    |
-| FR4.2 |           X           |                 |               |      |               |      X     |           |                   |     X    |
-| FR4.3 |           X           |                 |               |      |               |      X     |     X     |                   |     X    |
-| FR4.4 |           X           |                 |               |      |               |      X     |     X     |                   |          |
-| FR4.5 |           X           |                 |               |      |               |      X     |           |         X         |          |
-| FR5.1 |           X           |                 |               |   X  |               |      X     |     X     |                   |          |
-| FR5.2 |                       |                 |               |      |               |      X     |     X     |                   |          |
-| FR5.3 |           X           |                 |               |   X  |               |      X     |     X     |                   |          |
+|       | GasStationServiceImpl | UserServiceImpl | User | GasStation | LoginDTO | IdPw |
+|-------|:---------------------:|:---------------:|:----:|:----------:|:--------:|:----:|
+| FR1.1 |                       |        X        |   X  |            |          |      |
+| FR1.2 |                       |        X        |   X  |            |          |      |
+| FR1.3 |                       |        X        |   X  |            |          |      |
+| FR1.4 |                       |        X        |   X  |            |          |      |
+| FR2   |                       |        X        |   X  |            |     X    |   X  |
+| FR3.1 |           X           |                 |      |      X     |          |      |
+| FR3.2 |           X           |                 |      |      X     |          |      |
+| FR3.3 |           X           |                 |      |      X     |          |      |
+| FR4.1 |           X           |                 |      |      X     |          |      |
+| FR4.2 |           X           |                 |      |      X     |          |      |
+| FR4.3 |           X           |                 |      |      X     |          |      |
+| FR4.4 |           X           |                 |      |      X     |          |      |
+| FR4.5 |           X           |                 |      |      X     |          |      |
+| FR5.1 |           X           |                 |   X  |      X     |          |      |
+| FR5.2 |           X           |                 |   X  |      X     |          |      |
+| FR5.3 |           X           |                 |   X  |      X     |          |      |
 
 The involvment of a class in the it.polito.ezgas.entity package implies the use of the respective class in the converter, dto, repository and controller packages.
 
@@ -626,14 +626,10 @@ Scennario 10.1:
 
 ```plantuml
 @startuml
-UserController -> HomeController : 1: login()
-UserController <- HomeController : 2: login(credentials)
-UserController -> HomeController : 3: map()
-HomeController -> GasStationController : 4: getGasStationByProximity(mylat, mylon)
-UserController -> HomeController : 5: update()
-UserController -> HomeController : 6: admin()
-UserController <- HomeController : 7: getUserById(u2)
-UserController <- HomeController : 8: increaseUserReputation(u2)
+UserController <- HomeController : 1: login(credentials)
+HomeController -> GasStationController : 2: getGasStationByProximity(mylat, mylon)
+UserController <- HomeController : 3: getUserById(u2)
+UserController <- HomeController : 4: increaseUserReputation(u2)
 @enduml
 ```
 
@@ -641,14 +637,10 @@ Scennario 10.2:
 
 ```plantuml
 @startuml
-UserController -> HomeController : 1: login()
-UserController <- HomeController : 2: login(credentials)
-UserController -> HomeController : 3: map()
-HomeController -> GasStationController : 4: getGasStationByProximity(mylat, mylon)
-UserController -> HomeController : 5: update()
-UserController -> HomeController : 6: admin()
-UserController <- HomeController : 7: getUserById(u2)
-UserController <- HomeController : 8: decreaseUserReputation(u2)
+UserController <- HomeController : 1: login(credentials)
+HomeController -> GasStationController : 2: getGasStationByProximity(mylat, mylon)
+UserController <- HomeController : 3: getUserById(u2)
+UserController <- HomeController : 4: decreaseUserReputation(u2)
 @enduml
 ```
 

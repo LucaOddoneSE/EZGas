@@ -37,9 +37,8 @@ public class GasStationConverter {
 		gasStationDto.setGasPrice(gasStationSource.getGasPrice());
 		gasStationDto.setMethanePrice(gasStationSource.getMethanePrice());
 		gasStationDto.setReportUser(gasStationSource.getReportUser());
-		if(gasStationSource.getUser() == null){
-			System.out.println("No user in gas station");
-		}else{
+		if(gasStationSource.getUser() == null){}
+		else {
 			gasStationDto.setUserDto(userConverter.toUserDto(gasStationSource.getUser()));
 		}
 		gasStationDto.setReportTimestamp(gasStationSource.getReportTimestamp());
@@ -68,9 +67,8 @@ public class GasStationConverter {
 		gasStation.setGasPrice(gasStationDtoSource.getGasPrice());
 		gasStation.setMethanePrice(gasStationDtoSource.getMethanePrice());
 		gasStation.setReportUser(gasStationDtoSource.getReportUser());
-		if(gasStationDtoSource.getUserDto() == null){
-			System.out.println("No user in gas station");
-		}else{
+		if(gasStationDtoSource.getUserDto() == null) {}
+		else {
 			gasStation.setUser(userConverter.toUser(gasStationDtoSource.getUserDto()));
 		}
 		gasStation.setReportTimestamp(gasStationDtoSource.getReportTimestamp());
