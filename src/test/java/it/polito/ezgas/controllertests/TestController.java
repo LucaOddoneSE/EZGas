@@ -84,4 +84,16 @@ public class TestController {
 		
 		assertTrue(response.getStatusLine().getStatusCode() == 200);
 	}
+	
+	@Test
+	public void testGetGasStationsByGasolineType() throws ClientProtocolException, IOException {
+		HttpUriRequest request = new HttpGet("http://localhost:8080/gasstation/searchGasStationByGasolineType/Diesel");
+		HttpResponse response = HttpClientBuilder.create().build().execute(request);
+		String jsonFromResponse = EntityUtils.toString(response.getEntity());
+		
+		ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		UserDto[] userDtoArray = mapper.readValue(jsonFromResponse, UserDto[].class);
+		
+		assertTrue(userDtoArray.length == 2);
+	}
 }
