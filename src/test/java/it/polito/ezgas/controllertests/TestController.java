@@ -45,4 +45,11 @@ public class TestController {
 		assertTrue(userDtoArray.length == 4);
 	}
 	
+	@Test
+	public void testDeleteUser() throws ClientProtocolException, IOException {
+		HttpUriRequest request = new HttpDelete("http://localhost:8080/user/deleteUser/3");
+		HttpResponse response = HttpClientBuilder.create().build().execute(request);
+		
+		assertTrue(response.getStatusLine().getStatusCode() == 200);
+	}
 }
