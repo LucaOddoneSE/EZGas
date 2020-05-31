@@ -177,4 +177,12 @@ public class TestController {
 		assertTrue(gasStationDtoArray.length == 2);
 	}
 	
+	@Test
+	public void testSetReport() throws ClientProtocolException, IOException {
+		HttpPost request = new HttpPost("http://localhost:8080/gasstation/setGasStationReport/1/1.15/1.49/1.78/0.83/0.98/2");
+		
+		HttpResponse response = HttpClientBuilder.create().build().execute(request);
+		assertTrue(response.getStatusLine().getStatusCode() == 200);
+	}
+	
 }
