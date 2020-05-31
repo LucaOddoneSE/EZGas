@@ -99,6 +99,14 @@ public class TestController {
 		assertTrue(response.getStatusLine().getStatusCode() == 200);
 	}
 	
+	@Test
+	public void testIncreaseUserReputation() throws ClientProtocolException, IOException {
+		HttpUriRequest request = new HttpPost("http://localhost:8080/user/increaseUserReputation/2");
+		HttpResponse response = HttpClientBuilder.create().build().execute(request);
+		
+		assertTrue(response.getStatusLine().getStatusCode() == 200);
+	}
+	
 	//GasStationController
 	@Test
 	public void testGetGasStationById() throws ClientProtocolException, IOException {
