@@ -24,6 +24,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
 import it.polito.ezgas.dto.GasStationDto;
+import it.polito.ezgas.dto.IdPw;
 import it.polito.ezgas.dto.UserDto;
 import it.polito.ezgas.entity.GasStation;
 import it.polito.ezgas.entity.User;
@@ -75,6 +76,25 @@ public class TestController {
 	public void testDeleteUser() throws ClientProtocolException, IOException {
 		HttpUriRequest request = new HttpDelete("http://localhost:8080/user/deleteUser/3");
 		HttpResponse response = HttpClientBuilder.create().build().execute(request);
+		
+		assertTrue(response.getStatusLine().getStatusCode() == 200);
+	}
+	
+	@Test
+	public void testLogin() throws ClientProtocolException, IOException {
+		CloseableHttpClient client = HttpClients.createDefault();
+		HttpPost request = new HttpPost("http://localhost:8080/user/login");
+		
+		Gson gson = new Gson();
+		
+		String json = gson.toJson(new IdPw("lucaoddone@polito.it","lucaoddone"));
+		StringEntity stringEntity = new StringEntity(json);
+		
+		request.setEntity(stringEntity);
+		request.setHeader("Accept", "application/json");
+		request.setHeader("Content-type","application/json");
+		
+		CloseableHttpResponse response = client.execute(request);
 		
 		assertTrue(response.getStatusLine().getStatusCode() == 200);
 	}
