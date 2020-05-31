@@ -3,20 +3,29 @@ package it.polito.ezgas.controllertests;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.junit.Test;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 
 import it.polito.ezgas.dto.GasStationDto;
 import it.polito.ezgas.dto.UserDto;
+import it.polito.ezgas.entity.GasStation;
 
 public class TestController {
 	
@@ -30,10 +39,6 @@ public class TestController {
 		assertTrue(response.getStatusLine().getStatusCode() == 200);
 		assertTrue(jsonFromResponse.contains("lucaoddone@polito.it"));
 	}
-	
-	/*@Test
-	public void testSaveUser() throws ClientProtocolException, IOException {
-	} */
 	
 	@Test
 	public void testGetAllUsers() throws ClientProtocolException, IOException {
@@ -76,6 +81,25 @@ public class TestController {
 		UserDto[] userDtoArray = mapper.readValue(jsonFromResponse, UserDto[].class);
 		
 		assertTrue(userDtoArray.length == 5);
+	}
+	
+	@Test
+	public void testSaveGasStation() throws ClientProtocolException, IOException {
+		CloseableHttpClient client = HttpClients.createDefault();
+		HttpPost request = new HttpPost("http://localhost:8080/gasstation/saveGasStation");
+		Gson gson = new Gson();
+		
+		String json = gson.toJson(new GasStation("GasStationTests","Vicolo Pizzo Viverone Piemont Italy",
+				true,true,false,false,true,"Car2Go",45.4238727,8.0569984,1.25,1.55,1.175,0.85,1.11,null,null,0));
+		StringEntity stringEntity = new StringEntity(json);
+		
+		request.setEntity(stringEntity);
+		request.setHeader("Accept", "application/json");
+		request.setHeader("Content-type","application/json");
+		
+		CloseableHttpResponse response = client.execute(request);
+		
+		assertTrue(response.getStatusLine().getStatusCode() == 200);
 	}
 	
 	@Test
