@@ -3,8 +3,6 @@ package it.polito.ezgas.controllertests;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -18,6 +16,7 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.junit.Test;
+import org.junit.jupiter.api.Order;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -32,6 +31,7 @@ import it.polito.ezgas.entity.User;
 public class TestController {
 	
 	//UserController
+	@Order(1)
 	@Test
 	public void testGetUserById() throws ClientProtocolException, IOException {
 		HttpUriRequest request = new HttpGet("http://localhost:8080/user/getUser/2");
@@ -42,6 +42,7 @@ public class TestController {
 		assertTrue(jsonFromResponse.contains("lucaoddone@polito.it"));
 	}
 	
+	@Order(2)
 	@Test
 	public void testGetAllUsers() throws ClientProtocolException, IOException {
 		HttpUriRequest request = new HttpGet("http://localhost:8080/user/getAllUsers");
@@ -54,6 +55,7 @@ public class TestController {
 		assertTrue(userDtoArray.length == 6);
 	}
 	
+	@Order(3)
 	@Test
 	public void testSaveUser() throws ClientProtocolException, IOException {
 		CloseableHttpClient client = HttpClients.createDefault();
@@ -72,6 +74,7 @@ public class TestController {
 		assertTrue(response.getStatusLine().getStatusCode() == 200);
 	}
 	
+	@Order(4)
 	@Test
 	public void testDeleteUser() throws ClientProtocolException, IOException {
 		HttpUriRequest request = new HttpDelete("http://localhost:8080/user/deleteUser/3");
@@ -80,6 +83,7 @@ public class TestController {
 		assertTrue(response.getStatusLine().getStatusCode() == 200);
 	}
 	
+	@Order(5)
 	@Test
 	public void testLogin() throws ClientProtocolException, IOException {
 		CloseableHttpClient client = HttpClients.createDefault();
@@ -99,6 +103,7 @@ public class TestController {
 		assertTrue(response.getStatusLine().getStatusCode() == 200);
 	}
 	
+	@Order(6)
 	@Test
 	public void testIncreaseUserReputation() throws ClientProtocolException, IOException {
 		HttpUriRequest request = new HttpPost("http://localhost:8080/user/increaseUserReputation/2");
@@ -107,6 +112,7 @@ public class TestController {
 		assertTrue(response.getStatusLine().getStatusCode() == 200);
 	}
 	
+	@Order(7)
 	@Test
 	public void testDecreaseUserReputation() throws ClientProtocolException, IOException {
 		HttpUriRequest request = new HttpPost("http://localhost:8080/user/decreaseUserReputation/1");
@@ -116,6 +122,8 @@ public class TestController {
 	}
 	
 	//GasStationController
+	
+	@Order(8)
 	@Test
 	public void testGetGasStationById() throws ClientProtocolException, IOException {
 		HttpUriRequest request = new HttpGet("http://localhost:8080/gasstation/getGasStation/2");
@@ -126,6 +134,7 @@ public class TestController {
 		assertTrue(jsonFromResponse.contains("GasStation2"));
 	}
 	
+	@Order(9)
 	@Test
 	public void testGetAllGasStations() throws ClientProtocolException, IOException {
 		HttpUriRequest request = new HttpGet("http://localhost:8080/gasstation/getAllGasStations");
@@ -138,6 +147,7 @@ public class TestController {
 		assertTrue(userDtoArray.length == 5);
 	}
 	
+	@Order(10)
 	@Test
 	public void testSaveGasStation() throws ClientProtocolException, IOException {
 		CloseableHttpClient client = HttpClients.createDefault();
@@ -157,6 +167,7 @@ public class TestController {
 		assertTrue(response.getStatusLine().getStatusCode() == 200);
 	}
 	
+	@Order(11)
 	@Test
 	public void testDeleteGasStation() throws ClientProtocolException, IOException {
 		HttpUriRequest request = new HttpDelete("http://localhost:8080/gasstation/deleteGasStation/3");
@@ -165,6 +176,7 @@ public class TestController {
 		assertTrue(response.getStatusLine().getStatusCode() == 200);
 	}
 	
+	@Order(12)
 	@Test
 	public void testGetGasStationsByGasolineType() throws ClientProtocolException, IOException {
 		HttpUriRequest request = new HttpGet("http://localhost:8080/gasstation/searchGasStationByGasolineType/Diesel");
@@ -174,9 +186,10 @@ public class TestController {
 		ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		GasStationDto[] gasStationDtoArray = mapper.readValue(jsonFromResponse, GasStationDto[].class);
 		
-		assertTrue(gasStationDtoArray.length == 2);
+		assertTrue(gasStationDtoArray.length == 3);
 	}
 	
+	@Order(13)
 	@Test
 	public void testGetGasStationByProximity() throws ClientProtocolException, IOException {
 		HttpUriRequest request = new HttpGet("http://localhost:8080/gasstation/searchGasStationByProximity/45.5066977/8.128328");
@@ -189,6 +202,7 @@ public class TestController {
 		assertTrue(gasStationDtoArray.length == 2);
 	}
 	
+	@Order(14)
 	@Test
 	public void testGetGasStationsWithCoordinates() throws ClientProtocolException, IOException {
 		HttpUriRequest request = new HttpGet("http://localhost:8080/gasstation/getGasStationsWithCoordinates/45.5066977/8.128328/Diesel/Car2Go");
@@ -201,6 +215,7 @@ public class TestController {
 		assertTrue(gasStationDtoArray.length == 2);
 	}
 	
+	@Order(15)
 	@Test
 	public void testGetGasStationsWithoutCoordinates() throws ClientProtocolException, IOException {
 		HttpUriRequest request = new HttpGet("http://localhost:8080/gasstation/getGasStationsWithoutCoordinates/Diesel/Enjoy");
@@ -213,6 +228,7 @@ public class TestController {
 		assertTrue(gasStationDtoArray.length == 2);
 	}
 	
+	@Order(16)
 	@Test
 	public void testSetReport() throws ClientProtocolException, IOException {
 		HttpPost request = new HttpPost("http://localhost:8080/gasstation/setGasStationReport/1/1.15/1.49/1.78/0.83/0.98/2");
