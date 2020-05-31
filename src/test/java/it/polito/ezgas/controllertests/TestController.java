@@ -142,7 +142,7 @@ public class TestController {
 		String jsonFromResponse = EntityUtils.toString(response.getEntity());
 		
 		ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-		UserDto[] userDtoArray = mapper.readValue(jsonFromResponse, UserDto[].class);
+		GasStationDto[] userDtoArray = mapper.readValue(jsonFromResponse, GasStationDto[].class);
 		
 		assertTrue(userDtoArray.length == 5);
 	}
@@ -186,7 +186,7 @@ public class TestController {
 		ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		GasStationDto[] gasStationDtoArray = mapper.readValue(jsonFromResponse, GasStationDto[].class);
 		
-		assertTrue(gasStationDtoArray.length == 3);
+		assertTrue(gasStationDtoArray.length == 4);
 	}
 	
 	@Order(13)
