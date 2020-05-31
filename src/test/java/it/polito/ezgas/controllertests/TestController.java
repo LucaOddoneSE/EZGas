@@ -26,6 +26,7 @@ import com.google.gson.Gson;
 import it.polito.ezgas.dto.GasStationDto;
 import it.polito.ezgas.dto.UserDto;
 import it.polito.ezgas.entity.GasStation;
+import it.polito.ezgas.entity.User;
 
 public class TestController {
 	
@@ -50,6 +51,24 @@ public class TestController {
 		UserDto[] userDtoArray = mapper.readValue(jsonFromResponse, UserDto[].class);
 		
 		assertTrue(userDtoArray.length == 6);
+	}
+	
+	@Test
+	public void testSaveUser() throws ClientProtocolException, IOException {
+		CloseableHttpClient client = HttpClients.createDefault();
+		HttpPost request = new HttpPost("http://localhost:8080/user/saveUser");
+		Gson gson = new Gson();
+		
+		String json = gson.toJson(new User("UserRestAPITests","password","restAPItests@polito.it", 0));
+		StringEntity stringEntity = new StringEntity(json);
+		
+		request.setEntity(stringEntity);
+		request.setHeader("Accept", "application/json");
+		request.setHeader("Content-type","application/json");
+		
+		CloseableHttpResponse response = client.execute(request);
+		
+		assertTrue(response.getStatusLine().getStatusCode() == 200);
 	}
 	
 	@Test
@@ -89,7 +108,7 @@ public class TestController {
 		HttpPost request = new HttpPost("http://localhost:8080/gasstation/saveGasStation");
 		Gson gson = new Gson();
 		
-		String json = gson.toJson(new GasStation("GasStationTests","Vicolo Pizzo Viverone Piemont Italy",
+		String json = gson.toJson(new GasStation("GasStationRestAPITests","Vicolo Pizzo Viverone Piemont Italy",
 				true,true,false,false,true,"Car2Go",45.4238727,8.0569984,1.25,1.55,1.175,0.85,1.11,null,null,0));
 		StringEntity stringEntity = new StringEntity(json);
 		
