@@ -192,7 +192,7 @@ public class TestController {
 	@Order(13)
 	@Test
 	public void testGetGasStationByProximity() throws ClientProtocolException, IOException {
-		HttpUriRequest request = new HttpGet("http://localhost:8080/gasstation/searchGasStationByProximity/45.5066977/8.128328");
+		HttpUriRequest request = new HttpGet("http://localhost:8080/gasstation/searchGasStationByProximity/45.5066977/8.128328/");
 		HttpResponse response = HttpClientBuilder.create().build().execute(request);
 		String jsonFromResponse = EntityUtils.toString(response.getEntity());
 		
@@ -206,19 +206,6 @@ public class TestController {
 	@Test
 	public void testGetGasStationsWithCoordinates() throws ClientProtocolException, IOException {
 		HttpUriRequest request = new HttpGet("http://localhost:8080/gasstation/getGasStationsWithCoordinates/45.5066977/8.128328/Diesel/Car2Go");
-		HttpResponse response = HttpClientBuilder.create().build().execute(request);
-		String jsonFromResponse = EntityUtils.toString(response.getEntity());
-		
-		ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-		GasStationDto[] gasStationDtoArray = mapper.readValue(jsonFromResponse, GasStationDto[].class);
-		
-		assertTrue(gasStationDtoArray.length == 2);
-	}
-	
-	@Order(15)
-	@Test
-	public void testGetGasStationsWithoutCoordinates() throws ClientProtocolException, IOException {
-		HttpUriRequest request = new HttpGet("http://localhost:8080/gasstation/getGasStationsWithoutCoordinates/Diesel/Enjoy");
 		HttpResponse response = HttpClientBuilder.create().build().execute(request);
 		String jsonFromResponse = EntityUtils.toString(response.getEntity());
 		
