@@ -300,9 +300,10 @@ UserRepository --> User
 |  2     | AU looks for gas station in the radius of GP |
 |  3     | AU gets fuel prices |
 |  4     | AU updates fuel prices if it's null |
+|  5     | System calculates and update trust level of price list |
 
 ## Scenario UC8.2
-| Scenario | Obtain price of fuel type for gas stations in a certain geographic area |
+| Scenario | Obtain prices of a fuel type for gas stations in a certain geographic area |
 | ------------- |:-------------:| 
 |  Precondition     | Anonymous user AU wants to check fuel price |
 |  Post condition     | Fuel price of gas station is shown |
@@ -311,9 +312,10 @@ UserRepository --> User
 |  2     | AU looks for gas station in the radius of GP with this fuel type |
 |  3     | AU gets fuel prices |
 |  4     | AU updates fuel prices if it's null |
+|  5     | System calculates and update trust level of price list |
 
 ## Scenario UC8.3
-| Scenario | Obtain price of fuel for gas stations in a certain geographic area and car sharing |
+| Scenario | Obtain price of fuel for gas stations in a certain geographic area and with a car sharing |
 | ------------- |:-------------:| 
 |  Precondition     | Anonymous user AU wants to check fuel price by car sharing |
 |  Post condition     | Fuel price of gas station is shown |
@@ -322,28 +324,31 @@ UserRepository --> User
 |  2     | AU looks for gas station in the radius of GP with this car sharing |
 |  3     | AU gets fuel prices |
 |  4     | AU updates fuel prices if it's null |
+|  5     | System calculates and update trust level of price list |
 
 ## Scenario UC8.4
-| Scenario | Obtain price of fuel for gas stations in a certain geographic area sorted by price |
+| Scenario | Obtain prices of a fuel type for gas stations in a certain geographic area sorted by price |
 | ------------- |:-------------:| 
 |  Precondition     | Anonymous user AU wants to check fuel price shorted by price |
 |  Post condition     | Fuel price of gas station is shown |
 | Step#        | Description  |
 |  1     | AU selects a GP |  
-|  2     | AU looks for gas station in the radius of GP |
-|  3     | AU gets fuel prices |
+|  2     | AU looks for gas station in the radius of GP with this fuel type |
+|  3     | AU gets fuel prices sorted by price |
 |  4     | AU updates fuel prices if it's null |
+|  5     | System calculates and update trust level of price list |
 
 ## Scenario UC8.5
-| Scenario | Obtain price of fuel for gas stations in a certain geographic area sorted by discance |
+| Scenario | Obtain prices of a fuel type for gas stations in a certain geographic area sorted by discance |
 | ------------- |:-------------:| 
 |  Precondition     | Anonymous user AU wants to check fuel price by proximity |
 |  Post condition     | Fuel price of gas station is shown |
 | Step#        | Description  |
 |  1     | AU selects a GP |  
-|  2     | AU looks for gas station in the radius of GP sorted by distance |
-|  3     | AU gets fuel prices |
+|  2     | AU looks for gas station in the radius of GP with this fuel type |
+|  3     | AU gets fuel prices sorted by distance |
 |  4     | AU updates fuel prices if it's null |
+|  5     | System calculates and update trust level of price list |
 
 
 ## Scenario UC9.1
@@ -352,7 +357,7 @@ UserRepository --> User
 |  Precondition     | Anonymous user AU updates fuel price |
 |  Post condition     | Trust level of price list is updated |
 | Step#        | Description  |
-|  1     | AU selects fuel in a gas station |  
+|  1     | AU selects fuel in a gas station in the radius of GP |  
 |  2     | AU updates fuel price |
 |  3     | System calculates and update trust level of price list |
 
@@ -360,25 +365,25 @@ UserRepository --> User
 
 # Coverage of Scenarios and FR
 
-
-
-
 | Scenario ID | Functional Requirements covered | JUnit  Test(s) | 
 | ----------- | ------------------------------- | ----------- | 
-|  1.1        | FR1.1, FR3.3, FR5.1             | testsaveUserNewUsers(), testsetReport() |             
-|  1.2        | FR1.1, FR2                      | testsaveUserNewUsers(), testLogin() |                      
-|  2.1        | Not included in the official requirements                               | testIncreaseUserReputationExistingUsers() |             
-|  2.2        | Not included in the official requirements                                | testIncreaseUserReputationNegativeUserId() |      
-|  3.1        | Not included in the official requirements                                | testDecreaseUserReputationExistingUsers() |
-|  3.2        | FR1.2                           | testdeleteUser() |             
-|  4.1        | FR3.2                           | testDeleteGasStation() |            
-|  5.1        | FR3.2                           | testDeleteGasStationInvalidGasStationException() |   
-|  6.1        | FR3.2                           | testDeleteGasStationInvalidGasStationException() |   
-|  7.1        | FR3.2                           | testDeleteGasStationInvalidGasStationException() |   
-|  7.2        | FR3.2                           | testDeleteGasStationInvalidGasStationException() | 
-|  7.2        | FR3.2                           | testDeleteGasStationInvalidGasStationException() | 
-|  7.2        | FR3.2                           | testDeleteGasStationInvalidGasStationException() | 
-|  7.2        | FR3.2                           | testDeleteGasStationInvalidGasStationException() | 
+|  1.1   | FR1.1   | testsaveUserNewUsers() |             
+|  1.2   | FR1.1   | testsaveUserNewUsers() |                      
+|  2.1   | FR1.1   | testLogin(), testsaveUserNewUsers() |             
+|  2.2   | FR1.1 FR1.4  | testLogin(), testGetUserById(), testsaveUserNewUsers() |      
+|  3.1   | FR1.2   | testLogin(), testdeleteUser() |
+|  3.2   | FR1.2 FR1.4  | testLogin(), testGetUserById(), testdeleteUser() |             
+|  4.1   | FR3.1   | testLogin(), testSaveGasStationNewOne() |            
+|  5.1   | FR3.1   | testLogin(), testgetGasStationByIdExistingGasStation(), testSaveGasStationNewOne() |   
+|  6.1   | FR3.2   | testLogin(), testgetGasStationByIdExistingGasStation(), testDeleteGasStation() |   
+|  7.1   | FR5.1 FR5.1  | testLogin(), testgetGasStationByIdExistingGasStation(), testsetReport() |   
+|  7.2   | FR5.1   | testLogin(), testgetGasStationByIdExistingGasStation(), testsetReport() | 
+|  8.1   | FR4.1 FR5.1 FR5.2    | testgetGasStationsWithCoordinates(), testsetReport(), testIncreaseUserReputationExistingUsers() | 
+|  8.2   | FR4.3 FR5.1 FR5.2    | testGasStationsByGasolineType(), testsetReport(), testIncreaseUserReputationExistingUsers() | 
+|  8.3   | FR3.5 FR5.1 FR5.2    | testgetGasStationByCarSharing(), testsetReport(), testIncreaseUserReputationExistingUsers() |
+|  8.4   | FR3.4 FR5.1 FR5.2    | testGasStationsByGasolineType(), testsetReport(), testIncreaseUserReputationExistingUsers() |
+|  8.5   | FR3.3 FR5.1 FR5.2    | testgetGasStationsByProximity(), testsetReport(), testIncreaseUserReputationExistingUsers() |
+|  9.1   | FR4.1 FR5.1 FR5.2    | testgetGasStationsWithCoordinates(), testsetReport(), testIncreaseUserReputationExistingUsers() |
 
 # Coverage of Non Functional Requirements
 
