@@ -175,123 +175,187 @@ UserRepository --> User
 
 # Scenarios
 
-
 ## Scenario UC1.1
-
-| Scenario | Create new user and update fuel price in gas station |
+| Scenario | Create user account |
 | ------------- |:-------------:| 
-|  Precondition     | User doesn't exist |
-|  Post condition     | User exists and change fuel price |
+|  Precondition     | User doesn't have an account |
+|  Post condition     | User has an account |
 | Step#        | Description  |
-|  1     | Introduce name, password email |  
-|  2     | Create account saving user in databse |
-|  3     | Log in with same values |
-|  4     | Access to his/her account |
-|  5     | Get list of all gas stations |
-|  6     | Select gas station required by its id |
-|  7     | Updates the fuel price in this gas station |
-
+|  1     | User introduces email, password, name |  
+|  2     | Account is created successfully |
 
 ## Scenario UC1.2
-
-| Scenario | Save user and cannot log in because introduces wrong password and email |
+| Scenario | Create another user account with same email |
 | ------------- |:-------------:| 
-|  Precondition     | User doesn't exist |
-|  Post condition     | User exists and cannot access to his/her account |
+|  Precondition     | User has an account |
+|  Post condition     | Don't create a new account |
 | Step#        | Description  |
-|  1     | Introduce name, password, email |  
-|  2     | Create account saving user in databse |
-|  3     | Log in with the same values instead of password and email |
-|  4     | Cannot access to his/her account |
+|  1     | User introduces same email |  
+|  2     | Account isn't created because this user is already in the database |
 
 
 ## Scenario UC2.1
-
-| Scenario | Increase user reputation |
+| Scenario | Modify user account |
 | ------------- |:-------------:| 
-|  Precondition     | Correct fuel price |
-|  Post condition     | User reputation higher than before |
+|  Precondition     | User wants to change some fields in his/her account |
+|  Post condition     | User updates the account |
 | Step#        | Description  |
-|  1     | Log in |
-|  2     | Access to his/her account |
-|  3     | Get list of all gas stations |
-|  4     | Select gas station required by its id and check the fuel price |
-|  5     | Get list of all users |
-|  6     | Select user required |
-|  7     | Increase selected user reputation |
-
+|  1     | User logs in his/her account |  
+|  2     | User change fields in his/her account |
+|  3     | Account is updated successfully |
 
 ## Scenario UC2.2
-
-| Scenario | Increase user reputation - error negative user id |
+| Scenario | Administrator modifies user account |
 | ------------- |:-------------:| 
-|  Precondition     | Correct fuel price |
-|  Post condition     | Cannot find user because it's a negative id |
+|  Precondition     | Admin wants to change some fields in U account |
+|  Post condition     | Admin updates U account |
 | Step#        | Description  |
-|  1     | Log in |
-|  2     | Access to his/her account |
-|  3     | Get list of all gas stations |
-|  4     | Select gas station required by its id and check the fuel price |
-|  5     | Get list of all users |
-|  6     | Select user required |
-|  7     | Exception negative user id |
-
-
-## Scenario UC2.3
-
-| Scenario | Increase user reputation |
-| ------------- |:-------------:| 
-|  Precondition     | Wrong fuel price |
-|  Post condition     | Cannot increase user reputation |
-| Step#        | Description  |
-|  1     | Log in |
-|  2     | Access to his/her account |
-|  3     | Get list of all gas stations |
-|  4     | Select gas station required by its id and check the fuel price |
-|  5     | Get list of all users |
-|  6     | Select user required |
-|  7     | Decrease selected user reputation |
+|  1     | Admin logs in his/her account | 
+|  2     | Admin looks for user | 
+|  3     | Admin change some fields in user account |
+|  4     | Account is update successfully |
 
 
 ## Scenario UC3.1
-
-| Scenario | Delete user |
+| Scenario | Delete user account |
 | ------------- |:-------------:| 
-|  Precondition     | User exists |
-|  Post condition     | User doesn't exist |
+|  Precondition     | User wants to delete his/her account |
+|  Post condition     | User account doen't exist |
 | Step#        | Description  |
-|  1     | Log in |
-|  2     | Access to his/her account |
-|  3     | Delete his/her account |
+|  1     | User logs in his/her account |  
+|  2     | User deletes his/her account successfully |
 
-
-## Scenatio UC3.2
-
-| Scenario | Delete gas Station |
+## Scenario UC3.2
+| Scenario | Admin deletes user account |
 | ------------- |:-------------:| 
-|  Precondition     | Gas station exists |
-|  Post condition     | Gas station doesn't exist |
+|  Precondition     | Admin wants to delete user account |
+|  Post condition     | User account doen't exist |
 | Step#        | Description  |
-|  1     | Log in |
-|  2     | Access to his/her account |
-|  3     | Get lis of all gas stations |
-|  4     | Select gas station by id |
-|  5     | Delete gas station |
+|  1     | Admin logs in his/her account |  
+|  2     | Admin looks for user |
+|  3     | Admin deletes user account successfully |
 
 
-## Scenario UC3.3
-
-| Scenario | Delete gas Station - Error invalid gas station |
+## Scenario UC4.1
+| Scenario | Create gas station |
 | ------------- |:-------------:| 
-|  Precondition     | Gas station exists |
-|  Post condition     | Gas station still exist because introduced a negative id |
+|  Precondition     | Gas station doesn't exist |
+|  Post condition     | Gas station exist |
 | Step#        | Description  |
-|  1     | Log in |
-|  2     | Access to his/her account |
-|  3     | Get lis of all gas stations |
-|  4     | Select gas station by id |
-|  5     | Delete gas station |
-|  6     | Exception invalid gas station |
+|  1     | Admin logs in his/her account |  
+|  2     | Admin introduce all the information about the gas station |
+|  3     | Gas station is created successfully |
+
+
+## Scenario UC5.1
+| Scenario | Modify Gas Station information |
+| ------------- |:-------------:| 
+|  Precondition     | Admin wants to change some properties of the gas station |
+|  Post condition     | Admin updates gas station properties |
+| Step#        | Description  |
+|  1     | Admin logs in his/her account |  
+|  2     | Admin looks for the gas station |
+|  3     | Admin updates gas station properties successfully |
+
+
+## Scenario UC6.1
+| Scenario | Delete Gas Station |
+| ------------- |:-------------:| 
+|  Precondition     | Admin wants to delete a gas station |
+|  Post condition     | Gas station is deleted |
+| Step#        | Description  |
+|  1     | Admin logs in his/her account |  
+|  2     | Admin looks for the gas station |
+|  3     | Admin deletes gas station successfully |
+
+
+## Scenario UC7.1
+| Scenario | Report fuel price for a gas station |
+| ------------- |:-------------:| 
+|  Precondition     | User wants to report fuel price for a gas station |
+|  Post condition     | Fuel price of gas staton is inserted |
+| Step#        | Description  |
+|  1     | User logs in his/her account |  
+|  2     | User looks for gas station |
+|  3     | User adds fuel prices | 
+
+## Scenario UC7.2
+| Scenario | Report fuel price for a gas station that already exist |
+| ------------- |:-------------:| 
+|  Precondition     | User wants to report fuel price for a gas station |
+|  Post condition     | Fuel price of G is inserted |
+| Step#        | Description  |
+|  1     | User logs in his/her account |  
+|  2     | User looks for gas station |
+|  3     | User updates fuel prices |
+
+
+## Scenario UC8.1
+| Scenario | Obtain price of fuel for gas stations in a certain geographic area |
+| ------------- |:-------------:| 
+|  Precondition     | Anonymous user AU wants to check fuel price by geopoint GP |
+|  Post condition     | Fuel price of gas station is shown |
+| Step#        | Description  |
+|  1     | AU selects a GP |  
+|  2     | AU looks for gas station in the radius of GP |
+|  3     | AU gets fuel prices |
+|  4     | AU updates fuel prices if it's null |
+
+## Scenario UC8.2
+| Scenario | Obtain price of fuel type for gas stations in a certain geographic area |
+| ------------- |:-------------:| 
+|  Precondition     | Anonymous user AU wants to check fuel price |
+|  Post condition     | Fuel price of gas station is shown |
+| Step#        | Description  |
+|  1     | AU selects a GP |  
+|  2     | AU looks for gas station in the radius of GP with this fuel type |
+|  3     | AU gets fuel prices |
+|  4     | AU updates fuel prices if it's null |
+
+## Scenario UC8.3
+| Scenario | Obtain price of fuel for gas stations in a certain geographic area and car sharing |
+| ------------- |:-------------:| 
+|  Precondition     | Anonymous user AU wants to check fuel price by car sharing |
+|  Post condition     | Fuel price of gas station is shown |
+| Step#        | Description  |
+|  1     | AU selects a GP |  
+|  2     | AU looks for gas station in the radius of GP with this car sharing |
+|  3     | AU gets fuel prices |
+|  4     | AU updates fuel prices if it's null |
+
+## Scenario UC8.4
+| Scenario | Obtain price of fuel for gas stations in a certain geographic area sorted by price |
+| ------------- |:-------------:| 
+|  Precondition     | Anonymous user AU wants to check fuel price shorted by price |
+|  Post condition     | Fuel price of gas station is shown |
+| Step#        | Description  |
+|  1     | AU selects a GP |  
+|  2     | AU looks for gas station in the radius of GP |
+|  3     | AU gets fuel prices |
+|  4     | AU updates fuel prices if it's null |
+
+## Scenario UC8.5
+| Scenario | Obtain price of fuel for gas stations in a certain geographic area sorted by discance |
+| ------------- |:-------------:| 
+|  Precondition     | Anonymous user AU wants to check fuel price by proximity |
+|  Post condition     | Fuel price of gas station is shown |
+| Step#        | Description  |
+|  1     | AU selects a GP |  
+|  2     | AU looks for gas station in the radius of GP sorted by distance |
+|  3     | AU gets fuel prices |
+|  4     | AU updates fuel prices if it's null |
+
+
+## Scenario UC9.1
+| Scenario | Update trust level of price list |
+| ------------- |:-------------:| 
+|  Precondition     | Anonymous user AU updates fuel price |
+|  Post condition     | Trust level of price list is updated |
+| Step#        | Description  |
+|  1     | AU selects fuel in a gas station |  
+|  2     | AU updates fuel price |
+|  3     | System calculates and update trust level of price list |
+
 
 
 # Coverage of Scenarios and FR
@@ -305,11 +369,16 @@ UserRepository --> User
 |  1.2        | FR1.1, FR2                      | testsaveUserNewUsers(), testLogin() |                      
 |  2.1        | Not included in the official requirements                               | testIncreaseUserReputationExistingUsers() |             
 |  2.2        | Not included in the official requirements                                | testIncreaseUserReputationNegativeUserId() |      
-|  2.3        | Not included in the official requirements                                | testDecreaseUserReputationExistingUsers() |
-|  3.1        | FR1.2                           | testdeleteUser() |             
-|  3.2        | FR3.2                           | testDeleteGasStation() |            
-|  3.3        | FR3.2                           | testDeleteGasStationInvalidGasStationException() |   
-
+|  3.1        | Not included in the official requirements                                | testDecreaseUserReputationExistingUsers() |
+|  3.2        | FR1.2                           | testdeleteUser() |             
+|  4.1        | FR3.2                           | testDeleteGasStation() |            
+|  5.1        | FR3.2                           | testDeleteGasStationInvalidGasStationException() |   
+|  6.1        | FR3.2                           | testDeleteGasStationInvalidGasStationException() |   
+|  7.1        | FR3.2                           | testDeleteGasStationInvalidGasStationException() |   
+|  7.2        | FR3.2                           | testDeleteGasStationInvalidGasStationException() | 
+|  7.2        | FR3.2                           | testDeleteGasStationInvalidGasStationException() | 
+|  7.2        | FR3.2                           | testDeleteGasStationInvalidGasStationException() | 
+|  7.2        | FR3.2                           | testDeleteGasStationInvalidGasStationException() | 
 
 # Coverage of Non Functional Requirements
 
