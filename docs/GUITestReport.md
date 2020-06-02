@@ -38,11 +38,12 @@ Tests should cover each function of classes in the Controller package
 
 <Report in this table the test cases defined to cover all methods in Controller classes >
 
-| class.method name | Functional Requirements covered |REST  API Test(s)   | 
-| ----------- | -------------------------------  | -----------             | 
-| UserController.saveUser()             | FR1.1  | testSavUser()           |    
-| UserController.deleteUser()           | FR1.2  | testDeleteUser()        |    
-| UserController.testGetAllUsers()      | FR1.3  | testGetAllUsers()       |    
-| UserController.getUserById()          | FR1.4  | testGetUserById()       |    
-| UserController.login()                | FR2    | testLogin()             |    
-| GasStationController.saveGasStation() | FR3.1  | testSaveGasStation()    | 
+| class.method name                                         | Functional Requirements covered |REST  API Test(s)                      | 
+| --------------------------------------------------------- | -------------------------------  | -----------                          | 
+| UserController.saveUser()                                 | FR1.1                            | testSavUser()                        |    
+| UserController.deleteUser()                               | FR1.2                            | testDeleteUser()                     |    
+| UserController.testGetAllUsers()                          | FR1.3                            | testGetAllUsers()                    |    
+| UserController.getUserById()                              | FR1.4                            | testGetUserById()                    |    
+| UserController.login()                                    | FR2                              | testLogin()                          |    
+| GasStationController.saveGasStation()                     | FR3.1                            | testSaveGasStation()                 |
+| GasStationController.deleteGasStation()                   | FR3.2                            | testDeleteGasStation()               |
