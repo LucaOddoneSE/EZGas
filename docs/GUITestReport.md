@@ -39,11 +39,32 @@ Tests should cover each function of classes in the Controller package
 
 <Report in this table the test cases defined to cover all methods in Controller classes >
 
-| class.method name | Functional Requirements covered |REST  API Test(s) | 
-| ----------- | ------------------------------- | ----------- | 
-|  ...           | FRx                             |             |     
-|  ...           | FRy                             |             |             
-| ...         |                                 |             |             
-| ...         |                                 |             |             
-| ...         |                                 |             |             
-| ...         |                                 |             |             
+| class.method name                                         | Functional Requirements covered |REST  API Test(s)                      | 
+| --------------------------------------------------------- | -------------------------------  | -----------                          | 
+| UserController.saveUser()                                 | FR1.1                            | testSaveUser()                        |    
+| UserController.deleteUser()                               | FR1.2                            | testDeleteUser()                     |    
+| UserController.testGetAllUsers()                          | FR1.3                            | testGetAllUsers()                    |    
+| UserController.getUserById()                              | FR1.4                            | testGetUserById()                    |    
+| UserController.login()                                    | FR2                              | testLogin()                          |    
+| GasStationController.saveGasStation()                     | FR3.1                            | testSaveGasStation()                 |
+| GasStationController.deleteGasStation()                   | FR3.2                            | testDeleteGasStation()               |
+| GasStationController.getAllGasStations()                  | FR3.3                            | testGetAllGasStations()              |
+| GasStationController.getGasStationById()                  | FR4                              | testGetGasStationById()              |
+| GasStationController.getGasStationByProximity()           | FR4.1                            | testGetGasStationByProximity()       |
+| GasStationController.getGasStationsWithCoordinates()      | FR4.2                            | testGetGasStationsWithCoordinates()  |
+| -                                                         | FR4.3                            | -                                    |
+| GasStationController.getGasStationsByGasolineType()       | FR4.4                            | testGetGasStationsByGasolineType()   |
+| -                                                         | FR4.5                            | -                                    |
+| GasStationController.setReport()                          | FR5                              | testSetReport()                      |
+| UserController.increaseUserReputation()                   | FR5                              | testIncreaseUserReputation()         |
+| UserController.decreaseUserReputation()                   | FR5                              | testdecreaseUserReputation()         |
+| GasStationController.setReport()                          | FR5.1                            | testSetReport()                      |
+| GasStationController.setReport()                          | FR5.2                            | testSetReport()                      |
+| GasStationController.setReport()                          | FR5.3                            | testSetReport()                      |
+
+
+
+
+
+N.B. the '-' means that the functional requirement is defined but the corresponding method in XClassController does not exist.
+So for this reason it was impossible to map the functional requirement in a method and in a REST API Test. 
