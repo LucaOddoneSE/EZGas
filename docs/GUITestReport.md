@@ -1,10 +1,10 @@
 # GUI  Testing Documentation 
 
-Authors: 
+Authors: Group50
 
-Date: 
+Date: 2 July
 
-Version: 
+Version: 1.1
 
 # GUI testing
 
