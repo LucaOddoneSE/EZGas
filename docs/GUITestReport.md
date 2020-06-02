@@ -48,3 +48,4 @@ Tests should cover each function of classes in the Controller package
 | GasStationController.saveGasStation()                     | FR3.1                            | testSaveGasStation()                 |
 | GasStationController.deleteGasStation()                   | FR3.2                            | testDeleteGasStation()               |
 | GasStationController.getAllGasStations()                  | FR3.3                            | testGetAllGasStations()              |
+| GasStationController.getGasStationByProximity()           | FR4.1                            | testGetGasStationByProximity()       |
