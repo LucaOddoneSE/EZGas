@@ -56,7 +56,9 @@ Tests should cover each function of classes in the Controller package
 | -                                                         | FR4.5                            | -                                    |
 | GasStationController.setReport()                          | FR5                              | testSetReport()                      |
 | UserController.increaseUserReputation()                   | FR5                              | testIncreaseUserReputation()         |
-| UserController.decreaseUserReputation()                   | FR5                              | testdecreaseUserReputation()         | 
+| UserController.decreaseUserReputation()                   | FR5                              | testdecreaseUserReputation()         |
+| GasStationController.setReport()                          | FR5.1                            | testSetReport()                      |
+
 
 
 N.B. the '-' means that the functional requirement is defined but the corresponding method in XClassController does not exist.
