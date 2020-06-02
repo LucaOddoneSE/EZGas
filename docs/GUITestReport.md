@@ -1,10 +1,10 @@
 # GUI  Testing Documentation 
 
-Authors: Luca Oddone
+Authors: 
 
-Date: 06/02/2020
+Date: 
 
-Version: 1.0
+Version: 
 
 # GUI testing
 
