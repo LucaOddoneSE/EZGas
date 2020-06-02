@@ -58,6 +58,8 @@ Tests should cover each function of classes in the Controller package
 | UserController.increaseUserReputation()                   | FR5                              | testIncreaseUserReputation()         |
 | UserController.decreaseUserReputation()                   | FR5                              | testdecreaseUserReputation()         |
 | GasStationController.setReport()                          | FR5.1                            | testSetReport()                      |
+| GasStationController.setReport()                          | FR5.2                            | testSetReport()                      |
+
 
 
 
