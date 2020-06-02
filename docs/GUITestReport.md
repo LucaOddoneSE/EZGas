@@ -40,7 +40,7 @@ Tests should cover each function of classes in the Controller package
 
 | class.method name                                         | Functional Requirements covered |REST  API Test(s)                      | 
 | --------------------------------------------------------- | -------------------------------  | -----------                          | 
-| UserController.saveUser()                                 | FR1.1                            | testSavUser()                        |    
+| UserController.saveUser()                                 | FR1.1                            | testSaveUser()                        |    
 | UserController.deleteUser()                               | FR1.2                            | testDeleteUser()                     |    
 | UserController.testGetAllUsers()                          | FR1.3                            | testGetAllUsers()                    |    
 | UserController.getUserById()                              | FR1.4                            | testGetUserById()                    |    
