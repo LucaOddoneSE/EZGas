@@ -1,10 +1,10 @@
 # GUI  Testing Documentation 
 
-Authors:
+Authors: Luca Oddone
 
-Date:
+Date: 06/02/2020
 
-Version:
+Version: 1.0
 
 # GUI testing
 
@@ -40,7 +40,7 @@ Tests should cover each function of classes in the Controller package
 
 | class.method name | Functional Requirements covered |REST  API Test(s) | 
 | ----------- | ------------------------------- | ----------- | 
-|  ...           | FRx                             |             |     
+| UserController.saveUser()            | FR1.1  | testSavUser()            |     
 |  ...           | FRy                             |             |             
 | ...         |                                 |             |             
 | ...         |                                 |             |             
