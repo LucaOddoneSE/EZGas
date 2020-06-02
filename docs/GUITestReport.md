@@ -52,6 +52,7 @@ Tests should cover each function of classes in the Controller package
 | GasStationController.getGasStationByProximity()           | FR4.1                            | testGetGasStationByProximity()       |
 | GasStationController.getGasStationsWithCoordinates()      | FR4.2                            | testGetGasStationsWithCoordinates()  |
 | -                                                         | FR4.3                            | -                                    |
+| GasStationController.getGasStationsByGasolineType()       | FR4.4                            | testGetGasStationsByGasolineType()   |
 
 
 N.B. the '-' means that the functional requirement is defined but the corresponding method in XClassController does not exist.
