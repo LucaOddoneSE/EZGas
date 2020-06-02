@@ -39,9 +39,9 @@ Tests should cover each function of classes in the Controller package
 <Report in this table the test cases defined to cover all methods in Controller classes >
 
 | class.method name | Functional Requirements covered |REST  API Test(s) | 
-| ----------- | ------------------------------- | ----------- | 
-| UserController.saveUser()            | FR1.1  | testSavUser()            |     
-|  ...           | FRy                             |             |             
+| ----------- | ------------------------------- | -----------            | 
+| UserController.saveUser()            | FR1.1  | testSavUser()          |     
+| UserController.deleteUser()          | FR1.2  |  testDeleteUser()       |             
 | ...         |                                 |             |             
 | ...         |                                 |             |             
 | ...         |                                 |             |             
