@@ -1,0 +1,11 @@
+for i in range(20):
+    type(Key.DOWN)
+wait(1)
+find("1591034554909.png")
+click("1590937491953.png")
+type(Key.UP)
+type(Key.UP)
+type(Key.UP)
+click("1590937685848.png")
+click("1590937716059.png")
+click("1590937744139.png")
