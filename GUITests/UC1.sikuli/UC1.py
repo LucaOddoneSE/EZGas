@@ -1,6 +1,5 @@
 click("1591029208611.png")
 click("1591029232816.png")
-click("1591029257636.png")
 click("1590918624138.png")
 type("fereshteh")
 click("1590920847180.png")
