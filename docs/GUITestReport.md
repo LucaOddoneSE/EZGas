@@ -1,10 +1,10 @@
 # GUI  Testing Documentation 
 
-Authors:
+Authors: 
 
-Date:
+Date: 
 
-Version:
+Version: 
 
 # GUI testing
 
