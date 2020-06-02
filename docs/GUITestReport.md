@@ -51,3 +51,8 @@ Tests should cover each function of classes in the Controller package
 | GasStationController.getGasStationById()                  | FR4                              | testGetGasStationById()              |
 | GasStationController.getGasStationByProximity()           | FR4.1                            | testGetGasStationByProximity()       |
 | GasStationController.getGasStationsWithCoordinates()      | FR4.2                            | testGetGasStationsWithCoordinates()  |
+| -                                                         | FR4.3                            | -                                    |
+
+
+N.B. the '-' means that the functional requirement is defined but the corresponding method in XClassController does not exist.
+So for this reason it was impossible to map the functional requirement in a method and in a REST API Test. 
