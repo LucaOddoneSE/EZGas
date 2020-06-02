@@ -44,5 +44,5 @@ Tests should cover each function of classes in the Controller package
 | UserController.deleteUser()          | FR1.2  | testDeleteUser()       |     
 | UserController.testGetAllUsers()     | FR1.3  | testGetAllUsers()      |      
 | UserController.getUserById()         | FR1.4  | testGetUserById()      |    
-| ...         |                                 |             |             
+| UserController.login()               | FR2    | testLogin()            |             
 | ...         |                                 |             |             
