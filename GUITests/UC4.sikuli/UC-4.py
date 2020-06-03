@@ -1,0 +1,27 @@
+for i in range(10):
+    type(Key.DOWN)
+
+find("1591033453912.png")
+click("1591034008856.png")
+type("GasstationTest")
+find("1591033465580.png")
+click("1591034029494.png")
+type("Giacomo Balla")
+wait(4) # waiting for the address suggestions to show up
+type(Key.DOWN)
+type(Key.ENTER)
+click ("1591033331825.png")
+type(Key.DOWN)
+type(Key.DOWN)
+type(Key.ENTER)
+click("1590937105301.png")
+click("1590937115752.png")
+type(Key.DOWN)
+type(Key.DOWN)
+type(Key.DOWN)
+type(Key.DOWN)
+click("1590937179353.png")
+wait(1)
+for i in range(10):
+    type(Key.DOWN)
+find("1591034324364.png")

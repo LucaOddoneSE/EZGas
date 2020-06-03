@@ -36,21 +36,6 @@ public class GasStationServiceimpl implements GasStationService {
 	@Autowired
 	private UserRepository userRepository;
 
-	public GasStationServiceimpl(GasStationRepository gasStationRepository, GasStationConverter gasStationConverter,
-			UserRepository userRepository) {
-		this.gasStationRepository = gasStationRepository;
-		this.gasStationConverter = gasStationConverter;
-		this.userRepository = userRepository;
-	}
-
-	public GasStationServiceimpl(GasStationRepository gasStationRepository) {
-		this.gasStationRepository = gasStationRepository;
-	}
-
-	public GasStationServiceimpl() {
-
-	}
-
 	@Override
 	public GasStationDto getGasStationById(Integer gasStationId) throws InvalidGasStationException {
 		if(gasStationId<0)
