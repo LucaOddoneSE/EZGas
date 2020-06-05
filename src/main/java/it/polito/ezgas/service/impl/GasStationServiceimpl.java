@@ -323,6 +323,7 @@ public class GasStationServiceimpl implements GasStationService {
 				if(gasStation.getReportTimestamp() == null && gasStation.getReportDependability() == 0) {
 					System.out.println("You're going to report this gasStation for the first time!");
 					gasStation.setReportUser(userId);
+					gasStation.setUser(userRepository.findOne(userId));
 					gasStation.setReportTimestamp(Day.calendarToString());
 					
 					if(gasStation.getHasDiesel())
@@ -352,6 +353,7 @@ public class GasStationServiceimpl implements GasStationService {
 				}
 				else {
 					gasStation.setReportUser(userId);
+					gasStation.setUser(userRepository.findOne(userId));
 					System.out.println("ReportTimestamp: " + gasStation.getReportTimestamp());
 					try {
 						obsolence = (Day.calculateDays(gasStation.getReportTimestamp()));
