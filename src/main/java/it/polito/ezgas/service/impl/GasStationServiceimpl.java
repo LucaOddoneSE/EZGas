@@ -56,6 +56,8 @@ public class GasStationServiceimpl implements GasStationService {
 	@Override
 	public GasStationDto saveGasStation(GasStationDto gasStationDto) throws PriceException, GPSDataException {
 		
+		GasStation gasStation;
+		
 		if(gasStationDto == null) {
 			System.out.println("Error! You have passed a null gasStationDto object!");
 			return null;
@@ -81,9 +83,9 @@ public class GasStationServiceimpl implements GasStationService {
 			gasStationDto.setUserDto(null);
 			gasStationDto.setReportDependability(0);
 			gasStationDto.setReportTimestamp(null);
-			gasStationRepository.save(gasStationConverter.toGasStation(gasStationDto));
+			gasStation = gasStationRepository.save(gasStationConverter.toGasStation(gasStationDto));
 			System.out.println("The GasStation is successfully saved!");
-			return gasStationDto;
+			return gasStationConverter.toGasStationDto(gasStationRepository.findOne(gasStation.getGasStationId()));
 		}
 		
 		if( (gasStationDto.getHasDiesel() && gasStationDto.getDieselPrice() < 0) || 
@@ -97,9 +99,9 @@ public class GasStationServiceimpl implements GasStationService {
 			(gasStationDto.getLat() < -90 || gasStationDto.getLat() >= 90) )
 			throw new GPSDataException("Error! GasStation containes wrong coordinates values");
 		
-		gasStationRepository.save(gasStationConverter.toGasStation(gasStationDto));
+		gasStation = gasStationRepository.save(gasStationConverter.toGasStation(gasStationDto));
 		System.out.println("The GasStation is successfully updated!");
-		return gasStationDto;
+		return gasStationConverter.toGasStationDto(gasStationRepository.findOne(gasStation.getGasStationId()));
 	}
 
 	@Override
