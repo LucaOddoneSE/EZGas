@@ -71,9 +71,9 @@ public class UserServiceimpl implements UserService {
 					return null;
 				}
 			}
-			userRepository.save(userConverter.toUser(userDto));
+			user = userRepository.save(userConverter.toUser(userDto));
 			System.out.println("User Correctly saved!");
-			return userDto;
+			return userConverter.toUserDto(userRepository.findOne(user.getUserId()));
 		}
 		if(userDto.getReputation() == null)
 			userDto.setReputation(0);
@@ -90,9 +90,9 @@ public class UserServiceimpl implements UserService {
 				return null;
 			}
 		}
-		userRepository.save(userConverter.toUser(userDto));
+		user = userRepository.save(userConverter.toUser(userDto));
 		System.out.println("User Correctly updated!");
-		return userDto;
+		return userConverter.toUserDto(userRepository.findOne(user.getUserId()));
 	}
 
 	@Override
