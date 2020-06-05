@@ -238,7 +238,6 @@ public class GasStationServiceimpl implements GasStationService {
 					.collect(Collectors.toList());
 			    break;
 			  default:
-				  if(gasolinetype.equals("null"))
 					  throw new InvalidGasTypeException("Gas Type not supported");
 			}
 			return gs;
