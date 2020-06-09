@@ -15,7 +15,7 @@ These figures will not be used to evaluate neither the project nor the team
 | may 11 - 17|  |  |30|31|  |  |  |  | 
 | may 18 - 24|  |  |  |  | 45 |  | 1 | 1 | 
 | may 25 - 31|  |  |  |  |  | 10 |  | 1 | 
-| jun 1 -  7 |  |  |  |  |  |  6|  |  | 
+| jun 1 -  7 |  |  |  |  |  |  9|  |  | 
 | jun 8 - 14 |  |  |  |  |  |  |  |  | 
 | jun 15 -21 |  |  |  |  |  |  |  |  | 
 | jun 22 -28 |  |  |  |  |  |  |  |  | 
