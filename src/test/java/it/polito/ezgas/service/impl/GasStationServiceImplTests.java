@@ -945,7 +945,7 @@ public class GasStationServiceImplTests {
 	     gasStationServiceImplMock.setReport(gasStationId, dieselPrice, superPrice, superPlusPrice, gasPrice, methanePrice, userId);
 	     
 	     assertEquals(Integer.valueOf(1),gasStation1.getReportUser());
-	     assertEquals(Double.valueOf(90),Double.valueOf(gasStation1.getReportDependability()));
+	     assertEquals(Double.valueOf(40),Double.valueOf(gasStation1.getReportDependability()));
 	}
 
 	//Test for verifying the catch of InvalidGasStationException
