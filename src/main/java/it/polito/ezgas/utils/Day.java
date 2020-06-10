@@ -9,7 +9,7 @@ import java.util.Date;
 public class Day {
 	
 	public static int calculateDays(String s) throws ParseException {
-		Date date =  new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(s);
+		Date date =  new SimpleDateFormat("MM-dd-YYYY").parse(s);
 		Calendar c1 = Calendar.getInstance();
 		Calendar c2 = Calendar.getInstance();
 		c2.setTime(date);
@@ -21,7 +21,7 @@ public class Day {
 	
 	public static String calendarToString() {
 		Date date = Calendar.getInstance().getTime();
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		DateFormat dateFormat = new SimpleDateFormat("MM-dd-YYYY");
 		return dateFormat.format(date);
 	}
 }
