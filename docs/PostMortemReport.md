@@ -5,7 +5,13 @@ Also this document will not be used for evaluations, but for improving the proje
 
 
 # Best things
+- Team selection based on the system and skills. 
+- One week sprints for deliveries is enough and appropriate.
+- Using Git for configuration management.
 
 # Worst things
+- GUI testing is very impractical in the real world.
+
 
 # Suggestions 
+- For GUI testing, insted of using the Sikuli, testing the software with a test user sounds more practical also we can check the UX testing at the same time.
