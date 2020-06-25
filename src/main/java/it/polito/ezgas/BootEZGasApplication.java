@@ -37,7 +37,7 @@ public class BootEZGasApplication {
 		and then save it in the db
 	
 		*/
-		
+		userRepository.deleteAllInBatch();
 		System.out.println("All users stored in the database:\n");
 		if(userRepository.findAll().size() != 0) {
 			iter = userRepository.findAll().iterator();
