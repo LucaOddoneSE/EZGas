@@ -198,8 +198,22 @@ public class GasStationServiceimpl implements GasStationService {
 				.collect(Collectors.toList());
 			}
 		}
+	public List<GasStationDto> getGasStationsByProximity(double lat, double lon, int radius) throws GPSDataException{
+		if((lat < -90 || lat >= 90) || (lon < -180 || lon >= 180)) {
+			throw new GPSDataException("coordinates out of bounds");
+		}else {
+			if(radius<=0) {
+				return getGasStationsByProximity( lat,  lon);
+			}else {
+				return getAllGasStations().stream()
+						.filter( (g) -> Haversine.distance(lat, lon, g.getLat(), g.getLon() ) <= radius)
+						.sorted( (g1,g2) -> Double.compare(Haversine.distance(lat, lon, g1.getLat(), g1.getLon() ), Haversine.distance(lat, lon, g2.getLat(), g2.getLon() ) ) )
+						.collect(Collectors.toList());
+			}
+		}	
+	}
 	@Override
-	public List<GasStationDto> getGasStationsWithCoordinates(double lat, double lon,  String gasolinetype,
+	public List<GasStationDto> getGasStationsWithCoordinates(double lat, double lon, int radius,  String gasolinetype,
 			String carsharing) throws InvalidGasTypeException, GPSDataException {
 		if(gasolinetype == null)
 			throw new InvalidGasTypeException("Error! You have passed a null gasolinetype as parameter");
@@ -211,7 +225,7 @@ public class GasStationServiceimpl implements GasStationService {
 			throw new GPSDataException("coordinates out of bounds");
 		}else {
 			List<GasStationDto> gs = getAllGasStations().stream()
-					.filter( (g) -> Haversine.distance(lat, lon, g.getLat(), g.getLon() ) <= 1)
+					.filter( (g) -> Haversine.distance(lat, lon, g.getLat(), g.getLon() ) <= radius)
 					.sorted( (g1,g2) -> Double.compare(Haversine.distance(lat, lon, g1.getLat(), g1.getLon() ), Haversine.distance(lat, lon, g2.getLat(), g2.getLon() ) ) )
 					.collect(Collectors.toList());
 			if(carsharing.equals("null")){}
@@ -313,8 +327,8 @@ public class GasStationServiceimpl implements GasStationService {
 	}
 
 	@Override
-	public void setReport(Integer gasStationId, double dieselPrice, double superPrice, double superPlusPrice,
-			double gasPrice, double methanePrice, Integer userId)
+	public void setReport(Integer gasStationId, Double dieselPrice, Double superPrice, Double superPlusPrice,
+			Double gasPrice, Double methanePrice,  Double premiumDieselPrice, Integer userId)
 			throws InvalidGasStationException, PriceException, InvalidUserException {
 		if(gasStationId < 0)
 			throw new InvalidGasStationException("Error! the GasStationId must not be negative");
