@@ -175,6 +175,12 @@ public class GasStationServiceimpl implements GasStationService {
 				.sorted( (g1,g2) -> Double.compare(g1.getSuperPlusPrice(), g2.getSuperPlusPrice()) )
 				.collect(Collectors.toList());
 		    break;
+		  case "PremiumDiesel":
+			  gs = gs.stream()
+				.filter( (g) -> g.getHasPremiumDiesel())
+				.sorted( (g1,g2) -> Double.compare(g1.getPremiumDieselPrice(), g2.getPremiumDieselPrice()) )
+				.collect(Collectors.toList());
+		    break;
 		  default:
 				throw new InvalidGasTypeException("Error! You have passed a non valid gasolinetype as parameter");
 		}
@@ -193,7 +199,7 @@ public class GasStationServiceimpl implements GasStationService {
 			}
 		}
 	@Override
-	public List<GasStationDto> getGasStationsWithCoordinates(double lat, double lon, String gasolinetype,
+	public List<GasStationDto> getGasStationsWithCoordinates(double lat, double lon,  String gasolinetype,
 			String carsharing) throws InvalidGasTypeException, GPSDataException {
 		if(gasolinetype == null)
 			throw new InvalidGasTypeException("Error! You have passed a null gasolinetype as parameter");
@@ -238,6 +244,11 @@ public class GasStationServiceimpl implements GasStationService {
 			  case "SuperPlus":
 				  gs = gs.stream()
 					.filter( (g) -> g.getHasSuperPlus())
+					.collect(Collectors.toList());
+			    break;
+			  case "PremiumDiesel":
+				  gs = gs.stream()
+					.filter( (g) -> g.getHasPremiumDiesel())
 					.collect(Collectors.toList());
 			    break;
 			  default:
@@ -287,6 +298,11 @@ public class GasStationServiceimpl implements GasStationService {
 		  case "SuperPlus":
 			  gs = gs.stream()
 				.filter( (g) -> g.getHasSuperPlus())
+				.collect(Collectors.toList());
+		    break;
+		  case "PremiumDiesel":
+			  gs = gs.stream()
+				.filter( (g) -> g.getHasPremiumDiesel())
 				.collect(Collectors.toList());
 		    break;
 		  default:
