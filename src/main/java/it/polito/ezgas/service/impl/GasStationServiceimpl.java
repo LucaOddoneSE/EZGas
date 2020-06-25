@@ -97,7 +97,8 @@ public class GasStationServiceimpl implements GasStationService {
 			(gasStationDto.getHasGas() && gasStationDto.getGasPrice() < 0  ) || 
 		    (gasStationDto.getHasSuper() && gasStationDto.getSuperPrice() < 0 ) ||
 		    (gasStationDto.getHasSuperPlus() &&  gasStationDto.getSuperPlusPrice() < 0 ) || 
-		    (gasStationDto.getHasMethane() && gasStationDto.getMethanePrice() < 0) ) 
+		    (gasStationDto.getHasMethane() && gasStationDto.getMethanePrice() < 0) || 
+		     gasStationDto.getHasPremiumDiesel() && gasStationDto.getPremiumDieselPrice() < 0) 
 			throw new PriceException("Error! One or more of the fuel types price is negative!");
 		
 		if( (gasStationDto.getLon() < -180 || gasStationDto.getLon() >= 180) || 
