@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import exception.GPSDataException;
+import exception.InvalidCarSharingException;
 import exception.InvalidGasStationException;
 import exception.InvalidGasTypeException;
 import exception.InvalidUserException;
@@ -176,7 +177,7 @@ public class GasStationServiceimpl implements GasStationService {
 		    break;
 		  case "PremiumDiesel":
 			  gs = gs.stream()
-				.filter( (g) -> g.getHasSuperPlus())
+				.filter( (g) -> g.getHasPremiumDiesel())
 				.sorted( (g1,g2) -> Double.compare(g1.getPremiumDieselPrice(), g2.getPremiumDieselPrice()) )
 				.collect(Collectors.toList());
 		  default:
@@ -200,19 +201,26 @@ public class GasStationServiceimpl implements GasStationService {
 			}
 		}
 	@Override
-	public List<GasStationDto> getGasStationsWithCoordinates(double lat, double lon, String gasolinetype,
-			String carsharing) throws InvalidGasTypeException, GPSDataException {
+	public List<GasStationDto> getGasStationsWithCoordinates(double lat, double lon, int radius,String gasolinetype,
+			String carsharing) throws InvalidGasTypeException, GPSDataException, InvalidCarSharingException {
+		if(radius<=0)
+			radius=1;
 		if(gasolinetype == null)
 			throw new InvalidGasTypeException("Error! You have passed a null gasolinetype as parameter");
 		if(carsharing == null) {
 			System.out.println("Error! You have passed a null carsharing as a parameter");
 			return null;
 		}
-		if((lat < -90 || lat >= 90) || (lon < -180 || lon >= 180)) {
+		if((lat < -90 || lat >= 90) || (lon < -180 || lon >= 180))
 			throw new GPSDataException("coordinates out of bounds");
-		}else {
+		if(carsharing.equals("Enjoy") || carsharing.equals("Car2Go") || carsharing.equals("null")) {}
+		else
+			throw new InvalidCarSharingException("Error! It has been passed an invalid type for carsharing parameter");
+		if(gasolinetype.equals("null")) { return new ArrayList<GasStationDto>(); }
+		else {
+			final int RADIUS = radius;
 			List<GasStationDto> gs = getAllGasStations().stream()
-					.filter( (g) -> Haversine.distance(lat, lon, g.getLat(), g.getLon() ) <= 1)
+					.filter( (g) -> Haversine.distance(lat, lon, g.getLat(), g.getLon() ) <= RADIUS)
 					.sorted( (g1,g2) -> Double.compare(Haversine.distance(lat, lon, g1.getLat(), g1.getLon() ), Haversine.distance(lat, lon, g2.getLat(), g2.getLon() ) ) )
 					.collect(Collectors.toList());
 			if(carsharing.equals("null")){}
@@ -247,6 +255,10 @@ public class GasStationServiceimpl implements GasStationService {
 					.filter( (g) -> g.getHasSuperPlus())
 					.collect(Collectors.toList());
 			    break;
+			  case "PremiumDiesel":
+				  gs = gs.stream()
+					.filter( (g) -> g.getHasPremiumDiesel())
+					.collect(Collectors.toList());
 			  default:
 					  throw new InvalidGasTypeException("Gas Type not supported");
 			}
