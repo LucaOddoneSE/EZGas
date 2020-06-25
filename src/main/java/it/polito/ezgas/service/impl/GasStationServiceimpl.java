@@ -134,7 +134,7 @@ public class GasStationServiceimpl implements GasStationService {
 			System.out.println("GasStation successfully deleted!");
 			return true;
 		}
-		return null;
+		return false;
 	}
 
 	@Override
@@ -174,6 +174,11 @@ public class GasStationServiceimpl implements GasStationService {
 				.sorted( (g1,g2) -> Double.compare(g1.getSuperPlusPrice(), g2.getSuperPlusPrice()) )
 				.collect(Collectors.toList());
 		    break;
+		  case "PremiumDiesel":
+			  gs = gs.stream()
+				.filter( (g) -> g.getHasSuperPlus())
+				.sorted( (g1,g2) -> Double.compare(g1.getPremiumDieselPrice(), g2.getPremiumDieselPrice()) )
+				.collect(Collectors.toList());
 		  default:
 				throw new InvalidGasTypeException("Error! You have passed a non valid gasolinetype as parameter");
 		}
