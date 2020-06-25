@@ -19,6 +19,7 @@ import exception.PriceException;
 import it.polito.ezgas.converter.GasStationConverter;
 import it.polito.ezgas.dto.GasStationDto;
 import it.polito.ezgas.entity.GasStation;
+import it.polito.ezgas.entity.User;
 import it.polito.ezgas.repository.GasStationRepository;
 import it.polito.ezgas.repository.UserRepository;
 import it.polito.ezgas.service.GasStationService;
@@ -333,14 +334,16 @@ public class GasStationServiceimpl implements GasStationService {
 					(gasStationRepository.findOne(gasStationId).getHasGas() && gasStationRepository.findOne(gasStationId).getGasPrice() < 0  ) || 
 				    (gasStationRepository.findOne(gasStationId).getHasSuper() && gasStationRepository.findOne(gasStationId).getSuperPrice() < 0 ) ||
 				    (gasStationRepository.findOne(gasStationId).getHasSuperPlus() &&   gasStationRepository.findOne(gasStationId).getSuperPlusPrice() < 0 ) || 
-				    (gasStationRepository.findOne(gasStationId).getHasMethane() && gasStationRepository.findOne(gasStationId).getMethanePrice() < 0) ) 
+				    (gasStationRepository.findOne(gasStationId).getHasMethane() && gasStationRepository.findOne(gasStationId).getMethanePrice() < 0) || 
+				    gasStationRepository.findOne(gasStationId).getHasPremiumDiesel() && gasStationRepository.findOne(gasStationId).getPremiumDieselPrice() < 0) 
 						throw new PriceException("Error! One or more of the fuel types price is negative!");
 				
 				if( (gasStationRepository.findOne(gasStationId).getHasDiesel() && dieselPrice < 0) || 
 					(gasStationRepository.findOne(gasStationId).getHasGas() && gasPrice < 0  ) || 
 				    (gasStationRepository.findOne(gasStationId).getHasSuper() && superPrice < 0 ) ||
 				    (gasStationRepository.findOne(gasStationId).getHasSuperPlus() &&  superPlusPrice < 0 ) || 
-				    (gasStationRepository.findOne(gasStationId).getHasMethane() && methanePrice < 0) ) 
+				    (gasStationRepository.findOne(gasStationId).getHasMethane() && methanePrice < 0) || 
+				    gasStationRepository.findOne(gasStationId).getHasPremiumDiesel() && premiumDieselPrice < 0 ) 
 						throw new PriceException("Error! One or more of the fuel types price is negative!");
 				
 				double obsolence = 0;
@@ -377,6 +380,20 @@ public class GasStationServiceimpl implements GasStationService {
 					gasStation.setReportDependability(50*(userRepository.findOne(userId).getReputation()+5)/10+50*obsolence);
 				}
 				else {
+					User user = userRepository.findOne(userId);
+					if( user.getReputation() < gasStation.getUser().getReputation() ) {
+						try {
+							obsolence = Day.calculateDays(gasStation.getReportTimestamp());
+							if(obsolence>4) {}
+							else {
+								System.out.println("The previous price list is not overwritten because (today-P.time_tag)<=4");
+								return;
+							}
+						} catch (ParseException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
 					gasStation.setReportUser(userId);
 					gasStation.setUser(userRepository.findOne(userId));
 					System.out.println("ReportTimestamp: " + gasStation.getReportTimestamp());
