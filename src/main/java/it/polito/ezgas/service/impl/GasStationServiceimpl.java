@@ -64,7 +64,7 @@ public class GasStationServiceimpl implements GasStationService {
 			return null;
 		}
 		
-		if(gasStationDto.getGasStationId() == null) {
+		if(gasStationDto.getGasStationId() == null || gasStationDto.getGasStationId() <= 0 || !(gasStationRepository.exists(gasStationDto.getGasStationId())) ) {
 			if(gasStationDto.getHasDiesel() && gasStationDto.getDieselPrice()<= 0)
 				gasStationDto.setDieselPrice(0.0);
 			if(gasStationDto.getHasGas() && gasStationDto.getGasPrice() <=0)
@@ -135,8 +135,9 @@ public class GasStationServiceimpl implements GasStationService {
 			gasStationRepository.delete(gasStationId);
 			System.out.println("GasStation successfully deleted!");
 			return true;
-		}
-		return null;
+		}else {
+			return false;
+		}	
 	}
 
 	@Override
