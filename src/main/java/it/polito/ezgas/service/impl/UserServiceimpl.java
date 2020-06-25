@@ -126,8 +126,9 @@ public class UserServiceimpl implements UserService {
 			userRepository.delete(userId);
 			System.out.println("User successfully deleted!");
 			return true;
+		}else {
+			return false;
 		}
-		return null;
 	}
 
 	@Override
@@ -184,9 +185,10 @@ public class UserServiceimpl implements UserService {
 				user.setReputation(user.getReputation()+1);
 			userRepository.save(user);
 			return user.getReputation();
+		}else {
+			throw new InvalidUserException("User with the following userID: " + userId + " doesn't exist in the database");
 		}
-		System.out.println("User with the following userID: " + userId + " doesn't exist in the database");
-		return null;
+		
 	}
 
 	@Override
@@ -199,9 +201,9 @@ public class UserServiceimpl implements UserService {
 				user.setReputation(user.getReputation()-1);
 			userRepository.save(user);
 			return user.getReputation();
+		}else {
+			throw new InvalidUserException("User with the following userID: " + userId + " doesn't exist in the database");
 		}
-		System.out.println("User with the following userID: " + userId + " was not found in the database");
-		return null;
 	}
 	
 }
