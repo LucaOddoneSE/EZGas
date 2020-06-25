@@ -65,6 +65,7 @@ public class GasStationServiceimpl implements GasStationService {
 		}
 		
 		if(gasStationDto.getGasStationId() == null || gasStationDto.getGasStationId() <= 0 || !(gasStationRepository.exists(gasStationDto.getGasStationId())) ) {
+			//Probably to change, not sure
 			if(gasStationDto.getHasDiesel() && gasStationDto.getDieselPrice()<= 0)
 				gasStationDto.setDieselPrice(0.0);
 			if(gasStationDto.getHasGas() && gasStationDto.getGasPrice() <=0)
@@ -91,12 +92,12 @@ public class GasStationServiceimpl implements GasStationService {
 			return gasStationConverter.toGasStationDto(gasStationRepository.findOne(gasStation.getGasStationId()));
 		}
 		
-		if( (gasStationDto.getHasDiesel() && gasStationDto.getDieselPrice() < 0) || 
-			(gasStationDto.getHasGas() && gasStationDto.getGasPrice() < 0  ) || 
+		if( (gasStationDto.getHasDiesel() && gasStationDto.getDieselPrice() == null) || 
+			(gasStationDto.getHasGas() && gasStationDto.getGasPrice() == null  ) || 
 		    (gasStationDto.getHasSuper() && gasStationDto.getSuperPrice() < 0 ) ||
-		    (gasStationDto.getHasSuperPlus() &&  gasStationDto.getSuperPlusPrice() < 0 ) || 
-		    (gasStationDto.getHasMethane() && gasStationDto.getMethanePrice() < 0) ||
-		    (gasStationDto.getHasPremiumDiesel() && gasStationDto.getPremiumDieselPrice() < 0) ) 
+		    (gasStationDto.getHasSuperPlus() &&  gasStationDto.getSuperPlusPrice() == null ) || 
+		    (gasStationDto.getHasMethane() && gasStationDto.getMethanePrice() == null) ||
+		    (gasStationDto.getHasPremiumDiesel() && gasStationDto.getPremiumDieselPrice() == null) ) 
 			throw new PriceException("Error! One or more of the fuel types price is negative!");
 		
 		if( (gasStationDto.getLon() < -180 || gasStationDto.getLon() >= 180) || 
@@ -346,18 +347,20 @@ public class GasStationServiceimpl implements GasStationService {
 		if(userRepository.exists(userId)) {
 			if(gasStationRepository.exists(gasStationId)) {
 
-				if( (gasStationRepository.findOne(gasStationId).getHasDiesel() && gasStationRepository.findOne(gasStationId).getDieselPrice() < 0) || 
-					(gasStationRepository.findOne(gasStationId).getHasGas() && gasStationRepository.findOne(gasStationId).getGasPrice() < 0  ) || 
-				    (gasStationRepository.findOne(gasStationId).getHasSuper() && gasStationRepository.findOne(gasStationId).getSuperPrice() < 0 ) ||
-				    (gasStationRepository.findOne(gasStationId).getHasSuperPlus() &&   gasStationRepository.findOne(gasStationId).getSuperPlusPrice() < 0 ) || 
-				    (gasStationRepository.findOne(gasStationId).getHasMethane() && gasStationRepository.findOne(gasStationId).getMethanePrice() < 0) ) 
+				if( (gasStationRepository.findOne(gasStationId).getHasDiesel() && gasStationRepository.findOne(gasStationId).getDieselPrice() == null) || 
+					(gasStationRepository.findOne(gasStationId).getHasGas() && gasStationRepository.findOne(gasStationId).getGasPrice() == null  ) || 
+				    (gasStationRepository.findOne(gasStationId).getHasSuper() && gasStationRepository.findOne(gasStationId).getSuperPrice() == null ) ||
+				    (gasStationRepository.findOne(gasStationId).getHasSuperPlus() &&   gasStationRepository.findOne(gasStationId).getSuperPlusPrice() == null ) || 
+				    (gasStationRepository.findOne(gasStationId).getHasMethane() && gasStationRepository.findOne(gasStationId).getMethanePrice() == null) || 
+					(gasStationRepository.findOne(gasStationId).getHasPremiumDiesel() && gasStationRepository.findOne(gasStationId).getPremiumDieselPrice() == null) )
 						throw new PriceException("Error! One or more of the fuel types price is negative!");
 				
-				if( (gasStationRepository.findOne(gasStationId).getHasDiesel() && dieselPrice < 0) || 
-					(gasStationRepository.findOne(gasStationId).getHasGas() && gasPrice < 0  ) || 
-				    (gasStationRepository.findOne(gasStationId).getHasSuper() && superPrice < 0 ) ||
-				    (gasStationRepository.findOne(gasStationId).getHasSuperPlus() &&  superPlusPrice < 0 ) || 
-				    (gasStationRepository.findOne(gasStationId).getHasMethane() && methanePrice < 0) ) 
+				if( (gasStationRepository.findOne(gasStationId).getHasDiesel() && dieselPrice == null) || 
+					(gasStationRepository.findOne(gasStationId).getHasGas() && gasPrice == null  ) || 
+				    (gasStationRepository.findOne(gasStationId).getHasSuper() && superPrice == null ) ||
+				    (gasStationRepository.findOne(gasStationId).getHasSuperPlus() &&  superPlusPrice == null ) || 
+				    (gasStationRepository.findOne(gasStationId).getHasMethane() && methanePrice == null) ||
+				    (gasStationRepository.findOne(gasStationId).getHasPremiumDiesel() && premiumDieselPrice == null) ) 
 						throw new PriceException("Error! One or more of the fuel types price is negative!");
 				
 				double obsolence = 0;
@@ -422,8 +425,7 @@ public class GasStationServiceimpl implements GasStationService {
 					gasStation.setReportDependability(50*(userRepository.findOne(userId).getReputation()+5)/10+50*obsolence);
 				}
 				gasStationRepository.save((gasStationRepository.findOne(gasStationId)));
-			}
-			else {
+			}else {
 				System.out.println("No GasStation with the following GasStationID: " + gasStationId + " " + "was found");
 				return ;
 			}
