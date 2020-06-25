@@ -64,7 +64,7 @@ public class GasStationConverter {
 		gasStation.setHasSuperPlus(gasStationDtoSource.getHasSuperPlus());
 		gasStation.setHasGas(gasStationDtoSource.getHasGas());
 		gasStation.setHasMethane(gasStationDtoSource.getHasMethane());
-		gasStation.setHasMethane(gasStationDtoSource.getHasPremiumDiesel());
+		gasStation.setHasPremiumDiesel(gasStationDtoSource.getHasPremiumDiesel());
 		if(gasStationDtoSource.getCarSharing() != null)
 			if(gasStationDtoSource.getCarSharing().equals("null"))
 				gasStation.setCarSharing(null);
