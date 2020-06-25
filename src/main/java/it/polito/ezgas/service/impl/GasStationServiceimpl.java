@@ -2,6 +2,7 @@ package it.polito.ezgas.service.impl;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -318,8 +319,8 @@ public class GasStationServiceimpl implements GasStationService {
 	}
 
 	@Override
-	public void setReport(Integer gasStationId, double dieselPrice, double superPrice, double superPlusPrice,
-			double gasPrice, double methanePrice, Integer userId)
+	public void setReport(Integer gasStationId, Double dieselPrice, Double superPrice, Double superPlusPrice,
+			Double gasPrice, Double  methanePrice,Double premiumDieselPrice, Integer userId)
 			throws InvalidGasStationException, PriceException, InvalidUserException {
 		if(gasStationId < 0)
 			throw new InvalidGasStationException("Error! the GasStationId must not be negative");
@@ -429,8 +430,21 @@ public class GasStationServiceimpl implements GasStationService {
 		else{
 		gs = getAllGasStations().stream()
 				.filter( (g) -> g.getCarSharing().equals(carSharing))
+				.sorted(Comparator.comparing(GasStationDto::getCarSharing))
 				.collect(Collectors.toCollection(ArrayList::new));
 		}
 		return gs;
+	}
+
+	@Override
+	public List<GasStationDto> getGasStationsByProximity(double lat, double lon) throws GPSDataException {
+		if((lat < -90 || lat >= 90) || (lon < -180 || lon >= 180)) {
+			throw new GPSDataException("coordinates out of bounds");
+		}else {
+			return getAllGasStations().stream()
+				.filter( (g) -> Haversine.distance(lat, lon, g.getLat(), g.getLon() ) <= 1.0)
+				.sorted( (g1,g2) -> Double.compare(Haversine.distance(lat, lon, g1.getLat(), g1.getLon() ), Haversine.distance(lat, lon, g2.getLat(), g2.getLon() ) ) )
+				.collect(Collectors.toList());
+			}
 	}
 }
