@@ -344,7 +344,7 @@ public class GasStationServiceimpl implements GasStationService {
 				    (gasStationRepository.findOne(gasStationId).getHasSuper() && superPrice < 0 ) ||
 				    (gasStationRepository.findOne(gasStationId).getHasSuperPlus() &&  superPlusPrice < 0 ) || 
 				    (gasStationRepository.findOne(gasStationId).getHasMethane() && methanePrice < 0) || 
-				    gasStationRepository.findOne(gasStationId).getHasPremiumDiesel() && premiumDieselPrice < 0 ) 
+				    (gasStationRepository.findOne(gasStationId).getHasPremiumDiesel() && premiumDieselPrice < 0) ) 
 						throw new PriceException("Error! One or more of the fuel types price is negative!");
 				
 				double obsolence = 0;
@@ -365,6 +365,8 @@ public class GasStationServiceimpl implements GasStationService {
 						gasStation.setSuperPlusPrice(superPlusPrice);
 					if(gasStation.getHasMethane())
 						gasStation.setMethanePrice(methanePrice);
+					if(gasStation.getHasPremiumDiesel())
+						gasStation.setPremiumDieselPrice(premiumDieselPrice);
 					
 					System.out.println("ReportTimestamp: " + gasStation.getReportTimestamp());
 					try {
@@ -420,6 +422,9 @@ public class GasStationServiceimpl implements GasStationService {
 						gasStation.setSuperPlusPrice(superPlusPrice);
 					if(gasStation.getHasMethane())
 						gasStation.setMethanePrice(methanePrice);
+					if(gasStation.getHasPremiumDiesel())
+						gasStation.setPremiumDieselPrice(premiumDieselPrice);
+					
 					gasStation.setReportDependability(50*(userRepository.findOne(userId).getReputation()+5)/10+50*obsolence);
 				}
 				gasStationRepository.save((gasStationRepository.findOne(gasStationId)));
