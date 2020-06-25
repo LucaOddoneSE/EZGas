@@ -65,15 +65,17 @@ public class GasStationServiceimpl implements GasStationService {
 		
 		if(gasStationDto.getGasStationId() == null) {
 			if(gasStationDto.getHasDiesel() && gasStationDto.getDieselPrice()<= 0)
-				gasStationDto.setDieselPrice(0);
+				gasStationDto.setDieselPrice(0.0);
 			if(gasStationDto.getHasGas() && gasStationDto.getGasPrice() <=0)
-				gasStationDto.setGasPrice(0);
+				gasStationDto.setGasPrice(0.0);
 			if(gasStationDto.getHasSuperPlus() && gasStationDto.getSuperPlusPrice() <=0)
-				gasStationDto.setSuperPlusPrice(0);
+				gasStationDto.setSuperPlusPrice(0.0);
 			if(gasStationDto.getHasSuper() && gasStationDto.getSuperPrice() <=0)
-				gasStationDto.setSuperPrice(0);
+				gasStationDto.setSuperPrice(0.0);
 			if(gasStationDto.getHasMethane() && gasStationDto.getMethanePrice() <=0)
-				gasStationDto.setMethanePrice(0);
+				gasStationDto.setMethanePrice(0.0);
+			if(gasStationDto.getHasPremiumDiesel() && gasStationDto.getPremiumDieselPrice()<= 0)
+				gasStationDto.setPremiumDieselPrice(0.0);
 			
 			if( (gasStationDto.getLon() < -180 || gasStationDto.getLon() >= 180) || 
 					(gasStationDto.getLat() < -90 || gasStationDto.getLat() >= 90) )
@@ -92,7 +94,8 @@ public class GasStationServiceimpl implements GasStationService {
 			(gasStationDto.getHasGas() && gasStationDto.getGasPrice() < 0  ) || 
 		    (gasStationDto.getHasSuper() && gasStationDto.getSuperPrice() < 0 ) ||
 		    (gasStationDto.getHasSuperPlus() &&  gasStationDto.getSuperPlusPrice() < 0 ) || 
-		    (gasStationDto.getHasMethane() && gasStationDto.getMethanePrice() < 0) ) 
+		    (gasStationDto.getHasMethane() && gasStationDto.getMethanePrice() < 0) ||
+		    (gasStationDto.getHasPremiumDiesel() && gasStationDto.getPremiumDieselPrice() < 0) ) 
 			throw new PriceException("Error! One or more of the fuel types price is negative!");
 		
 		if( (gasStationDto.getLon() < -180 || gasStationDto.getLon() >= 180) || 
