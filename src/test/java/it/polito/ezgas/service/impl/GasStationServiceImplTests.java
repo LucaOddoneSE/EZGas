@@ -751,8 +751,6 @@ public class GasStationServiceImplTests {
 		
 		assertEquals(1,listGasStationDto.size());
 		
-		if(listGasStationDto.get(0).getHasDiesel() == false)
-			assertEquals(3,listGasStationDto.size());
 	}
 	
 	//Throw InvalidGasTypeException
@@ -830,7 +828,7 @@ public class GasStationServiceImplTests {
 	@Test
 	public void testgetGasStationByCarSharing() {
 		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,true,
-				"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
+				"BlueSG",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
 				(double) 1.45,null,null,0);
 		
 		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,false,
@@ -838,7 +836,7 @@ public class GasStationServiceImplTests {
 				(double) 0, null,null,0);
 		
 		GasStationDto gasStation1Dto = new GasStationDto(1,"GasStation1","Via Italia 1",true,true,false,false,true,
-				true,"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,
+				true,"BlueSG",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,
 				(double) 0.90,(double) 1.45,null,null,0);
 		
 		GasStationDto gasStation2Dto = new GasStationDto(2,"GasStation2","Via Italia 2",false,false,true,true,false,
@@ -900,6 +898,7 @@ public class GasStationServiceImplTests {
 		assertEquals(1,listGasStationDto.size());
 		assertEquals("BlueSG",listGasStationDto.get(0).getCarSharing());
 	}
+	
 	
 	//SetReport to an existing GasStation
 	@Test
