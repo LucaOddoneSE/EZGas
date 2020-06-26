@@ -75,6 +75,7 @@ public class GasStationServiceImplTests {
 					gasStationRepositoryMock.findOne(1).getHasSuperPlus(),
 					gasStationRepositoryMock.findOne(1).getHasGas(),
 					gasStationRepositoryMock.findOne(1).getHasMethane(),
+					gasStationRepositoryMock.findOne(1).getHasPremiumDiesel(),
 					gasStationRepositoryMock.findOne(1).getCarSharing(),
 					gasStationRepositoryMock.findOne(1).getLat(),
 					gasStationRepositoryMock.findOne(1).getLon(),
@@ -83,6 +84,7 @@ public class GasStationServiceImplTests {
 					gasStationRepositoryMock.findOne(1).getSuperPlusPrice(),
 					gasStationRepositoryMock.findOne(1).getGasPrice(),
 					gasStationRepositoryMock.findOne(1).getMethanePrice(),
+					gasStationRepositoryMock.findOne(1).getPremiumDieselPrice(),
 					gasStationRepositoryMock.findOne(1).getReportUser(),
 					gasStationRepositoryMock.findOne(1).getReportTimestamp(),
 					gasStationRepositoryMock.findOne(1).getReportDependability() );
@@ -116,6 +118,7 @@ public class GasStationServiceImplTests {
 					gasStationRepositoryMock.findOne(2).getHasSuperPlus(),
 					gasStationRepositoryMock.findOne(2).getHasGas(),
 					gasStationRepositoryMock.findOne(2).getHasMethane(),
+					gasStationRepositoryMock.findOne(2).getHasPremiumDiesel(),
 					gasStationRepositoryMock.findOne(2).getCarSharing(),
 					gasStationRepositoryMock.findOne(2).getLat(),
 					gasStationRepositoryMock.findOne(2).getLon(),
@@ -124,6 +127,7 @@ public class GasStationServiceImplTests {
 					gasStationRepositoryMock.findOne(2).getSuperPlusPrice(),
 					gasStationRepositoryMock.findOne(2).getGasPrice(),
 					gasStationRepositoryMock.findOne(2).getMethanePrice(),
+					gasStationRepositoryMock.findOne(2).getPremiumDieselPrice(),
 					gasStationRepositoryMock.findOne(2).getReportUser(),
 					gasStationRepositoryMock.findOne(2).getReportTimestamp(),
 					gasStationRepositoryMock.findOne(2).getReportDependability() );
@@ -143,10 +147,12 @@ public class GasStationServiceImplTests {
 	@Test
 	public void testgetGasStationByIdExistingGasStation() throws InvalidGasStationException {
 		
-		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",110.574,81.320,1.25,1.55,0,0,0.90,null,null,0);
-		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,
-				"BlaBlaCar",110.649,87.550,0,0,1.25,1.55,0,null,null,0);
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,true,
+				"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
+				(double) 1.45,null,null,0);
+		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,false,
+				"BlaBlaCar",110.649,87.550,(double) 0,(double) 0,(double) 1.25,(double) 1.55,(double) 0,
+				(double) 0, null,null,0);
 		
 		gasStation1.setGasStationId(1);
 		gasStation2.setGasStationId(2);
@@ -179,6 +185,7 @@ public class GasStationServiceImplTests {
 					gasStationRepositoryMock.findOne(1).getHasSuperPlus(),
 					gasStationRepositoryMock.findOne(1).getHasGas(),
 					gasStationRepositoryMock.findOne(1).getHasMethane(),
+					gasStationRepositoryMock.findOne(1).getHasPremiumDiesel(),
 					gasStationRepositoryMock.findOne(1).getCarSharing(),
 					gasStationRepositoryMock.findOne(1).getLat(),
 					gasStationRepositoryMock.findOne(1).getLon(),
@@ -187,6 +194,7 @@ public class GasStationServiceImplTests {
 					gasStationRepositoryMock.findOne(1).getSuperPlusPrice(),
 					gasStationRepositoryMock.findOne(1).getGasPrice(),
 					gasStationRepositoryMock.findOne(1).getMethanePrice(),
+					gasStationRepositoryMock.findOne(1).getPremiumDieselPrice(),
 					gasStationRepositoryMock.findOne(1).getReportUser(),
 					gasStationRepositoryMock.findOne(1).getReportTimestamp(),
 					gasStationRepositoryMock.findOne(1).getReportDependability() );
@@ -220,6 +228,7 @@ public class GasStationServiceImplTests {
 					gasStationRepositoryMock.findOne(2).getHasSuperPlus(),
 					gasStationRepositoryMock.findOne(2).getHasGas(),
 					gasStationRepositoryMock.findOne(2).getHasMethane(),
+					gasStationRepositoryMock.findOne(2).getHasPremiumDiesel(),
 					gasStationRepositoryMock.findOne(2).getCarSharing(),
 					gasStationRepositoryMock.findOne(2).getLat(),
 					gasStationRepositoryMock.findOne(2).getLon(),
@@ -228,6 +237,7 @@ public class GasStationServiceImplTests {
 					gasStationRepositoryMock.findOne(2).getSuperPlusPrice(),
 					gasStationRepositoryMock.findOne(2).getGasPrice(),
 					gasStationRepositoryMock.findOne(2).getMethanePrice(),
+					gasStationRepositoryMock.findOne(2).getPremiumDieselPrice(),
 					gasStationRepositoryMock.findOne(2).getReportUser(),
 					gasStationRepositoryMock.findOne(2).getReportTimestamp(),
 					gasStationRepositoryMock.findOne(2).getReportDependability() );
@@ -257,14 +267,20 @@ public class GasStationServiceImplTests {
 	@Test
 	public void testSaveGasStationNewOne() throws PriceException, GPSDataException {
 		GasStationDto gasStation1Dto = new GasStationDto(1,"GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
+				true,"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,
+				(double) 0.90,(double) 1.45,null,null,0);
+		
 		GasStationDto gasStation2Dto = new GasStationDto(2,"GasStation2","Via Italia 2",false,false,true,true,false,
-				"BlaBlaCar",61.649,117.550,0,0,1.25,1.55,0,null,null,0);
+				false,"BlaBlaCar",61.649,117.550,(double) 0,(double) 0,(double) 1.25,(double) 1.55,(double) 0,
+				(double) 0,null,null,0);
 	
-		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
-		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,
-				"BlaBlaCar",61.649,117.550,0,0,1.25,1.55,0,null,null,0);
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,true,
+				"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
+				(double) 1.45,null,null,0);
+		
+		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,false,
+				"BlaBlaCar",110.649,87.550,(double) 0,(double) 0,(double) 1.25,(double) 1.55,(double) 0,
+				(double) 0, null,null,0);
 		
 		listGasStationDto.clear();
 		listGasStation.clear();
@@ -362,9 +378,12 @@ public class GasStationServiceImplTests {
 	@Test(expected=PriceException.class)
 	public void testSaveGasStationPriceException() throws PriceException, GPSDataException {
 		GasStationDto gasStation1Dto = new GasStationDto(1,"GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,-1.25,1.55,0,0,0.90,null,null,0);
-		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,-1.25,1.55,0,0,0.90,null,null,0);
+				true,"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,
+				(double) 0.90,(double) 1.45,null,null,0);
+		
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,true,
+				"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
+				(double) 1.45,null,null,0);
 		
 		listGasStationDto.clear();
 		listGasStation.clear();
@@ -429,9 +448,12 @@ public class GasStationServiceImplTests {
 	@Test(expected=GPSDataException.class)
 	public void testSaveGasStationGPSDataException() throws PriceException, GPSDataException {
 		GasStationDto gasStation1Dto = new GasStationDto(1,"GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",181.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
-		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",181.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
+				true,"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,
+				(double) 0.90,(double) 1.45,null,null,0);
+		
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,true,
+				"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
+				(double) 1.45,null,null,0);
 		
 		listGasStationDto.clear();
 		listGasStation.clear();
@@ -494,14 +516,21 @@ public class GasStationServiceImplTests {
 	
 	@Test
 	public void testGetAllGasStations() {
-		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
-		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,
-				"BlaBlaCar",61.649,117.550,0,0,1.25,1.55,0,null,null,0);
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,true,
+				"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
+				(double) 1.45,null,null,0);
+		
+		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,false,
+				"BlaBlaCar",110.649,87.550,(double) 0,(double) 0,(double) 1.25,(double) 1.55,(double) 0,
+				(double) 0, null,null,0);
+		
 		GasStationDto gasStation1Dto = new GasStationDto(1,"GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
+				true,"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,
+				(double) 0.90,(double) 1.45,null,null,0);
+		
 		GasStationDto gasStation2Dto = new GasStationDto(2,"GasStation2","Via Italia 2",false,false,true,true,false,
-				"BlaBlaCar",61.649,117.550,0,0,1.25,1.55,0,null,null,0);
+				false,"BlaBlaCar",61.649,117.550,(double) 0,(double) 0,(double) 1.25,(double) 1.55,(double) 0,
+				(double) 0,null,null,0);
 		
 		listGasStationDto.clear();
 		listGasStation.clear();
@@ -534,10 +563,13 @@ public class GasStationServiceImplTests {
 	
 	@Test
 	public void testDeleteGasStation() throws InvalidGasStationException {
-		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
-		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,
-				"BlaBlaCar",61.649,117.550,0,0,1.25,1.55,0,null,null,0);
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,true,
+				"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
+				(double) 1.45,null,null,0);
+		
+		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,false,
+				"BlaBlaCar",110.649,87.550,(double) 0,(double) 0,(double) 1.25,(double) 1.55,(double) 0,
+				(double) 0, null,null,0);
 		
 		listGasStationDto.clear();
 		listGasStation.clear();
@@ -599,8 +631,9 @@ public class GasStationServiceImplTests {
 	//Delete method throw InvalidGasStationException
 	@Test(expected=InvalidGasStationException.class)
 	public void testDeleteGasStationInvalidGasStationException() throws InvalidGasStationException {
-		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,true,
+				"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
+				(double) 1.45,null,null,0);
 		
 		listGasStationDto.clear();
 		listGasStation.clear();
@@ -638,15 +671,21 @@ public class GasStationServiceImplTests {
 	//Retrieve GasStationsByGasolineType
 	@Test
 	public void testGasStationsByGasolineType() throws InvalidGasTypeException {
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,true,
+				"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
+				(double) 1.45,null,null,0);
+		
+		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,false,
+				"BlaBlaCar",110.649,87.550,(double) 0,(double) 0,(double) 1.25,(double) 1.55,(double) 0,
+				(double) 0, null,null,0);
+		
 		GasStationDto gasStation1Dto = new GasStationDto(1,"GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
+				true,"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,
+				(double) 0.90,(double) 1.45,null,null,0);
+		
 		GasStationDto gasStation2Dto = new GasStationDto(2,"GasStation2","Via Italia 2",false,false,true,true,false,
-				"BlaBlaCar",61.649,117.550,0,0,1.25,1.55,0,null,null,0);
-	
-		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
-		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,
-				"BlaBlaCar",61.649,117.550,0,0,1.25,1.55,0,null,null,0);
+				false,"BlaBlaCar",61.649,117.550,(double) 0,(double) 0,(double) 1.25,(double) 1.55,(double) 0,
+				(double) 0,null,null,0);
 		
 		String gasolinetype = "Diesel";
 		
@@ -709,15 +748,21 @@ public class GasStationServiceImplTests {
 	//Throw InvalidGasTypeException
 	@Test(expected = InvalidGasTypeException.class)
 	public void testGasStationsByGasolineTypeException() throws InvalidGasTypeException {
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,true,
+				"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
+				(double) 1.45,null,null,0);
+		
+		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,false,
+				"BlaBlaCar",110.649,87.550,(double) 0,(double) 0,(double) 1.25,(double) 1.55,(double) 0,
+				(double) 0, null,null,0);
+		
 		GasStationDto gasStation1Dto = new GasStationDto(1,"GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
+				true,"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,
+				(double) 0.90,(double) 1.45,null,null,0);
+		
 		GasStationDto gasStation2Dto = new GasStationDto(2,"GasStation2","Via Italia 2",false,false,true,true,false,
-				"BlaBlaCar",61.649,117.550,0,0,1.25,1.55,0,null,null,0);
-	
-		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
-		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,
-				"BlaBlaCar",61.649,117.550,0,0,1.25,1.55,0,null,null,0);
+				false,"BlaBlaCar",61.649,117.550,(double) 0,(double) 0,(double) 1.25,(double) 1.55,(double) 0,
+				(double) 0,null,null,0);
 		
 		String gasolinetype = "Fuel";
 		
@@ -774,15 +819,21 @@ public class GasStationServiceImplTests {
 	
 	@Test
 	public void testgetGasStationByCarSharing() {
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,true,
+				"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
+				(double) 1.45,null,null,0);
+		
+		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,false,
+				"BlaBlaCar",110.649,87.550,(double) 0,(double) 0,(double) 1.25,(double) 1.55,(double) 0,
+				(double) 0, null,null,0);
+		
 		GasStationDto gasStation1Dto = new GasStationDto(1,"GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
+				true,"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,
+				(double) 0.90,(double) 1.45,null,null,0);
+		
 		GasStationDto gasStation2Dto = new GasStationDto(2,"GasStation2","Via Italia 2",false,false,true,true,false,
-				"BlueSG",61.649,117.550,0,0,1.25,1.55,0,null,null,0);
-	
-		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
-		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,
-				"BlueSG",61.649,117.550,0,0,1.25,1.55,0,null,null,0);
+				false,"BlaBlaCar",61.649,117.550,(double) 0,(double) 0,(double) 1.25,(double) 1.55,(double) 0,
+				(double) 0,null,null,0);
 		
 		String carSharing = "BlueSG";
 		
@@ -845,15 +896,18 @@ public class GasStationServiceImplTests {
 	public void testsetReport() throws InvalidGasStationException, PriceException, InvalidUserException {
 		UserDto user1Dto = new UserDto(1, "Luca Oddone", "Password", "lucaoddone@polito.it", 3);
 		User user1 = new User ("Luca Oddone", "Password", "lucaoddone@polito.it", 3);
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,true,
+				"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
+				(double) 1.45,null,null,0);
 		GasStationDto gasStation1Dto = new GasStationDto(1,"GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
-		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
+				true,"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,
+				(double) 0.90,(double) 1.45,null,null,0);
 		final double dieselPrice = 1.25;
 		final double superPrice = 1.50;
 		final double superPlusPrice = 1.99;
 		final double gasPrice = 0.98;
 		final double methanePrice = 1.01;
+		final double premiumDieselPrice = 1.45;
 		final Integer gasStationId = gasStation1Dto.getGasStationId();
 		final Integer userId = user1Dto.getUserId();
 		
@@ -888,7 +942,7 @@ public class GasStationServiceImplTests {
 				   if(gasStation.getReportTimestamp() == null && gasStation.getReportDependability() == 0) {
 						gasStation.setReportUser(userId);
 						gasStation.setReportTimestamp(Day.calendarToString());
-						
+	
 						if(gasStation.getHasDiesel())
 							gasStation.setDieselPrice(dieselPrice);
 						if(gasStation.getHasGas())
@@ -940,9 +994,9 @@ public class GasStationServiceImplTests {
 					}
 				   return null;
 			}
-		}).when(gasStationServiceImplMock).setReport(gasStationId, dieselPrice, superPrice, superPlusPrice, gasPrice, methanePrice, userId);
+		}).when(gasStationServiceImplMock).setReport(gasStationId, dieselPrice, superPrice, superPlusPrice, gasPrice, methanePrice, premiumDieselPrice, userId);
 		
-	     gasStationServiceImplMock.setReport(gasStationId, dieselPrice, superPrice, superPlusPrice, gasPrice, methanePrice, userId);
+	     gasStationServiceImplMock.setReport(gasStationId, dieselPrice, superPrice, superPlusPrice, gasPrice, methanePrice, premiumDieselPrice, userId);
 	     
 	     assertEquals(Integer.valueOf(1),gasStation1.getReportUser());
 	     assertEquals(Double.valueOf(40),Double.valueOf(gasStation1.getReportDependability()));
@@ -953,15 +1007,18 @@ public class GasStationServiceImplTests {
 	public void testsetReportInvalidGasStationException() throws InvalidGasStationException, PriceException, InvalidUserException {
 		UserDto user1Dto = new UserDto(1, "Luca Oddone", "Password", "lucaoddone@polito.it", 3);
 		User user1 = new User ("Luca Oddone", "Password", "lucaoddone@polito.it", 3);
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,true,
+				"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
+				(double) 1.45,null,null,0);
 		GasStationDto gasStation1Dto = new GasStationDto(1,"GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
-		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
+				true,"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,
+				(double) 0.90,(double) 1.45,null,null,0);
 		final double dieselPrice = 1.25;
 		final double superPrice = 1.50;
 		final double superPlusPrice = 1.99;
 		final double gasPrice = 0.98;
 		final double methanePrice = 1.01;
+		final double premiumDieselPrice = 1.45;
 		final Integer gasStationId = -1;
 		final Integer userId = user1Dto.getUserId();
 		
@@ -1048,9 +1105,9 @@ public class GasStationServiceImplTests {
 					}
 				   return null;
 			}
-		}).when(gasStationServiceImplMock).setReport(gasStationId, dieselPrice, superPrice, superPlusPrice, gasPrice, methanePrice, userId);
+		}).when(gasStationServiceImplMock).setReport(gasStationId, dieselPrice, superPrice, superPlusPrice, gasPrice, methanePrice, premiumDieselPrice, userId);
 		
-	     gasStationServiceImplMock.setReport(gasStationId, dieselPrice, superPrice, superPlusPrice, gasPrice, methanePrice, userId);
+	     gasStationServiceImplMock.setReport(gasStationId, dieselPrice, superPrice, superPlusPrice, gasPrice, methanePrice, premiumDieselPrice, userId);
 	}
 	
 	//Catch of InvalidUserException
@@ -1059,15 +1116,18 @@ public class GasStationServiceImplTests {
 		@SuppressWarnings("unused")
 		UserDto user1Dto = new UserDto(1, "Luca Oddone", "Password", "lucaoddone@polito.it", 3);
 		User user1 = new User ("Luca Oddone", "Password", "lucaoddone@polito.it", 3);
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,true,
+				"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
+				(double) 1.45,null,null,0);
 		GasStationDto gasStation1Dto = new GasStationDto(1,"GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
-		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
+				true,"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,
+				(double) 0.90,(double) 1.45,null,null,0);
 		final double dieselPrice = 1.25;
 		final double superPrice = 1.50;
 		final double superPlusPrice = 1.99;
 		final double gasPrice = 0.98;
 		final double methanePrice = 1.01;
+		final double premiumDieselPrice = 1.45;
 		final Integer gasStationId = gasStation1Dto.getGasStationId();
 		final Integer userId = -1;
 		
@@ -1154,9 +1214,9 @@ public class GasStationServiceImplTests {
 					}
 				   return null;
 			}
-		}).when(gasStationServiceImplMock).setReport(gasStationId, dieselPrice, superPrice, superPlusPrice, gasPrice, methanePrice, userId);
+		}).when(gasStationServiceImplMock).setReport(gasStationId, dieselPrice, superPrice, superPlusPrice, gasPrice, methanePrice, premiumDieselPrice, userId);
 		
-	     gasStationServiceImplMock.setReport(gasStationId, dieselPrice, superPrice, superPlusPrice, gasPrice, methanePrice, userId);
+	     gasStationServiceImplMock.setReport(gasStationId, dieselPrice, superPrice, superPlusPrice, gasPrice, methanePrice, premiumDieselPrice, userId);
 	}
 	
 	//Throw of PriceException
@@ -1164,15 +1224,18 @@ public class GasStationServiceImplTests {
 	public void testsetReportPriceException() throws InvalidGasStationException, PriceException, InvalidUserException {
 		UserDto user1Dto = new UserDto(1, "Luca Oddone", "Password", "lucaoddone@polito.it", 3);
 		User user1 = new User ("Luca Oddone", "Password", "lucaoddone@polito.it", 3);
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,true,
+				"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
+				(double) 1.45,null,null,0);
 		GasStationDto gasStation1Dto = new GasStationDto(1,"GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
-		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
+				true,"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,
+				(double) 0.90,(double) 1.45,null,null,0);
 		final double dieselPrice = -1.25;
 		final double superPrice = -1.50;
 		final double superPlusPrice = 1.99;
 		final double gasPrice = 0.98;
 		final double methanePrice = 1.01;
+		final double premiumDieselPrice = 1.45;
 		final Integer gasStationId = gasStation1Dto.getGasStationId();
 		final Integer userId = user1Dto.getUserId();
 		
@@ -1258,24 +1321,30 @@ public class GasStationServiceImplTests {
 					}
 				   return null;
 			}
-		}).when(gasStationServiceImplMock).setReport(gasStationId, dieselPrice, superPrice, superPlusPrice, gasPrice, methanePrice, userId);
+		}).when(gasStationServiceImplMock).setReport(gasStationId, dieselPrice, superPrice, superPlusPrice, gasPrice, methanePrice, premiumDieselPrice, userId);
 		
-	     gasStationServiceImplMock.setReport(gasStationId, dieselPrice, superPrice, superPlusPrice, gasPrice, methanePrice, userId);
+	     gasStationServiceImplMock.setReport(gasStationId, dieselPrice, superPrice, superPlusPrice, gasPrice, methanePrice, premiumDieselPrice, userId);
 	}
 	
 	//Test for retrieving the GasStation which are near less than 1km
 	@SuppressWarnings("unused")
 	@Test
 	public void testgetGasStationsByProximity() throws GPSDataException {
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,true,
+				"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
+				(double) 1.45,null,null,0);
+		
+		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,false,
+				"BlaBlaCar",110.649,87.550,(double) 0,(double) 0,(double) 1.25,(double) 1.55,(double) 0,
+				(double) 0, null,null,0);
+		
 		GasStationDto gasStation1Dto = new GasStationDto(1,"GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
+				true,"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,
+				(double) 0.90,(double) 1.45,null,null,0);
+		
 		GasStationDto gasStation2Dto = new GasStationDto(2,"GasStation2","Via Italia 2",false,false,true,true,false,
-				"BlaBlaCar",61.649,117.550,0,0,1.25,1.55,0,null,null,0);
-	
-		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
-		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,
-				"BlaBlaCar",61.649,117.550,0,0,1.25,1.55,0,null,null,0);
+				false,"BlaBlaCar",61.649,117.550,(double) 0,(double) 0,(double) 1.25,(double) 1.55,(double) 0,
+				(double) 0,null,null,0);
 		
 		final double lat = 80.761;
 		final double lon = 154.987;
@@ -1327,15 +1396,21 @@ public class GasStationServiceImplTests {
 	@SuppressWarnings("unused")
 	@Test(expected=GPSDataException.class)
 	public void testgetGasStationsByProximityThrowException() throws GPSDataException {
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,true,
+				"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
+				(double) 1.45,null,null,0);
+		
+		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,false,
+				"BlaBlaCar",110.649,87.550,(double) 0,(double) 0,(double) 1.25,(double) 1.55,(double) 0,
+				(double) 0, null,null,0);
+		
 		GasStationDto gasStation1Dto = new GasStationDto(1,"GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
+				true,"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,
+				(double) 0.90,(double) 1.45,null,null,0);
+		
 		GasStationDto gasStation2Dto = new GasStationDto(2,"GasStation2","Via Italia 2",false,false,true,true,false,
-				"BlaBlaCar",61.649,117.550,0,0,1.25,1.55,0,null,null,0);
-	
-		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
-		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,
-				"BlaBlaCar",61.649,117.550,0,0,1.25,1.55,0,null,null,0);
+				false,"BlaBlaCar",61.649,117.550,(double) 0,(double) 0,(double) 1.25,(double) 1.55,(double) 0,
+				(double) 0,null,null,0);
 		
 		final double lat = 180.761;
 		final double lon = 154.987;
@@ -1384,18 +1459,25 @@ public class GasStationServiceImplTests {
 	//Test for retrieving the GasStation in a certain area
 	@SuppressWarnings({ "unused" })
 	public void testgetGasStationsWithCoordinates() throws InvalidGasTypeException, GPSDataException {
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,true,
+				"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
+				(double) 1.45,null,null,0);
+		
+		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,false,
+				"BlaBlaCar",110.649,87.550,(double) 0,(double) 0,(double) 1.25,(double) 1.55,(double) 0,
+				(double) 0, null,null,0);
+		
 		GasStationDto gasStation1Dto = new GasStationDto(1,"GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
+				true,"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,
+				(double) 0.90,(double) 1.45,null,null,0);
+		
 		GasStationDto gasStation2Dto = new GasStationDto(2,"GasStation2","Via Italia 2",false,false,true,true,false,
-				"BlaBlaCar",61.649,117.550,0,0,1.25,1.55,0,null,null,0);
-	
-		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
-		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,
-				"BlaBlaCar",61.649,117.550,0,0,1.25,1.55,0,null,null,0);
+				false,"BlaBlaCar",61.649,117.550,(double) 0,(double) 0,(double) 1.25,(double) 1.55,(double) 0,
+				(double) 0,null,null,0);
 		
 		final double lat = 81.574;
 		final double lon = 111.320;
+		final Integer radius = 5;
 		final String gasolinetype = "Diesel";
 		final String carSharing = "BlaBlaCar";
 		
@@ -1426,7 +1508,7 @@ public class GasStationServiceImplTests {
 			return listGasStationDto;
 		});
 		
-		when(gasStationServiceImplMock.getGasStationsWithCoordinates(lat, lon, gasolinetype, carSharing)).thenAnswer( invocation -> {
+		when(gasStationServiceImplMock.getGasStationsWithCoordinates(lat, lon, radius, gasolinetype, carSharing)).thenAnswer( invocation -> {
 			if((lat < -90 || lat >= 90) || (lon < -180 || lon >= 180))
 				throw new GPSDataException("coordinates out of bounds");
 			switch(gasolinetype) {
@@ -1453,7 +1535,7 @@ public class GasStationServiceImplTests {
 			return listGasStationDto;
 		});
 		
-		gasStationServiceImplMock.getGasStationsWithCoordinates(lat, lon, gasolinetype, carSharing);
+		gasStationServiceImplMock.getGasStationsWithCoordinates(lat, lon, gasolinetype, radius, carSharing);
 		
 		assertEquals(1,listGasStationDto.size());
 	}
@@ -1462,19 +1544,26 @@ public class GasStationServiceImplTests {
 	@SuppressWarnings({ "unused" })
 	@Test(expected=InvalidGasTypeException.class)
 	public void testgetGasStationsWithCoordinatesThrowInvalidGasTypeException() throws InvalidGasTypeException, GPSDataException {
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,true,
+				"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
+				(double) 1.45,null,null,0);
+		
+		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,false,
+				"BlaBlaCar",110.649,87.550,(double) 0,(double) 0,(double) 1.25,(double) 1.55,(double) 0,
+				(double) 0, null,null,0);
+		
 		GasStationDto gasStation1Dto = new GasStationDto(1,"GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
+				true,"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,
+				(double) 0.90,(double) 1.45,null,null,0);
+		
 		GasStationDto gasStation2Dto = new GasStationDto(2,"GasStation2","Via Italia 2",false,false,true,true,false,
-				"BlaBlaCar",61.649,117.550,0,0,1.25,1.55,0,null,null,0);
-	
-		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
-		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,
-				"BlaBlaCar",61.649,117.550,0,0,1.25,1.55,0,null,null,0);
+				false,"BlaBlaCar",61.649,117.550,(double) 0,(double) 0,(double) 1.25,(double) 1.55,(double) 0,
+				(double) 0,null,null,0);
 		
 		final double lat = 81.574;
 		final double lon = 111.320;
 		final String gasolinetype = "Fuel";
+		final Integer radius = 5;
 		final String carSharing = "BlaBlaCar";
 		
 		listGasStationDto.clear();
@@ -1504,7 +1593,7 @@ public class GasStationServiceImplTests {
 			return listGasStationDto;
 		});
 		
-		when(gasStationServiceImplMock.getGasStationsWithCoordinates(lat, lon, gasolinetype, carSharing)).thenAnswer( invocation -> {
+		when(gasStationServiceImplMock.getGasStationsWithCoordinates(lat, lon, gasolinetype, radius, carSharing)).thenAnswer( invocation -> {
 			if((lat < -90 || lat >= 90) || (lon < -180 || lon >= 180))
 				throw new GPSDataException("coordinates out of bounds");
 			switch(gasolinetype) {
@@ -1531,25 +1620,32 @@ public class GasStationServiceImplTests {
 			return listGasStationDto;
 		});
 		
-		gasStationServiceImplMock.getGasStationsWithCoordinates(lat, lon, gasolinetype, carSharing);
+		gasStationServiceImplMock.getGasStationsWithCoordinates(lat, lon, gasolinetype, radius, carSharing);
 	}
 	
 	//Throw GPSDataException
 	@SuppressWarnings({ "unused" })
 	@Test(expected=GPSDataException.class)
 	public void testgetGasStationsWithCoordinatesThrowGPSDataException() throws InvalidGasTypeException, GPSDataException {
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,true,
+				"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
+				(double) 1.45,null,null,0);
+		
+		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,false,
+				"BlaBlaCar",110.649,87.550,(double) 0,(double) 0,(double) 1.25,(double) 1.55,(double) 0,
+				(double) 0, null,null,0);
+		
 		GasStationDto gasStation1Dto = new GasStationDto(1,"GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
+				true,"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,
+				(double) 0.90,(double) 1.45,null,null,0);
+		
 		GasStationDto gasStation2Dto = new GasStationDto(2,"GasStation2","Via Italia 2",false,false,true,true,false,
-				"BlaBlaCar",61.649,117.550,0,0,1.25,1.55,0,null,null,0);
-	
-		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
-		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,
-				"BlaBlaCar",61.649,117.550,0,0,1.25,1.55,0,null,null,0);
+				false,"BlaBlaCar",61.649,117.550,(double) 0,(double) 0,(double) 1.25,(double) 1.55,(double) 0,
+				(double) 0,null,null,0);
 		
 		final double lat = 181.574;
 		final double lon = 111.320;
+		final Integer radius = 5;
 		final String gasolinetype = "Diesel";
 		final String carSharing = "BlaBlaCar";
 		
@@ -1580,7 +1676,7 @@ public class GasStationServiceImplTests {
 			return listGasStationDto;
 		});
 		
-		when(gasStationServiceImplMock.getGasStationsWithCoordinates(lat, lon, gasolinetype, carSharing)).thenAnswer( invocation -> {
+		when(gasStationServiceImplMock.getGasStationsWithCoordinates(lat, lon, gasolinetype, radius, carSharing)).thenAnswer( invocation -> {
 			if((lat < -90 || lat >= 90) || (lon < -180 || lon >= 180))
 				throw new GPSDataException("coordinates out of bounds");
 			switch(gasolinetype) {
@@ -1607,21 +1703,27 @@ public class GasStationServiceImplTests {
 			return listGasStationDto;
 		});
 		
-		gasStationServiceImplMock.getGasStationsWithCoordinates(lat, lon, gasolinetype, carSharing);
+		gasStationServiceImplMock.getGasStationsWithCoordinates(lat, lon, gasolinetype,radius, carSharing);
 	}
 	
 	//Retrieve Gasstation based on gasolinetype and carsharing
 	@Test
 	public void testgetGasStationsWithoutCoordinates() throws InvalidGasTypeException {
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,true,
+				"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
+				(double) 1.45,null,null,0);
+		
+		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,false,
+				"BlaBlaCar",110.649,87.550,(double) 0,(double) 0,(double) 1.25,(double) 1.55,(double) 0,
+				(double) 0, null,null,0);
+		
 		GasStationDto gasStation1Dto = new GasStationDto(1,"GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
+				true,"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,
+				(double) 0.90,(double) 1.45,null,null,0);
+		
 		GasStationDto gasStation2Dto = new GasStationDto(2,"GasStation2","Via Italia 2",false,false,true,true,false,
-				"BlaBlaCar",61.649,117.550,0,0,1.25,1.55,0,null,null,0);
-	
-		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
-		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,
-				"BlaBlaCar",61.649,117.550,0,0,1.25,1.55,0,null,null,0);
+				false,"BlaBlaCar",61.649,117.550,(double) 0,(double) 0,(double) 1.25,(double) 1.55,(double) 0,
+				(double) 0,null,null,0);
 		
 		final String gasolinetype = "Diesel";
 		final String carSharing = "BlaBlaCar";
@@ -1685,15 +1787,21 @@ public class GasStationServiceImplTests {
 	//Throw InvalidGasTypeException
 	@Test(expected=InvalidGasTypeException.class)
 	public void testgetGasStationsWithoutCoordinatesThrowInvalidGasTypeException() throws InvalidGasTypeException {
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,true,
+				"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
+				(double) 1.45,null,null,0);
+		
+		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,false,
+				"BlaBlaCar",110.649,87.550,(double) 0,(double) 0,(double) 1.25,(double) 1.55,(double) 0,
+				(double) 0, null,null,0);
+		
 		GasStationDto gasStation1Dto = new GasStationDto(1,"GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
+				true,"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,
+				(double) 0.90,(double) 1.45,null,null,0);
+		
 		GasStationDto gasStation2Dto = new GasStationDto(2,"GasStation2","Via Italia 2",false,false,true,true,false,
-				"BlaBlaCar",61.649,117.550,0,0,1.25,1.55,0,null,null,0);
-	
-		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",81.574,111.320,1.25,1.55,0,0,0.90,null,null,0);
-		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,
-				"BlaBlaCar",61.649,117.550,0,0,1.25,1.55,0,null,null,0);
+				false,"BlaBlaCar",61.649,117.550,(double) 0,(double) 0,(double) 1.25,(double) 1.55,(double) 0,
+				(double) 0,null,null,0);
 		
 		final String gasolinetype = "Fuel";
 		final String carSharing = "BlaBlaCar";
