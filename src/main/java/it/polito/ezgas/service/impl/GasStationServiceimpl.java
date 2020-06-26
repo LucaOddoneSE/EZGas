@@ -453,7 +453,7 @@ public class GasStationServiceimpl implements GasStationService {
 		else{
 		gs = getAllGasStations().stream()
 				.filter( (g) -> g.getCarSharing().equals(carSharing))
-				.sorted(Comparator.comparing(GasStationDto::getCarSharing))
+				.sorted(Comparator.comparing(GasStationDto::getGasStationName))
 				.collect(Collectors.toCollection(ArrayList::new));
 		}
 		return gs;
