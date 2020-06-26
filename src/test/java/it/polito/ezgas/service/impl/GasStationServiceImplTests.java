@@ -258,6 +258,7 @@ public class GasStationServiceImplTests {
 	public void testgetGasStationByIdNegativeUserId() throws InvalidGasStationException{
 		
 		when(gasStationServiceImplMock.getGasStationById(-10)).thenThrow(
+		
 				new InvalidGasStationException("Error! You have passed a negative GasStationId") );
 		
 		gasStationServiceImplMock.getGasStationById(-10);
@@ -314,6 +315,7 @@ public class GasStationServiceImplTests {
 			station.setHasSuperPlus(gasStation1Dto.getHasSuperPlus());
 			station.setHasGas(gasStation1Dto.getHasGas());
 			station.setHasMethane(gasStation1Dto.getHasMethane());
+			station.setHasPremiumDiesel(gasStation1Dto.getHasPremiumDiesel());
 			station.setCarSharing(gasStation1Dto.getCarSharing());
 			station.setLat(gasStation1Dto.getLat());
 			station.setLon(gasStation1Dto.getLon());
@@ -322,6 +324,7 @@ public class GasStationServiceImplTests {
 			station.setSuperPlusPrice(gasStation1Dto.getSuperPlusPrice());
 			station.setGasPrice(gasStation1Dto.getGasPrice());
 			station.setMethanePrice(gasStation1Dto.getMethanePrice());
+			station.setPremiumDieselPrice(gasStation1Dto.getPremiumDieselPrice());
 			station.setReportUser(gasStation1Dto.getReportUser());
 			station.setReportTimestamp(gasStation1Dto.getReportTimestamp());
 			station.setReportDependability(gasStation1Dto.getReportDependability());
@@ -351,6 +354,7 @@ public class GasStationServiceImplTests {
 			station.setHasSuperPlus(gasStation2Dto.getHasSuperPlus());
 			station.setHasGas(gasStation2Dto.getHasGas());
 			station.setHasMethane(gasStation2Dto.getHasMethane());
+			station.setHasPremiumDiesel(gasStation2Dto.getHasPremiumDiesel());
 			station.setCarSharing(gasStation2Dto.getCarSharing());
 			station.setLat(gasStation2Dto.getLat());
 			station.setLon(gasStation2Dto.getLon());
@@ -359,6 +363,7 @@ public class GasStationServiceImplTests {
 			station.setSuperPlusPrice(gasStation2Dto.getSuperPlusPrice());
 			station.setGasPrice(gasStation2Dto.getGasPrice());
 			station.setMethanePrice(gasStation2Dto.getMethanePrice());
+			station.setPremiumDieselPrice(gasStation2Dto.getPremiumDieselPrice());
 			station.setReportUser(gasStation2Dto.getReportUser());
 			station.setReportTimestamp(gasStation2Dto.getReportTimestamp());
 			station.setReportDependability(gasStation2Dto.getReportDependability());
@@ -379,11 +384,11 @@ public class GasStationServiceImplTests {
 	public void testSaveGasStationPriceException() throws PriceException, GPSDataException {
 		GasStationDto gasStation1Dto = new GasStationDto(1,"GasStation1","Via Italia 1",true,true,false,false,true,
 				true,"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,
-				(double) 0.90,(double) 1.45,null,null,0);
+				(double) 0.90,(double) -1.45,null,null,0);
 		
 		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,true,
 				"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
-				(double) 1.45,null,null,0);
+				(double) -1.45,null,null,0);
 		
 		listGasStationDto.clear();
 		listGasStation.clear();
@@ -398,7 +403,8 @@ public class GasStationServiceImplTests {
 					(gasStation1Dto.getHasGas() && gasStation1Dto.getGasPrice() < 0  ) || 
 				    (gasStation1Dto.getHasSuper() && gasStation1Dto.getSuperPrice() < 0 ) ||
 				    (gasStation1Dto.getHasSuperPlus() &&  gasStation1Dto.getSuperPlusPrice() < 0 ) || 
-				    (gasStation1Dto.getHasMethane() && gasStation1Dto.getMethanePrice() < 0) ) 
+				    (gasStation1Dto.getHasMethane() && gasStation1Dto.getMethanePrice() < 0) ||
+				    (gasStation1Dto.getHasPremiumDiesel() && gasStation1Dto.getPremiumDieselPrice() < 0) ) 
 					throw new PriceException("Error! One or more of the fuel types price is negative!");
 			
 			if( (gasStation1Dto.getLon() < -180 || gasStation1Dto.getLon() >= 180) || 
@@ -427,6 +433,7 @@ public class GasStationServiceImplTests {
 			station.setHasSuperPlus(gasStation1Dto.getHasSuperPlus());
 			station.setHasGas(gasStation1Dto.getHasGas());
 			station.setHasMethane(gasStation1Dto.getHasMethane());
+			station.setHasPremiumDiesel(gasStation1Dto.getHasPremiumDiesel());
 			station.setCarSharing(gasStation1Dto.getCarSharing());
 			station.setLat(gasStation1Dto.getLat());
 			station.setLon(gasStation1Dto.getLon());
@@ -435,6 +442,7 @@ public class GasStationServiceImplTests {
 			station.setSuperPlusPrice(gasStation1Dto.getSuperPlusPrice());
 			station.setGasPrice(gasStation1Dto.getGasPrice());
 			station.setMethanePrice(gasStation1Dto.getMethanePrice());
+			station.setPremiumDieselPrice(gasStation1Dto.getPremiumDieselPrice());
 			station.setReportUser(gasStation1Dto.getReportUser());
 			station.setReportTimestamp(gasStation1Dto.getReportTimestamp());
 			station.setReportDependability(gasStation1Dto.getReportDependability());
@@ -448,11 +456,11 @@ public class GasStationServiceImplTests {
 	@Test(expected=GPSDataException.class)
 	public void testSaveGasStationGPSDataException() throws PriceException, GPSDataException {
 		GasStationDto gasStation1Dto = new GasStationDto(1,"GasStation1","Via Italia 1",true,true,false,false,true,
-				true,"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,
+				true,"BlaBlaCar",181.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,
 				(double) 0.90,(double) 1.45,null,null,0);
 		
 		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,true,
-				"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
+				"BlaBlaCar",181.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
 				(double) 1.45,null,null,0);
 		
 		listGasStationDto.clear();
@@ -497,6 +505,7 @@ public class GasStationServiceImplTests {
 			station.setHasSuperPlus(gasStation1Dto.getHasSuperPlus());
 			station.setHasGas(gasStation1Dto.getHasGas());
 			station.setHasMethane(gasStation1Dto.getHasMethane());
+			station.setHasPremiumDiesel(gasStation1Dto.getHasPremiumDiesel());
 			station.setCarSharing(gasStation1Dto.getCarSharing());
 			station.setLat(gasStation1Dto.getLat());
 			station.setLon(gasStation1Dto.getLon());
@@ -505,6 +514,7 @@ public class GasStationServiceImplTests {
 			station.setSuperPlusPrice(gasStation1Dto.getSuperPlusPrice());
 			station.setGasPrice(gasStation1Dto.getGasPrice());
 			station.setMethanePrice(gasStation1Dto.getMethanePrice());
+			station.setPremiumDieselPrice(gasStation1Dto.getPremiumDieselPrice());
 			station.setReportUser(gasStation1Dto.getReportUser());
 			station.setReportTimestamp(gasStation1Dto.getReportTimestamp());
 			station.setReportDependability(gasStation1Dto.getReportDependability());
