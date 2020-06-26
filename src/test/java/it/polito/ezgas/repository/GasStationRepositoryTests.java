@@ -21,10 +21,12 @@ public class GasStationRepositoryTests implements JpaRepository<GasStation,Integ
 	
 	@Test
 	public void testExist() {
-		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",110.574,81.320,1.25,1.55,0,0,0.90,null,null,0);
-		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,
-				"BlaBlaCar",110.649,87.550,0,0,1.25,1.55,0,null,null,0);
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,true,
+				"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
+				(double) 1.45,null,null,0);
+		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,false,
+				"BlaBlaCar",110.649,87.550,(double) 0,(double) 0,(double) 1.25,(double) 1.55,
+				(double) 0,(double) 0,null,null,0);
 		
 		gasStation1.setGasStationId(1);
 		gasStation2.setGasStationId(2);
@@ -42,10 +44,12 @@ public class GasStationRepositoryTests implements JpaRepository<GasStation,Integ
 	
 	@Test
 	public void testDelete() {
-		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",110.574,81.320,1.25,1.55,0,0,0.90,null,null,0);
-		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,
-				"BlaBlaCar",110.649,87.550,0,0,1.25,1.55,0,null,null,0);
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,true,
+				"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
+				(double) 1.45,null,null,0);
+		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,false,
+				"BlaBlaCar",110.649,87.550,(double) 0,(double) 0,(double) 1.25,(double) 1.55,
+				(double) 0,(double) 0,null,null,0);
 		
 		gasStation1.setGasStationId(1);
 		gasStation2.setGasStationId(2);
@@ -63,10 +67,12 @@ public class GasStationRepositoryTests implements JpaRepository<GasStation,Integ
 	
 	@Test
 	public void testFindAll() {
-		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",110.574,81.320,1.25,1.55,0,0,0.90,null,null,0);
-		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,
-				"BlaBlaCar",110.649,87.550,0,0,1.25,1.55,0,null,null,0);
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,true,
+				"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
+				(double) 1.45,null,null,0);
+		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,false,
+				"BlaBlaCar",110.649,87.550,(double) 0,(double) 0,(double) 1.25,(double) 1.55,
+				(double) 0,(double) 0,null,null,0);
 		
 		gasStation1.setGasStationId(1);
 		gasStation2.setGasStationId(2);
@@ -81,10 +87,12 @@ public class GasStationRepositoryTests implements JpaRepository<GasStation,Integ
 	
 	@Test
 	public void testfindOne() {
-		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",110.574,81.320,1.25,1.55,0,0,0.90,null,null,0);
-		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,
-				"BlaBlaCar",110.649,87.550,0,0,1.25,1.55,0,null,null,0);
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,true,
+				"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
+				(double) 1.45,null,null,0);
+		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,false,
+				"BlaBlaCar",110.649,87.550,(double) 0,(double) 0,(double) 1.25,(double) 1.55,
+				(double) 0,(double) 0,null,null,0);
 		
 		gasStation1.setGasStationId(1);
 		gasStation2.setGasStationId(2);
@@ -101,10 +109,12 @@ public class GasStationRepositoryTests implements JpaRepository<GasStation,Integ
 	
 	@Test
 	public void testsave() {
-		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,
-				"BlaBlaCar",110.574,81.320,1.25,1.55,0,0,0.90,null,null,0);
-		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,
-				"BlaBlaCar",110.649,87.550,0,0,1.25,1.55,0,null,null,0);
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,true,
+				"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
+				(double) 1.45,null,null,0);
+		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,false,
+				"BlaBlaCar",110.649,87.550,(double) 0,(double) 0,(double) 1.25,(double) 1.55,
+				(double) 0,(double) 0,null,null,0);
 		
 		listGasStation.clear();
 		
