@@ -1013,7 +1013,8 @@ public class GasStationServiceImplTests {
 	   					(gasStationRepositoryMock.findOne(gasStationId).getHasGas() && gasPrice < 0  ) || 
 	   				    (gasStationRepositoryMock.findOne(gasStationId).getHasSuper() && superPrice < 0 ) ||
 	   				    (gasStationRepositoryMock.findOne(gasStationId).getHasSuperPlus() &&   superPlusPrice < 0 ) || 
-	   				    (gasStationRepositoryMock.findOne(gasStationId).getHasMethane() && methanePrice < 0) ) 
+	   				    (gasStationRepositoryMock.findOne(gasStationId).getHasMethane() && methanePrice < 0) ||
+	   				    (gasStationRepositoryMock.findOne(gasStationId).getHasPremiumDiesel() && premiumDieselPrice < 0)) 
 	   						throw new PriceException("Error! One or more of the fuel types price is negative!");
 	        	   if(gasStationId < 0)
 	       			throw new InvalidGasStationException("Error! the GasStationId must not be negative");
@@ -1036,6 +1037,8 @@ public class GasStationServiceImplTests {
 							gasStation.setSuperPlusPrice(superPlusPrice);
 						if(gasStation.getHasMethane())
 							gasStation.setMethanePrice(methanePrice);
+						if(gasStation.getHasPremiumDiesel())
+							gasStation.setPremiumDieselPrice(premiumDieselPrice);
 						
 						try {
 							obsolence = (Day.calculateDays(gasStation.getReportTimestamp()));
@@ -1050,6 +1053,19 @@ public class GasStationServiceImplTests {
 						gasStation.setReportDependability(50*(user1.getReputation()+5)/10+50*obsolence);
 					}
 					else {
+						if( user1.getReputation() < gasStation.getUser().getReputation() ) {
+							try {
+								obsolence = Day.calculateDays(gasStation.getReportTimestamp());
+								if(obsolence>4) {}
+								else {
+									System.out.println("The previous price list is not overwritten because (today-P.time_tag)<=4");
+									return null;
+								}
+							} catch (ParseException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
 						gasStation.setReportUser(userId);
 						try {
 							obsolence = (Day.calculateDays(gasStation.getReportTimestamp()));
@@ -1073,6 +1089,9 @@ public class GasStationServiceImplTests {
 							gasStation.setSuperPlusPrice(superPlusPrice);
 						if(gasStation.getHasMethane())
 							gasStation.setMethanePrice(methanePrice);
+						if(gasStation.getHasPremiumDiesel())
+							gasStation.setPremiumDieselPrice(premiumDieselPrice);
+						
 						gasStation.setReportDependability(50*(user1.getReputation()+5)/10+50*obsolence);
 					}
 				   return null;
@@ -1124,7 +1143,8 @@ public class GasStationServiceImplTests {
 	   					(gasStationRepositoryMock.findOne(gasStationId).getHasGas() && gasPrice < 0  ) || 
 	   				    (gasStationRepositoryMock.findOne(gasStationId).getHasSuper() && superPrice < 0 ) ||
 	   				    (gasStationRepositoryMock.findOne(gasStationId).getHasSuperPlus() &&   superPlusPrice < 0 ) || 
-	   				    (gasStationRepositoryMock.findOne(gasStationId).getHasMethane() && methanePrice < 0) ) 
+	   				    (gasStationRepositoryMock.findOne(gasStationId).getHasMethane() && methanePrice < 0)  || 
+	   				    (gasStationRepositoryMock.findOne(gasStationId).getHasPremiumDiesel() && premiumDieselPrice < 0)) 
 	   						throw new PriceException("Error! One or more of the fuel types price is negative!");
 	        	   if(gasStationId < 0)
 	       			throw new InvalidGasStationException("Error! the GasStationId must not be negative");
@@ -1147,6 +1167,8 @@ public class GasStationServiceImplTests {
 							gasStation.setSuperPlusPrice(superPlusPrice);
 						if(gasStation.getHasMethane())
 							gasStation.setMethanePrice(methanePrice);
+						if(gasStation.getHasPremiumDiesel())
+							gasStation.setPremiumDieselPrice(premiumDieselPrice);
 						
 						try {
 							obsolence = (Day.calculateDays(gasStation.getReportTimestamp()));
@@ -1161,6 +1183,19 @@ public class GasStationServiceImplTests {
 						gasStation.setReportDependability(50*(user1.getReputation()+5)/10+50*obsolence);
 					}
 					else {
+						if( user1.getReputation() < gasStation.getUser().getReputation() ) {
+							try {
+								obsolence = Day.calculateDays(gasStation.getReportTimestamp());
+								if(obsolence>4) {}
+								else {
+									System.out.println("The previous price list is not overwritten because (today-P.time_tag)<=4");
+									return null;
+								}
+							} catch (ParseException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
 						gasStation.setReportUser(userId);
 						try {
 							obsolence = (Day.calculateDays(gasStation.getReportTimestamp()));
@@ -1184,6 +1219,9 @@ public class GasStationServiceImplTests {
 							gasStation.setSuperPlusPrice(superPlusPrice);
 						if(gasStation.getHasMethane())
 							gasStation.setMethanePrice(methanePrice);
+						if(gasStation.getHasPremiumDiesel())
+							gasStation.setPremiumDieselPrice(premiumDieselPrice);
+						
 						gasStation.setReportDependability(50*(user1.getReputation()+5)/10+50*obsolence);
 					}
 				   return null;
@@ -1233,7 +1271,8 @@ public class GasStationServiceImplTests {
 	   					(gasStationRepositoryMock.findOne(gasStationId).getHasGas() && gasPrice < 0  ) || 
 	   				    (gasStationRepositoryMock.findOne(gasStationId).getHasSuper() && superPrice < 0 ) ||
 	   				    (gasStationRepositoryMock.findOne(gasStationId).getHasSuperPlus() &&   superPlusPrice < 0 ) || 
-	   				    (gasStationRepositoryMock.findOne(gasStationId).getHasMethane() && methanePrice < 0) ) 
+	   				    (gasStationRepositoryMock.findOne(gasStationId).getHasMethane() && methanePrice < 0) || 
+	   				    (gasStationRepositoryMock.findOne(gasStationId).getHasPremiumDiesel() && premiumDieselPrice < 0)) 
 	   						throw new PriceException("Error! One or more of the fuel types price is negative!");
 	        	   if(gasStationId < 0)
 	       			throw new InvalidGasStationException("Error! the GasStationId must not be negative");
@@ -1256,6 +1295,8 @@ public class GasStationServiceImplTests {
 							gasStation.setSuperPlusPrice(superPlusPrice);
 						if(gasStation.getHasMethane())
 							gasStation.setMethanePrice(methanePrice);
+						if(gasStation.getHasPremiumDiesel())
+							gasStation.setPremiumDieselPrice(premiumDieselPrice);
 						
 						try {
 							obsolence = (Day.calculateDays(gasStation.getReportTimestamp()));
@@ -1270,6 +1311,19 @@ public class GasStationServiceImplTests {
 						gasStation.setReportDependability(50*(user1.getReputation()+5)/10+50*obsolence);
 					}
 					else {
+						if( user1.getReputation() < gasStation.getUser().getReputation() ) {
+							try {
+								obsolence = Day.calculateDays(gasStation.getReportTimestamp());
+								if(obsolence>4) {}
+								else {
+									System.out.println("The previous price list is not overwritten because (today-P.time_tag)<=4");
+									return null;
+								}
+							} catch (ParseException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
 						gasStation.setReportUser(userId);
 						try {
 							obsolence = (Day.calculateDays(gasStation.getReportTimestamp()));
@@ -1293,6 +1347,9 @@ public class GasStationServiceImplTests {
 							gasStation.setSuperPlusPrice(superPlusPrice);
 						if(gasStation.getHasMethane())
 							gasStation.setMethanePrice(methanePrice);
+						if(gasStation.getHasPremiumDiesel())
+							gasStation.setPremiumDieselPrice(premiumDieselPrice);
+						
 						gasStation.setReportDependability(50*(user1.getReputation()+5)/10+50*obsolence);
 					}
 				   return null;
@@ -1318,7 +1375,7 @@ public class GasStationServiceImplTests {
 		final double superPlusPrice = 1.99;
 		final double gasPrice = 0.98;
 		final double methanePrice = 1.01;
-		final double premiumDieselPrice = 1.45;
+		final double premiumDieselPrice = -1.45;
 		final Integer gasStationId = gasStation1Dto.getGasStationId();
 		final Integer userId = user1Dto.getUserId();
 		
@@ -1340,7 +1397,8 @@ public class GasStationServiceImplTests {
 		   					(gasStationRepositoryMock.findOne(gasStationId).getHasGas() && gasPrice < 0  ) || 
 		   				    (gasStationRepositoryMock.findOne(gasStationId).getHasSuper() && superPrice < 0 ) ||
 		   				    (gasStationRepositoryMock.findOne(gasStationId).getHasSuperPlus() &&   superPlusPrice < 0 ) || 
-		   				    (gasStationRepositoryMock.findOne(gasStationId).getHasMethane() && methanePrice < 0) ) 
+		   				    (gasStationRepositoryMock.findOne(gasStationId).getHasMethane() && methanePrice < 0) ||
+		   				    (gasStationRepositoryMock.findOne(gasStationId).getHasPremiumDiesel() && premiumDieselPrice < 0)) 
 		   						throw new PriceException("Error! One or more of the fuel types price is negative!");
 	        	   if(gasStationId < 0)
 	       			throw new InvalidGasStationException("Error! the GasStationId must not be negative");
@@ -1363,6 +1421,8 @@ public class GasStationServiceImplTests {
 							gasStation.setSuperPlusPrice(superPlusPrice);
 						if(gasStation.getHasMethane())
 							gasStation.setMethanePrice(methanePrice);
+						if(gasStation.getHasPremiumDiesel())
+							gasStation.setPremiumDieselPrice(premiumDieselPrice);
 						
 						try {
 							obsolence = (Day.calculateDays(gasStation.getReportTimestamp()));
@@ -1377,6 +1437,19 @@ public class GasStationServiceImplTests {
 						gasStation.setReportDependability(50*(user1.getReputation()+5)/10+50*obsolence);
 					}
 					else {
+						if( user1.getReputation() < gasStation.getUser().getReputation() ) {
+							try {
+									obsolence = Day.calculateDays(gasStation.getReportTimestamp());
+									if(obsolence>4) {}
+									else {
+										System.out.println("The previous price list is not overwritten because (today-P.time_tag)<=4");
+										return null;
+									}
+								 } catch (ParseException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+							}
 						gasStation.setReportUser(userId);
 						try {
 							obsolence = (Day.calculateDays(gasStation.getReportTimestamp()));
@@ -1400,6 +1473,9 @@ public class GasStationServiceImplTests {
 							gasStation.setSuperPlusPrice(superPlusPrice);
 						if(gasStation.getHasMethane())
 							gasStation.setMethanePrice(methanePrice);
+						if(gasStation.getHasPremiumDiesel())
+							gasStation.setPremiumDieselPrice(premiumDieselPrice);
+						
 						gasStation.setReportDependability(50*(user1.getReputation()+5)/10+50*obsolence);
 					}
 				   return null;
