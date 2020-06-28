@@ -2137,6 +2137,98 @@ public class GasStationServiceImplTests {
 		gasStationServiceImplMock.getGasStationsWithCoordinates(lat, lon, radius, gasolinetype, carsharing);
 	}
 	
+	//Throw InvalidCarSharingException
+	@SuppressWarnings({ "unused" })
+	@Test(expected=InvalidCarSharingException.class)
+	public void testgetGasStationsWithCoordinatesThrowInvalidCarSharingException() throws InvalidGasTypeException, GPSDataException, InvalidCarSharingException {
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,true,
+				"Enjoy",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
+				(double) 1.45,null,null,0);
+		
+		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,false,
+				"Enjoy",110.649,87.550,(double) 0,(double) 0,(double) 1.25,(double) 1.55,(double) 0,
+				(double) 0, null,null,0);
+		
+		GasStationDto gasStation1Dto = new GasStationDto(1,"GasStation1","Via Italia 1",true,true,false,false,true,
+				true,"Enjoy",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,
+				(double) 0.90,(double) 1.45,null,null,0);
+		
+		GasStationDto gasStation2Dto = new GasStationDto(2,"GasStation2","Via Italia 2",false,false,true,true,false,
+				false,"Enjoy",61.649,117.550,(double) 0,(double) 0,(double) 1.25,(double) 1.55,(double) 0,
+				(double) 0,null,null,0);
+		
+		final double lat = 81.574;
+		final double lon = 111.320;
+		final String gasolinetype = "Diesel";
+		final Integer radius = 5;
+		final String carsharing = "BlaBlaCar";
+		
+		listGasStationDto.clear();
+		listGasStation.clear();
+		
+		gasStation1.setGasStationId(1);
+		gasStation2.setGasStationId(2);
+		
+		listGasStation.add(gasStation1);
+		listGasStation.add(gasStation2);
+		
+		when(gasStationConverterMock.toGasStationDto(gasStation1)).thenReturn(gasStation1Dto);
+		when(gasStationConverterMock.toGasStation(gasStation1Dto)).thenReturn(gasStation1);
+		
+		when(gasStationConverterMock.toGasStationDto(gasStation2)).thenReturn(gasStation2Dto);
+		when(gasStationConverterMock.toGasStation(gasStation2Dto)).thenReturn(gasStation2);
+		
+		when(gasStationServiceImplMock.getAllGasStations()).then( invocation -> {
+			Iterator<GasStation> iter = listGasStation.listIterator();
+			while(iter.hasNext()) {
+				GasStation gasStation = iter.next();
+				if(gasStation.getGasStationId() == 1)
+					listGasStationDto.add(gasStationConverterMock.toGasStationDto(gasStation1));
+				else
+					listGasStationDto.add(gasStationConverterMock.toGasStationDto(gasStation2));
+			}
+			return listGasStationDto;
+		});
+		
+		when(gasStationServiceImplMock.getGasStationsWithCoordinates(lat, lon, radius, gasolinetype, carsharing)).thenAnswer( invocation -> {
+			int R;
+			if(carsharing.equals("Enjoy") || carsharing.equals("Car2Go") || carsharing.equals("null")) {}
+			else
+				throw new InvalidCarSharingException("Error! It has been passed an invalid type for carsharing parameter");
+			if(radius<=0) 
+				R = 1;
+			else
+				R = radius;
+			final int RADIUS = R;
+			if((lat < -90 || lat >= 90) || (lon < -180 || lon >= 180))
+				throw new GPSDataException("coordinates out of bounds");
+			switch(gasolinetype) {
+			case "Diesel":
+				Iterator<GasStation> iter = listGasStation.iterator();
+				while(iter.hasNext()) {
+					GasStation gasStation = iter.next();
+					if(gasStation.getCarSharing().equals(carsharing) == false || gasStation.getHasDiesel() == false) {
+						if(gasStation.getGasStationId() == 1)
+							listGasStationDto.remove(gasStationConverterMock.toGasStationDto(gasStation1));
+						else
+							listGasStationDto.remove(gasStationConverterMock.toGasStationDto(gasStation2));
+					}
+				}
+				listGasStationDto.
+				stream()
+				.filter( (g) -> Haversine.distance(lat, lon, g.getLat(), g.getLon() ) <= RADIUS)
+				.sorted( (g1,g2) -> Double.compare(Haversine.distance(lat, lon, g1.getLat(), g1.getLon() ), Haversine.distance(lat, lon, g2.getLat(), g2.getLon() ) ) )
+				.collect(Collectors.toList());
+			break ;
+			default:
+					  throw new InvalidGasTypeException("Gas Type not supported");
+			}
+			return listGasStationDto;
+		});
+		
+		gasStationServiceImplMock.getGasStationsWithCoordinates(lat, lon, radius, gasolinetype, carsharing);
+	}
+	
 	//Throw GPSDataException
 	@SuppressWarnings({ "unused" })
 	@Test(expected=GPSDataException.class)
