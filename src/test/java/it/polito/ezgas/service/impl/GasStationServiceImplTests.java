@@ -1100,7 +1100,7 @@ public class GasStationServiceImplTests {
 	     gasStationServiceImplMock.setReport(gasStationId, dieselPrice, superPrice, superPlusPrice, gasPrice, methanePrice, premiumDieselPrice, userId);
 	     
 	     assertEquals(Integer.valueOf(1),gasStation1.getReportUser());
-	     assertEquals(Double.valueOf(40),Double.valueOf(gasStation1.getReportDependability()));
+	     assertEquals(Double.valueOf(90),Double.valueOf(gasStation1.getReportDependability()));
 	}
 
 	//Test for verifying the catch of InvalidGasStationException
@@ -1483,6 +1483,7 @@ public class GasStationServiceImplTests {
 	public void testsetReportNotOverwritten() throws InvalidGasStationException, PriceException, InvalidUserException {
 		UserDto user1Dto = new UserDto(1, "Luca Oddone", "Password", "lucaoddone@polito.it", 3);
 		User user1 = new User ("Luca Oddone", "Password", "lucaoddone@polito.it", 3);
+		User user2 = new User("Paola Oddone", "Password", "paolaoddone@polito.it",5);
 		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,true,
 				"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
 				(double) 1.45,2,"06-25-2020",80);
@@ -1502,6 +1503,8 @@ public class GasStationServiceImplTests {
 		listGasStation.clear();
 		
 		gasStation1.setGasStationId(1);
+		gasStation1.setUser(user2);
+		gasStation1.setReportUser(2);
 		
 		listGasStation.add(gasStation1);
 		
@@ -1557,7 +1560,6 @@ public class GasStationServiceImplTests {
 						gasStation.setReportDependability(50*(user1.getReputation()+5)/10+50*obsolence);
 					}
 					else {
-						when(gasStation.getUser().getReputation()).thenReturn(5);
 						if( user1.getReputation() < gasStation.getUser().getReputation() ) {
 							try {
 									obsolence = Day.calculateDays(gasStation.getReportTimestamp());
@@ -1611,6 +1613,7 @@ public class GasStationServiceImplTests {
 	public void testsetReportOverwritten() throws InvalidGasStationException, PriceException, InvalidUserException {
 		UserDto user1Dto = new UserDto(1, "Luca Oddone", "Password", "lucaoddone@polito.it", 3);
 		User user1 = new User ("Luca Oddone", "Password", "lucaoddone@polito.it", 3);
+		User user2 = new User("Paola Oddone", "Password", "paolaoddone@polito.it", 5);
 		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,true,
 				"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
 				(double) 1.45,2,"06-20-2020",80);
@@ -1630,6 +1633,8 @@ public class GasStationServiceImplTests {
 		listGasStation.clear();
 		
 		gasStation1.setGasStationId(1);
+		gasStation1.setUser(user2);
+		gasStation1.setReportUser(2);
 		
 		listGasStation.add(gasStation1);
 		
@@ -1685,7 +1690,6 @@ public class GasStationServiceImplTests {
 						gasStation.setReportDependability(50*(user1.getReputation()+5)/10+50*obsolence);
 					}
 					else {
-						when(gasStation.getUser().getReputation()).thenReturn(5);
 						if( user1.getReputation() < gasStation.getUser().getReputation() ) {
 							try {
 									obsolence = Day.calculateDays(gasStation.getReportTimestamp());
