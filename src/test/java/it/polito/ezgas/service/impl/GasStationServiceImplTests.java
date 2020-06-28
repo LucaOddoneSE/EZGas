@@ -1058,7 +1058,6 @@ public class GasStationServiceImplTests {
 								obsolence = Day.calculateDays(gasStation.getReportTimestamp());
 								if(obsolence>4) {}
 								else {
-									System.out.println("The previous price list is not overwritten because (today-P.time_tag)<=4");
 									return null;
 								}
 							} catch (ParseException e) {
@@ -1078,7 +1077,6 @@ public class GasStationServiceImplTests {
 							e.printStackTrace();
 						}
 						gasStation.setReportTimestamp(Day.calendarToString());
-						System.out.println("ReportTimestamp: " + gasStation.getReportTimestamp());
 						if(gasStation.getHasDiesel())
 							gasStation.setDieselPrice(dieselPrice);
 						if(gasStation.getHasGas())
@@ -1188,7 +1186,6 @@ public class GasStationServiceImplTests {
 								obsolence = Day.calculateDays(gasStation.getReportTimestamp());
 								if(obsolence>4) {}
 								else {
-									System.out.println("The previous price list is not overwritten because (today-P.time_tag)<=4");
 									return null;
 								}
 							} catch (ParseException e) {
@@ -1207,8 +1204,7 @@ public class GasStationServiceImplTests {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						gasStation.setReportTimestamp(Day.calendarToString());
-						System.out.println("ReportTimestamp: " + gasStation.getReportTimestamp());
+						gasStation.setReportTimestamp(Day.calendarToString());				
 						if(gasStation.getHasDiesel())
 							gasStation.setDieselPrice(dieselPrice);
 						if(gasStation.getHasGas())
@@ -1316,7 +1312,6 @@ public class GasStationServiceImplTests {
 								obsolence = Day.calculateDays(gasStation.getReportTimestamp());
 								if(obsolence>4) {}
 								else {
-									System.out.println("The previous price list is not overwritten because (today-P.time_tag)<=4");
 									return null;
 								}
 							} catch (ParseException e) {
@@ -1336,7 +1331,6 @@ public class GasStationServiceImplTests {
 							e.printStackTrace();
 						}
 						gasStation.setReportTimestamp(Day.calendarToString());
-						System.out.println("ReportTimestamp: " + gasStation.getReportTimestamp());
 						if(gasStation.getHasDiesel())
 							gasStation.setDieselPrice(dieselPrice);
 						if(gasStation.getHasGas())
@@ -1442,7 +1436,6 @@ public class GasStationServiceImplTests {
 									obsolence = Day.calculateDays(gasStation.getReportTimestamp());
 									if(obsolence>4) {}
 									else {
-										System.out.println("The previous price list is not overwritten because (today-P.time_tag)<=4");
 										return null;
 									}
 								 } catch (ParseException e) {
@@ -1462,7 +1455,6 @@ public class GasStationServiceImplTests {
 							e.printStackTrace();
 						}
 						gasStation.setReportTimestamp(Day.calendarToString());
-						System.out.println("ReportTimestamp: " + gasStation.getReportTimestamp());
 						if(gasStation.getHasDiesel())
 							gasStation.setDieselPrice(dieselPrice);
 						if(gasStation.getHasGas())
@@ -1483,6 +1475,134 @@ public class GasStationServiceImplTests {
 		}).when(gasStationServiceImplMock).setReport(gasStationId, dieselPrice, superPrice, superPlusPrice, gasPrice, methanePrice, premiumDieselPrice, userId);
 		
 	     gasStationServiceImplMock.setReport(gasStationId, dieselPrice, superPrice, superPlusPrice, gasPrice, methanePrice, premiumDieselPrice, userId);
+	}
+	
+	//user1.getReputation() < gasStation.getUser().getReputation() and (today-P.time_tag)<=4
+	@Test
+	public void testsetReportNotOverwritten() throws InvalidGasStationException, PriceException, InvalidUserException {
+		UserDto user1Dto = new UserDto(1, "Luca Oddone", "Password", "lucaoddone@polito.it", 3);
+		User user1 = new User ("Luca Oddone", "Password", "lucaoddone@polito.it", 3);
+		User user2 = new User ("Paola Oddone", "Password", "paolaoddone@polito.it",5);
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,true,
+				"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
+				(double) 1.45,2,"06-20-2020",80);
+		GasStationDto gasStation1Dto = new GasStationDto(1,"GasStation1","Via Italia 1",true,true,false,false,true,
+				true,"BlaBlaCar",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,
+				(double) 0.90,(double) 1.45,2,"06-20-2020",80);
+		final double dieselPrice = 1.25;
+		final double superPrice = 1.50;
+		final double superPlusPrice = 1.99;
+		final double gasPrice = 0.98;
+		final double methanePrice = 1.01;
+		final double premiumDieselPrice = 1.45;
+		final Integer gasStationId = gasStation1Dto.getGasStationId();
+		final Integer userId = user1Dto.getUserId();
+		
+		listGasStationDto.clear();
+		listGasStation.clear();
+		
+		gasStation1.setGasStationId(1);
+		
+		listGasStation.add(gasStation1);
+		
+		when(gasStationConverterMock.toGasStationDto(gasStation1)).thenReturn(gasStation1Dto);
+		when(gasStationConverterMock.toGasStation(gasStation1Dto)).thenReturn(gasStation1);
+		
+		doAnswer(new Answer<Void>() {
+			public Void answer(InvocationOnMock invocation) throws PriceException, InvalidGasStationException, InvalidUserException {
+				
+				when(gasStationRepositoryMock.findOne(gasStationId)).thenReturn(gasStation1);
+	        	   if( (gasStationRepositoryMock.findOne(gasStationId).getHasDiesel() && dieselPrice < 0) || 
+		   					(gasStationRepositoryMock.findOne(gasStationId).getHasGas() && gasPrice < 0  ) || 
+		   				    (gasStationRepositoryMock.findOne(gasStationId).getHasSuper() && superPrice < 0 ) ||
+		   				    (gasStationRepositoryMock.findOne(gasStationId).getHasSuperPlus() &&   superPlusPrice < 0 ) || 
+		   				    (gasStationRepositoryMock.findOne(gasStationId).getHasMethane() && methanePrice < 0) ||
+		   				    (gasStationRepositoryMock.findOne(gasStationId).getHasPremiumDiesel() && premiumDieselPrice < 0)) 
+		   						throw new PriceException("Error! One or more of the fuel types price is negative!");
+	        	   if(gasStationId < 0)
+	       			throw new InvalidGasStationException("Error! the GasStationId must not be negative");
+	        	   if(userId < 0)
+	       			throw new InvalidUserException("Error! Invalid userId: userId can't be negative");
+	        	   
+	        	   double obsolence = 0; 
+	        	   GasStation gasStation = gasStationRepositoryMock.findOne(gasStationId);
+				   if(gasStation.getReportTimestamp() == null && gasStation.getReportDependability() == 0) {
+						gasStation.setReportUser(userId);
+						gasStation.setReportTimestamp(Day.calendarToString());
+						
+						if(gasStation.getHasDiesel())
+							gasStation.setDieselPrice(dieselPrice);
+						if(gasStation.getHasGas())
+							gasStation.setGasPrice(gasPrice);
+						if(gasStation.getHasSuper())
+							gasStation.setSuperPrice(superPrice);
+						if(gasStation.getHasSuperPlus())
+							gasStation.setSuperPlusPrice(superPlusPrice);
+						if(gasStation.getHasMethane())
+							gasStation.setMethanePrice(methanePrice);
+						if(gasStation.getHasPremiumDiesel())
+							gasStation.setPremiumDieselPrice(premiumDieselPrice);
+						
+						try {
+							obsolence = (Day.calculateDays(gasStation.getReportTimestamp()));
+							if(obsolence > 7)
+								obsolence = 0;
+							else
+								obsolence = 1 - obsolence/7;
+						} catch (ParseException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						gasStation.setReportDependability(50*(user1.getReputation()+5)/10+50*obsolence);
+					}
+					else {
+						when(gasStation.getUser().getReputation()).thenReturn(5);
+						if( user1.getReputation() < gasStation.getUser().getReputation() ) {
+							try {
+									obsolence = Day.calculateDays(gasStation.getReportTimestamp());
+									if(obsolence>4) {}
+									else {
+										return null;
+									}
+								 } catch (ParseException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+							}
+						gasStation.setReportUser(userId);
+						try {
+							obsolence = (Day.calculateDays(gasStation.getReportTimestamp()));
+							if(obsolence > 7)
+								obsolence = 0;
+							else
+								obsolence = 1 - obsolence/7;
+						} catch (ParseException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						gasStation.setReportTimestamp(Day.calendarToString());
+						if(gasStation.getHasDiesel())
+							gasStation.setDieselPrice(dieselPrice);
+						if(gasStation.getHasGas())
+							gasStation.setGasPrice(gasPrice);
+						if(gasStation.getHasSuper())
+							gasStation.setSuperPrice(superPrice);
+						if(gasStation.getHasSuperPlus())
+							gasStation.setSuperPlusPrice(superPlusPrice);
+						if(gasStation.getHasMethane())
+							gasStation.setMethanePrice(methanePrice);
+						if(gasStation.getHasPremiumDiesel())
+							gasStation.setPremiumDieselPrice(premiumDieselPrice);
+						
+						gasStation.setReportDependability(50*(user1.getReputation()+5)/10+50*obsolence);
+					}
+				   return null;
+			}
+		}).when(gasStationServiceImplMock).setReport(gasStationId, dieselPrice, superPrice, superPlusPrice, gasPrice, methanePrice, premiumDieselPrice, userId);
+		
+	     gasStationServiceImplMock.setReport(gasStationId, dieselPrice, superPrice, superPlusPrice, gasPrice, methanePrice, premiumDieselPrice, userId);
+	     
+	     assertEquals(Double.valueOf(80),gasStation1.getReportDependability());
 	}
 	
 	//Test for retrieving the GasStation which are near less than 1km
