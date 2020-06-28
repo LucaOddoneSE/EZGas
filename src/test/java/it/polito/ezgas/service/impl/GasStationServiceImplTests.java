@@ -1732,9 +1732,9 @@ public class GasStationServiceImplTests {
 	     
 	     assertEquals(Double.valueOf(40),Double.valueOf(gasStation1.getReportDependability()));
 	     assertEquals(Integer.valueOf(1),gasStation1.getReportUser());
-	}
+	} 
 	
-	//Test for retrieving the GasStation which are near less than 1km
+	//Test for retrieving the GasStation which are near less than radius
 	@SuppressWarnings("unused")
 	@Test
 	public void testgetGasStationsByProximity() throws GPSDataException {
@@ -1756,6 +1756,7 @@ public class GasStationServiceImplTests {
 		
 		final double lat = 80.761;
 		final double lon = 154.987;
+		final int radius = 4;
 		
 		listGasStationDto.clear();
 		listGasStation.clear();
@@ -1784,18 +1785,24 @@ public class GasStationServiceImplTests {
 			return listGasStationDto;
 		});
 		
-		when(gasStationServiceImplMock.getGasStationsByProximity(lat, lon)).thenAnswer( invocation -> {
+		when(gasStationServiceImplMock.getGasStationsByProximity(lat, lon,radius)).thenAnswer( invocation -> {
+			int R;
+			if(radius<=0) 
+				R = 1;
+			else
+				R = radius;
+			final int RADIUS = R;
 			if((lat < -90 || lat >= 90) || (lon < -180 || lon >= 180))
 				throw new GPSDataException("coordinates out of bounds");
 			gasStationServiceImplMock.getAllGasStations();
 			listGasStationDto.stream()
-			.filter( (g) -> Haversine.distance(lat, lon, g.getLat(), g.getLon() ) <= 1.0)
+			.filter( (g) -> Haversine.distance(lat, lon, g.getLat(), g.getLon() ) <= RADIUS)
 			.sorted( (g1,g2) -> Double.compare(Haversine.distance(lat, lon, g1.getLat(), g1.getLon() ), Haversine.distance(lat, lon, g2.getLat(), g2.getLon() ) ) )
 			.collect(Collectors.toList());
 			return null;
 		});
 		
-		gasStationServiceImplMock.getGasStationsByProximity(lat, lon);
+		gasStationServiceImplMock.getGasStationsByProximity(lat, lon,radius);
 		
 		assertEquals(2,listGasStationDto.size());
 	}
@@ -1822,6 +1829,7 @@ public class GasStationServiceImplTests {
 		
 		final double lat = 180.761;
 		final double lon = 154.987;
+		final int radius = 4;
 		
 		listGasStationDto.clear();
 		listGasStation.clear();
@@ -1850,18 +1858,24 @@ public class GasStationServiceImplTests {
 			return listGasStationDto;
 		});
 		
-		when(gasStationServiceImplMock.getGasStationsByProximity(lat, lon)).thenAnswer( invocation -> {
+		when(gasStationServiceImplMock.getGasStationsByProximity(lat, lon,radius)).thenAnswer( invocation -> {
+			int R;
+			if(radius<=0) 
+				R = 1;
+			else
+				R = radius;
+			final int RADIUS = R;
 			if((lat < -90 || lat >= 90) || (lon < -180 || lon >= 180))
 				throw new GPSDataException("coordinates out of bounds");
 			gasStationServiceImplMock.getAllGasStations();
 			listGasStationDto.stream()
-			.filter( (g) -> Haversine.distance(lat, lon, g.getLat(), g.getLon() ) <= 1.0)
+			.filter( (g) -> Haversine.distance(lat, lon, g.getLat(), g.getLon() ) <= RADIUS)
 			.sorted( (g1,g2) -> Double.compare(Haversine.distance(lat, lon, g1.getLat(), g1.getLon() ), Haversine.distance(lat, lon, g2.getLat(), g2.getLon() ) ) )
 			.collect(Collectors.toList());
 			return null;
 		});
 		
-		gasStationServiceImplMock.getGasStationsByProximity(lat, lon);
+		gasStationServiceImplMock.getGasStationsByProximity(lat, lon,radius);
 	}
 	
 	//Test for retrieving the GasStation in a certain area
