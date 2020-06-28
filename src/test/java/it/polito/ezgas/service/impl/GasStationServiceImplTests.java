@@ -899,6 +899,80 @@ public class GasStationServiceImplTests {
 		assertEquals("BlueSG",listGasStationDto.get(0).getCarSharing());
 	}
 	
+	@Test
+	public void testgetGasStationByCarSharingNoCarSharingFound() {
+		GasStation gasStation1 = new GasStation("GasStation1","Via Italia 1",true,true,false,false,true,true,
+				"BlueSG",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,(double) 0.90,
+				(double) 1.45,null,null,0);
+		
+		GasStation gasStation2 = new GasStation("GasStation2","Via Italia 2",false,false,true,true,false,false,
+				"BlaBlaCar",110.649,87.550,(double) 0,(double) 0,(double) 1.25,(double) 1.55,(double) 0,
+				(double) 0, null,null,0);
+		
+		GasStationDto gasStation1Dto = new GasStationDto(1,"GasStation1","Via Italia 1",true,true,false,false,true,
+				true,"BlueSG",81.574,111.320,(double) 1.25,(double) 1.55,(double) 0,(double) 0,
+				(double) 0.90,(double) 1.45,null,null,0);
+		
+		GasStationDto gasStation2Dto = new GasStationDto(2,"GasStation2","Via Italia 2",false,false,true,true,false,
+				false,"BlaBlaCar",61.649,117.550,(double) 0,(double) 0,(double) 1.25,(double) 1.55,(double) 0,
+				(double) 0,null,null,0);
+		
+		String carSharing = "Enjoy";
+		
+		listGasStationDto.clear();
+		listGasStation.clear();
+		
+		gasStation1.setGasStationId(1);
+		gasStation2.setGasStationId(2);
+		
+		listGasStation.add(gasStation1);
+		listGasStation.add(gasStation2);
+		
+		when(gasStationConverterMock.toGasStationDto(gasStation1)).thenReturn(gasStation1Dto);
+		when(gasStationConverterMock.toGasStationDto(gasStation2)).thenReturn(gasStation2Dto);
+		
+		when(gasStationConverterMock.toGasStation(gasStation1Dto)).thenReturn(gasStation1);
+		when(gasStationConverterMock.toGasStation(gasStation2Dto)).thenReturn(gasStation2);
+		
+		when(gasStationServiceImplMock.getGasStationByCarSharing(carSharing)).thenAnswer(invocation -> {
+			Iterator<GasStation> iteratore;
+			when(gasStationRepositoryMock.findAll()).thenAnswer(inv -> {
+				Iterator<GasStation> iter = listGasStation.listIterator();
+				while(iter.hasNext()) {
+					GasStation gasStation = iter.next();
+					if(gasStation.getGasStationId() == 1)
+						listGasStationDto.add(gasStationConverterMock.toGasStationDto(gasStation1));
+					else
+						listGasStationDto.add(gasStationConverterMock.toGasStationDto(gasStation2));
+				}
+				return null;
+			});
+			switch(carSharing) {
+			  case "BlueSG":
+				  gasStationRepositoryMock.findAll();
+				  iteratore = listGasStation.iterator();
+				  while(iteratore.hasNext()) {
+					  GasStation gasStation = iteratore.next();
+					  if(gasStation.getCarSharing().equals(carSharing) == false) {
+						  if(gasStation.getGasStationId() == 1)
+							  listGasStationDto.remove(gasStationConverterMock.toGasStationDto(gasStation1));
+						  else
+							  listGasStationDto.remove(gasStationConverterMock.toGasStationDto(gasStation2));
+					  }
+				  }
+			    break;
+			  default:
+					return null;
+			}
+			return null;
+		});
+		
+		gasStationServiceImplMock.getGasStationByCarSharing(carSharing);
+		
+		assertEquals(0,listGasStationDto.size());
+	}
+	
+	
 	
 	//SetReport to an existing GasStation
 	@Test
