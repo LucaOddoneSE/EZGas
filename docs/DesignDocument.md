@@ -5,9 +5,9 @@
 
 Authors: Group 50
 
-Date: 3 May
+Date: 29 June
 
-Version: 1
+Version: 2
 
 
 # Contents
@@ -262,6 +262,8 @@ package "it.polito.ezgas.entity" {
     boolean hasSuperPlus
     boolean hasGas
     booelan hasMethane
+	booelan hasLPG
+	booelan hasPremiumDiesel
     String carSharing
     double lat
     double lon
@@ -270,6 +272,7 @@ package "it.polito.ezgas.entity" {
     double superPlusPrice
     double gasPrice
     double methanePrice
+	double PremiumDieselPrice
     Integer reportUser
     String reportTimestamp
     double reportDependability
@@ -316,6 +319,17 @@ package "it.polito.ezgas.entity" {
     +String getCarSharing()
     +void setCarSharing(String carSharing)
   }
+  
+  class PriceReport {
+    Integer gasStationId
+	Double dieselPrice 
+	Double superPrice
+	Double superPlusPrice
+	Double gasPrice
+	Double methanePrice
+	Double PremiumDieselPrice
+	Integer userId
+   }
 }
 
 package "it.polito.ezgas.dto" {
@@ -349,6 +363,7 @@ package "it.polito.ezgas.dto" {
     boolean hasSuperPlus
     boolean hasGas
     booelan hasMethane
+	booelan hasPremiumDiesel
     String carSharing
     double lat
     double lon
@@ -357,6 +372,7 @@ package "it.polito.ezgas.dto" {
     double superPlusPrice
     double gasPrice
     double methanePrice
+	double PremiumDieselPrice
     Integer reportUser
     String reportTimestamp
     double reportDependability
@@ -433,6 +449,19 @@ package "it.polito.ezgas.dto" {
     +String getPw()
     +void setPw(String pw)
   }
+  
+  class PriceReportDTO {
+    Integer gasStationId
+	Double dieselPrice 
+	Double superPrice
+	Double superPlusPrice
+	Double gasPrice
+	Double methanePrice
+	Double PremiumDieselPrice
+	Integer userId
+ 
+  }
+  
 }
 
 package "it.polito.ezgas.controller" {
@@ -453,7 +482,10 @@ package "it.polito.ezgas.controller" {
     +List<GasStationDto> getGasStationsByGasolineType(String gasolinetype)
     +List<GasStationDto> getGasStationsByProximity(double myLat,double myLon)
     +List<GasStationDto> getGasStationsWithCoordinates(double myLat,double myLon,String gasolineType,String carSharing)
-    +void setGasStationReport(Integer gasStationId,double dieselPrice,double superPrice,double superPlusPrice,double gasPrice,double methanePrice,Integer userId)
+	+List<GasStationDto> getGasStationsByFuelTypeOrCarSharing(String carSharing, String gasolineType)
+    +void setGasStationReport(Integer gasStationId,double dieselPrice,double superPrice,double superPlusPrice,double gasPrice,double methanePrice,double PremiumDieselPrice,Integer userId)
+	
+
   }
   class HomeController {
     +String admin()
@@ -486,7 +518,7 @@ package "it.polito.ezgas.service" {
      +List<GasStationDto> getGasStationsByProximity(double lat, double lon)
      +List<GasStationDto> getGasStationsWithCoordinates(double lat, double lon, String gasolinetype, String carsharing)
      +List<GasStationDto> getGasStationsWithoutCoordinates(String gasolinetype, String carsharing)
-     +void setReport(Integer gasStationId, double dieselPrice, double superPrice, double superPlusPrice, double gasPrice, double methanePrice, Integer userId)
+     +void setReport(Integer gasStationId, double dieselPrice, double superPrice, double superPlusPrice, double gasPrice, double methanePrice,double PremiumDieselPrice, Integer userId)
      +List<GasStationDto> getGasStationByCarSharing(String carSharing)
    }
   note right: This interface just contains the methods related to GasStation entity.\nThe implementation of these methods will be done in the "GasStationServiceImpl" class
@@ -527,8 +559,8 @@ package "it.polito.ezgas.serviceImpl" {
      +List<GasStationDto> getGasStationsByProximity(double lat, double lon)
      +List<GasStationDto> getGasStationsWithCoordinates(double lat, double lon, String gasolinetype, String carsharing)
      +List<GasStationDto> getGasStationsWithoutCoordinates(String gasolinetype, String carsharing)
-     +void setReport(Integer gasStationId, double dieselPrice, double superPrice, double superPlusPrice, double gasPrice, double methanePrice, Integer userId)
      +List<GasStationDto> getGasStationByCarSharing(String carSharing)
+	 +void setReport(Integer gasStationId, double dieselPrice, double superPrice, double superPlusPrice, double gasPrice, double methanePrice, Integer userId)
   } 
 }
 
@@ -550,7 +582,7 @@ package "it.polito.ezgas.converter" {
  }
 }
 
-
+GasStationController "1" -- "1" PriceReportDTO
 User "1" -- "1" UserDto
 GasStation "1" -- "1" GasStationDto
 GasStationDto "0..*" -- "1" GasStationServiceImpl
