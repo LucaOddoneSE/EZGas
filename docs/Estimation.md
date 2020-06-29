@@ -67,3 +67,7 @@ Insert here Gantt chart with above activities
 
 Click on the image to see the details
 <img src="https://i.ibb.co/NLKYnhb/Gantt-Chart-1.jpg" alt="Gantt-Chart" border="0">
+
+The updated Gantt Chart with actual plan: 
+
+<img src="https://i.ibb.co/stgycJp/Gantt-Chart-1.jpg" alt="Gantt-Chart-2" border="0">
