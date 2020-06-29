@@ -218,7 +218,7 @@ public class TestController {
 		assertTrue(gasStationDtoArray.length == 2);
 	}
 	
-	@Order(16)
+	@Order(15)
 	@Test
 	public void testSetReport() throws ClientProtocolException, IOException {
 		CloseableHttpClient client = HttpClients.createDefault();
