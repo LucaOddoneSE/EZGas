@@ -60,7 +60,7 @@ Version:2
 | Acceptance Test |2|
 | CR4,CR7 |3|
 | System Test |4|
-| Total Person Hours |108 hours = 55 Days, Actual days : 60 Days| 
+| Total Person Hours |108 hours = 55 Days, Actual days = 60 Days| 
 
 
 
