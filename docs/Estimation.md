@@ -61,7 +61,7 @@ Version:2
 | Acceptance Test |4|
 | CR4,CR7 |4|
 | System Test |4|
-| Total Person Hours | 128 hours * 4 = 512 hours| 
+| Total Person Hours | 128 hours| 
 
 *Estimated effort (person hours) : for each member of team
 
@@ -72,6 +72,6 @@ Version:2
 Click on the image to see the details
 <img src="https://i.ibb.co/NLKYnhb/Gantt-Chart-1.jpg" alt="Gantt-Chart" border="0">
 
-The updated Gantt Chart with actual plan: 
+The updated Gantt Chart: 
 
 <img src="https://i.ibb.co/xjJ6sbC/Gantt-Chart-1.jpg" alt="Gantt-Chart-1" border="0">
