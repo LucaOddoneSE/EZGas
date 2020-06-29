@@ -28,7 +28,7 @@ Version:2
 |             | Estimate                        |             
 | ----------- | ------------------------------- |  
 | NC =  Estimated number of classes to be developed   |        15                     |             
-|  A = Estimated average size per class, in LOC       |              50              | 
+| A = Estimated average size per class, in LOC       |              50              | 
 | S = Estimated size of project, in LOC (= NC * A) |750 |
 | E = Estimated effort, in person hours (here use productivity 10 LOC per person hour)  | 75 Hours   |   
 | C = Estimated cost, in euro (here use 1 person hour cost = 30 euro) |3240 euro| 
@@ -56,11 +56,14 @@ Version:2
 | Application UI/UX|8|
 | Application back-end implementation |16|
 | Integration and API Test|4|
-| Unit Test |4|
-| Acceptance Test |2|
-| CR4,CR7 |3|
+| Unit Test |8|
+| GUI Test |8|
+| Acceptance Test |4|
+| CR4,CR7 |4|
 | System Test |4|
-| Total Person Hours |108 hours = 55 Days, Actual days = 60 Days| 
+| Total Person Hours | 128 hours * 4 = 512 hours| 
+
+*Estimated effort (person hours) : for each member of team
 
 
 
