@@ -55,10 +55,12 @@ Version:2
 | Design GUI|8|
 | Application UI/UX|8|
 | Application back-end implementation |16|
-| Test Plan |4|
+| Integration and API Test|4|
 | Unit Test |4|
+| Acceptance Test |2|
+| CR4,CR7 |3|
 | System Test |4|
-| Total Person Hours |108 hours = 55 Days|
+| Total Person Hours |108 hours = 55 Days, Actual days : 60 Days| 
 
 
 
