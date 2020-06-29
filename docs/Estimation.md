@@ -72,4 +72,4 @@ Click on the image to see the details
 
 The updated Gantt Chart with actual plan: 
 
-<img src="https://i.ibb.co/stgycJp/Gantt-Chart-1.jpg" alt="Gantt-Chart-2" border="0">
+<img src="https://i.ibb.co/R7b9Jj0/Gantt-Chart-1.jpg" alt="Gantt-Chart-1" border="0">
