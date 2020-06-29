@@ -43,17 +43,10 @@ public class GasStationServiceimpl implements GasStationService {
 	public GasStationDto getGasStationById(Integer gasStationId) throws InvalidGasStationException {
 		if(gasStationId<0)
 			throw new InvalidGasStationException("Error! the GasStationId must not be negative");
-		if(gasStationRepository.exists(gasStationId)) {
-			System.out.println("The GasStation with the provided gasStationId is found!");
-			System.out.println(gasStationRepository.findOne(gasStationId).getGasStationId() + " " +
-					           gasStationRepository.findOne(gasStationId).getGasStationName() + " " +
-					           gasStationRepository.findOne(gasStationId).getGasStationAddress());
+		if(gasStationRepository.exists(gasStationId)) 
 			return gasStationConverter.toGasStationDto(gasStationRepository.findOne(gasStationId));
-		}
-		else {
-			System.out.println("No GasStation was found with that gasStationId");
+		else
 			return null;
-		}
 	}
 
 	@Override
@@ -89,7 +82,6 @@ public class GasStationServiceimpl implements GasStationService {
 			gasStationDto.setReportDependability(0);
 			gasStationDto.setReportTimestamp(null);
 			gasStation = gasStationRepository.save(gasStationConverter.toGasStation(gasStationDto));
-			System.out.println("The GasStation is successfully saved!");
 			return gasStationConverter.toGasStationDto(gasStationRepository.findOne(gasStation.getGasStationId()));
 		}
 		
@@ -106,7 +98,6 @@ public class GasStationServiceimpl implements GasStationService {
 			throw new GPSDataException("Error! GasStation containes wrong coordinates values");
 		
 		gasStation = gasStationRepository.save(gasStationConverter.toGasStation(gasStationDto));
-		System.out.println("The GasStation is successfully updated!");
 		return gasStationConverter.toGasStationDto(gasStationRepository.findOne(gasStation.getGasStationId()));
 	}
 
@@ -135,7 +126,6 @@ public class GasStationServiceimpl implements GasStationService {
 			throw new InvalidGasStationException("Error! It has been passed an invalid gasStationId(<0)");
 		if(gasStationRepository.exists(gasStationId)) {
 			gasStationRepository.delete(gasStationId);
-			System.out.println("GasStation successfully deleted!");
 			return true;
 		}
 		return false;
@@ -350,7 +340,6 @@ public class GasStationServiceimpl implements GasStationService {
 				double obsolence = 0;
 				GasStation gasStation = gasStationRepository.findOne(gasStationId);
 				if(gasStation.getReportTimestamp() == null && gasStation.getReportDependability() == 0) {
-					System.out.println("You're going to report this gasStation for the first time!");
 					gasStation.setReportUser(userId);
 					gasStation.setUser(userRepository.findOne(userId));
 					gasStation.setReportTimestamp(Day.calendarToString());
@@ -368,14 +357,12 @@ public class GasStationServiceimpl implements GasStationService {
 					if(gasStation.getHasPremiumDiesel())
 						gasStation.setPremiumDieselPrice(premiumDieselPrice);
 					
-					System.out.println("ReportTimestamp: " + gasStation.getReportTimestamp());
 					try {
 						obsolence = (Day.calculateDays(gasStation.getReportTimestamp()));
 						if(obsolence > 7)
 							obsolence = 0;
 						else
 							obsolence = 1 - obsolence/7;
-						System.out.println("obsolence value: " + obsolence + " (it should be 1)");
 					} catch (ParseException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -388,10 +375,8 @@ public class GasStationServiceimpl implements GasStationService {
 						try {
 							obsolence = Day.calculateDays(gasStation.getReportTimestamp());
 							if(obsolence>4) {}
-							else {
-								System.out.println("The previous price list is not overwritten because (today-P.time_tag)<=4");
+							else
 								return;
-							}
 						} catch (ParseException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -399,7 +384,6 @@ public class GasStationServiceimpl implements GasStationService {
 					}
 					gasStation.setReportUser(userId);
 					gasStation.setUser(userRepository.findOne(userId));
-					System.out.println("ReportTimestamp: " + gasStation.getReportTimestamp());
 					try {
 						obsolence = (Day.calculateDays(gasStation.getReportTimestamp()));
 						if(obsolence > 7)
@@ -411,7 +395,6 @@ public class GasStationServiceimpl implements GasStationService {
 						e.printStackTrace();
 					}
 					gasStation.setReportTimestamp(Day.calendarToString());
-					System.out.println("ReportTimestamp: " + gasStation.getReportTimestamp());
 					if(gasStation.getHasDiesel())
 						gasStation.setDieselPrice(dieselPrice);
 					if(gasStation.getHasGas())
