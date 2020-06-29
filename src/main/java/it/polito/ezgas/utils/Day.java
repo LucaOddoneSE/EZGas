@@ -15,7 +15,6 @@ public class Day {
 		c2.setTime(date);
 		long milliseconds = c1.getTimeInMillis() - c2.getTimeInMillis();
 		int days = (int) (milliseconds / 86400000);
-		System.out.println (days);
 		return days;
 	}
 	
