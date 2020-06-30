@@ -2,9 +2,9 @@
 
 Authors: Group 50
 
-Date: 26 May
+Date: 30th June
 
-Version: 1.1
+Version: 2.0
 
 # Contents
 
@@ -31,12 +31,14 @@ class UserController {}
 }
 
 package Service {
-class GasStationServiceImpl {}
-class UserServiceImpl {}
 class GasStationService {}
 class UserService {}
 }
 
+package ServiceImpl {
+class GasStationServiceImpl {}
+class UserServiceImpl {}
+}
 
 package Converter {
 class UserConverter {}
@@ -53,13 +55,14 @@ package Dto{
 class LoginDto {}
 class IdPw {}
 class UserDto {}
-class GasStationDTO {}
-
+class GasStationDtO {}
+class PriceReportDto {}
 }
 
 package Entity {
 class User {}
 class GasStation {}
+class PriceReport {}
 }
 
 
@@ -72,7 +75,7 @@ GasStationServiceImpl --> GasStationConverter
 GasStationServiceImpl --> GasStationRepository
 UserServiceImpl --> UserRepository
 UserServiceImpl --> UserConverter
-GasStationConverter --> GasStationDTO
+GasStationConverter --> GasStationDtO
 GasStationConverter --> GasStation
 UserConverter --> UserDto
 UserConverter --> LoginDto
