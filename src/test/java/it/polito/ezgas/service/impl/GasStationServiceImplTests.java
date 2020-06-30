@@ -1504,6 +1504,7 @@ public class GasStationServiceImplTests {
 		
 		gasStation1.setGasStationId(1);
 		gasStation1.setUser(user2);
+		gasStation1.setReportTimestamp(Day.calendarToString());
 		gasStation1.setReportUser(2);
 		
 		listGasStation.add(gasStation1);
