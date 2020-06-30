@@ -161,16 +161,23 @@ UserRepository --> User
 ||testGasStationsByGasolineType()||
 ||testGasStationsByGasolineTypeException()||
 ||testgetGasStationByCarSharing()||
+||estgetGasStationByCarSharingNoCarSharingFound()||
 ||testsetReport()||
 ||testsetReportInvalidGasStationException()||
 ||testsetReportInvalidUserException()||
 ||testgetGasStationsByProximity()||
 ||testgetGasStationsByProximityThrowException()||
 ||testgetGasStationsWithCoordinates()||
+||testsetReportPriceException()||
 ||testgetGasStationsWithCoordinatesThrowInvalidGasTypeException()||
+||testsetReportNotOverwritten()||
+||testsetReportOverwritten()||
+||testgetGasStationsByProximityRadiusNegative()||
 ||testgetGasStationsWithCoordinatesThrowGPSDataException()||
+||testgetGasStationsWithCoordinatesThrowInvalidCarSharingException()||
 ||testgetGasStationsWithoutCoordinates()||
 ||testgetGasStationsWithoutCoordinatesThrowInvalidGasTypeException()||
+||testgetGasStationsWithoutCoordinatesThrowInvalidCarSharingException()||
 
 
 # Scenarios
