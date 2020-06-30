@@ -32,7 +32,7 @@ Version:2
 | S = Estimated size of project, in LOC (= NC * A) |750 |
 | E = Estimated effort, in person hours (here use productivity 10 LOC per person hour)  | 75 Hours   |   
 | C = Estimated cost, in euro (here use 1 person hour cost = 30 euro) |3240 euro| 
-| Estimated calendar time, in calendar weeks (Assume team of 4 people, 8 hours per day, 5 days per week ) |           1.5         |               
+| Estimated calendar time, in calendar weeks (Assume team of 4 people, 8 hours per day, 5 days per week ) |           2 weeks         |               
 
 
 # Estimate by activity decomposition
