@@ -505,9 +505,9 @@ package "it.polito.ezgas.controller" {
     +void saveGasStation(GasStationDto gasStationDto)
     +void deleteGasStation(Integer gasStationId)
     +List<GasStationDto> getGasStationsByGasolineType(String gasolinetype)
-    +List<GasStationDto> getGasStationsByProximity(double myLat,double myLon)
-    +List<GasStationDto> getGasStationsWithCoordinates(double myLat,double myLon,String gasolineType,String carSharing)
-    +void setGasStationReport(Integer gasStationId,double dieselPrice,double superPrice,double superPlusPrice,double gasPrice,double methanePrice,Integer userId)
+    +List<GasStationDto> getGasStationsByProximity(Double myLat,Double myLon,Integer myRadius)
+    +List<GasStationDto> getGasStationsWithCoordinates(Double myLat,Double myLon,Integer myRadius,String gasolineType,String carSharing)
+    +void setGasStationReport(PriceReportDto priceReportDto)
   }
   class HomeController {
     +String admin()
