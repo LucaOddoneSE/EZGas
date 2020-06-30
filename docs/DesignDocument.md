@@ -317,12 +317,12 @@ package "it.polito.ezgas.entity" {
     +void setCarSharing(String carSharing)
   }
   class PriceReport {
-    +Integer priceReportID
-    +User user
-    +double dieselPrice
-    +double superPrice
-    +double superPlusPrice
-    +double gasPrice
+    Integer priceReportID
+    User user
+    double dieselPrice
+    double superPrice
+    double superPlusPrice
+    double gasPrice
     __
     +User getUser()
     +void setUser(User user)
@@ -373,11 +373,12 @@ package "it.polito.ezgas.dto" {
     String carSharing
     double lat
     double lon
-    double dieselPrice
-    double superPrice
-    double superPlusPrice
-    double gasPrice
-    double methanePrice
+    Double dieselPrice
+    Double superPrice
+    Double superPlusPrice
+    Double gasPrice
+    Double methanePrice
+    Double premiumDieselPrice
     Integer reportUser
     String reportTimestamp
     double reportDependability
