@@ -539,7 +539,7 @@ package "it.polito.ezgas.service" {
      +List<GasStationDto> getGasStationsByGasolineType(String gasolinetype)
      +List<GasStationDto> getGasStationsByProximity(double lat, double lon)
      +List<GasStationDto> getGasStationsByProximity(double lat, double lon, int radius)
-     +List<GasStationDto> getGasStationsWithCoordinates(double lat, double lon, double radius, String gasolinetype, String carsharing)
+     +List<GasStationDto> getGasStationsWithCoordinates(double lat, double lon, int radius, String gasolinetype, String carsharing)
      +List<GasStationDto> getGasStationsWithoutCoordinates(String gasolinetype, String carsharing)
      +void setReport(Integer gasStationId, Double dieselPrice, Double superPrice, Double superPlusPrice, Double gasPrice, Double methanePrice, Double premiumDieselPrice, Integer userId)
      +List<GasStationDto> getGasStationByCarSharing(String carSharing)
@@ -580,9 +580,10 @@ package "it.polito.ezgas.serviceImpl" {
      +boolean deleteGasStation(Integer gasStationId)
      +List<GasStationDto> getGasStationsByGasolineType(String gasolinetype)
      +List<GasStationDto> getGasStationsByProximity(double lat, double lon)
-     +List<GasStationDto> getGasStationsWithCoordinates(double lat, double lon, String gasolinetype, String carsharing)
+     +List<GasStationDto> getGasStationsByProximity(double lat, double lon, int radius)
+     +List<GasStationDto> getGasStationsWithCoordinates(double lat, double lon, int radius, String gasolinetype, String carsharing)
      +List<GasStationDto> getGasStationsWithoutCoordinates(String gasolinetype, String carsharing)
-     +void setReport(Integer gasStationId, double dieselPrice, double superPrice, double superPlusPrice, double gasPrice, double methanePrice, Integer userId)
+     +void setReport(Integer gasStationId, Double dieselPrice, Double superPrice, Double superPlusPrice, Double gasPrice, Double methanePrice, Double premiumDieselPrice, Integer userId)
      +List<GasStationDto> getGasStationByCarSharing(String carSharing)
   } 
 }
