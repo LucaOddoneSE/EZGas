@@ -316,6 +316,27 @@ package "it.polito.ezgas.entity" {
     +String getCarSharing()
     +void setCarSharing(String carSharing)
   }
+  class PriceReport {
+    +Integer priceReportID
+    +User user
+    +double dieselPrice
+    +double superPrice
+    +double superPlusPrice
+    +double gasPrice
+    __
+    +User getUser()
+    +void setUser(User user)
+    +double getDieselPrice()
+    +void setDieselPrice(double dieselPrice)
+    +double getSuperPrice()
+    +void setSuperPrice(double superPrice)
+    +double getSuperPlusPrice()
+    +void setSuperPlusPrice(double superPlusPrice)
+    +double getGasPrice()
+    +void setGasPrice(double gasPrice)
+    +Integer getPriceReportId()
+    +void setPriceReportId(Integer priceReportId)
+  }
 }
 
 package "it.polito.ezgas.dto" {
