@@ -8,10 +8,12 @@ Also this document will not be used for evaluations, but for improving the proje
 - Team selection based on the system and skills. 
 - One week sprints for deliveries is enough and appropriate.
 - Using Git for configuration management.
+- Using Slack for communication with professor.
 
 # Worst things
-- GUI testing is very impractical in the real world.
+- GUI testing with SikuliX software is impractical in the real world projects.
+
 
 
 # Suggestions 
-- For GUI testing, insted of using the Sikuli, testing the software with a test user sounds more practical also we can check the UX testing at the same time.
+- For GUI testing, insted of using the SikuliX, testing the software with a tester human sounds more practical and we can check the UX testing at the same time.
