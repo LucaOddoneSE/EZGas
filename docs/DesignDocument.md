@@ -265,11 +265,12 @@ package "it.polito.ezgas.entity" {
     String carSharing
     double lat
     double lon
-    double dieselPrice
-    double superPrice
-    double superPlusPrice
-    double gasPrice
-    double methanePrice
+    Double dieselPrice
+    Double superPrice
+    Double superPlusPrice
+    Double gasPrice
+    Double methanePrice
+    Double premiumDieselPrice
     Integer reportUser
     String reportTimestamp
     double reportDependability
@@ -299,20 +300,22 @@ package "it.polito.ezgas.entity" {
     +void setLat(double lat)
     +double getLon()
     +void setLon(double lon)
-    +double getDieselPrice()
+    +Double getDieselPrice()
     +void setDieselPrice(double dieselPrice)
-    +double getSuperPrice()
+    +Double getSuperPrice()
     +void setSuperPrice(double superPrice)
-    +double getSuperPlusPrice()
+    +Double getSuperPlusPrice()
     +void setSuperPlusPrice(double superPlusPrice)
-    +double getGasPrice()
+    +Double getGasPrice()
     +void setGasPrice(double gasPrice)
     +User getUser()
     +void setUser(User user)
     +boolean getHasMethane()
     +void setHasMethane(boolean hasMethane)
-    +double getMethanePrice()
+    +Double getMethanePrice()
     +void setMethanePrice(double methanePrice)
+    +Double getPremiumDieselPrice()
+    +void setPremiumDieselPrice(Double premiumDieselPrice)
     +String getCarSharing()
     +void setCarSharing(String carSharing)
   }
