@@ -5,7 +5,7 @@
 
 Authors: Group 50
 
-Date: 3 May
+Date: 30th June
 
 Version: 2.0
 
@@ -685,10 +685,9 @@ Scennario 10.1:
 
 ```plantuml
 @startuml
-UserController <- HomeController : 1: login(credentials)
-HomeController -> GasStationController : 2: getGasStationByProximity(mylat, mylon)
-UserController <- HomeController : 3: getUserById(u2)
-UserController <- HomeController : 4: increaseUserReputation(u2)
+UserController <- HomeController : 1: login(IdPw credentials)
+HomeController -> GasStationController : 2: getGasStationByProximity(Double myLat, Double mLlon, Integer myRadius)
+UserController <- HomeController : 3: increaseUserReputation(Integer userId)
 @enduml
 ```
 
@@ -696,10 +695,9 @@ Scennario 10.2:
 
 ```plantuml
 @startuml
-UserController <- HomeController : 1: login(credentials)
-HomeController -> GasStationController : 2: getGasStationByProximity(mylat, mylon)
-UserController <- HomeController : 3: getUserById(u2)
-UserController <- HomeController : 4: decreaseUserReputation(u2)
+UserController <- HomeController : 1: login(IdPw credentials)
+HomeController -> GasStationController : 2: getGasStationByProximity(Double myLat, Double myLon, Integer myRadius)
+UserController <- HomeController : 4: decreaseUserReputation(Integer userId)
 @enduml
 ```
 
