@@ -616,6 +616,7 @@ UserController "1" -- "1" UserServiceImpl
 UserController "1" -- "0..*" UserDto
 UserController "1" -- "0..*" LoginDto
 GasStationController "1" -- "0..*" GasStationDto
+GasStationController "1" -- "0..*" PriceReportDto
 UserController "1" -- "1" HomeController
 GasStationController "1" -- "1" HomeController
 UserConverter "1" -- "0..*" User
