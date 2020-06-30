@@ -5,9 +5,9 @@
 
 Authors: Group 50
 
-Date: 3 May
+Date: 30th June
 
-Version: 1
+Version: 2.0
 
 
 # Contents
@@ -265,11 +265,12 @@ package "it.polito.ezgas.entity" {
     String carSharing
     double lat
     double lon
-    double dieselPrice
-    double superPrice
-    double superPlusPrice
-    double gasPrice
-    double methanePrice
+    Double dieselPrice
+    Double superPrice
+    Double superPlusPrice
+    Double gasPrice
+    Double methanePrice
+    Double premiumDieselPrice
     Integer reportUser
     String reportTimestamp
     double reportDependability
@@ -299,6 +300,35 @@ package "it.polito.ezgas.entity" {
     +void setLat(double lat)
     +double getLon()
     +void setLon(double lon)
+    +Double getDieselPrice()
+    +void setDieselPrice(double dieselPrice)
+    +Double getSuperPrice()
+    +void setSuperPrice(double superPrice)
+    +Double getSuperPlusPrice()
+    +void setSuperPlusPrice(double superPlusPrice)
+    +Double getGasPrice()
+    +void setGasPrice(double gasPrice)
+    +User getUser()
+    +void setUser(User user)
+    +boolean getHasMethane()
+    +void setHasMethane(boolean hasMethane)
+    +Double getMethanePrice()
+    +void setMethanePrice(double methanePrice)
+    +Double getPremiumDieselPrice()
+    +void setPremiumDieselPrice(Double premiumDieselPrice)
+    +String getCarSharing()
+    +void setCarSharing(String carSharing)
+  }
+  class PriceReport {
+    Integer priceReportID
+    User user
+    double dieselPrice
+    double superPrice
+    double superPlusPrice
+    double gasPrice
+    __
+    +User getUser()
+    +void setUser(User user)
     +double getDieselPrice()
     +void setDieselPrice(double dieselPrice)
     +double getSuperPrice()
@@ -307,14 +337,8 @@ package "it.polito.ezgas.entity" {
     +void setSuperPlusPrice(double superPlusPrice)
     +double getGasPrice()
     +void setGasPrice(double gasPrice)
-    +User getUser()
-    +void setUser(User user)
-    +boolean getHasMethane()
-    +void setHasMethane(boolean hasMethane)
-    +double getMethanePrice()
-    +void setMethanePrice(double methanePrice)
-    +String getCarSharing()
-    +void setCarSharing(String carSharing)
+    +Integer getPriceReportId()
+    +void setPriceReportId(Integer priceReportId)
   }
 }
 
@@ -352,11 +376,12 @@ package "it.polito.ezgas.dto" {
     String carSharing
     double lat
     double lon
-    double dieselPrice
-    double superPrice
-    double superPlusPrice
-    double gasPrice
-    double methanePrice
+    Double dieselPrice
+    Double superPrice
+    Double superPlusPrice
+    Double gasPrice
+    Double methanePrice
+    Double premiumDieselPrice
     Integer reportUser
     String reportTimestamp
     double reportDependability
@@ -394,6 +419,8 @@ package "it.polito.ezgas.dto" {
     +void setSuperPlusPrice(double superPlusPrice)
     +double getGasPrice()
     +void setGasPrice(double gasPrice)
+    +Double getPremiumDieselPrice()
+    +void setPremiumDieselPrice(Double premiumDieselPrice)
     +User getUserDto()
     +void setUserDto(User userDto)
     +boolean getHasMethane()
@@ -433,6 +460,33 @@ package "it.polito.ezgas.dto" {
     +String getPw()
     +void setPw(String pw)
   }
+  class PriceReportDto {
+    +Integer gasStationId
+    +Double dieselPrice
+    +Double superPrice
+    +Double superPlusPrice
+    +Double gasPrice
+    +Double methanePrice;
+    +Double premiumDieselPrice;
+    +Integer userId;
+    __
+    +Double getDieselPrice()
+    +void setDieselPrice(Double dieselPrice)
+    +Double getSuperPrice()
+    +void setSuperPrice(Double superPrice)
+    +Double getSuperPlusPrice()
+    +void setSuperPlusPrice(Double superPlusPrice)
+    +Double getGasPrice()
+    +void setGasPrice(Double gasPrice)
+    +Double getMethanePrice()
+    +void setMethanePrice(Double methanePrice)
+    +Double getPremiumDieselPrice()
+    +void setPremiumDieselPrice(Double premiumDieselPrice)
+    +Integer getUserId()
+    +void setUserId(Integer userId)
+    +Integer getGasStationId()
+    +void setGasStationId(Integer gasStationId)
+  }
 }
 
 package "it.polito.ezgas.controller" {
@@ -451,9 +505,9 @@ package "it.polito.ezgas.controller" {
     +void saveGasStation(GasStationDto gasStationDto)
     +void deleteGasStation(Integer gasStationId)
     +List<GasStationDto> getGasStationsByGasolineType(String gasolinetype)
-    +List<GasStationDto> getGasStationsByProximity(double myLat,double myLon)
-    +List<GasStationDto> getGasStationsWithCoordinates(double myLat,double myLon,String gasolineType,String carSharing)
-    +void setGasStationReport(Integer gasStationId,double dieselPrice,double superPrice,double superPlusPrice,double gasPrice,double methanePrice,Integer userId)
+    +List<GasStationDto> getGasStationsByProximity(Double myLat,Double myLon,Integer myRadius)
+    +List<GasStationDto> getGasStationsWithCoordinates(Double myLat,Double myLon,Integer myRadius,String gasolineType,String carSharing)
+    +void setGasStationReport(PriceReportDto priceReportDto)
   }
   class HomeController {
     +String admin()
@@ -484,9 +538,10 @@ package "it.polito.ezgas.service" {
      +boolean deleteGasStation(Integer gasStationId)
      +List<GasStationDto> getGasStationsByGasolineType(String gasolinetype)
      +List<GasStationDto> getGasStationsByProximity(double lat, double lon)
-     +List<GasStationDto> getGasStationsWithCoordinates(double lat, double lon, String gasolinetype, String carsharing)
+     +List<GasStationDto> getGasStationsByProximity(double lat, double lon, int radius)
+     +List<GasStationDto> getGasStationsWithCoordinates(double lat, double lon, int radius, String gasolinetype, String carsharing)
      +List<GasStationDto> getGasStationsWithoutCoordinates(String gasolinetype, String carsharing)
-     +void setReport(Integer gasStationId, double dieselPrice, double superPrice, double superPlusPrice, double gasPrice, double methanePrice, Integer userId)
+     +void setReport(Integer gasStationId, Double dieselPrice, Double superPrice, Double superPlusPrice, Double gasPrice, Double methanePrice, Double premiumDieselPrice, Integer userId)
      +List<GasStationDto> getGasStationByCarSharing(String carSharing)
    }
   note right: This interface just contains the methods related to GasStation entity.\nThe implementation of these methods will be done in the "GasStationServiceImpl" class
@@ -525,9 +580,10 @@ package "it.polito.ezgas.serviceImpl" {
      +boolean deleteGasStation(Integer gasStationId)
      +List<GasStationDto> getGasStationsByGasolineType(String gasolinetype)
      +List<GasStationDto> getGasStationsByProximity(double lat, double lon)
-     +List<GasStationDto> getGasStationsWithCoordinates(double lat, double lon, String gasolinetype, String carsharing)
+     +List<GasStationDto> getGasStationsByProximity(double lat, double lon, int radius)
+     +List<GasStationDto> getGasStationsWithCoordinates(double lat, double lon, int radius, String gasolinetype, String carsharing)
      +List<GasStationDto> getGasStationsWithoutCoordinates(String gasolinetype, String carsharing)
-     +void setReport(Integer gasStationId, double dieselPrice, double superPrice, double superPlusPrice, double gasPrice, double methanePrice, Integer userId)
+     +void setReport(Integer gasStationId, Double dieselPrice, Double superPrice, Double superPlusPrice, Double gasPrice, Double methanePrice, Double premiumDieselPrice, Integer userId)
      +List<GasStationDto> getGasStationByCarSharing(String carSharing)
   } 
 }
@@ -560,6 +616,7 @@ UserController "1" -- "1" UserServiceImpl
 UserController "1" -- "0..*" UserDto
 UserController "1" -- "0..*" LoginDto
 GasStationController "1" -- "0..*" GasStationDto
+GasStationController "1" -- "0..*" PriceReportDto
 UserController "1" -- "1" HomeController
 GasStationController "1" -- "1" HomeController
 UserConverter "1" -- "0..*" User
@@ -590,24 +647,26 @@ it.polito.ezgas.converter -right[hidden]-> it.polito.ezgas.service
 # Verification traceability matrix
 
 
-|       | GasStationServiceImpl | UserServiceImpl | User | GasStation | LoginDTO | IdPw |
-|-------|:---------------------:|:---------------:|:----:|:----------:|:--------:|:----:|
-| FR1.1 |                       |        X        |   X  |            |          |      |
-| FR1.2 |                       |        X        |   X  |            |          |      |
-| FR1.3 |                       |        X        |   X  |            |          |      |
-| FR1.4 |                       |        X        |   X  |            |          |      |
-| FR2   |                       |        X        |   X  |            |     X    |   X  |
-| FR3.1 |           X           |                 |      |      X     |          |      |
-| FR3.2 |           X           |                 |      |      X     |          |      |
-| FR3.3 |           X           |                 |      |      X     |          |      |
-| FR4.1 |           X           |                 |      |      X     |          |      |
-| FR4.2 |           X           |                 |      |      X     |          |      |
-| FR4.3 |           X           |                 |      |      X     |          |      |
-| FR4.4 |           X           |                 |      |      X     |          |      |
-| FR4.5 |           X           |                 |      |      X     |          |      |
-| FR5.1 |           X           |                 |   X  |      X     |          |      |
-| FR5.2 |           X           |                 |   X  |      X     |          |      |
-| FR5.3 |           X           |                 |   X  |      X     |          |      |
+|       | GasStationServiceImpl | UserServiceImpl | User          | GasStation | LoginDTO | IdPw | PriceReportDto |
+|-------|:---------------------:|:---------------:|:-------------:|:----------:|:--------:|:----:|:--------------:|
+| FR1.1 |                       |        X        |   X           |            |          |      |                |
+| FR1.2 |                       |        X        |   X           |            |          |      |                |
+| FR1.3 |                       |        X        |   X           |            |          |      |                |
+| FR1.4 |                       |        X        |   X (Admin    |            |          |      |                |
+| FR2   |                       |        X        |   X (Admin)   |            |     X    |   X  |                |
+| FR3   |           X           |                 |   X (Admin)   |            |          |      |                |
+| FR3.1 |           X           |                 |   X (Admin)   |      X     |          |      |                |
+| FR3.2 |           X           |                 |   X (Admin)   |      X     |          |      |                |
+| FR3.3 |           X           |                 |   X (Admin)   |      X     |          |      |                |
+| FR4   |           X           |                 |   X           |            |          |      |                |
+| FR4.2 |           X           |                 |   X           |      X     |          |      |                |
+| FR4.3 |           X           |                 |   X           |      X     |          |      |                |
+| FR4.4 |           X           |                 |   X           |      X     |          |      |                |
+| FR4.5 |           X           |                 |   X           |      X     |          |      |                |
+| FR5   |           X           |                 |   X           |      X     |          |      |        X       |
+| FR5.1 |           X           |                 |   X           |      X     |          |      |        X       |
+| FR5.2 |           X           |                 |   X           |      X     |          |      |                |
+| FR5.3 |           X           |                 |   X           |      X     |          |      |                |
 
 The involvment of a class in the it.polito.ezgas.entity package implies the use of the respective class in the converter, dto, repository and controller packages.
 
@@ -626,10 +685,9 @@ Scennario 10.1:
 
 ```plantuml
 @startuml
-UserController <- HomeController : 1: login(credentials)
-HomeController -> GasStationController : 2: getGasStationByProximity(mylat, mylon)
-UserController <- HomeController : 3: getUserById(u2)
-UserController <- HomeController : 4: increaseUserReputation(u2)
+UserController <- HomeController : 1: login(IdPw credentials)
+HomeController -> GasStationController : 2: getGasStationByProximity(Double myLat, Double mLlon, Integer myRadius)
+UserController <- HomeController : 3: increaseUserReputation(Integer userId)
 @enduml
 ```
 
@@ -637,10 +695,9 @@ Scennario 10.2:
 
 ```plantuml
 @startuml
-UserController <- HomeController : 1: login(credentials)
-HomeController -> GasStationController : 2: getGasStationByProximity(mylat, mylon)
-UserController <- HomeController : 3: getUserById(u2)
-UserController <- HomeController : 4: decreaseUserReputation(u2)
+UserController <- HomeController : 1: login(IdPw credentials)
+HomeController -> GasStationController : 2: getGasStationByProximity(Double myLat, Double myLon, Integer myRadius)
+UserController <- HomeController : 4: decreaseUserReputation(Integer userId)
 @enduml
 ```
 

@@ -38,7 +38,6 @@ public class BootEZGasApplication {
 	
 		*/
 		
-		System.out.println("All users stored in the database:\n");
 		if(userRepository.findAll().size() != 0) {
 			iter = userRepository.findAll().iterator();
 			while(iter.hasNext()) {
@@ -50,7 +49,6 @@ public class BootEZGasApplication {
 		    userRepository.save(user);
 		}
 		else {
-			System.out.println("None\n");
 			User user= new User("admin", "admin", "admin@ezgas.com", 5);
 		    user.setAdmin(true);
 		    userRepository.save(user);
