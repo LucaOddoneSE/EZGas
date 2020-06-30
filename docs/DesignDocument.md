@@ -7,7 +7,7 @@ Authors: Group 50
 
 Date: 3 May
 
-Version: 1
+Version: 2.0
 
 
 # Contents
@@ -647,24 +647,26 @@ it.polito.ezgas.converter -right[hidden]-> it.polito.ezgas.service
 # Verification traceability matrix
 
 
-|       | GasStationServiceImpl | UserServiceImpl | User | GasStation | LoginDTO | IdPw |
-|-------|:---------------------:|:---------------:|:----:|:----------:|:--------:|:----:|
-| FR1.1 |                       |        X        |   X  |            |          |      |
-| FR1.2 |                       |        X        |   X  |            |          |      |
-| FR1.3 |                       |        X        |   X  |            |          |      |
-| FR1.4 |                       |        X        |   X  |            |          |      |
-| FR2   |                       |        X        |   X  |            |     X    |   X  |
-| FR3.1 |           X           |                 |      |      X     |          |      |
-| FR3.2 |           X           |                 |      |      X     |          |      |
-| FR3.3 |           X           |                 |      |      X     |          |      |
-| FR4.1 |           X           |                 |      |      X     |          |      |
-| FR4.2 |           X           |                 |      |      X     |          |      |
-| FR4.3 |           X           |                 |      |      X     |          |      |
-| FR4.4 |           X           |                 |      |      X     |          |      |
-| FR4.5 |           X           |                 |      |      X     |          |      |
-| FR5.1 |           X           |                 |   X  |      X     |          |      |
-| FR5.2 |           X           |                 |   X  |      X     |          |      |
-| FR5.3 |           X           |                 |   X  |      X     |          |      |
+|       | GasStationServiceImpl | UserServiceImpl | User          | GasStation | LoginDTO | IdPw | PriceReportDto |
+|-------|:---------------------:|:---------------:|:-------------:|:----------:|:--------:|:----:|:--------------:|
+| FR1.1 |                       |        X        |   X           |            |          |      |                |
+| FR1.2 |                       |        X        |   X           |            |          |      |                |
+| FR1.3 |                       |        X        |   X           |            |          |      |                |
+| FR1.4 |                       |        X        |   X (Admin    |            |          |      |                |
+| FR2   |                       |        X        |   X (Admin)   |            |     X    |   X  |                |
+| FR3   |           X           |                 |   X (Admin)   |            |          |      |                |
+| FR3.1 |           X           |                 |   X (Admin)   |      X     |          |      |                |
+| FR3.2 |           X           |                 |   X (Admin)   |      X     |          |      |                |
+| FR3.3 |           X           |                 |   X (Admin)   |      X     |          |      |                |
+| FR4   |           X           |                 |   X           |            |          |      |                |
+| FR4.2 |           X           |                 |   X           |      X     |          |      |                |
+| FR4.3 |           X           |                 |   X           |      X     |          |      |                |
+| FR4.4 |           X           |                 |   X           |      X     |          |      |                |
+| FR4.5 |           X           |                 |   X           |      X     |          |      |                |
+| FR5   |           X           |                 |   X           |      X     |          |      |        X       |
+| FR5.1 |           X           |                 |   X           |      X     |          |      |        X       |
+| FR5.2 |           X           |                 |   X           |      X     |          |      |                |
+| FR5.3 |           X           |                 |   X           |      X     |          |      |                |
 
 The involvment of a class in the it.polito.ezgas.entity package implies the use of the respective class in the converter, dto, repository and controller packages.
 
