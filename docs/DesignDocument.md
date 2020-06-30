@@ -419,6 +419,8 @@ package "it.polito.ezgas.dto" {
     +void setSuperPlusPrice(double superPlusPrice)
     +double getGasPrice()
     +void setGasPrice(double gasPrice)
+    +Double getPremiumDieselPrice()
+    +void setPremiumDieselPrice(Double premiumDieselPrice)
     +User getUserDto()
     +void setUserDto(User userDto)
     +boolean getHasMethane()
