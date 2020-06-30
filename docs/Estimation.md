@@ -2,9 +2,9 @@
 
 Authors: Group 50
 
-Date: 3 May
+Date: 29 June
 
-Version:1
+Version:2
 
 # Contents
 
@@ -28,11 +28,11 @@ Version:1
 |             | Estimate                        |             
 | ----------- | ------------------------------- |  
 | NC =  Estimated number of classes to be developed   |        15                     |             
-|  A = Estimated average size per class, in LOC       |              50              | 
+| A = Estimated average size per class, in LOC       |              50              | 
 | S = Estimated size of project, in LOC (= NC * A) |750 |
 | E = Estimated effort, in person hours (here use productivity 10 LOC per person hour)  | 75 Hours   |   
 | C = Estimated cost, in euro (here use 1 person hour cost = 30 euro) |3240 euro| 
-| Estimated calendar time, in calendar weeks (Assume team of 4 people, 8 hours per day, 5 days per week ) |           1.5         |               
+| Estimated calendar time, in calendar weeks (Assume team of 4 people, 8 hours per day, 5 days per week ) |           2 weeks         |               
 
 
 # Estimate by activity decomposition
@@ -55,15 +55,23 @@ Version:1
 | Design GUI|8|
 | Application UI/UX|8|
 | Application back-end implementation |16|
-| Test Plan |4|
-| Unit Test |4|
+| Integration and API Test|4|
+| Unit Test |8|
+| GUI Test |8|
+| Acceptance Test |4|
+| CR4,CR7 |4|
 | System Test |4|
-| Total Person Hours |108 hours = 55 Days|
+| Total Person Hours | 128 hours| 
+
+*Estimated effort (person hours) : for each member of team
 
 
 
 ###
-Insert here Gantt chart with above activities
 
 Click on the image to see the details
 <img src="https://i.ibb.co/NLKYnhb/Gantt-Chart-1.jpg" alt="Gantt-Chart" border="0">
+
+The updated Gantt Chart: 
+
+<img src="https://i.ibb.co/xjJ6sbC/Gantt-Chart-1.jpg" alt="Gantt-Chart-1" border="0">
