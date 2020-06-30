@@ -454,6 +454,33 @@ package "it.polito.ezgas.dto" {
     +String getPw()
     +void setPw(String pw)
   }
+  class PriceReportDto {
+    +Integer gasStationId
+    +Double dieselPrice
+    +Double superPrice
+    +Double superPlusPrice
+    +Double gasPrice
+    +Double methanePrice;
+    +Double premiumDieselPrice;
+    +Integer userId;
+    __
+    +Double getDieselPrice()
+    +void setDieselPrice(Double dieselPrice)
+    +Double getSuperPrice()
+    +void setSuperPrice(Double superPrice)
+    +Double getSuperPlusPrice()
+    +void setSuperPlusPrice(Double superPlusPrice)
+    +Double getGasPrice()
+    +void setGasPrice(Double gasPrice)
+    +Double getMethanePrice()
+    +void setMethanePrice(Double methanePrice)
+    +Double getPremiumDieselPrice()
+    +void setPremiumDieselPrice(Double premiumDieselPrice)
+    +Integer getUserId()
+    +void setUserId(Integer userId)
+    +Integer getGasStationId()
+    +void setGasStationId(Integer gasStationId)
+  }
 }
 
 package "it.polito.ezgas.controller" {
