@@ -24,6 +24,7 @@ import com.google.gson.Gson;
 
 import it.polito.ezgas.dto.GasStationDto;
 import it.polito.ezgas.dto.IdPw;
+import it.polito.ezgas.dto.PriceReportDto;
 import it.polito.ezgas.dto.UserDto;
 import it.polito.ezgas.entity.GasStation;
 import it.polito.ezgas.entity.User;
@@ -155,7 +156,9 @@ public class TestController {
 		Gson gson = new Gson();
 		
 		String json = gson.toJson(new GasStation("GasStationRestAPITests","Vicolo Pizzo Viverone Piemont Italy",
-				true,true,false,false,true,"Car2Go",45.4238727,8.0569984,1.25,1.55,1.175,0.85,1.11,null,null,0));
+				true,true,false,false,true,true,"Car2Go",45.4238727,8.0569984,
+				(double) 1.25,(double) 1.55,(double) 1.175,(double) 0.85,(double) 1.11,
+				(double) 1.45,null,null,0));
 		StringEntity stringEntity = new StringEntity(json);
 		
 		request.setEntity(stringEntity);
@@ -192,7 +195,7 @@ public class TestController {
 	@Order(13)
 	@Test
 	public void testGetGasStationByProximity() throws ClientProtocolException, IOException {
-		HttpUriRequest request = new HttpGet("http://localhost:8080/gasstation/searchGasStationByProximity/45.5066977/8.128328/");
+		HttpUriRequest request = new HttpGet("http://localhost:8080/gasstation/searchGasStationByProximity/45.0587863/7.6604524/3");
 		HttpResponse response = HttpClientBuilder.create().build().execute(request);
 		String jsonFromResponse = EntityUtils.toString(response.getEntity());
 		
@@ -205,7 +208,7 @@ public class TestController {
 	@Order(14)
 	@Test
 	public void testGetGasStationsWithCoordinates() throws ClientProtocolException, IOException {
-		HttpUriRequest request = new HttpGet("http://localhost:8080/gasstation/getGasStationsWithCoordinates/45.5066977/8.128328/Diesel/Car2Go");
+		HttpUriRequest request = new HttpGet("http://localhost:8080/gasstation/getGasStationsWithCoordinates/45.0587863/7.6604524/3/Diesel/Car2Go");
 		HttpResponse response = HttpClientBuilder.create().build().execute(request);
 		String jsonFromResponse = EntityUtils.toString(response.getEntity());
 		
@@ -215,12 +218,24 @@ public class TestController {
 		assertTrue(gasStationDtoArray.length == 2);
 	}
 	
-	@Order(16)
+	@Order(15)
 	@Test
 	public void testSetReport() throws ClientProtocolException, IOException {
-		HttpPost request = new HttpPost("http://localhost:8080/gasstation/setGasStationReport/1/1.15/1.49/1.78/0.83/0.98/2");
+		CloseableHttpClient client = HttpClients.createDefault();
+		HttpPost request = new HttpPost("http://localhost:8080/gasstation/setGasStationReport");
 		
-		HttpResponse response = HttpClientBuilder.create().build().execute(request);
+		Gson gson = new Gson();
+		
+		String json = gson.toJson(new PriceReportDto(5,(double) 1.19,(double) 1.58,(double) 1.71,
+				(double) 0.89,(double) 1.01,(double) 1.48,2));
+		StringEntity stringEntity = new StringEntity(json);
+		
+		request.setEntity(stringEntity);
+		request.setHeader("Accept", "application/json");
+		request.setHeader("Content-type","application/json");
+		
+		CloseableHttpResponse response = client.execute(request);
+		
 		assertTrue(response.getStatusLine().getStatusCode() == 200);
 	}
 	

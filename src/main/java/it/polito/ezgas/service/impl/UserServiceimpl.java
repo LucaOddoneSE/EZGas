@@ -33,12 +33,6 @@ public class UserServiceimpl implements UserService {
 		if( userId < 0 ) throw new InvalidUserException("Error! Invalid userId: userId can't be negative");
 		if(userRepository.findOne(userId) == null)
 			return null;
-		System.out.println("Found User with userId submitted");
-		System.out.println(userRepository.findOne(userId).getUserId().toString() + " " +
-				           userRepository.findOne(userId).getUserName().toString() + " " +
-				           userRepository.findOne(userId).getPassword().toString() + " " +
-				           userRepository.findOne(userId).getEmail().toString() + " " +
-				           userRepository.findOne(userId).getReputation().toString());
 		return userConverter.toUserDto(userRepository.findOne(userId));
 	}
 
@@ -124,7 +118,6 @@ public class UserServiceimpl implements UserService {
 		if(userId < 0) throw new InvalidUserException("Error! Invalid userId: userId can't be negative\n");
 		if( userRepository.exists(userId) ) {
 			userRepository.delete(userId);
-			System.out.println("User successfully deleted!");
 			return true;
 		}
 		return null;
@@ -163,7 +156,6 @@ public class UserServiceimpl implements UserService {
 			}
 			user = iter.next();
 			if(user.getEmail().equals(email) && user.getPassword().equals(password)) {
-				System.out.println("Found User! Going to logIn!");
 				loginDto = new LoginDto(user.getUserId(),user.getUserName(),"token",user.getEmail(),user.getReputation());
 				if(user.getAdmin())
 					loginDto.setAdmin(true);

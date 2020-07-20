@@ -16,10 +16,10 @@ These figures will not be used to evaluate neither the project nor the team
 | may 18 - 24|  |  |  |  | 45 |  | 30min |  | 
 | may 25 - 31|  |  |  |  | 5 | 10 | 30min |  | 
 | jun 1 -  7 |  |  |  |  |  |  12| 30min |  | 
-| jun 8 - 14 |  |  |  |  |  |  |  |  | 
-| jun 15 -21 |  |  |  |  |  |  |  |  | 
-| jun 22 -28 |  |  |  |  |  |  |  |  | 
-| jun 29 - 5 |  |  |  |  |  |  |  |  | 
+| jun 8 - 14 |  |  |  |  |  |  | 15min |  | 
+| jun 15 -21 |  |  |  |  |  |  | 15min |  | 
+| jun 22 -28 |  |  |  4|  | 3 |  | 15min |  | 
+| jun 29 - 5 |  | 2 |  |  | 4 | 4 | 30min |  | 
 | jul 6 - 12 |  |  |  |  |  |  |  |  | 
 | jul 13 -19 |  |  |  |  |  |  |  |  | 
 | jul 20 -26 |  |  |  |  |  |  |  |  | 
