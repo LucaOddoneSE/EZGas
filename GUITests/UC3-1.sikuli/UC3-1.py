@@ -1,0 +1,12 @@
+click("1591029981972.png")
+wait(2)
+click("1591031420744.png")
+type("admin@ezgas.com")
+find("1591031471157.png")
+click("1591030121935.png")
+type("admin")
+find("1591031552380.png")
+click("1591030183346.png")
+click("1591030204503.png")
+wait(1)
+
