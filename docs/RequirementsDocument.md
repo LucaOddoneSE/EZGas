@@ -74,7 +74,6 @@ Frank just opened a gas station very close to a big intersection but not quite v
 
 ## Functional Requirements
 
-
 | ID        | Description  |
 | ------------- |:-------------:|  
 |  FR1     | Searching for a nearby gas station ( using Google maps ) |
@@ -598,7 +597,6 @@ Smartphone -- node3 : HTTP
 | ------------- |:-------------:| -----:|
 | Computer      |  EZGas Management Server| Connection is established via a HTTP logical link |
 | Smartphone | EZGas Management Server  | Connection is established via a HTTP logical link |
-
 | Stereotype (type of entity)    | Description   |
 | ------------- |-------------:|
 | Application   | A group of services visible to end-user |
